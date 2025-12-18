@@ -135,7 +135,7 @@
 
     <!-- Banner Section with Safety Checks -->
     <section class="container-fluid px-0">
-      <div class="row">
+      <div class="row g-0">
         <div class="col-12">
           <% if (result && result[1] && Array.isArray(result[1])) { %>
             <!-- Desktop Banner Swiper -->
@@ -202,34 +202,27 @@
         </div>
       </div>
     </section>
+    <style>
+      /* Fix extra bottom space in features section (mobile only) */
+      @media (max-width: 767px) {
+        .container-fluid>.row {
+          margin-bottom: 0 !important;
+        }
+
+        .container-fluid>.row>[class*="col-"] {
+          margin-top: 10px !important;
+          padding-top: 10px !important;
+          margin-bottom: 10px !important;
+          padding-bottom: 10px !important;
+        }
+      }
+    </style>
 
     <!-- Features -->
     <section class="container-fluid px-0">
-      <div class="row" style="
-    background:#f6f7f8;
-    border-radius:12px;
-    padding:20px 10px;
-    text-align:center;
-  ">
+      <div class="row g-0 features-row" style="background:#f6f7f8; border-radius:12px; padding:20px 10px;">
 
-        <div class="col-6 col-md-3">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-            <div style="
-          width:56px;
-          height:56px;
-          border-radius:50%;
-          background:#ffffff;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-        ">
-              <i class="ci-delivery" style="font-size:26px;"></i>
-            </div>
-            <h3 style="font-size:14px;font-weight:600;margin:0;">
-              Free Shipping &amp; Returns
-            </h3>
-          </div>
-        </div>
+        
 
         <div class="col-6 col-md-3">
           <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
@@ -250,6 +243,25 @@
           </div>
         </div>
 
+        <div class="col-6 col-md-3">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+            <div style="
+          width:56px;
+          height:56px;
+          border-radius:50%;
+          background:#ffffff;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+        ">
+              <i class="ci-delivery" style="font-size:26px;"></i>
+            </div>
+            <h3 style="font-size:14px;font-weight:600;margin:0;">
+              Free Shipping &amp; Returns
+            </h3>
+          </div>
+        </div>
+        
         <div class="col-6 col-md-3">
           <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
             <div style="
