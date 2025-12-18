@@ -1,0 +1,231 @@
+<%- include ('./adminheader.ejs') %>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-12">
+                <div class="card insertdiv" id='insertdiv'>
+                  <div class="card-header">
+                    <h4>New Country </h4>
+                  </div>
+                
+                  <div class="card-body">
+                  
+                      <div class="row">
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Country Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                              </div>
+                              
+                          </div>
+
+
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Shipping Charges</label>
+                                <input type="text" class="form-control" id="charges" required>
+                              </div>
+                              
+                          </div>
+
+                     
+
+                        
+                      </div>
+
+
+
+
+
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                          <div class="form-group">
+                              <label>From Weight (in GM)</label>
+                              <input type="text" class="form-control" id="from_weight" required>
+                            </div>
+                            
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                          <div class="form-group">
+                              <label>To Weight (In GM)</label>
+                              <input type="text" class="form-control" id="to_weight" required>
+                            </div>
+                            
+                        </div>
+
+                   
+
+                      
+                    </div>
+                  
+              
+                  
+                  </div>
+                  <div class="card-footer text-right">
+                    <button class="btn btn-primary mr-1 submit" type="button">Submit</button>
+                    <button class="btn btn-danger mr-1 show" id="show" type="button" >Show All Country</button>
+                  </div>
+                 
+                </div>
+            
+                
+                
+<div class="card mb-4" id='result'></div>
+
+
+
+<div class="card mb-4" id='editdiv'>
+    <h6 class="card-header"><span><button type="button" class="btn btn-primary show" id="back1" style="margin:10px">Back</button></span>Edit Data</h6>
+    <div class="card-body">
+    
+        <form>
+            <div class="form-row">
+    
+                <input type="hidden" class="form-control" placeholder="Email" id="pid" name="id" readonly>
+
+             
+    
+            <div class="form-group col-md-6">
+            <label class="form-label">Country</label>
+            <input type="text" class="form-control" placeholder="Email" id="pname">
+            <div class="clearfix"></div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>Shipping Charges</label>
+                    <input type="text" class="form-control" id="pcharges" required>
+                  </div>
+                  
+              </div>
+
+    
+         
+            </div>
+          
+
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>From Weight (in GM)</label>
+                    <input type="text" class="form-control" id="pfrom_weight" required>
+                  </div>
+                  
+              </div>
+
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>To Weight (In GM)</label>
+                    <input type="text" class="form-control" id="pto_weight" required>
+                  </div>
+                  
+              </div>
+
+         
+
+            
+          </div>
+            
+            <button type="button" id='update' class="btn btn-primary">Submit</button>
+            </form>
+    </div>
+    </div>
+    
+    
+    
+    <div class="card mb-4" id="updateimagediv">
+    <h6 class="card-header"><span><button type="button" class="btn btn-primary show" id="back2" style="margin:10px">Back</button></span> Upload Image</h6>
+    <div class="card-body">
+    
+        <form action="/category/update_image" method="POST" enctype="multipart/form-data">
+            <div class="form-row">
+       
+                <div class="form-group col-md-6">
+                    <label class="form-label">ID</label>
+                    <input type="text" class="form-control" placeholder="Email" id="peid" name="id" readonly>
+                    <div class="clearfix"></div>
+                    </div>
+    
+    
+            <div class="form-group col-md-6">
+            <label class="form-label">Image</label>
+            <input type="file" class="form-control" name='image' placeholder="Password">
+            <div class="clearfix"></div>
+            </div>
+            </div>
+            
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    </div>
+    </div>
+    
+            
+              </div>
+             
+            </div>
+          </div>
+        </section>
+        <div class="settingSidebar">
+          <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+          </a>
+       
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- General JS Scripts -->
+  <script src="/light/assets/js/app.min.js"></script>   
+  <!-- JS Libraies -->
+  <!-- Page Specific JS File -->
+  <!-- Template JS File -->
+  <script src="/light/assets/js/scripts.js"></script>
+  <!-- Custom JS File -->
+  <script src="/light/assets/js/custom.js"></script>
+
+
+  <script src="/javascripts/country.js"></script>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+  <script>
+  $('.submit').click(function(){
+      if($('#name').val() == [] || $('#name').val() == '') alert('Enter Name');
+      if($('#from_weight').val() == [] || $('#from_weight').val() == '') alert('Enter From Weight');
+      if($('#to_weight').val() == [] || $('#to_weight').val() == '') alert('Enter To Weight');
+
+    
+      else {
+          let name = $('#name').val()
+          let charges = $('#charges').val()
+          let from_weight = $('#from_weight').val()
+          let to_weight = $('#to_weight').val()
+      
+          $.post('/country/insert',{name,charges,from_weight,to_weight},data=>{
+           
+          if(data.status=='300' || data.status==300) alert(data.description)
+          else {
+         alert('successfully')
+          window.location.reload()
+          }
+         
+        
+          })
+      }
+  })
+  
+  
+  
+  </script>
+
+</body>
+
+
+</html>

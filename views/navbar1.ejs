@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" data-pwa="true">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-42QLWK8ESK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-42QLWK8ESK');
+
+    (function () {
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById("themeToggleBtn");
+      const toggleIcon = document.getElementById("themeToggleIcon");
+
+      if (!toggleBtn || !toggleIcon) return;
+
+      // Load saved theme OR system preference
+      const savedTheme = localStorage.getItem("theme");
+      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+
+      applyTheme(initialTheme);
+
+      toggleBtn.addEventListener("click", () => {
+        const current = html.getAttribute("data-bs-theme");
+        const next = current === "dark" ? "light" : "dark";
+        applyTheme(next);
+        localStorage.setItem("theme", next);
+      });
+
+      function applyTheme(theme) {
+        html.setAttribute("data-bs-theme", theme);
+        toggleIcon.className =
+          theme === "dark"
+            ? "ci-sun icon-size-lg"
+            : "ci-moon icon-size-lg";
+      }
+    })();
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById("themeToggleBtn");
+      const toggleIcon = document.getElementById("themeToggleIcon");
+
+      if (!toggleBtn || !toggleIcon) return;
+
+      const savedTheme = localStorage.getItem("theme");
+      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+
+      applyTheme(initialTheme);
+
+      toggleBtn.addEventListener("click", () => {
+        const next = html.getAttribute("data-bs-theme") === "dark" ? "light" : "dark";
+        applyTheme(next);
+        localStorage.setItem("theme", next);
+      });
+
+      function applyTheme(theme) {
+        html.setAttribute("data-bs-theme", theme);
+        toggleIcon.className =
+          theme === "dark"
+            ? "ci-sun icon-size-lg"
+            : "ci-moon icon-size-lg";
+      }
+    });
+  </script>
+
+  <!-- SEO -->
+  <meta name="keywords" content="FikA, trolley speakers, Bluetooth speakers, soundbars, wireless speakers, portable speakers, home audio, best speakers, high-quality audio, speaker system, electronic gadgets">
+  <meta name="author" content="Fika">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/logo.png" sizes="32x32">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Theme -->
+  <script src="/theme/assets/js/theme-switcher.js"></script>
+  <link rel="stylesheet" href="/theme/assets/icons/cartzilla-icons.min.css">
+  <link rel="stylesheet" href="/theme/assets/vendor/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/theme/assets/vendor/simplebar/simplebar.min.css">
+  <link rel="stylesheet" href="/theme/assets/css/theme.min.css">
+
+  <script src="/theme/assets/js/customizer.min.js"></script>
+  
+  <style>
+    /* ================ ENHANCED HEADER STYLES ================ */
+    .compact-header {
+      min-height: 70px !important;
+      padding: 0 !important;
+      transition: all 0.3s ease;
+    }
+    
+    /* ================ PREMIUM LOGO DESIGN ================ */
+    .compact-logo {
+      height: 90px !important;
+      width: 280px !important;
+      object-fit: contain;
+      margin-right: 400px;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+      transition: transform 0.3s ease;
+    }
+    
+    .compact-logo:hover {
+      transform: scale(1.03);
+    }
+    
+    /* ================ HEADER BACKGROUND ENHANCEMENT ================ */
+    [data-bs-theme="light"] header.navbar {
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+      color: #000000 !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    [data-bs-theme="dark"] header.navbar {
+      background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%) !important;
+      color: #ffffff !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    header.navbar {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    /* ================ IMPORTANT FIX: DROPDOWN OVERLAY ================ */
+    .dropdown-backdrop {
+      display: none !important;
+    }
+    
+    /* Hide body scroll when dropdown is open */
+    body.dropdown-open {
+      overflow: hidden;
+    }
+    
+    /* Dropdown overlay to hide content behind */
+    .dropdown-overlay {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 70px);
+      background: rgba(255, 255, 255, 0.95);
+      z-index: 1050;
+      backdrop-filter: blur(2px);
+    }
+    
+    [data-bs-theme="dark"] .dropdown-overlay {
+      background: rgba(18, 18, 18, 0.95);
+    }
+
+    /* ================ ENHANCED MEGA CATEGORY ================ */
+    .mega-category-dropdown {
+      width: 1100px;
+      padding: 28px 40px;
+      left: 50% !important;
+      transform: translateX(-50%);
+      background: #ffffff;
+      border-radius: 0 0 16px 16px;
+      border-top: 3px solid #007bff !important;
+      animation: slideDown 0.3s ease-out;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+      /* IMPORTANT: Make dropdown appear above all content */
+      z-index: 1060 !important;
+      position: fixed !important;
+      top: 70px !important;
+      border: none !important;
+      margin: 0 !important;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .mega-category-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(180px, 1fr));
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .mega-category-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: #ffffff;            
+      border-radius: 12px;
+      text-decoration: none;
+      color: #212121;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mega-category-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mega-category-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #007bff;
+      transition: width 0.3s ease;
+    }
+
+    .mega-category-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mega-category-icon img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .mega-category-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1f1f1f;
+      transition: 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hover Effects */
+    .mega-category-item:hover {
+      background: #ffffff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      transform: translateY(-3px);
+    }
+
+    .mega-category-item:hover::before {
+      opacity: 1;
+    }
+
+    .mega-category-item:hover::after {
+      width: 100%;
+    }
+
+    .mega-category-item:hover .mega-category-icon {
+      background: linear-gradient(135deg, #eef2f6 0%, #e3e8f1 100%);
+      transform: scale(1.08);
+    }
+
+    .mega-category-item:hover .mega-category-icon img {
+      transform: scale(1.1);
+    }
+
+    /* ================ ENHANCED CATEGORY BUTTON ================ */
+    .btn-outline-secondary.rounded-pill {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border: 2px solid #dee2e6;
+      padding: 0.6rem 1.6rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      font-size: 14px;
+    }
+
+    .btn-outline-secondary.rounded-pill:hover {
+      background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+      border-color: #007bff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-outline-secondary.rounded-pill i {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-outline-secondary.rounded-pill:hover i {
+      transform: translateY(-1px);
+    }
+
+    /* ================ PREMIUM SEARCH BAR ================ */
+    .search-input-fixed {
+      border-radius: 50px !important;
+      border: 2px solid #e0e0e0 !important;
+      padding: 0.7rem 1.5rem 0.7rem 3rem !important;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.95) !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .search-input-fixed:focus {
+      border-color: #007bff !important;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15) !important;
+      transform: translateY(-1px);
+      background: #ffffff !important;
+    }
+
+    [data-bs-theme="dark"] .search-input-fixed {
+      background: rgba(30, 30, 30, 0.95) !important;
+      border-color: #444 !important;
+      color: #ffffff;
+    }
+
+    [data-bs-theme="dark"] .search-input-fixed:focus {
+      background: #1a1a1a !important;
+    }
+
+    .ci-search {
+      left: 20px !important;
+      color: #666;
+      z-index: 5;
+      font-size: 18px;
+    }
+
+    /* ================ ENHANCED ACTION ICONS ================ */
+    .icons-container {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .compact-btn {
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 50% !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #dee2e6 !important;
+      background: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .compact-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      border-color: #adb5bd !important;
+    }
+
+    .compact-btn:hover i {
+      transform: scale(1.15);
+      animation: iconPulse 0.6s ease;
+    }
+
+    @keyframes iconPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1.15); }
+    }
+
+    .icon-size-lg {
+      font-size: 22px !important;
+      transition: transform 0.3s ease;
+    }
+
+    /* Cart Button Special Style */
+    .compact-btn.btn-dark {
+      background: linear-gradient(135deg, #343a40 0%, #495057 100%) !important;
+      border-color: #343a40 !important;
+      box-shadow: 0 4px 15px rgba(52, 58, 64, 0.2);
+    }
+
+    .compact-btn.btn-dark:hover {
+      background: linear-gradient(135deg, #495057 0%, #6c757d 100%) !important;
+      box-shadow: 0 8px 25px rgba(52, 58, 64, 0.3);
+      border-color: #6c757d !important;
+    }
+
+    /* Animated Badge */
+    .compact-badge {
+      animation: pulse 2s infinite;
+      padding: 0.3em 0.6em;
+      font-size: 0.75rem;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 10px rgba(220, 53, 69, 0.5);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1) translate(-50%, -50%); }
+      50% { transform: scale(1.15) translate(-50%, -50%); }
+      100% { transform: scale(1) translate(-50%, -50%); }
+    }
+
+    /* ================ DARK MODE ENHANCEMENTS ================ */
+    [data-bs-theme="dark"] .compact-btn {
+      border-color: #444 !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    [data-bs-theme="dark"] .compact-btn:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      border-color: #666 !important;
+    }
+
+    [data-bs-theme="dark"] .mega-category-dropdown {
+      background-color: #1a1a1a !important;
+      border-top: 3px solid #0d6efd !important;
+    }
+
+    [data-bs-theme="dark"] .mega-category-item {
+      background-color: #1a1a1a !important;
+      color: #ffffff;
+    }
+
+    [data-bs-theme="dark"] .mega-category-text {
+      color: #ffffff;
+    }
+
+    [data-bs-theme="dark"] .mega-category-icon {
+      background-color: #2d2d2d;
+    }
+
+    [data-bs-theme="dark"] .mega-category-item:hover {
+      background: #2d2d2d !important;
+    }
+
+    [data-bs-theme="dark"] .btn-outline-secondary.rounded-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #444;
+      color: #ffffff;
+    }
+
+    [data-bs-theme="dark"] .btn-outline-secondary.rounded-pill:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #0d6efd;
+    }
+
+    /* ================ RESPONSIVE DESIGN ================ */
+    @media (max-width: 1200px) {
+      .mega-category-grid {
+        grid-template-columns: repeat(4, minmax(160px, 1fr));
+      }
+      
+      .compact-logo {
+        margin-right: 300px;
+      }
+      
+      .mega-category-dropdown {
+        width: 95%;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .mega-category-dropdown {
+        width: 98%;
+        padding: 20px;
+      }
+
+      .mega-category-grid {
+        grid-template-columns: repeat(3, minmax(150px, 1fr));
+        gap: 12px;
+      }
+      
+      .compact-logo {
+        height: 80px !important;
+        width: 240px !important;
+        margin-right: 0;
+      }
+      
+      .icons-container {
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .compact-header {
+        min-height: 65px !important;
+      }
+      
+      .compact-logo {
+        height: 70px !important;
+        width: 200px !important;
+      }
+      
+      .compact-btn {
+        width: 40px !important;
+        height: 40px !important;
+      }
+      
+      .icon-size-lg {
+        font-size: 20px !important;
+      }
+      
+      .btn-outline-secondary.rounded-pill {
+        padding: 0.5rem 1.2rem;
+        font-size: 13px;
+      }
+      
+      .search-input-fixed {
+        padding: 0.6rem 1.2rem 0.6rem 2.8rem !important;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .compact-btn {
+        width: 38px !important;
+        height: 38px !important;
+      }
+      
+      .icon-size-lg {
+        font-size: 18px !important;
+      }
+      
+      .compact-badge {
+        font-size: 0.65rem;
+        padding: 0.2em 0.5em;
+      }
+    }
+
+    /* ================ SMOOTH TRANSITIONS ================ */
+    .btn, .compact-btn, .mega-category-item, .search-input-fixed, .compact-logo {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Active state feedback */
+    .compact-btn:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- CART -->
+<%- include('./shoppingCart.ejs') %>
+
+<!-- ================ DROPDOWN OVERLAY ================ -->
+<div class="dropdown-overlay" id="dropdownOverlay"></div>
+
+<!-- ================ ENHANCED HEADER ================ -->
+<header class="navbar navbar-expand-lg border-bottom sticky-top compact-header p-0">
+  <div class="container py-2">
+    <div class="row align-items-center w-100 g-3">
+
+      <!-- LOGO + TOGGLER -->
+      <div class="col-lg-3 d-flex align-items-center">
+        <button class="navbar-toggler compact-nav-toggler me-3"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#navbarNav"
+                style="border: 2px solid var(--bs-border-color); border-radius: 8px; padding: 6px 10px;">
+          <span class="navbar-toggler-icon" style="font-size:1.4rem;"></span>
+        </button>
+
+        <a href="/" class="navbar-brand p-0">
+          <img src="/images/L3.png" class="compact-logo" alt="Fika Logo">
+        </a>
+      </div>
+
+      <!-- CATEGORY + SEARCH -->
+      <div class="col-lg-6 d-flex justify-content-center py-2">
+        <div class="d-flex align-items-center gap-3 w-100 justify-content-center">
+
+          <!-- CATEGORY BUTTON -->
+          <div class="dropdown d-none d-lg-block" id="categoryDropdown">
+            <button class="btn btn-outline-secondary rounded-pill d-flex align-items-center px-3"
+                    data-bs-toggle="dropdown"
+                    data-bs-trigger="hover"
+                    style="min-width: 140px;">
+              <i class="ci-grid me-2"></i>
+              <span>Categories</span>
+              <i class="ci-chevron-down ms-2 fs-sm"></i>
+            </button>
+
+            <!-- MEGA CATEGORY DROPDOWN -->
+            <ul class="dropdown-menu mega-category-dropdown shadow p-0 mt-2">
+              <li class="mega-category-wrapper">
+                <div class="mega-category-grid">
+                  <% for (let i = 0; i < result[0].length; i++) { %>
+                    <a href="/category?id=<%= result[0][i].id %>" class="mega-category-item">
+                      <div class="mega-category-icon">
+                        <img src="/images/<%= result[0][i].image %>"
+                             alt="<%= result[0][i].name %>">
+                      </div>
+                      <span class="mega-category-text">
+                        <%= result[0][i].name %>
+                      </span>
+                    </a>
+                  <% } %>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- SEARCH BAR -->
+          <div class="position-relative" style="max-width:400px;width:100%;">
+            <form action="/search" method="GET">
+              <i class="ci-search position-absolute top-50 translate-middle-y"
+                 style="left:18px;color:#6c757d;font-size:18px;"></i>
+
+              <input type="search"
+                     name="q"
+                     class="form-control rounded-pill search-input-fixed ps-5"
+                     placeholder="Search for speakers, soundbars & more..."
+                     aria-label="Search products">
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT ACTION ICONS -->
+      <div class="col-lg-3 d-flex justify-content-end py-2">
+        <div class="icons-container">
+
+          <!-- THEME TOGGLE -->
+          <button class="btn btn-sm btn-outline-secondary compact-btn"
+                  id="themeToggleBtn"
+                  title="Toggle theme"
+                  aria-label="Toggle theme">
+            <i class="ci-moon icon-size-lg" id="themeToggleIcon"></i>
+          </button>
+
+          <!-- ACCOUNT -->
+          <% if (login) { %>
+            <a href="/myaccount" class="btn btn-sm btn-outline-secondary compact-btn" title="My Account" aria-label="My Account">
+              <i class="ci-user icon-size-lg"></i>
+            </a>
+          <% } else { %>
+            <a href="/login" class="btn btn-sm btn-outline-secondary compact-btn" title="Login" aria-label="Login">
+              <i class="ci-user icon-size-lg"></i>
+            </a>
+          <% } %>
+
+          <!-- WISHLIST -->
+          <a href="/view-wishlist"
+             class="btn btn-sm btn-outline-secondary compact-btn d-none d-md-inline-flex"
+             title="Wishlist"
+             aria-label="Wishlist">
+            <i class="ci-heart icon-size-lg"></i>
+          </a>
+
+          <!-- CART -->
+          <button class="btn btn-sm btn-dark compact-btn position-relative"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#shoppingCart"
+                  title="Shopping Cart"
+                  aria-label="Shopping Cart">
+            <i class="ci-shopping-cart icon-size-lg"></i>
+            <% if (cartData.cartItems.length > 0) { %>
+              <span class="badge bg-danger compact-badge position-absolute top-0 start-100 translate-middle">
+                <%= cartData.cartItems.length %>
+              </span>
+            <% } %>
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MOBILE SEARCH -->
+  <div class="collapse d-lg-none border-top" id="searchBarMobile">
+    <div class="container py-3">
+      <form action="/search" method="GET" class="position-relative">
+        <i class="ci-search position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+        <input type="search"
+               name="q"
+               class="form-control compact-search rounded-pill ps-5 py-2"
+               placeholder="Search products...">
+      </form>
+    </div>
+  </div>
+</header>
+
+<!-- NAVIGATION / CATEGORIES -->
+<nav class="offcanvas offcanvas-start" id="navbarNav">
+  <div class="offcanvas-header py-4 border-bottom">
+    <h5 class="h5 mb-0">Browse Categories</h5>
+    <button class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
+  </div>
+
+  <div class="offcanvas-body p-0">
+    <% if (result && result[0]) { %>
+      <div class="list-group list-group-flush">
+        <% for (let i = 0; i < result[0].length; i++) { %>
+          <a href="/category?id=<%= result[0][i].id %>"
+             class="list-group-item list-group-item-action border-0 py-3 d-flex align-items-center hover-bg">
+            <img src="/images/<%= result[0][i].image %>" 
+                 class="me-3 rounded" 
+                 style="width: 32px; height: 32px; object-fit: cover;"
+                 alt="<%= result[0][i].name %>">
+            <span class="fw-medium"><%= result[0][i].name %></span>
+          </a>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</nav>
+
+<script>
+  // Dropdown overlay control
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropdownButton = document.querySelector('[data-bs-toggle="dropdown"]');
+    const dropdownMenu = document.querySelector('.mega-category-dropdown');
+    const dropdownOverlay = document.getElementById('dropdownOverlay');
+    const body = document.body;
+    
+    if (dropdownButton && dropdownMenu) {
+      dropdownButton.addEventListener('show.bs.dropdown', function() {
+        dropdownOverlay.style.display = 'block';
+        body.classList.add('dropdown-open');
+        setTimeout(() => {
+          dropdownOverlay.style.opacity = '1';
+        }, 10);
+      });
+      
+      dropdownButton.addEventListener('hide.bs.dropdown', function() {
+        dropdownOverlay.style.opacity = '0';
+        setTimeout(() => {
+          dropdownOverlay.style.display = 'none';
+          body.classList.remove('dropdown-open');
+        }, 300);
+      });
+      
+      // Close dropdown when clicking on overlay
+      dropdownOverlay.addEventListener('click', function() {
+        const bsDropdown = bootstrap.Dropdown.getInstance(dropdownButton);
+        if (bsDropdown) {
+          bsDropdown.hide();
+        }
+      });
+    }
+  });
+</script>
+<!-- Customizer offcanvas -->
+<div class="offcanvas offcanvas-end" id="customizer" tabindex="-1">
+  <div class="offcanvas-header border-bottom">
+    <h4 class="h5 offcanvas-title">Customize theme</h4>
+    <button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <!-- Customizer settings -->
+    <div class="customizer-collapse collapse show" id="customizerSettings">
+      <!-- Colors -->
+      <div class="pb-4 mb-2">
+        <div class="d-flex align-items-center mb-3">
+          <i class="ci-paint text-body-tertiary fs-5 me-2"></i>
+          <h5 class="fs-lg mb-0">Colors</h5>
+        </div>
+        <div class="row row-cols-2 g-3" id="theme-colors">
+          <div class="col">
+            <h6 class="fs-sm mb-2">Primary</h6>
+            <div class="color-swatch d-flex border rounded gap-3 p-2" id="theme-primary" data-color-labels="[&quot;theme-primary&quot;, &quot;primary&quot;, &quot;primary-rgb&quot;]">
+              <input type="text" class="form-control bg-transparent border-0 rounded-0 p-1" value="#f55266">
+              <label for="primary" class="ratio ratio-1x1 flex-shrink-0 w-100 cursor-pointer rounded-circle" style="max-width: 38px; background-color: #f55266"></label>
+              <input type="color" class="visually-hidden" id="primary" value="#f55266">
+            </div>
+          </div>
+          <div class="col">
+            <h6 class="fs-sm mb-2">Success</h6>
+            <div class="color-swatch d-flex border rounded gap-3 p-2" id="theme-success" data-color-labels="[&quot;theme-success&quot;, &quot;success&quot;, &quot;success-rgb&quot;]">
+              <input type="text" class="form-control bg-transparent border-0 rounded-0 p-1" value="#33b36b">
+              <label for="success" class="ratio ratio-1x1 flex-shrink-0 w-100 cursor-pointer rounded-circle" style="max-width: 38px; background-color: #33b36b"></label>
+              <input type="color" class="visually-hidden" id="success" value="#33b36b">
+            </div>
+          </div>
+          <div class="col">
+            <h6 class="fs-sm mb-2">Warning</h6>
+            <div class="color-swatch d-flex border rounded gap-3 p-2" id="theme-warning" data-color-labels="[&quot;theme-warning&quot;, &quot;warning&quot;, &quot;warning-rgb&quot;]">
+              <input type="text" class="form-control bg-transparent border-0 rounded-0 p-1" value="#fc9231">
+              <label for="warning" class="ratio ratio-1x1 flex-shrink-0 w-100 cursor-pointer rounded-circle" style="max-width: 38px; background-color: #fc9231"></label>
+              <input type="color" class="visually-hidden" id="warning" value="#fc9231">
+            </div>
+          </div>
+          <div class="col">
+            <h6 class="fs-sm mb-2">Danger</h6>
+            <div class="color-swatch d-flex border rounded gap-2 p-2" id="theme-danger" data-color-labels="[&quot;theme-danger&quot;, &quot;danger&quot;, &quot;danger-rgb&quot;]">
+              <input type="text" class="form-control bg-transparent border-0 rounded-0 p-1" value="#f03d3d">
+              <label for="danger" class="ratio ratio-1x1 flex-shrink-0 w-100 cursor-pointer rounded-circle" style="max-width: 38px; background-color: #f03d3d"></label>
+              <input type="color" class="visually-hidden" id="danger" value="#f03d3d">
+            </div>
+          </div>
+          <div class="col">
+            <h6 class="fs-sm mb-2">Info</h6>
+            <div class="color-swatch d-flex border rounded gap-2 p-2" id="theme-info" data-color-labels="[&quot;theme-info&quot;, &quot;info&quot;, &quot;info-rgb&quot;]">
+              <input type="text" class="form-control bg-transparent border-0 rounded-0 p-1" value="#2f6ed5">
+              <label for="info" class="ratio ratio-1x1 flex-shrink-0 w-100 cursor-pointer rounded-circle" style="max-width: 38px; background-color: #2f6ed5"></label>
+              <input type="color" class="visually-hidden" id="info" value="#2f6ed5">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Direction -->
+      <div class="pb-4 mb-2">
+        <div class="d-flex align-items-center pb-1 mb-2">
+          <i class="ci-sort text-body-tertiary fs-lg me-2" style="transform: rotate(90deg)"></i>
+          <h5 class="fs-lg mb-0">Direction</h5>
+        </div>
+        <div class="d-flex align-items-center justify-content-between border rounded p-3">
+          <div class="me-3">
+            <h6 class="mb-1">RTL</h6>
+            <p class="fs-sm mb-0">Change text direction</p>
+          </div>
+          <div class="form-check form-switch m-0">
+            <input type="checkbox" class="form-check-input" role="switch" id="rtl-switch">
+          </div>
+        </div>
+        <div class="alert alert-info p-2 mt-2 mb-0">
+          <div class="d-flex text-body-emphasis fs-xs py-1 pe-1">
+            <i class="ci-info text-info fs-lg mb-2 mb-sm-0" style="margin-top: .125rem"></i>
+            <div class="ps-2">To switch the text direction of your webpage from LTR to RTL, please consult the detailed instructions provided in the relevant section of our documentation.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Border width -->
+      <div class="pb-4 mb-2">
+        <div class="d-flex align-items-center pb-1 mb-2">
+          <i class="ci-menu text-body-tertiary fs-lg me-2"></i>
+          <h5 class="fs-lg mb-0">Border width, px</h5>
+        </div>
+        <div class="slider-input d-flex align-items-center gap-3 border rounded p-3" id="border-input">
+          <input type="range" class="form-range" min="0" max="10" step="1" value="1">
+          <input type="number" class="form-control" id="border-width" min="0" max="10" value="1" style="max-width: 5.5rem">
+        </div>
+      </div>
+
+      <!-- Rounding -->
+      <div class="d-flex align-items-center pb-1 mb-2">
+        <i class="ci-maximize text-body-tertiary fs-lg me-2"></i>
+        <h5 class="fs-lg mb-0">Rounding, rem</h5>
+      </div>
+      <div class="slider-input d-flex align-items-center gap-3 border rounded p-3">
+        <input type="range" class="form-range" min="0" max="5" step=".05" value="0.5">
+        <input type="number" class="form-control" id="border-radius" min="0" max="5" step=".05" value="0.5" style="max-width: 5.5rem">
+      </div>
+    </div>
+
+    <!-- Customizer code -->
+    <div class="customizer-collapse collapse" id="customizerCode">
+      <div class="nav mb-3">
+        <a class="nav-link animate-underline fs-base p-0" href="/" data-bs-toggle="collapse" aria-expanded="true" aria-controls="customizerSettings customizerCode">
+          <i class="ci-chevron-left fs-lg ms-n1 me-1"></i>
+          <span class="animate-target">Back to settings</span>
+        </a>
+      </div>
+      <p class="fs-sm pb-1">To apply the provided styles to your webpage, enclose them within a <code>&lt;style&gt;</code> tag and insert this tag into the <code>&lt;head&gt;</code> section of your HTML document after the following link to the main stylesheet:<br><code>&lt;link href="/theme/assets/css/theme.min.css"&gt;</code></p>
+      <div class="position-relative bg-body-tertiary rounded overflow-hidden pt-3">
+        <div class="position-absolute top-0 start-0 w-100 p-3">
+          <button type="button" class="btn btn-sm btn-outline-dark w-100" data-copy-text-from="#generated-styles" data-done-label="Code copied">
+            <i class="ci-copy fs-sm me-1"></i>
+            Copy code
+          </button>
+        </div>
+        <pre class="text-wrap bg-transparent border-0 fs-xs text-body-emphasis p-4 pt-5" id="generated-styles"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Offcanvas footer (Action buttons) -->
+  <div class="offcanvas-header border-top gap-3 d-none" id="customizer-btns">
+    <button type="button" class="btn btn-lg btn-secondary w-100 fs-sm" id="customizer-reset">
+      <i class="ci-trash fs-lg me-2 ms-n1"></i>
+      Reset
+    </button>
+    <button class="btn btn-lg btn-primary hiding-collapse-toggle w-100 fs-sm collapsed" type="button" data-bs-toggle="collapse" data-bs-target=".customizer-collapse" aria-expanded="false" aria-controls="customizerSettings customizerCode">
+      <i class="ci-code fs-lg me-2 ms-n1"></i>
+      Show code
+    </button>
+  </div>
+</div>
+
+<!-- Order details offcanvas -->
+<div class="offcanvas offcanvas-end pb-sm-2 px-sm-2" id="orderDetails" tabindex="-1" aria-labelledby="orderDetailsLabel" style="width: 500px">
+  <!-- Header -->
+  <div class="offcanvas-header align-items-start py-3 pt-lg-4">
+    <div>
+      <h4 class="offcanvas-title mb-1" id="orderDetailsLabel">Order # <span id="order-id"></span></h4>
+      <span class="d-flex align-items-center fs-sm fw-medium text-body-emphasis">
+        <span class="bg-info rounded-circle p-1 me-2"></span>
+        <span id="order-status"></span>
+      </span>
+    </div>
+    <button type="button" class="btn-close mt-0" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <!-- Body -->
+  <div class="d-flex flex-column gap-4 pt-2 pb-3" style="flex-grow: 0.2; overflow-y: auto; padding: var(--cz-offcanvas-padding-y) var(--cz-offcanvas-padding-x);">
+    <!-- Items -->
+    <div id="order-items" class="d-flex flex-column gap-1"></div>
+
+    <div class="d-flex align-items-center" style="margin-bottom: -50px;">
+      <div id="order-image"></div>
+      <hr/>
+      <div class="w-100 min-w-0 ps-2 ps-sm-3">
+        <h5 class="d-flex animate-underline mb-2">
+          <a class="d-block fs-sm fw-medium text-truncate animate-target" id="order-name"></a>
+        </h5>
+        <div class="h6 mb-2" id="order-price"></div>
+        <div class="fs-xs" id="order-quantity"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delivery + Payment info -->
+  <div class="border-top pt-4" style="margin:20px">
+    <h6>Delivery</h6>
+    <ul class="list-unstyled fs-sm mb-4">
+      <li class="d-flex justify-content-between mb-1">
+        Estimated delivery date:
+        <span class="text-body-emphasis fw-medium text-end ms-2" id="delivery-date"></span>
+      </li>
+      <li class="d-flex justify-content-between">
+        Shipping address:
+        <span class="text-body-emphasis fw-medium text-end ms-2" id="shipping-address"></span>
+      </li>
+    </ul>
+    <h6>Payment</h6>
+    <ul class="list-unstyled fs-sm m-0">
+      <li class="d-flex justify-content-between mb-1">
+        Payment method:
+        <span class="text-body-emphasis fw-medium text-end ms-2" id="payment-method"></span>
+      </li>
+      <li class="d-flex justify-content-between">
+        Shipping:
+        <span class="text-body-emphasis fw-medium text-end ms-2" id="shipping"></span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Total -->
+  <div class="d-flex align-items-center justify-content-between fs-sm border-top pt-4" style="margin: 20px;">
+    Estimated total:
+    <span class="h5 text-end ms-2 mb-0" id="total-price"></span>
+  </div>
+
+  <div id="order-actions" style="position: relative;bottom: 100;" class="mt-3"></div>
+</div>
+
+<div class="modal fade" id="replacementModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Request Replacement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label">Upload Unboxing Video</label>
+        <input type="file" id="unboxingVideo" class="form-control" accept="video/*">
+
+        <label class="form-label mt-3">Describe Your Issue</label>
+        <textarea id="issueDescription" class="form-control" rows="3"></textarea>
+        
+        <input type="hidden" id="replacementOrderId">
+        <input type="hidden" id="replacementProductId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" id="submitReplacement">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="loader" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1050;">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Rate & Review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label">Rating (1-5)</label>
+        <select id="rating" class="form-select">
+          <option value="1">1 - Poor</option>
+          <option value="2">2 - Fair</option>
+          <option value="3">3 - Good</option>
+          <option value="4">4 - Very Good</option>
+          <option value="5">5 - Excellent</option>
+        </select>
+
+        <label class="form-label mt-3">Write a Review</label>
+        <textarea id="reviewText" class="form-control" rows="3"></textarea>
+
+        <input type="hidden" id="reviewOrderId">
+        <input type="hidden" id="reviewProductId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="submitReview">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this order?</p>
+        <input type="hidden" id="deleteItemId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" id="confirmDelete">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bonuses info modal -->
+<div class="modal fade" id="bonusesModal" tabindex="-1" aria-labelledby="bonusesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bonusesModalLabel">My bonuses</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row align-items-center">
+          <div class="col-sm-6 mb-4 mb-sm-0">
+            <div class="position-relative bg-warning text-center rounded-4 overflow-hidden">
+              <div class="position-relative z-1 py-3 px-4">
+                <svg class="text-white opacity-75 mb-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" fill="currentColor"><path d="M1.333 9.667H7.5V16h-5c-.64 0-1.167-.527-1.167-1.167V9.667zm13.334 0v5.167c0 .64-.527 1.167-1.167 1.167h-5V9.667h6.167zM0 5.833V7.5c0 .64.527 1.167 1.167 1.167h.167H7.5v-1-3H1.167C.527 4.667 0 5.193 0 5.833zm14.833-1.166H8.5v3 1h6.167.167C15.473 8.667 16 8.14 16 7.5V5.833c0-.64-.527-1.167-1.167-1.167z"></path><path d="M8 5.363a.5.5 0 0 1-.495-.573C7.752 3.123 9.054-.03 12.219-.03c1.807.001 2.447.977 2.447 1.813 0 1.486-2.069 3.58-6.667 3.58zM12.219.971c-2.388 0-3.295 2.27-3.595 3.377 1.884-.088 3.072-.565 3.756-.971.949-.563 1.287-1.193 1.287-1.595 0-.599-.747-.811-1.447-.811z"></path><path d="M8.001 5.363c-4.598 0-6.667-2.094-6.667-3.58 0-.836.641-1.812 2.448-1.812 3.165 0 4.467 3.153 4.713 4.819a.5.5 0 0 1-.495.573zM3.782.971c-.7 0-1.448.213-1.448.812 0 .851 1.489 2.403 5.042 2.566C7.076 3.241 6.169.971 3.782.971z"></path></svg>
+                <div class="h2 text-white pb-1 mb-2">100</div>
+                <p class="fs-sm fw-medium text-white opacity-75 mb-0">1 bonus = 1$</p>
+              </div>
+              <div class="position-absolute bg-white bg-opacity-10 rounded-circle" style="top: -15px; right: -128px; width: 165px; height: 165px"></div>
+              <div class="position-absolute bg-white bg-opacity-10 rounded-circle" style="top: -15px; left: -128px; width: 165px; height: 165px"></div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <ul class="list-unstyled fs-sm m-0">
+              <li class="d-flex align-items-center justify-content-between">
+                Available:
+                <span class="text-dark-emphasis fw-semibold ms-2">100</span>
+              </li>
+              <li class="d-flex align-items-center justify-content-between">
+                Waiting activation:
+                <span class="text-dark-emphasis fw-semibold ms-2">0</span>
+              </li>
+              <li class="d-flex align-items-center justify-content-between">
+                Total:
+                <span class="text-dark-emphasis fw-semibold ms-2">100</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page content -->
+<main class="content-wrapper">
+  <div class="container py-5 mt-n2 mt-sm-0">
+    <div class="row pt-md-2 pt-lg-3 pb-sm-2 pb-md-3 pb-lg-4 pb-xl-5">
+      <!-- Sidebar navigation that turns into offcanvas on screens < 992px wide (lg breakpoint) -->
+      <aside class="col-lg-3">
+        <div class="offcanvas-lg offcanvas-start pe-lg-0 pe-xl-4" id="accountSidebar">
+          <!-- Header -->
+          <div class="offcanvas-header d-lg-block py-3 p-lg-0">
+            <div class="d-flex align-items-center">
+              <div class="h5 d-flex justify-content-center align-items-center flex-shrink-0 text-primary bg-primary-subtle lh-1 rounded-circle mb-0" style="width: 3rem; height: 3rem"><%= result[2][0].firstname.charAt(0).toUpperCase() %></div>
+              <div class="min-w-0 ps-3">
+                <h5 class="h6 mb-1"><%=result[2][0].firstname%> <%=result[2][0].lastname%></h5>
+              </div>
+            </div>
+            <button type="button" class="btn-close d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#accountSidebar" aria-label="Close"></button>
+          </div>
+
+          <!-- Body (Navigation) -->
+          <div class="offcanvas-body d-block pt-2 pt-lg-4 pb-lg-0">
+            <nav class="list-group list-group-borderless">
+              <a class="list-group-item list-group-item-action d-flex align-items-center" href="/myorder">
+                <i class="ci-shopping-bag fs-base opacity-75 me-2"></i>
+                Orders
+              </a>
+              <a class="list-group-item list-group-item-action d-flex align-items-center" href="/view-wishlist">
+                <i class="ci-heart fs-base opacity-75 me-2"></i>
+                Wishlist
+              </a>
+            </nav>
+            <h6 class="pt-4 ps-2 ms-1">Manage account</h6>
+            <nav class="list-group list-group-borderless">
+              <a class="list-group-item list-group-item-action d-flex align-items-center" href="/myaccount">
+                <i class="ci-user fs-base opacity-75 me-2"></i>
+                Personal info
+              </a>
+              <a class="list-group-item list-group-item-action d-flex align-items-center" href="/myaddress">
+                <i class="ci-map-pin fs-base opacity-75 me-2"></i>
+                Addresses
+              </a>
+              <a class="list-group-item list-group-item-action d-flex align-items-center" href="/logout">
+                <i class="ci-log-out fs-base opacity-75 me-2"></i>
+                Logout
+              </a>
+            </nav>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Add new address modal -->
+      <div class="modal fade" id="newAddressModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="newAddressModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="newAddressModalLabel">Add new address</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="row g-3 g-lg-4 needs-validation" novalidate="" method="post" action="/save-myaddress">
+                <div class="col-lg-6">
+                  <div class="position-relative">
+                    <label for="add-fname" class="form-label">First Name</label>
+                    <input type="text" name="firstname" class="form-control" id="add-fname" required="">
+                    <div class="invalid-feedback">Please enter your First Name!</div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="position-relative">
+                    <label for="add-lname" class="form-label">Last Name</label>
+                    <input type="text" name="lastname" class="form-control" id="add-lname" required="">
+                    <div class="invalid-feedback">Please enter your Last Name!</div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="position-relative">
+                    <label class="form-label">City</label>
+                    <select name="city" class="form-select" data-select="{&quot;searchEnabled&quot;: true}" aria-label="Select city" required="">
+                      <option value="">Select your city</option>
+                      <option value="Mumbai">Mumbai</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Bangalore">Bangalore</option>
+                      <option value="Hyderabad">Hyderabad</option>
+                      <option value="Ahmedabad">Ahmedabad</option>
+                      <option value="Chennai">Chennai</option>
+                      <option value="Kolkata">Kolkata</option>
+                      <option value="Surat">Surat</option>
+                      <option value="Pune">Pune</option>
+                      <option value="Jaipur">Jaipur</option>
+                      <option value="Lucknow">Lucknow</option>
+                      <option value="Kanpur">Kanpur</option>
+                      <option value="Nagpur">Nagpur</option>
+                      <option value="Indore">Indore</option>
+                      <option value="Thane">Thane</option>
+                      <option value="Bhopal">Bhopal</option>
+                      <option value="Visakhapatnam">Visakhapatnam</option>
+                      <option value="Patna">Patna</option>
+                      <option value="Vadodara">Vadodara</option>
+                      <option value="Ghaziabad">Ghaziabad</option>
+                      <option value="Ludhiana">Ludhiana</option>
+                      <option value="Agra">Agra</option>
+                      <option value="Nashik">Nashik</option>
+                      <option value="Faridabad">Faridabad</option>
+                      <option value="Meerut">Meerut</option>
+                      <option value="Rajkot">Rajkot</option>
+                      <option value="Kalyan-Dombivli">Kalyan-Dombivli</option>
+                      <option value="Vasai-Virar">Vasai-Virar</option>
+                      <option value="Varanasi">Varanasi</option>
+                      <option value="Srinagar">Srinagar</option>
+                      <option value="Aurangabad">Aurangabad</option>
+                      <option value="Dhanbad">Dhanbad</option>
+                      <option value="Amritsar">Amritsar</option>
+                      <option value="Navi Mumbai">Navi Mumbai</option>
+                      <option value="Allahabad">Allahabad</option>
+                      <option value="Howrah">Howrah</option>
+                      <option value="Ranchi">Ranchi</option>
+                      <option value="Gwalior">Gwalior</option>
+                      <option value="Jabalpur">Jabalpur</option>
+                      <option value="Coimbatore">Coimbatore</option>
+                      <option value="Vijayawada">Vijayawada</option>
+                      <option value="Madurai">Madurai</option>
+                    </select>
+                    <div class="invalid-feedback">Please select your city!</div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="position-relative">
+                    <label for="add-pincode" class="form-label">ZIP code</label>
+                    <input type="text" name="pincode" class="form-control" id="add-pincode" required="">
+                    <div class="invalid-feedback">Please enter your ZIP code!</div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="position-relative">
+                    <label for="add-address" class="form-label">Address</label>
+                    <input type="text" name="address" class="form-control" id="add-address" required="">
+                    <div class="invalid-feedback">Please enter your address!</div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="d-flex gap-3 pt-2 pt-sm-0">
+                    <button type="submit" class="btn btn-primary">Add address</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

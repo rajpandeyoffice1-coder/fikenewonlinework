@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- head start -->
+
+
+<!-- Mirrored from htmldemo.hasthemes.com/grano/grano/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 05 Jun 2021 11:12:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="description" content="Pure Easy - Organic Food">
+    <meta name="keywords" content="Pure Easy - Organic Food">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pure Easy - Organic Food </title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/logo.jpg">
+    <link rel="stylesheet" href="/assets/css/vendor/ionicons.css" />
+    <link rel="stylesheet" href="/assets/css/vendor/line-awesome.min.css" />
+    <link rel="stylesheet" href="/assets/css/plugins/animate.min.css" />
+    <link rel="stylesheet" href="/assets/css/plugins/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/assets/css/plugins/jquery-ui.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+
+    <!--  Minified  css  -->
+
+    <!--  # vendor min css,plugins min css,style min css -->
+
+
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="canonical" href="https://hasthemes.com/" />
+<link rel="stylesheet" href="/assets/css/vendor/vendor.min.css" />
+<link rel="stylesheet" href="/assets/css/plugins/plugins.min.css" />
+<link rel="stylesheet" href="/assets/css/style.min.css" /> -->
+</head>
+<!-- head end -->
+
+<body>
+    <!-- header section start -->
+    <!-- Modal -->
+   
+
+    <header>
+    
+        <div id="active-sticky" >
+        <div id="active-sticky2" class="header-space bg-white">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-sm-4 col-lg-7 col-xl-8">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <div class="d-flex align-items-center vertical-menu">
+                                    <button class="menu-bars menu-btn d-none d-lg-block">
+                                        <i class="las la-bars"></i>
+                                    </button>
+                                    <a class="logo" href="/"><img src="/images/logo.png" alt="image_not_found" style="width: 100px;" /></a>
+                                    <ul class="vmenu-content">
+                                        
+    
+                                        <% for(i=0;i<result[0].length;i++) { %>
+                                        <li class="menu-item"><a href="/shop?categoryid=<%=result[0][i].id%>"> <%=result[0][i].name%></a></li>
+                                       <% } %>
+                                    </ul>
+                                    <!-- menu content -->
+    
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 d-none d-lg-block">
+                                <form class="search-form position-relative" action="/search">
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="search" placeholder="Enter your search key ... " />
+                                        <div class="input-group-text">
+                                            <button class="search-btn btn-success">
+                                                <i class="ion-ios-search-strong"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+    
+                                
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-6 col-sm-8 col-lg-5 col-xl-4">
+                        <ul class="quick-links">
+                            <li class="header-topbar-nav nav">
+                               <% if(login==true) { %>
+                                                            <li class="topbar-nav-item " >
+                                                                <a class="topbar-nav-link" href="/myaccount"><i class=" icon las la-user-circle"></i>My Account</a>
+                                                            </li>
+                                                            <li class="topbar-nav-item">
+                                                                <a class="topbar-nav-link" href="/myorder"><i class="icon las la-shipping-fast"></i>My Orders</a>
+                                                            </li>
+                                                           
+                                                            <% } else { %>
+                                                                <li class="topbar-nav-item">
+                                                                    <a class="topbar-nav-link" href="/login">Login/Register</a>
+                                                                </li>
+                                
+                                                                <% } %>
+                                                            
+                                                            </li>
+                           <li class="quick-link-item">
+    
+                                <a href="/mycart" class="quick-link">
+                                    <span class="quick-link-icon flex-shrink-0">
+                                            <i class="las la-shopping-bag"></i>
+                                   
+                                    </span>
+                                    
+                                </a>
+                              
+    
+    
+                            </li>
+                            
+                            <!-- quick-link-item end -->
+                            <li class="quick-link-item d-lg-none">
+                                <button class="toggle-menu" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="las la-bars"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="active-sticky" class="header-botom bg-dark d-none d-lg-block">
+            <div class="container position-relative">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <ul class="main-menu">
+                            <li class="main-menu-item position-relative">
+                                <a class="main-menu-link" href="/">Home</a>
+                            
+                            </li>
+
+                      
+
+                       
+
+                        
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-info">
+                            <i class="las la-headset"></i>
+                            <span>Call us:</span>
+                            <a href="#">09650761037</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- header middle end -->
+    </header>

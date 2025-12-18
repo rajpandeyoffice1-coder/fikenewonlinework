@@ -1,0 +1,142 @@
+
+
+<%- include ('./indexheader.ejs') %>
+<link rel="stylesheet" href="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css">
+
+
+
+			<!-- End Navigation -->
+			<div class="clearfix"></div>
+			<!-- ============================================================== -->
+			<!-- Top header  -->
+			<!-- ============================================================== -->
+			
+			<!-- =========================== Breadcrumbs =================================== -->
+		
+		
+			<!-- =========================== Breadcrumbs =================================== -->
+			
+			
+			<!-- =========================== Search Products =================================== -->
+			<section class="gray">
+				<div class="container">
+					
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							
+							<!-- Shorter Toolbar -->
+							
+							
+							<!-- row -->
+							<div class="row">
+
+                                <% for(i=0;i<result[1].length;i++) { %>
+							
+								<!-- Single Item -->
+								<div class="col-lg-3 col-md-4 col-sm-6">
+									<div class="woo_product_grid">
+									
+										<div class="woo_product_thumb">
+                                            <a href="/product?id=<%=result[1][i].id%>">
+											<img src="/images/<%=result[1][i].image%>" class="img-fluid" alt="" />
+                                            </a>
+										</div>
+										<div class="woo_product_caption center">
+											
+											<div class="woo_title">
+												<h4 class="woo_pro_title" style="font-size: 20px;margin-top: 10px;"><a href="/product?id=<%=result[1][i].id%>"><%=result[1][i].name%></a></h4>
+											</div>
+											<div class="woo_price" >
+
+                                                <% if(result[1][i].discount == 0) { %>
+												<h6 style="font-size: 18px;margin-top: 10px;">Rs. <%=result[1][i].net_amount%></h6>
+                                                <% } else { %>
+                                                    
+                                                    <h6 style="font-size: 18px;margin-top: 10px;">Rs. <%=result[1][i].net_amount%><span class="less_price">Rs. <%=result[1][i].price%></span></h6>
+
+
+                                                    <% } %>
+                                            </div>
+											<div class="woo_price">
+												<div class="sec-heading-flex-last">
+
+                                            <% if(result[1][i].quantity == 0 || result[1][i].quantity < 0) { %>
+
+                                                <a  class="btn btn-danger"  style="margin-top: 20px;color: white;">Out of stock</a>
+
+                                                <% } else { %>
+
+                                                    <a  class="btn btn-theme addToCart" id="addToCart" categoryname = '<%=result[1][i].name%>' subcategoryid="<%=result[1][i].subcategoryid%>"  booking_id="<%=result[1][i].id%>" price="<%=result[1][i].net_amount%>" categoryid = '<%=result[1][i].categoryid%>' style="margin-top: 20px;color: white;">Add to cart</a>
+
+                                                    <% } %>
+
+												</div>
+												</div>
+										</div>
+										
+
+									</div>
+								</div>
+
+                                <% } %>
+
+
+
+								
+							
+								
+								
+							</div>
+							<!-- row -->
+						
+							
+						</div>
+						
+					</div>
+				</div>
+			</section>
+			<!-- =========================== Search Products =================================== -->
+
+			<!-- ============================ Call To Action ================================== --> 
+		
+			<!-- ============================ Call To Action End ================================== -->
+			
+			<!-- ============================ Footer Start ================================== -->
+            <%- include ('./indexfooter.ejs') %>
+
+<script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script>
+
+
+<script>
+
+    $('.addToCart').click(function(){
+                
+                // id="<%=result[1][0].id%>" price="<%=result[1][0].net_amount%>" categoryid = '<%=result[1][0].categoryid%>' vendorid = '<%=result[1][0].vendorid%>' 
+                let quantity = 1
+                let booking_id = $(this).attr('booking_id');
+                let price = $(this).attr('price');
+                let oneprice = $(this).attr('price');
+                let categoryid = $(this).attr('categoryid');
+                let subcategoryid = $(this).attr('subcategoryid');
+                let categoryname = $(this).attr('categoryname');
+
+    
+                // let vendorid = $(this).attr('vendorid');
+            
+            
+                 price = price*quantity
+            
+                $.post('/cart-handler',{booking_id,price,categoryid,oneprice,quantity,subcategoryid},data=>{
+                    swal(categoryname, "Successfully added to cart", "success");
+
+                })
+                
+            })
+    
+    
+    
+    
+        
+    
+    </script>
+      

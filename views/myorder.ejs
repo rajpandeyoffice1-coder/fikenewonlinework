@@ -1,0 +1,442 @@
+<%- include ('./navbar1.ejs') %>
+
+
+<title>My Order |  Fika</title>
+<meta name="description" content="My Order |  Fika">
+<!-- Orders content -->
+          <div class="col-lg-9">
+            <div class="ps-lg-3 ps-xl-0">
+
+              <!-- Page title + Sorting selects -->
+              <div class="row align-items-center pb-3 pb-md-4 mb-md-1 mb-lg-2">
+  <div class="col-md-6 col-xl-6">
+    <h1 class="h2 mb-0">Orders</h1>
+  </div>
+  <div class="col-md-6 col-xl-6 text-md-end text-start mt-3 mt-md-0">
+    <a href="https://forms.gle/ZnXbjBRR6XwgCiWSA" class="btn btn-primary btn-lg shadow-sm">
+      Claim Product Warranty
+    </a>
+  </div>
+</div>
+
+
+              <!-- Sortable orders table -->
+              <div data-filter-list='{"listClass": "orders-list", "sortClass": "orders-sort", "valueNames": ["date", "total"]}'>
+                <table class="table align-middle fs-sm text-nowrap">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="py-3 ps-0"><span class="text-body fw-normal">Order <span class="d-none d-md-inline">#</span></span></th>
+                     
+                      <th scope="col" class="py-3 ps-0"><span class="text-body fw-normal">Order <span class="d-none d-md-inline">Name</span></span></th>
+                      <th scope="col" class="py-3 d-none d-md-table-cell">
+                        <button type="button" class="btn orders-sort fw-normal text-body p-0" data-sort="date">Order date</button>
+                      </th>
+                      <th scope="col" class="py-3 d-none d-md-table-cell"><span class="text-body fw-normal">Status</span></th>
+                      <th scope="col" class="py-3 d-none d-md-table-cell">
+                        <button type="button" class="btn orders-sort fw-normal text-body p-0" data-sort="total">Invoice</button>
+                      </th>
+                      <th scope="col" class="py-3 d-none d-md-table-cell"><span class="text-body fw-normal">Track Order</span></th>
+
+                      <th scope="col" class="py-3">&nbsp;</th>
+                    </tr>
+                  </thead>
+                  
+                  <tbody class="text-body-emphasis orders-list">
+                    <% for (let i = 0; i < result[1].length; i++) { 
+                      const order = result[1][i]; // Store the order object for readability
+                    %>
+                    <tr>
+                      <td class="fw-medium pt-2 pb-3 py-md-2 ps-0">
+                        <a class="d-inline-block text-body-emphasis text-decoration-none py-2" 
+                          href="/invoice?orderid=<%= order.orderid %>" 
+                          data-bs-toggle="offcanvas"
+                          data-orderid="<%= order.orderid %>"
+                          data-productid="<%= order.booking_id %>"
+                          data-status="<%= order.status.toUpperCase() %>"
+                          data-image="<%= order.bookingimage %>"
+                          data-name="<%= order.bookingname %>"
+                          data-price="<%= order.price %>"
+                          data-quantity="<%= order.quantity %>"
+                          data-deliverydate="Feb 8, 2025 / 10:00 - 12:00"
+                          data-shippingmethod="Courier delivery"
+                          data-shippingaddress="<%= order.address %>"
+                          data-paymentmethod="<%= order.payment_mode %>"
+                          data-tax="12.40"
+                          data-shipping="26.50"
+                          data-originalid="<%= order.id %>"
+                          data-total="<%= order.price %>">
+                          <span class="animate-target"><%= order.orderid %></span>
+                        </a>
+              
+                        <ul class="list-unstyled fw-normal text-body m-0 d-md-none">
+                          <div class="truncate-text" style="max-width: 250px;"><%= order.bookingname %></div>
+                          <li><%= order.order_date %></li>
+                          <li class="d-flex align-items-center">
+                            <span class="bg-info rounded-circle p-1 me-2"></span>
+                            <%= order.status.toUpperCase() %>
+                          </li>
+                          <li class="fw-medium text-body-emphasis">Rs. <%= order.price %></li>
+                        </ul>
+                      </td>
+              
+                      <td class="fw-medium py-3 d-none d-md-table-cell">
+                        <div class="truncate-text" style="max-width: 250px;"><%= order.bookingname %></div>
+                      </td>
+              
+                      <td class="fw-medium py-3 d-none d-md-table-cell">
+                        <%= order.order_date %>
+                        <span class="date d-none">25-02-06</span>
+                      </td>
+              
+                      <td class="fw-medium py-3 d-none d-md-table-cell">
+                        <span class="d-flex align-items-center">
+                          <span class="bg-info rounded-circle p-1 me-2"></span>
+                          <%= order.status.toUpperCase() %>
+                        </span>
+                      </td>
+              
+                      <td class="fw-medium py-3 d-none d-md-table-cell">
+                       <a href="/invoice?orderid=<%=order.orderid%>">View Invoice</a>
+
+                       <% if(order.status == 'Dispatched'){%>
+                      <br/><br/> <a href="<%=order.awb%>">Track Order</a>
+                       <% } %>
+
+                        <span class="total d-none"><%= order.price %></span>
+                      </td>
+
+
+                      
+              
+                      <td class="py-3 pe-0">
+                        <span class="d-flex align-items-center justify-content-end position-relative gap-1 gap-sm-2 ms-n2 ms-sm-0">
+                          <img src="/images/<%= order.bookingimage %>" width="64" alt="Thumbnail">
+                          <a class="d-inline-block animate-underline text-body-emphasis text-decoration-none py-2" 
+                            href="#orderDetails" 
+                            data-bs-toggle="offcanvas"
+                            data-orderid="<%= order.orderid %>"
+                            data-productid="<%= order.booking_id %>"
+                            data-status="<%= order.status.toUpperCase() %>"
+                            data-image="<%= order.bookingimage %>"
+                            data-name="<%= order.bookingname %>"
+                            data-price="<%= order.price %>"
+                            data-quantity="<%= order.quantity %>"
+                            data-deliverydate="Feb 8, 2025 / 10:00 - 12:00"
+                            data-shippingmethod="Courier delivery"
+                            data-shippingaddress="<%= order.address %>"
+                            data-paymentmethod="<%= order.payment_mode %>"
+                            data-tax="12.40"
+                            data-shipping="26.50"
+                            data-originalid="<%= order.id %>"
+                            data-total="<%= order.price %>">
+                            
+                            <i class="ci-chevron-right fs-lg"></i>
+                          </a>
+
+                        </span>
+                      </td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+   
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <!-- Sidebar navigation offcanvas toggle that is visible on screens < 992px wide (lg breakpoint) -->
+    <button type="button" class="fixed-bottom z-sticky w-100 btn btn-lg btn-dark border-0 border-top border-light border-opacity-10 rounded-0 pb-4 d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#accountSidebar" aria-controls="accountSidebar" data-bs-theme="light">
+      <i class="ci-sidebar fs-base me-2"></i>
+      Account menu
+    </button>
+
+
+    <!-- Back to top button -->
+    <div class="floating-buttons position-fixed top-50 end-0 z-sticky me-3 me-xl-4 pb-4">
+      <a class="btn-scroll-top btn btn-sm bg-body border-0 rounded-pill shadow animate-slide-end" href="#top">
+        Top
+        <i class="ci-arrow-right fs-base ms-1 me-n1 animate-target"></i>
+        <span class="position-absolute top-0 start-0 w-100 h-100 border rounded-pill z-0"></span>
+        <svg class="position-absolute top-0 start-0 w-100 h-100 z-1" viewBox="0 0 62 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x=".75" y=".75" width="60.5" height="30.5" rx="15.25" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></rect>
+        </svg>
+      </a>
+     
+    </div>
+
+
+    <!-- Vendor scripts -->
+    <script src="/theme/assets/vendor/choices.js/choices.min.js"></script>
+    <script src="/theme/assets/vendor/list.js/list.min.js"></script>
+
+    <!-- Bootstrap + Theme scripts -->
+    <script src="/theme/assets/js/theme.min.js"></script>
+  
+
+</body>
+<!-- Mirrored from cartzilla-html.createx.studio/account-orders.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Dec 2024 06:38:32 GMT -->
+</html>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.body.addEventListener("click", function (event) {
+      const target = event.target.closest('[data-bs-toggle="offcanvas"]');
+      if (!target) return;
+
+      // Extract data attributes
+      const { orderid, status, image, name, price, quantity, deliverydate, shippingaddress, paymentmethod, total , productid,originalid} = target.dataset;
+
+      // Cache DOM elements
+      const elements = {
+        orderId: document.getElementById('order-id'),
+        productId: document.getElementById('product-id'),
+        originalId: document.getElementById('original-id'),
+        orderStatus: document.getElementById('order-status'),
+        orderItems: document.getElementById('order-items'),
+        deliveryDate: document.getElementById('delivery-date'),
+        shippingAddress: document.getElementById('shipping-address'),
+        paymentMethod: document.getElementById('payment-method'),
+        shipping: document.getElementById('shipping'),
+        orderName: document.getElementById('order-name'),
+        orderPrice: document.getElementById('order-price'),
+        orderQuantity: document.getElementById('order-quantity'),
+        orderImage: document.getElementById('order-image'),
+        totalPrice: document.getElementById('total-price'),
+        actionButtons: document.getElementById('order-actions'), // Container for buttons
+      };
+
+      // Update elements (if they exist)
+      elements.orderId && (elements.orderId.innerText = orderid);
+      elements.productId && (elements.productId.innerText = productid);
+      elements.originalId && (elements.originalId.innerText = originalid);
+      elements.orderStatus && (elements.orderStatus.innerText = status);
+      elements.deliveryDate && (elements.deliveryDate.innerText = deliverydate);
+      elements.shippingAddress && (elements.shippingAddress.innerText = shippingaddress);
+      elements.paymentMethod && (elements.paymentMethod.innerText = paymentmethod.toUpperCase());
+      elements.shipping && (elements.shipping.innerText = "Free");
+      elements.orderName && (elements.orderName.innerText = name);
+      elements.orderPrice && (elements.orderPrice.innerText = `Rs. ${price}`);
+      elements.orderQuantity && (elements.orderQuantity.innerText = `QTY. ${quantity}`);
+      elements.orderImage && (elements.orderImage.innerHTML = `<img src='/images/${image}' width="110" alt="${name}">`);
+      elements.totalPrice && (elements.totalPrice.innerText = `Rs. ${total}`);
+
+      // Clear previous action buttons
+      if (elements.actionButtons) {
+        elements.actionButtons.innerHTML = '';
+      }
+
+      // Add buttons if status is "COMPLETED"
+      if (status === "COMPLETED" && elements.actionButtons) {
+        elements.actionButtons.innerHTML = `
+         <div class="d-flex flex-column gap-2" style="margin:20px">
+          <button class="btn btn-primary btn-sm rate-review" data-orderid="${originalid}" data-productid = "${productid}">
+            Rate & Review
+          </button>
+          <button class="btn btn-warning btn-sm request-replacement" data-orderid="${originalid}" data-productid = "${productid}">
+            Request Replacement
+          </button>
+        
+          </div>
+        `;
+      }
+      if (status != "COMPLETED" && status != "CANCEL" && elements.actionButtons) {
+        elements.actionButtons.innerHTML = `
+         <div class="d-flex flex-column gap-2" style="margin:20px">
+          <button class="btn btn-danger btn-sm delete-order" data-orderid="${orderid}" data-productid = "${productid}">
+            Cancel Order
+          </button>
+         
+          </div>
+        `;
+      }
+    });
+  });
+</script>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Function to show loader
+    function showLoader() {
+      document.getElementById("loader").style.display = "block";
+    }
+
+    // Function to hide loader
+    function hideLoader() {
+      document.getElementById("loader").style.display = "none";
+    }
+
+    // Replacement button click
+    document.body.addEventListener("click", function (event) {
+      if (event.target.classList.contains("request-replacement")) {
+        const orderId = event.target.dataset.orderid;
+        const productId = event.target.dataset.productid;
+
+        document.getElementById("replacementOrderId").value = orderId;
+        document.getElementById("replacementProductId").value = productId;
+
+        new bootstrap.Modal(document.getElementById("replacementModal")).show();
+      }
+    });
+
+    // Submit Replacement Request
+    document.getElementById("submitReplacement").addEventListener("click", function () {
+      const orderId = document.getElementById("replacementOrderId").value;
+      const video = document.getElementById("unboxingVideo").files[0];
+      const issue = document.getElementById("issueDescription").value;
+      const productId = document.getElementById("replacementProductId").value;
+
+      if (!video) {
+        alert("Please upload an unboxing video.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("orderId", orderId);
+      formData.append("productId", productId);
+      formData.append("video", video);
+      formData.append("issue", issue);
+
+      showLoader();
+
+      fetch("/submit-replacement", {
+        method: "POST",
+        body: formData
+      }).then(response => response.json())
+        .then(data => {
+          hideLoader();
+          alert(data.message);
+          if(data.message == 'Replacement request submitted successfully'){
+          window.location.reload()
+          new bootstrap.Modal(document.getElementById("replacementModal")).hide();
+          }
+        }).catch(error => {
+          hideLoader();
+          console.error("Error:", error);
+        });
+    });
+
+    // Review button click
+    document.body.addEventListener("click", function (event) {
+      if (event.target.classList.contains("rate-review")) {
+        const orderId = event.target.dataset.orderid;
+        const productId = event.target.dataset.productid;
+
+        document.getElementById("reviewOrderId").value = orderId;
+        document.getElementById("reviewProductId").value = productId;
+
+        new bootstrap.Modal(document.getElementById("reviewModal")).show();
+      }
+    });
+
+
+
+    document.body.addEventListener("click", function (event) {
+      if (event.target.classList.contains("delete-order")) {
+        const orderId = event.target.dataset.orderid;
+        const productId = event.target.dataset.productid;
+
+        document.getElementById("deleteItemId").value = orderId;
+
+        new bootstrap.Modal(document.getElementById("deleteModal")).show();
+      }
+    });
+
+  
+
+
+    // Submit Review
+    document.getElementById("submitReview").addEventListener("click", function () {
+      const orderId = document.getElementById("reviewOrderId").value;
+      const productId = document.getElementById("reviewProductId").value;
+      const rating = document.getElementById("rating").value;
+      const review = document.getElementById("reviewText").value;
+
+      showLoader();
+
+      fetch("/submit-review", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId, rating, review, productId })
+      }).then(response => response.json())
+        .then(data => {
+          hideLoader();
+          alert(data.message);
+          if(data.message == 'Review submitted successfully'){
+          window.location.reload()
+          new bootstrap.Modal(document.getElementById("reviewModal")).hide();
+          }
+        }).catch(error => {
+          hideLoader();
+          console.error("Error:", error);
+        });
+    });
+  });
+
+
+
+
+
+
+// delete order
+
+
+
+
+
+
+</script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let deleteItemId = null;
+
+    // When delete button is clicked, set the ID in modal
+    document.querySelectorAll(".delete-button").forEach(button => {
+      
+      button.addEventListener("click", function() {
+        deleteItemId = this.getAttribute("data-id"); // Get item ID
+       
+        document.getElementById("deleteItemId").value = deleteItemId;
+      });
+    });
+
+    // Handle the confirmation click
+    document.getElementById("confirmDelete").addEventListener("click", function() {
+      
+      const deleteItemId = document.getElementById("deleteItemId").value;
+      alert(deleteItemId)
+
+      if (!deleteItemId) return;
+     
+      fetch(`/admin/update-status?id=${deleteItemId}&status=Cancel`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status_code == 200) {
+          alert("Order cancelled successfully");
+          window.location.reload(); // Reload page to update UI
+        } else {
+          alert("Failed to delete item.");
+        }
+      })
+      .catch(error => console.error("Error:", error));
+      
+      // Close modal
+      let deleteModal = bootstrap.Modal.getInstance(document.getElementById("deleteModal"));
+      deleteModal.hide();
+    });
+  });
+</script>
+
+<!-- Loader -->
+

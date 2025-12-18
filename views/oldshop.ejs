@@ -1,0 +1,270 @@
+<%- include ('./indexheader.ejs') %>
+
+ <!-- shop product tab start-->
+ <div class="shop-product-tab section-mb">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-3 order-lg-first">
+
+                <div class="widgets">
+
+                    <div class="widget-card">
+                        <h3 class="title"><span>Categories</span></h3>
+
+                        <div class="search-filter">
+                            <form action="#">
+
+                                <div class="widget-inner">
+                                    <% for(i=0;i<result[2].length;i++) { %>
+                                    <div class="widget-check-box">
+                                       
+                                       <a href="/shop/subcategory?id=<%=result[2][i].id%>" <label for="20824"> <%=result[2][i].name%></label></a>
+                                    </div>
+                                    
+<% } %>
+                                </div>
+
+                            
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                   
+
+                 
+
+                </div>
+
+            </div>
+            <div class="col-lg-9">
+                <div class="grid-nav-wraper bg-lighten2 mb-30">
+                    <!-- <div class="row align-items-center">
+                        <div class="col-12 col-md-6 mb-3 mb-md-0">
+                            <nav class="shop-grid-nav">
+                                <ul class="nav nav-tabs align-items-center" id="myTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab">
+                                            <i class="ion-grid"></i></a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab"><i
+                                   class="ion-android-menu"></i></a>
+                                    </li>
+                                    <li>
+                                        <span class="total-products text-capitalize">There are 16 products.</span>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-12 col-md-6 position-relative">
+                            <div class="shop-grid-button d-flex align-items-center">
+                                <span class="sort-by">Sort by:</span>
+                                <span class="chevron-arrow-down ion-android-arrow-dropdown"></span>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected="" value="1">Relevance</option>
+                                    <option value="2">Name, A to Z</option>
+                                    <option value="3">Name, Z to A</option>
+                                    <option value="4">Price, low to high</option>
+                                    <option value="5">Price, low to low</option>
+                                    <option value="6">Relevance</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel">
+                        <div class="row grid-view grid-view-five-column mb-n7">
+    
+    
+    
+    
+                            <% for(i=0;i<result[1].length;i++) { %>
+
+                                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-7">
+                                    <!-- product-card start -->
+                                    <div class="product-card">
+                                        <!-- <span class="badge bg-success product-badge">new</span> -->
+                                        <div class="product-thumb-nail">
+                                            <a href="/product?id=<%=result[1][i].id%>">
+                                                <img class="product-image" src="/images/<%=result[1][i].image%>" alt="image_not_found" style="height: 200px;" />
+                                            </a>
+                                           
+                                        </div>
+                                        <div class="product-content">
+                                          
+                                            <h3 class="product-title"><a href="/product?id=<%=result[1][i].id%>"><%=result[1][i].name%></a></h3>
+                                            <% if(result[1][i].discount == 0) { %>
+        
+                                                <div class="product-price-wrapp">
+                                              <span class="product-price-on-sale">Rs. <%=result[1][i].net_amount%></span>
+                                                    
+                                        
+                                                </div>
+                                                <% } else { %>
+        
+                                                    <div class="product-price-wrapp">
+        
+        
+                                                        <span class="product-regular-price">Rs. <%=result[1][i].price%></span>
+                                                        <span class="product-price-on-sale">Rs. <%=result[1][i].net_amount%></span>
+                                                        <span class="badge bg-success"><%=result[1][i].discount%> % Off</span>
+                                            
+                                                    </div>
+                                                    <% } %>
+
+
+                                                    <% if(result[1][i].quantity == 0 || result[1][i].quantity < 0) { %>
+
+                                                      <div class="product-cart-btn-wrap">
+                                                        <button    data-bs-toggle="modal" data-bs-target="#addto-cart-modal" class="btn btn-dark add-to-cart-btn ">Out Of Stock</button>
+                                                    </div>
+
+                                                      <% } else { %>
+                                                        <div class="product-cart-btn-wrap">
+                                                          <button id="addToCart" subcategoryid="<%=result[1][i].subcategoryid%>"  booking_id="<%=result[1][i].id%>" price="<%=result[1][i].net_amount%>" categoryid = '<%=result[1][i].categoryid%>' data-bs-toggle="modal" data-bs-target="#addto-cart-modal" class="btn btn-dark add-to-cart-btn addToCart">Add to cart</button>
+                                                      </div>
+
+                                                        <% } %>
+
+
+                                            
+                                        </div>
+                                    </div>
+                                    <!-- product-card end -->
+                                </div>
+        
+                                <% } %>
+                          
+                           
+                        </div>
+                    </div>
+                  
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- shop product tab end-->
+<hr>
+
+
+
+
+
+
+<%- include ('./indexfooter.ejs') %>
+
+<div id="pageMessages" style="position: fixed;bottom:20px;right:20px">
+    
+    
+    <script>
+    
+    $('.addToCart').click(function(){
+                
+                
+                let quantity = 1
+                let booking_id = $(this).attr('booking_id');
+                let price = $(this).attr('price');
+                let oneprice = $(this).attr('price');
+                let categoryid = $(this).attr('categoryid');
+                let subcategoryid = $(this).attr('subcategoryid');
+    
+               
+            
+            
+                 price = price*quantity
+            
+                $.post('/cart-handler',{booking_id,price,categoryid,oneprice,quantity,subcategoryid},data=>{
+                    createAlert('','Nice Work!','Here is a bunch of text about some stuff that happened.','success',true,true,'pageMessages')
+                })
+                
+            })
+    
+    
+    
+    
+            function createAlert(title, summary, details, severity, dismissible, autoDismiss, appendToId) {
+                
+                var iconMap = {
+                  info: "fa fa-info-circle",
+                  success: "fa fa-thumbs-up",
+                  warning: "fa fa-exclamation-triangle",
+                  danger: "fa ffa fa-exclamation-circle"
+                };
+              
+                var iconAdded = false;
+              
+                var alertClasses = ["alert", "animated", "flipInX"];
+                alertClasses.push("alert-" + severity.toLowerCase());
+              
+                if (dismissible) {
+                  alertClasses.push("alert-dismissible");
+                }
+              
+                var msgIcon = $("<i />", {
+                  "class": iconMap[severity] // you need to quote "class" since it's a reserved keyword
+                });
+              
+                var msg = $("<div />", {
+                  "class": alertClasses.join(" ") // you need to quote "class" since it's a reserved keyword
+                });
+              
+                if (title) {
+                  var msgTitle = $("<h4 />", {
+                    html: title
+                  }).appendTo(msg);
+                  
+                  if(!iconAdded){
+                    msgTitle.prepend(msgIcon);
+                    iconAdded = true;
+                  }
+                }
+              
+                if (summary) {
+                  var msgSummary = $("<strong />", {
+                    html: 'Added To Cart'
+                  }).appendTo(msg);
+                  
+                  if(!iconAdded){
+                    msgSummary.prepend(msgIcon);
+                    iconAdded = true;
+                  }
+                }
+              
+                
+                
+              
+                if (dismissible) {
+                  var msgClose = $("<span />", {
+                    "class": "close", // you need to quote "class" since it's a reserved keyword
+                    "data-dismiss": "alert",
+                    html: "<i class='fa fa-times-circle'></i>"
+                  }).appendTo(msg);
+                }
+                
+                $('#' + appendToId).prepend(msg);
+                
+                if(autoDismiss){
+                  setTimeout(function(){
+                    msg.addClass("flipOutX");
+                    setTimeout(function(){
+                      msg.remove();
+                    },1000);
+                  }, 5000);
+                }
+              }
+              
+              
+    
+    </script>
+      
+  
+ 

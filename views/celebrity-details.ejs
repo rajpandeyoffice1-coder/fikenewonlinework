@@ -1,0 +1,874 @@
+
+
+<%- include ('./otherheader.ejs') %>
+
+      <style>
+        @font-face {
+    font-family: 'Bellerose Light:1.0';
+    src: url("./fonts/Bellerose.ttf");
+    /* font-family: "Sofia Pro";
+    src: url("./fonts/sofiapro-light.otf"); */
+}
+@font-face {
+    font-family: "Sofia Pro";
+    src: url("./fonts/sofiapro-light.otf");
+}
+
+
+#exampleModal .modal-dialog {
+    max-width: 1140px;
+    width: 100%;
+    margin: 100px auto;
+}
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    outline: 0;
+}
+#exampleModal .modal-header {
+    /* background: #4cbb6c; */
+    background: #f3f3c7;
+    border-radius: 0px;
+}
+#exampleModal-modal {
+    color: #222222;
+}
+.modal-header {
+    padding: 15px;
+}
+
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.2;
+}
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    -webkit-appearance: none;
+    
+}
+.my-input,
+.my-select {
+  -webkit-appearance: none; 
+  -moz-appearance: none;    
+  appearance: none;         
+}
+
+.modal-header .close {
+    margin-top: -2px;
+}
+#exampleModal .modal-title {
+    font-weight: 600;
+    /* color: #fff; */
+    font-size: 18px;
+    font-family: 'Bellerose Light:1.0';
+    margin-left: 35%;
+}
+#exampleModal .modal-body {
+    background: #fff;
+    padding: 50px 30px;
+}
+
+.material-icons {
+    font-family: "Material Icons";
+    margin-right: 10px;
+    font-weight: 400;
+    font-style: normal;
+    width:20px;
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "liga";
+}
+#exampleModal .product-name {
+    color: #222222;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: 'Bellerose Light:1.0';
+}
+#exampleModal .divide-right {
+    border-right: #acaaa6 1px solid;
+}
+#exampleModal .modal-body .divide-right span {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-family: "Sofia Pro";
+    font-size: 14px;
+}
+#exampleModal .modal-body .divide-right p {
+    color: #000;
+    font-family: "Sofia Pro";
+    font-size: 14px;
+}
+
+#exampleModal .cart-content {
+    padding-left: 20px;
+    font-family: "Sofia Pro";
+    font-size: 14px;
+
+}
+#exampleModal .cart-products-count {
+    font-size: 18px;
+    font-family: "Sofia Pro";
+
+
+}
+#exampleModal .cart-content .btn {
+    margin-bottom: 10px;
+    padding: 15px;
+    font-family: "Sofia Pro";
+    font-size: 14px;
+
+}
+#exampleModal .cart-content button {
+    margin-right: 5px;
+}
+.btn {
+    position: relative;
+    padding: 10px 35px;
+    font-family: "Sofia Pro";
+    border-radius: 0;
+    text-transform: capitalize;
+    border: none;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 28px;
+}
+@media only screen and (max-width: 600px) {
+    #exampleModal .modal-title {
+        font-weight: 600;
+        font-size: 18px;
+        font-family: 'Bellerose Light:1.0';
+        margin-left: 0%;
+        text-align: center;
+    }
+    #exampleModal .divide-right {
+        border-right: none;
+    }
+    #exampleModal .product-name {
+        margin-top: 5%;
+        color: #222222;
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-family: 'Bellerose Light:1.0';
+    }
+    #exampleModal .cart-content {
+        padding-left: 0px;
+        font-family: "Sofia Pro";
+        font-size: 14px;
+    
+    }
+   
+  }
+
+
+
+      </style>
+        
+<aside id="notifications">
+  <div class="container">
+    
+    
+    
+      </div>
+</aside>
+      
+      <section id="wrapper">
+       
+        <nav data-depth="2" class="breadcrumb hidden-sm-down">
+  <div class="container container-large">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+      
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="/">
+                <span itemprop="name">Home</span>
+              </a>
+              <meta itemprop="position" content="1">
+            </li>
+          
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="#">
+                <span itemprop="name"><%=result[1][0].name%></span>
+              </a>
+              <meta itemprop="position" content="2">
+            </li>
+          
+              
+    </ol>
+  </div>
+</nav>      
+      
+
+              
+              <div class="container  ">
+                
+          <div class="row">
+            
+
+            
+  <div id="content-wrapper" class="col-lg-12 col-xs-12">
+    
+      
+<div class="spinner-bg">
+<div class="spinner-lazy">
+  <div class="double-bounce1"></div>
+  <div class="double-bounce2"></div>
+</div>
+ </div>
+        
+<section id="main" class="product-detail product-thumbs-bottom product-image-thumbs product-thumbs-bottom" itemscope itemtype="https://schema.org/Product">
+  <meta itemprop="url" content="https://leffet.in/all-collections/85-210-lp001.html#/1-size-s"><div class="row"><div class="col-form_id-form_9367402777406408 col-md-6 col-lg-6 col-xl-6 col-sm-12 col-xs-12 col-sp-12">
+
+
+  <section class="page-content" id="content" data-templateview="bottom" data-numberimage="5" data-numberimage1200="5" data-numberimage992="4" data-numberimage768="3" data-numberimage576="3" data-numberimage480="2" data-numberimage360="2" data-templatemodal="1" data-templatethumb="1" data-templatezoomtype="out" data-zoomposition="right" data-zoomwindowwidth="400" data-zoomwindowheight="400">
+    
+      <div class="images-container">
+        
+                  
+            <div class="product-cover">
+              
+                <ul class="product-flags">
+                                  </ul>
+              
+                              <img id="zoom_product" data-type-zoom="" class="js-qv-product-cover img-fluid" src="/images/<%=result[1][0].image%>" alt="" title="" itemprop="image">
+                <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal">
+                  <i class="material-icons zoom-in">&#xE8FF;</i>
+                </div>
+                          </div>
+          
+
+          
+            <div id="thumb-gallery" class="product-thumb-images">
+                                                <div class="thumb-container  active ">
+                    <a href="javascript:void(0)" data-image="/images/<%=result[1][0].image%>" data-zoom-image="/images/<%=result[1][0].image%>"> 
+                      <img
+                        class="thumb js-thumb  selected "
+                        data-image-medium-src="/images/<%=result[1][0].image%>"
+                        data-image-large-src="/images/<%=result[1][0].image%>"
+                        src="/images/<%=result[1][0].image%>"
+                        alt=""
+                        title=""
+                        itemprop="image"
+                      >
+                    </a>
+                  </div>
+                                  <div class="thumb-container ">
+                    <a href="javascript:void(0)" data-image="/images/<%=result[1][0].image1%>" data-zoom-image="/images/<%=result[1][0].image1%>"> 
+                      <img
+                        class="thumb js-thumb "
+                        data-image-medium-src="/images/<%=result[1][0].image1%>"
+                        data-image-large-src="/images/<%=result[1][0].image1%>"
+                        src="/images/<%=result[1][0].image1%>"
+                        alt=""
+                        title=""
+                        itemprop="image"
+                      >
+                    </a>
+                  </div>
+                                  <div class="thumb-container ">
+                    <a href="javascript:void(0)" data-image="/images/<%=result[1][0].image2%>" data-zoom-image="/images/<%=result[1][0].image2%>"> 
+                      <img
+                        class="thumb js-thumb "
+                        data-image-medium-src="/images/<%=result[1][0].image2%>"
+                        data-image-large-src="/images/<%=result[1][0].image2%>"
+                        src="/images/<%=result[1][0].image2%>"
+                        alt=""
+                        title=""
+                        itemprop="image"
+                      >
+                    </a>
+                  </div>
+                                  <div class="thumb-container ">
+                    <a href="javascript:void(0)" data-image="/images/<%=result[1][0].image3%>" data-zoom-image="/images/<%=result[1][0].image3%>"> 
+                      <img
+                        class="thumb js-thumb "
+                        data-image-medium-src="/images/<%=result[1][0].image3%>"
+                        data-image-large-src="/images/<%=result[1][0].image3%>"
+                        src="/images/<%=result[1][0].image3%>"
+                        alt=""
+                        title=""
+                        itemprop="image"
+                      >
+                    </a>
+                  </div>
+                                          </div>
+            
+                          <div class="arrows-product-fake slick-arrows">
+                <button class="slick-prev slick-arrow" aria-label="Previous" type="button" >Previous</button>
+                <button class="slick-next slick-arrow" aria-label="Next" type="button">Next</button>
+              </div>
+                      
+                
+        
+      </div>
+    
+  </section>
+
+<input type="hidden" class="msg" value="<%=result[1][0].id%>">
+
+  <div class="modal fade js-product-images-modal leo-product-modal" id="product-modal" data-thumbnails=".product-images-85">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+                <figure>
+          <img class="js-modal-product-cover product-cover-modal" width="2400" src="/images/<%=result[1][0].image%>" alt="" title="" itemprop="image">
+          <figcaption class="image-caption">
+            
+              <div id="product-description-short" itemprop="description">
+                <div id="result"></div>
+            </div>
+            
+          </figcaption>
+        </figure>
+        <aside id="thumbnails" class="thumbnails text-sm-center">
+          
+            <div class="product-images product-images-85">
+                              <div class="thumb-container">
+                  <img data-image-large-src="/images/<%=result[1][0].image%>" class="thumb img-fluid js-modal-thumb selected " src="/images/<%=result[1][0].image%>" alt="" title="" width="239" itemprop="image">
+                </div>
+                              <div class="thumb-container">
+                  <img data-image-large-src="/images/<%=result[1][0].image1%>" class="thumb img-fluid js-modal-thumb" src="/images/<%=result[1][0].image1%>" alt="" title="" width="239" itemprop="image">
+                </div>
+                              <div class="thumb-container">
+                  <img data-image-large-src="/images/<%=result[1][0].image2%>" class="thumb img-fluid js-modal-thumb" src="/images/<%=result[1][0].image2%>" alt="" title="" width="239" itemprop="image">
+                </div>
+                              <div class="thumb-container">
+                  <img data-image-large-src="/images/<%=result[1][0].image3%>" class="thumb img-fluid js-modal-thumb" src="/images/<%=result[1][0].image3%>" alt="" title="" width="239" itemprop="image">
+                </div>
+                          </div>
+            
+        </aside>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<!-- Measurement form modal -->
+<div id="measurement-modal" style="display:none;" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form id="add-measurement">
+                    <section class="form-fields">
+                    <div class="form-group">
+                                                <input class="measurement-params" type="hidden" name="id_category" value="2">
+                    </div>
+                    <div id="modal-measurement-details">
+                        <!-- Form render here  -->
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+                            </div><div class="col-form_id-form_15874367062488778 col-md-6 col-lg-6 col-xl-6 col-sm-12 col-xs-12 col-sp-12">
+
+	
+		<h1 class="h1 product-detail-name" itemprop="name"><%=result[1][0].name%></h1>
+	
+
+
+	<div class="product-additional-info"> 
+  
+      <div class="social-sharing">
+      <span class="share-this hidden-xs-up"><i class="fa fa-share-alt"></i>Share this:</span>
+      <ul>
+                  <li class="facebook icon-gray">
+            <a href="<%=result[1][0].fb_link%>" class="text-hide" title="Share" target="_blank">
+            <span>Share</span>
+            <i class="facebook icon-gray"></i>
+            </a>
+          </li>
+                  <li class="twitter icon-gray">
+            <a href="<%=result[1][0].twitter_link%>" class="text-hide" title="Tweet" target="_blank">
+            <span>Tweet</span>
+            <i class="twitter icon-gray"></i>
+            </a>
+          </li>
+                  <li class="pinterest icon-gray">
+            <a href="<%=result[1][0].pintrest_link%>" class="text-hide" title="Pinterest" target="_blank">
+            <span>Pinterest</span>
+            <i class="pinterest icon-gray"></i>
+            </a>
+          </li>
+              </ul>
+    </div>
+  
+
+   
+      
+            <div class="modal fade" id="my-size-chart-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content" style="text-align:left;">
+            <div class="modal-header">
+                <button type="button" class="close" id="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h1>Size Chart</h1>
+            </div>
+            <div id="size-chart-modal-body" class="modal-body">
+                <div id="size-chart-view">
+    <div class="row">
+                            <div class="col-sm-4 col-md-6  col-lg-12">
+                <div class="wk-row-padding wk-border wk-font-size wk-scroll-vertical view-chart-title">
+                    <p>All measurements are in inches</p>
+                </div>
+            </div>
+            </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="wk-border wk-scroll-horizontal">
+                <table class="table table-striped wk-table-margin">
+                    <tbody>
+                                                    <tr class="table-active">
+                                <td class="wk-table-row-border"></td>
+                                                                    <th class="wk-table-row-border wk-table-text-align">Chest</th>
+                                                                    <th class="wk-table-row-border wk-table-text-align">Waist</th>
+                                                                    <th class="wk-table-row-border wk-table-text-align">Hip</th>
+                                                                    <th class="wk-table-row-border wk-table-text-align">Shoulder</th>
+                                                            </tr>
+                                                            <tr>
+                                    <th class="wk-table-row-border">S</th>
+                                                                            <td class="wk-table-row-border wk-table-text-align">36</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">32</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">32</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">14</td>
+                                                                    </tr>
+                                                            <tr>
+                                    <th class="wk-table-row-border">M</th>
+                                                                            <td class="wk-table-row-border wk-table-text-align">38</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">34</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">34</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">14.5</td>
+                                                                    </tr>
+                                                            <tr>
+                                    <th class="wk-table-row-border">L</th>
+                                                                            <td class="wk-table-row-border wk-table-text-align">40</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">36</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">36</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">15</td>
+                                                                    </tr>
+                                                            <tr>
+                                    <th class="wk-table-row-border">XL</th>
+                                                                            <td class="wk-table-row-border wk-table-text-align">42</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">38</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">38</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">15.5</td>
+                                                                    </tr>
+                                                            <tr>
+                                    <th class="wk-table-row-border">XXL</th>
+                                                                            <td class="wk-table-row-border wk-table-text-align">44</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">40</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">40</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">16</td>
+                                                                    </tr>
+                                                            <tr>
+                                    <th class="wk-table-row-border">XXXL</th>
+                                                                            <td class="wk-table-row-border wk-table-text-align">6</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">42</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">42</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">16.5</td>
+                                                                    </tr>
+                                                            <tr>
+                                    <th class="wk-table-row-border">4XL</th>
+                                                                            <td class="wk-table-row-border wk-table-text-align">48</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">44</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">44</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">17</td>
+                                                                    </tr>
+                                                            <tr>
+                                    <th class="wk-table-row-border">5XL</th>
+                                                                            <td class="wk-table-row-border wk-table-text-align">50</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">46</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">46</td>
+                                                                            <td class="wk-table-row-border wk-table-text-align">17.5</td>
+                                                                    </tr>
+                                                                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+   <script type="text/javascript" src="jquery.html"></script>
+   <script type="text/javascript">
+
+
+ $( document ).ready(function() {
+        $('#close').on('click', function(){
+        $('#my-size-chart-modal').modal('hide');
+        $( '.modal-backdrop' ).remove();
+        });
+
+    });
+
+
+   </script>
+        <br>
+
+</div>
+
+
+  
+<div class="product-description" id="result1"></div>
+  
+  
+
+
+
+	  <div class="product-prices">
+    
+      <div
+        class="product-price h5 "
+        itemprop="offers"
+        itemscope
+        itemtype="https://schema.org/Offer"
+      >
+        <link itemprop="availability" href="https://schema.org/InStock"/>
+        <meta itemprop="priceCurrency" content="INR">
+
+        <div class="current-price">
+          
+          <span itemprop="price" id="custom_product_price" content="4000">PRICE ON REQUEST</span>
+
+                  </div>
+
+        
+                  
+      </div>
+    
+    
+          
+    
+          
+
+    
+          
+
+    
+          
+
+    
+
+    <div class="tax-shipping-delivery-label">
+        Speak to us via Whatsapp at +91 9167860709
+            
+      
+                        </div>
+  </div>
+
+
+
+
+<div class="bootstrap">
+	</div>
+
+                            </div><div class="col-form_id-form_4666379129988496 col-md-12 col-lg-12 col-xl-12 col-sm-12 col-xs-12 col-sp-12">
+
+	
+
+
+              <section class="product-accessories clearfix">
+          <h3 class="h5 products-section-title">You might also like</h3>
+
+          <div class="products"> 
+            <div class="owl-row  product-default">
+              <div id="category-products2">
+
+<% for(i=0;i<result[2].length;i++){ %>
+  <div class="item first">
+                    
+                                              
+    <article class="product-miniature js-product-miniature" data-id-product="87" data-id-product-attribute="250" itemscope itemtype="http://schema.org/Product">
+<div class="thumbnail-container">
+<div class="product-image">
+<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
+
+<a href="/celebrity-details?id=<%=result[2][i].id%>" class="thumbnail product-thumbnail">
+<img
+class="img-fluid"
+src = "/images/<%=result[2][i].image%>"
+alt = "<%=result[2][i].name%>"
+data-full-size-image-url = "/images/<%=result[2][i].image%>"
+> 
+<span class="product-additional" data-idproduct="87"></span>
+</a>
+
+
+
+<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
+
+<ul class="product-flags">
+</ul>
+
+
+<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
+
+
+
+<div class="functional-buttons clearfix">
+<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
+
+
+<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
+
+
+<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
+
+
+
+</div></div>
+<div class="product-meta">
+<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
+
+<h3 class="h3 product-title" itemprop="name"><a href="/celebrity-details?id=<%=result[2][i].id%>"><%=result[2][i].name%></a></h3>
+
+
+<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
+
+<div class="product-price-and-shipping ">
+
+
+
+
+
+        
+
+
+</div>
+
+
+
+</div>
+</div>
+</article>
+
+                      
+</div>
+<% } %>
+
+                             
+                 
+                              </div>
+            </div>
+          </div>
+        </section>
+       
+    
+
+    <script type="text/javascript">
+      products_list_functions.push(
+        function(){
+          $('#category-products2').owlCarousel({
+                          direction:'ltr',
+                        items : 4,
+            itemsCustom : false,
+            itemsDesktop : [1200, 4],
+            itemsDesktopSmall : [992, 3],
+            itemsTablet : [768, 2],
+            itemsTabletSmall : false,
+            itemsMobile : [480, 1],
+            singleItem : false,         // true : show only 1 item
+            itemsScaleUp : false,
+            slideSpeed : 200,  //  change speed when drag and drop a item
+            paginationSpeed :800, // change speed when go next page
+
+            autoPlay : false,   // time to show each item
+            stopOnHover : false,
+            navigation : true,
+            navigationText : ["&lsaquo;", "&rsaquo;"],
+
+            scrollPerPage :true,
+            responsive :true,
+            
+            pagination : false,
+            paginationNumbers : false,
+            
+            addClassActive : true,
+            
+            mouseDrag : true,
+            touchDrag : true,
+
+          });
+        }
+      ); 
+      $(document).on('click','.product-detail-info',function(e){
+        e.preventDefault();
+        $('#product-detail-content').toggle();
+      });
+    </script>
+
+	    
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            var MBG = GoogleAnalyticEnhancedECommerce;
+            MBG.setCurrency('INR');
+            MBG.addProductDetailView({"id":"85-210","name":"lp001","category":"all-collections","brand":"","variant":false,"type":"typical","position":"0","quantity":1,"list":"product","url":"https%3A%2F%2Fleffet.in%2Fall-collections%2F85-lp001.html","price":"\u20b94,000"});MBG.addProductClickByHttpReferal({"id":"85-210","name":"lp001","category":"all-collections","brand":"","variant":false,"type":"typical","position":"0","quantity":1,"list":"product","url":"https%3A%2F%2Fleffet.in%2Fall-collections%2F85-lp001.html","price":"\u20b94,000"});
+        });
+    </script>
+    
+
+
+
+                            </div></div>
+
+	  <footer class="page-footer">
+	    
+	    	<!-- Footer content -->
+	    
+	  </footer>
+	
+</section>
+
+
+  
+    
+  </div>
+
+
+            
+          </div>
+                  </div>
+              	
+      </section>
+
+<%- include ('./indexfooter.ejs') %> 
+
+
+<script>
+
+  $( document ).ready(function() {
+     let msg = $('.msg').val()
+    //  alert(msg)
+     $.getJSON(`/celebrity-description?msg=${msg}`,data=>{
+      console.log('ddg',data[0].description)
+       a(data)
+    })
+  });
+  
+   
+  
+  
+    function a(data){
+      let table = `<p>
+   <p>${data[0].description}</p>
+
+   </p>
+        `
+        $('#result').html(table)
+        $('#result1').html(table)
+
+    }
+  
+  
+  
+  </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script>
+
+  $('.uploadImage').submit(function (e) {
+    e.preventDefault();
+    // let description = $("#editor").html().trim();
+    // var title = $('#title').val(); 
+
+    $(this).ajaxSubmit({
+      //  data: {description: description},
+      contentType: 'application/json',
+      success: function (response) {
+        alert('successfully')
+      }
+    });
+    return false;
+  });
+
+
+
+
+
+  $('.addToCart').click(function(){
+                            // alert('hi')
+                            // id="<%=result[1][0].id%>" price="<%=result[1][0].net_amount%>" categoryid = '<%=result[1][0].categoryid%>' vendorid = '<%=result[1][0].vendorid%>' 
+                            // let quantity = $('#userquantity').val()
+                            let booking_id = $(this).attr('booking_id');
+                            let price = $(this).attr('price');
+                            let oneprice = $(this).attr('price');
+                            let categoryid = $(this).attr('categoryid');
+                            let size = $("input[name='size']:checked").val();
+                            let quantity = $('#quantity_wanted').val()
+
+
+                            let table = `<span>${size}</span>`
+                            $('#addedsize').html(table)
+
+
+                            let table1 = `<span>${quantity}</span>`
+                            $('#addedquantity').html(table1)
+                            
+                            // let subcategoryid = $(this).attr('subcategoryid');
+                            // let totalquantity = $(this).attr('totalquantity');/
+                            // let categoryname = $(this).attr('categoryname')
+
+                
+                            // let vendorid = $(this).attr('vendorid');
+                
+                
+                                price = price*quantity
+
+                                // console.log()
+                        
+                        $.post('/cart-handler1',{booking_id,price,categoryid,oneprice,quantity,size},data=>{
+                            // swal(categoryname, "Successfully added to cart", "success");
+                            // alert('success')
+                            console.log(data[0][0].counter)
+
+
+                            let table3 = `<span>${data[0][0].counter}</span>`
+                            $('#newquantity').html(table3)
+
+
+                            let table4 = `<span>${data[1][0].counter}</span>`
+                            $('.newprice').html(table4)
+
+                            $('#exampleModal').modal('show');
+
+                        })  
+                      })
+                
+                
+                
+                       
+                          
+
+</script>
+
+     

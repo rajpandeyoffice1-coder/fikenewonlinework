@@ -1,0 +1,122 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    function addToCart(booking_id) {
+      let quantity;
+  
+      // Check if the quantity input exists and has a value; otherwise, default to 1
+      if ($('#quantity').val()) {
+        quantity = $('#quantity').val();
+      } else {
+        quantity = 1;
+      }
+
+    //   alert(quantity)
+
+  
+      // Define size as 'free' as it is fixed
+      const size = 'free';
+  
+      // Send the request to the server with necessary parameters
+      $.post('/cart-handler1', { booking_id, quantity, size }, (data) => {
+        if (data.msg === 'updated successfully') {
+          alert('Cart Updated Successfully');
+          window.location.reload();
+        } else if (Array.isArray(data)) {
+          // For successful responses that include updated counters
+          alert('Cart Updated Successfully');
+          window.location.reload();
+        } else {
+          alert('An error occurred. Please try again later');
+        }
+      }).fail(() => {
+        // Handle server request errors
+        // alert('Failed to connect to the server. Please try again later.');
+        window.location.reload();
+
+      });
+    }
+
+
+
+
+
+    function addToCart1(booking_id,updated_one,quantity) {
+  
+      // Check if the quantity input exists and has a value; otherwise, default to 1
+        quantity = parseInt(quantity)+ parseInt(updated_one);
+      
+    
+
+
+
+  
+      // Define size as 'free' as it is fixed
+      const size = 'free';
+  
+      // Send the request to the server with necessary parameters
+      $.post('/cart-handler1', { booking_id, quantity, size }, (data) => {
+        if (data.msg === 'updated successfully') {
+          alert('Cart Updated Successfully');
+          window.location.reload();
+        } else if (Array.isArray(data)) {
+          // For successful responses that include updated counters
+          alert('Cart Updated Successfully');
+          window.location.reload();
+        } else {
+        //   alert('An error occurred. Please try again later');
+        window.location.reload();
+
+        }
+      }).fail(() => {
+        // Handle server request errors
+        alert('Failed to connect to the server. Please try again later.');
+      });
+    }
+  
+  
+    async function addToWishlist(booking_id) {
+  try {
+    // API endpoint for adding to wishlist
+    const apiUrl = '/add_wishlist';
+
+    // Request body
+    const requestBody = { booking_id };
+
+    // Fetch API call
+    const response = await fetch(apiUrl, {
+      method: 'POST', // or 'PUT' if required by your API
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    });
+
+    // Check if the response is okay
+    if (!response.ok) {
+      throw new Error('Failed to connect to the wishlist API.');
+    }
+
+    // Parse JSON response
+    const result = await response.json();
+
+    // Display appropriate message based on the response
+    if (result.msg === 'The product already exists in your wishlist') {
+      alert('The product already exists in your wishlist.');
+    } else if (result.msg === 'The product was successfully added to your wishlist') {
+      alert('The product was successfully added to your wishlist.');
+      window.location.reload();
+    } else {
+      alert('Unexpected response from the server.');
+    }
+
+  } catch (error) {
+    // Handle errors
+    console.error('Error adding to wishlist:', error);
+    alert('An error occurred while adding the product to your wishlist. Please try again later.');
+  }
+}
+
+  
+  </script>
+  

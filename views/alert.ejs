@@ -1,0 +1,158 @@
+
+<title>Alert</title>
+
+
+<%- include ('./otherheader.ejs') %>
+
+      <section id="wrapper">
+       
+        <nav data-depth="2" class="breadcrumb hidden-sm-down">
+  <div class="container container-large">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+      
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="/">
+                <span itemprop="name">Home</span>
+              </a>
+              <meta itemprop="position" content="1">
+            </li>
+          
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="/myaccount">
+                <span itemprop="name">My Account</span>
+              </a>
+              <meta itemprop="position" content="2">
+            </li>
+
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="#">
+                <span itemprop="name">Alerts</span>
+              </a>
+              <meta itemprop="position" content="2">
+            </li>
+          
+              
+    </ol>
+  </div>
+</nav>      
+      
+
+              
+              <div class="container  ">
+                
+          <div class="row">
+            
+
+            
+  <div id="content-wrapper" class="col-lg-12 col-xs-12">
+    
+    
+
+  <section id="main">
+
+      
+    
+      
+        <header class="page-header">
+          <h1>
+  My alerts
+</h1>
+        </header>
+      
+    
+        <% if(!result[6][0]) { %>
+    
+  <section id="content" class="page-content">
+    
+      
+        
+<aside id="notifications">
+  <div class="container">
+    
+    
+    
+      </div>
+</aside>
+      
+    
+    
+      <p class="alert alert-warning">No mail alerts yet.</p>
+  
+  </section>
+
+  <% } %>
+
+
+
+
+
+  <% if(result[6][0]) { %>
+
+    <div class="list-wishlist">		
+    <table class="table table-striped">
+  <thead class="wishlist-table-head">
+  <tr>
+
+  </tr>
+  </thead>
+  <tbody>
+  
+  
+  <% for(i=0;i<result[6].length;i++){ %>
+                  <tr>					 
+     
+                    <td class="wishlist-numberproduct wishlist-numberproduct-3">Your Order No. <b><%=result[6][i].orderid%></b> status is changed to <%=result[6][i].status%> on <%=result[6][i].date%></td>
+     
+    </tr>
+ 
+
+  
+
+
+    <% } %>						
+            
+  
+  
+  </tbody>
+  </table>
+      </div>
+  
+      <% } %>
+
+
+    
+      <footer class="page-footer">
+        
+  
+    
+  <a href="/myaccount" class="account-link btn">
+    <i class="material-icons">&#xE5CB;</i>
+    <span>Back to your account</span>
+  </a>
+  <a href="/" class="account-link btn">
+    <i class="material-icons">&#xE88A;</i>
+    <span>Home</span>
+  </a>
+
+  
+
+      </footer>
+    
+
+  </section>
+
+
+    
+  </div>
+
+
+            
+          </div>
+                  </div>
+              	
+      </section>
+
+      <%- include ('./indexfooter.ejs') %> 
+   

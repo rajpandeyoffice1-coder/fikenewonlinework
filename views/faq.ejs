@@ -1,0 +1,135 @@
+
+<%- include ('./indexheader.ejs') %>
+
+
+			<!-- End Navigation -->
+			<div class="clearfix"></div>
+			<!-- ============================================================== -->
+			<!-- Top header  -->
+			<!-- ============================================================== -->
+			
+			<!-- =========================== Breadcrumbs =================================== -->
+			<div class="image-bg pt-5 pb-5" style="background:url(assets/img/farmer.png) no-repeat" data-overlay="6">
+				<div class="container">
+					<div class="row justify-content-center">
+						
+						<div class="col-lg-9 col-md-12 col-sm-12">
+							<div class="text-center">
+								<h2 class="mb-3">General Questions</h2>
+							</div>
+						
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<!-- =========================== Breadcrumbs =================================== -->
+			
+			
+			<!-- =========================== FAQ's =================================== -->
+			<section>
+				<div class="container">
+					<div class="row">
+					
+					
+						
+						<div class="col-lg-12 col-md-12">
+							<div class="tab-content" id="v-pills-tabContent">
+								
+								<!-- Delivery Content -->
+                                <% for(i=0;i<result[1].length;i++) { %>
+
+
+								<div class="tab-pane fade show active" id="<%=result[1][i].id%>" role="tabpanel" aria-labelledby="<%=result[1][i].id%>">
+									<div class="faqs_description">
+                                        
+										<div class="faqs_single mb-4">
+											<h2><%=result[1][i].name%></h2>
+											<p><%=result[1][i].content%></p>
+										</div>
+										
+										
+									</div>
+								</div>
+
+                                <% } %>
+								
+								
+								
+								
+								
+								
+								
+							
+								
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</section>
+
+            <div class="image-bg pt-5 pb-5" style="background:url(assets/img/farmer.png) no-repeat" data-overlay="6">
+				<div class="container">
+					<div class="row justify-content-center">
+						
+						<div class="col-lg-9 col-md-12 col-sm-12">
+							<div class="text-center">
+								<h2 class="mb-3">Wallet Questions</h2>
+							</div>
+						
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+            <section>
+				<div class="container">
+					<div class="row">
+					
+					
+						
+						<div class="col-lg-12 col-md-12">
+							<div class="tab-content" id="v-pills-tabContent">
+								
+								<!-- Delivery Content -->
+                                <% for(i=0;i<result[2].length;i++) { %>
+
+
+								<div class="tab-pane fade show active" id="<%=result[2][i].id%>" role="tabpanel" aria-labelledby="<%=result[2][i].id%>">
+									<div class="faqs_description">
+                                        
+										<div class="faqs_single mb-4">
+											<h2><%=result[2][i].name%></h2>
+											<p><%=result[2][i].content%></p>
+										</div>
+										
+										
+									</div>
+								</div>
+
+                                <% } %>
+								
+								
+								
+								
+								
+								
+								
+							
+								
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</section>
+
+
+
+
+			<!-- =========================== FAQ's =================================== -->
+			
+            <%- include ('./indexfooter.ejs') %>
+	

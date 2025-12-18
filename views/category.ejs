@@ -1,0 +1,522 @@
+<%- include ('./adminheader.ejs') %>
+
+
+<style>
+
+  body {
+    font-family: "Open Sans", sans-serif;
+    background: #e4e4e4;
+    margin: 20px 0;
+  }
+  body .h1 {
+    font-size: 2em;
+  }
+  body .h2 {
+    font-size: 1.5em;
+  }
+  body .h3 {
+    font-size: 1.17em;
+  }
+  body .h4 {
+    font-size: 1em;
+  }
+  .editor-toolbar {
+    background: #fff;
+    border: 1px solid #cecece;
+    margin: 0;
+    padding: 0;
+  }
+  .editor-toolbar a {
+    display: inline-block;
+    padding: 8px 12px;
+    color: #000;
+  }
+  .editor-toolbar a:hover {
+    background: #e4e4e4;
+  }
+  .editor-toolbar .active {
+    background: #e4e4e4;
+  }
+  .editor-toolbar .dropdown {
+    display: inline-block;
+  }
+  .editor-toolbar .dropdown .btn-default {
+    border: none;
+  }
+  .editor-toolbar .dropdown .btn-default:focus,
+  .editor-toolbar .dropdown .btn-default:hover {
+    background: none;
+  }
+  .editor-toolbar .dropdown a {
+    margin: 0;
+  }
+  #editor {
+    resize: vertical;
+    overflow: auto;
+    line-height: 1.5;
+    background: #fff;
+    border: 1px solid #cecece;
+    border-top: none;
+    min-height: 150px;
+    box-shadow: none;
+    padding: 8px 16px;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+  }
+  #editor:focus {
+    outline: none;
+  }
+  unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+  }
+  
+  
+  </style>
+
+<style>
+  #myInput th,
+#myInput td {
+  padding: 10px 30px;
+}
+
+#myInput th {
+  background: #333;
+  color: white;
+}
+
+#myInput th.asc:after {
+  display: inline;
+  content: '↓';
+}
+
+#myInput th.desc:after {
+  display: inline;
+  content: '↑';
+}
+
+#myInput td {
+  background: #ccc;
+}
+</style>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-12">
+                <div class="card insertdiv" id='insertdiv'>
+                  <div class="card-header">
+                    <h4>New Category </h4>
+                  </div>
+                  <form action="/category/insert" method="POST" enctype="multipart/form-data" class="uploadImage">
+                  <div class="card-body">
+                  
+                      <div class="row">
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Category Name</label>
+                                <input type="text" class="form-control" name="name" required>
+                              </div>
+                              
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Category Image</label>
+                                <input type="file" class="form-control" name="image" required>
+                              </div>
+                              
+                          </div>
+                      </div>
+                  
+
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                          <!-- <div class="form-group">
+                              <label>Product Description</label>
+                             <textarea class="form-control" name="description" required></textarea>
+                            </div> -->
+                            <div class="form-group">
+                              <label>Product Description</label>
+                             
+                              <div class="editor-toolbar">
+                                <div class="dropdown">
+                                  <button class="btn btn-default dropdown-toggle" type="button" id="headingMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Heading
+                                    <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="headingMenu">
+                                    <li><a href="javascript:void(0)" onclick="runCommand(this, 'formatBlock', 'h1')" class="h1">Heading 1</a></li>
+                                    <li><a href="javascript:void(0)" onclick="runCommand(this, 'formatBlock', 'h2')" class="h2">Heading 2</a></li>
+                                    <li><a href="javascript:void(0)" onclick="runCommand(this, 'formatBlock', 'h3')" class="h3">Heading 3</a></li>          
+                                    <li><a href="javascript:void(0)" onclick="runCommand(this, 'formatBlock', 'h4')" class="h4">Heading 4</a></li>
+                                  </ul>
+                                </div>
+                                
+                                
+                                <a href="javascript:void(0)" role="button" class="toolbar-btn unselectable" onclick="runCommand(this, 'bold', null)" unselectable="on"><i class="fa fa-bold"></i></a>
+                                <a href="javascript:void(0)" role="button" class="toolbar-btn" onclick="runCommand(this, 'italic', null)"><i class="fa fa-italic"></i></a>
+                                <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'underline', null)"><i class="fa fa-underline"></i></a> 
+                                <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'indent', null)"><i class="fa fa-indent"></i></a> 
+                                <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'insertUnorderedList', null)"><i class="fa fa-list-ul"></i></a> 
+                                <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'insertOrderedList', null)"><i class="fa fa-list-ol"></i></a>
+                                <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'createLink', null)"><i class="fa fa-link"></i></a>
+                                <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'unlink', null)"><i class="fa fa-unlink"></i></a>
+                                <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'redo', null)"><i class="fa fa-repeat"></i></a>
+                                <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'undo', null)"><i class="fa fa-undo"></i></a>         
+                              </div>
+                              
+                              <div id="editor" contenteditable="true"></div>
+                              <!-- <textarea  id="messageText" type="hidden" name = 'description' ></textarea> -->
+                              
+                              <!-- <div class="row">
+                                <div class="col-sm-2">
+                                  <button id="submit" class="btn btn-default btn-block" type="submit">Submit</button>
+                                </div>
+                              </div> -->
+                            </div>
+                            
+                            
+                        </div>
+
+                    </div>
+              
+                  
+                  </div>
+                  <div class="card-footer text-right">
+                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                    <button class="btn btn-danger mr-1 show" id="show" type="button" >Show All Category</button>
+                  </div>
+                  </form>
+                </div>
+            
+                
+                
+<div class="card mb-4" id='result'></div>
+
+
+
+<div class="card mb-4" id='editdiv'>
+    <h6 class="card-header"><span><button type="button" class="btn btn-primary show" id="back1" style="margin:10px">Back</button></span>Edit Data</h6>
+    <div class="card-body">
+    
+        <form>
+            <div class="form-row">
+    
+    
+                <div class="form-group col-md-6">
+                    <label class="form-label">ID</label>
+                    <input type="text" class="form-control" placeholder="Email" id="pid" readonly>
+                    <div class="clearfix"></div>
+                    </div>
+    
+            <div class="form-group col-md-6">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="Email" id="pname">
+            <div class="clearfix"></div>
+            </div>
+         
+            </div>
+            
+            
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <!-- <div class="form-group">
+                    <label>Product Description</label>
+                   <textarea class="form-control" name="description" required></textarea>
+                  </div> -->
+      
+                  <div class="container">
+                    <label>Product Description</label>
+                   
+                    <div class="editor-toolbar">
+                      <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="headingMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          Heading
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="headingMenu">
+                          <li><a href="javascript:void(0)" onclick="runCommand(this, 'formatBlock', 'h1')" class="h1">Heading 1</a></li>
+                          <li><a href="javascript:void(0)" onclick="runCommand(this, 'formatBlock', 'h2')" class="h2">Heading 2</a></li>
+                          <li><a href="javascript:void(0)" onclick="runCommand(this, 'formatBlock', 'h3')" class="h3">Heading 3</a></li>          
+                          <li><a href="javascript:void(0)" onclick="runCommand(this, 'formatBlock', 'h4')" class="h4">Heading 4</a></li>
+                        </ul>
+                      </div>
+                      
+                      
+                      <a href="javascript:void(0)" role="button" class="toolbar-btn unselectable" onclick="runCommand(this, 'bold', null)" unselectable="on"><i class="fa fa-bold"></i></a>
+                      <a href="javascript:void(0)" role="button" class="toolbar-btn" onclick="runCommand(this, 'italic', null)"><i class="fa fa-italic"></i></a>
+                      <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'underline', null)"><i class="fa fa-underline"></i></a> 
+                      <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'indent', null)"><i class="fa fa-indent"></i></a> 
+                      <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'insertUnorderedList', null)"><i class="fa fa-list-ul"></i></a> 
+                      <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'insertOrderedList', null)"><i class="fa fa-list-ol"></i></a>
+                      <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'createLink', null)"><i class="fa fa-link"></i></a>
+                      <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'unlink', null)"><i class="fa fa-unlink"></i></a>
+                      <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'redo', null)"><i class="fa fa-repeat"></i></a>
+                      <a href="javascript:void(0)" role="button" onclick="runCommand(this, 'undo', null)"><i class="fa fa-undo"></i></a>         
+                    </div>
+                    
+                    <div id="editor" class="peditor"  contenteditable="true"></div>
+                    <!-- <textarea  id="messageText" type="hidden" class="pdescription" name = 'description' ></textarea> -->
+                    
+                    <!-- <div class="row">
+                      <div class="col-sm-2">
+                        <button id="submit" class="btn btn-default btn-block" type="submit">Submit</button>
+                      </div>
+                    </div> -->
+                  </div>
+                  
+                
+                  
+              </div>
+      
+          </div>
+
+
+            <button type="button" id='update' class="btn btn-primary">Submit</button>
+            </form>
+    </div>
+    </div>
+    
+    
+    
+    <div class="card mb-4" id="updateimagediv">
+    <h6 class="card-header"><span><button type="button" class="btn btn-primary show" id="back2" style="margin:10px">Back</button></span> Upload Image</h6>
+    <div class="card-body">
+    
+        <form action="/category/update_image" method="POST" enctype="multipart/form-data">
+            <div class="form-row">
+       
+                <div class="form-group col-md-6">
+                    <label class="form-label">ID</label>
+                    <input type="text" class="form-control" placeholder="Email" id="peid" name="id" readonly>
+                    <div class="clearfix"></div>
+                    </div>
+    
+    
+            <div class="form-group col-md-6">
+            <label class="form-label">Image</label>
+            <input type="file" class="form-control" name='image' placeholder="Password">
+            <div class="clearfix"></div>
+            </div>
+            </div>
+            
+
+            
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    </div>
+    </div>
+    
+            
+              </div>
+             
+            </div>
+          </div>
+        </section>
+        <div class="settingSidebar">
+          <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+          </a>
+       
+        </div>
+      </div>
+      
+    </div>
+  </div>
+ <!-- General JS Scripts -->
+<script src="/light/assets/js/app.min.js"></script>   
+<script src="/light/assets/js/scripts.js"></script>
+<script src="/light/assets/js/custom.js"></script>
+
+<script src="/javascripts/category.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
+<script>
+/* =========================================
+   INSERT CATEGORY (AJAX SUBMIT)
+========================================= */
+$('.uploadImage').submit(function (e) {
+  e.preventDefault();
+
+  let description = $("#editor").html().trim();
+
+  $(this).ajaxSubmit({
+    data: { description: description },
+    success: function (response) {
+      console.log(response);
+
+      if (response.status == 300 || response.status == '300') {
+        alert(response.description);
+      } else {
+        alert('Successfully saved');
+        window.location.reload();
+      }
+    }
+  });
+
+  return false;
+});
+
+/* =========================================
+   SHOW ALL CATEGORY ✅ FIXED
+========================================= */
+$(document).ready(function () {
+
+  $("#result").hide();
+  $("#editdiv").hide();
+  $("#updateimagediv").hide();
+
+  $("#show").on("click", function () {
+
+    $("#insertdiv").hide();
+    $("#editdiv").hide();
+    $("#updateimagediv").hide();
+    $("#result").show();
+
+    $.ajax({
+      url: "/category/all",   // ✅ CORRECT ROUTE
+      type: "GET",
+      success: function (data) {
+
+        let html = `
+          <div class="card-header">
+            <h4>All Categories</h4>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Image</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        if (!data || data.length === 0) {
+          html += `<tr><td colspan="3">No category found</td></tr>`;
+        } else {
+          data.forEach(cat => {
+            html += `
+              <tr>
+                <td>${cat.id}</td>
+                <td>${cat.name}</td>
+                <td>
+                  <img src="/uploads/${cat.image}" width="60">
+                </td>
+              </tr>
+            `;
+          });
+        }
+
+        html += `
+              </tbody>
+            </table>
+          </div>
+        `;
+
+        $("#result").html(html);
+      },
+      error: function () {
+        alert("Failed to load category list");
+      }
+    });
+  });
+
+  /* BACK BUTTON */
+  $("#back1, #back2").on("click", function () {
+    $("#result").hide();
+    $("#editdiv").hide();
+    $("#updateimagediv").hide();
+    $("#insertdiv").show();
+  });
+
+});
+
+/* =========================================
+   EDITOR CARET CONTROL
+========================================= */
+function placeCaretAtEnd(el) {
+  el.focus();
+  if (window.getSelection && document.createRange) {
+    let range = document.createRange();
+    range.selectNodeContents(el);
+    range.collapse(false);
+    let sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+}
+
+/* =========================================
+   CLEAN HTML (SANITIZE)
+========================================= */
+function cleanHtml() {
+  let value = $("#editor").html();
+  let clean = sanitizeHtml(value, {
+    allowedTags: ['div','blockquote','b','strong','i','em','ul','ol','li'],
+    allowedAttributes: { blockquote: ['style'] }
+  });
+
+  $("#editor").html(clean.trim());
+  placeCaretAtEnd($("#editor").get(0));
+}
+
+/* =========================================
+   MS WORD PASTE FILTER
+========================================= */
+(function ($) {
+  $.fn.msword_html_filter = function () {
+
+    function word_filter(editor) {
+      let content = editor.html();
+      content = content.replace(/<!--[\s\S]+?-->/gi, '');
+      content = content.replace(/<(!|script|style|meta|link|img|w:\w+)[^>]*>/gi, '');
+      content = content.replace(/&nbsp;/gi, ' ');
+      editor.html(content);
+      $('[style],[align]', editor).removeAttr('style align');
+      $('span', editor).replaceWith(function () { return $(this).contents(); });
+      $('p:empty', editor).remove();
+    }
+
+    return this.each(function () {
+      let self = this;
+      $(self).on('paste keyup', function () {
+        setTimeout(() => {
+          let content = $(self).html();
+          (/mso-|WordDocument/i.test(content)) ? word_filter($(self)) : cleanHtml();
+        }, 300);
+      });
+    });
+  };
+})(jQuery);
+
+/* INIT EDITOR */
+$(function () {
+  $('#editor').msword_html_filter();
+});
+
+/* =========================================
+   TOOLBAR COMMANDS
+========================================= */
+function runCommand(el, commandName, arg) {
+  if (commandName === "createLink") {
+    let link = prompt("Insert link:");
+    document.execCommand(commandName, false, link);
+  } else {
+    document.execCommand(commandName, false, arg);
+  }
+  $("#editor").focus();
+  return false;
+}
+</script>
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,198 @@
+<%- include ('./adminheader.ejs') %>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-12">
+              
+    <button type="button" class="btn btn-primary float-right" id="exportBtn1" style="float: right;margin-top:25px;margin-right:20px;margin-bottom: 20px;">Export Data</button>
+            
+                
+                <div class="table-responsive">
+
+     
+                    <table id="myTable" class="table table-bordered table-striped mb-0">
+                    <thead>
+                    <tr>
+                    
+                        <th>Ticket Number</th>
+                   <th>User Name</th>
+                        <th>Subject</th>
+                    <th>Department</th>
+                    <th>Priority</th>
+                    <th>Content</th>
+                    <th>Attachment</th>
+                  <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+
+
+                        <% for(i=0;i<result.length;i++){ %>
+                  <tr>
+                    <td><%=result[i].ticket_number%></td>
+                    <td><%=result[i].userfirstname%>   <%=result[i].userlasttname%></td>
+
+
+                    <td><%=result[i].ticket_subject%></td>
+                    <td><%=result[i].t_department_id%></td>
+                    <td><%=result[i].t_priority_id %>
+</td>
+                    <td><%=result[i].content%></td>
+
+
+                    <% if(result[i].helpdesk_attachment) { %>
+
+                      <td><img src='/images/<%=result[i].helpdesk_attachment%>' style="width: 100px;margin-top: 20px;"></td>
+
+                  
+                      <% } else { %>
+                          <td>-</td>
+                  
+                  
+                          <% } %>
+
+
+                    <td><%=result[i].status%></td>
+                    <td><%=result[i].date%></td>
+                   
+                        <td>
+                            <a href="/view-replied?id=<%=result[i].ticket_number%>">
+                        <button type="button" class="btn btn-primary" value="<%=result[i].id%>">View Details</button>
+                        <% if(result[i].status == 'Online') { %>
+                        <a href="/support/update?status=Closed&id=<%=result[i].id%>"><button type="button" class="btn btn-dark" value="<%=result[i].id%>">Closed</button></a>
+
+                        <% } else { %>
+
+
+                          <% } %>
+
+                    </a>
+                    </td>
+                
+                  
+                    </tr>
+
+<% } %>
+
+                    </tbody>
+                    </table>
+                    </div>
+
+
+
+    
+    
+    
+   
+            
+              </div>
+             
+            </div>
+          </div>
+        </section>
+        <div class="settingSidebar">
+          <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+          </a>
+       
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- General JS Scripts -->
+  <script src="/light/assets/js/app.min.js"></script>   
+  <!-- JS Libraies -->
+  <!-- Page Specific JS File -->
+  <!-- Template JS File -->
+  <script src="/light/assets/js/scripts.js"></script>
+  <!-- Custom JS File -->
+  <script src="/light/assets/js/custom.js"></script>
+
+
+  <script src="/javascripts/users.js"></script>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+  <script>
+  
+    $('.uploadImage').submit(function (e) {
+      e.preventDefault();
+  
+      // var title = $('#title').val(); 
+  
+      $(this).ajaxSubmit({
+        // data: {title: title},
+        contentType: 'application/json',
+        success: function (response) {
+          alert('successfully')
+        }
+      });
+      return false;
+    });
+  
+
+
+
+
+
+
+
+
+
+
+
+    $(document).ready(function () {
+      $('#exportBtn1').click(function(){
+
+   
+    
+            TableToExcel.convert(document.getElementById("myTable"), {
+                name: "Orders.xlsx",
+                sheet: {
+                name: "Sheet1"
+                }
+              });
+            });
+      });
+  
+      
+
+$('.reply').click(function(){
+    let helpdeskid = $(this).attr('value');
+    var reply = prompt("Enter your reply : ", "your name here");
+           if(reply==null || reply == 'null' || reply =='') alert('Enter Reply');
+            else {
+                 $.post('/replied',{helpdeskid,reply},data=>{
+                     alert('Sent Successfully...');
+                     window.location.reload();
+
+                     
+                 })
+            }
+})
+
+     
+
+  
+  
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>

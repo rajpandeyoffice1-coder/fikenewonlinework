@@ -1,0 +1,320 @@
+
+
+<%- include ('./otherheader.ejs') %>
+
+      
+        
+<aside id="notifications">
+  <div class="container">
+    
+    
+    
+      </div>
+</aside>
+      
+      <section id="wrapper">
+       
+        <nav data-depth="3" class="breadcrumb hidden-sm-down">
+  <div class="container container-large">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+      
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="/">
+                <span itemprop="name">Home</span>
+              </a>
+              <meta itemprop="position" content="1">
+            </li>
+          
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="/myaccount">
+                <span itemprop="name">My Account</span>
+              </a>
+              <meta itemprop="position" content="2">
+            </li>
+          
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="">
+                <span itemprop="name">Helpdesk</span>
+              </a>
+              <meta itemprop="position" content="3">
+            </li>
+          
+              
+    </ol>
+  </div>
+</nav>      
+      
+
+              
+              <div class="container  ">
+                
+          <div class="row">
+            
+
+            
+  <div id="content-wrapper" class="col-lg-12 col-xs-12">
+    
+    
+
+  <section id="main">
+
+      
+    
+      
+    
+
+    
+      <section id="content" class="page-content card card-block">
+        
+        
+<script type="text/javascript" src="https://leffet.in/js/jquery/jquery-1.11.0.min.js"></script>
+<div class="page-order-detail">
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+<script>
+$('document').ready( 
+function(){
+$('.selector').css('background-position','0 0px !important');
+});
+</script>
+
+
+<div class="block"><h1 class="title_block page-subheading">My Tickets</h1></div>
+<div class="block-center" id="block-history">
+
+
+
+    <table id="" class="table table-bordered table-striped mb-0">
+        <thead>
+        <tr>
+        
+            <th>Ticket Number</th>
+            <th>Subject</th>
+        <th>Department</th>
+        <th>Priority</th>
+        <th>Content</th>
+        <th>Attachment</th>
+      <th>Status</th>
+     
+        </tr>
+        </thead>
+        <tbody>
+        
+
+
+            <% for(i=0;i<result[1].length;i++){ %>
+      <tr>
+        <td><%=result[1][0].ticket_number%></td>
+
+        <td><%=result[1][0].ticket_subject%></td>
+        <td><%=result[1][0].t_department_id%></td>
+        <td><%=result[1][0].t_priority_id %>
+</td>
+        <td><%=result[1][0].content%></td>
+
+<% if(result[1][0].helpdesk_attachment) { %>
+
+    <td><img src='/images/<%=result[1][0].helpdesk_attachment%>' style="width: 100px;"></td>
+
+    <% } else { %>
+        <td>-</td>
+
+
+        <% } %>
+
+        <td><%=result[1][0].status%></td>
+       
+        
+    
+      
+        </tr>
+
+<% } %>
+
+        </tbody>
+        </table>
+
+
+</div>
+
+<div style="clear:both;"></div>
+
+
+
+
+
+<div class="block" style="margin-top: 50px;"><h1 class="title_block page-subheading">Replied</h1></div>
+<button type="button" class="btn btn-primary reply" style="margin:10px;float:right" value="<%=result[1][0].ticket_number%>"> Reply</button>
+
+<div class="block-center" id="block-history">
+
+
+
+    <table id="" class="table table-bordered table-striped mb-0">
+        <thead>
+        <tr>
+        
+            <th>Replied</th>
+         
+     
+        </tr>
+        </thead>
+        <tbody>
+        
+
+
+            <% for(i=0;i<result[2].length;i++){ %>
+   
+                <tr>
+        <td><%=result[2][i].reply%> -  <%=result[2][i].type%></td>
+         </tr>
+
+         <% } %>
+
+        </tbody>
+        </table>
+
+
+</div>
+
+
+<ul class="footer_links" style="margin-top: 50px;">
+<li class="fleft">
+<a href="/myaccount">Back to your account.</a></li>
+</ul>
+
+<script>
+function VerifyCallback(response) { $('.DataTrigger_test').show('submit');}
+</script>
+
+</div>
+
+</section>
+
+
+
+<footer class="page-footer">
+
+<!-- Footer content -->
+
+</footer>
+
+
+</section>
+
+
+
+</div>
+
+
+
+</div>
+	  </div>
+	  
+</section>
+
+<%- include ('./indexfooter.ejs') %> 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
+
+<script>
+  
+    $('.uploadImage').submit(function (e) {
+      e.preventDefault();
+
+      // var title = $('#title').val(); 
+  
+      $(this).ajaxSubmit({
+        
+        contentType: 'application/json',
+        success: function (response) {
+          console.log(response)
+          if(response.status=='300' || response.status==300) alert(response.description)
+          else {
+         alert('Successfully..')
+          window.location.reload()
+          }
+         
+        }
+      });
+      return false;
+    });
+  
+  
+  
+  </script>
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script>
+
+  $('.uploadImage').submit(function (e) {
+    e.preventDefault();
+
+    // var title = $('#title').val(); 
+
+    $(this).ajaxSubmit({
+      // data: {title: title},
+      contentType: 'application/json',
+      success: function (response) {
+        alert('successfully')
+      }
+    });
+    return false;
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+  $(document).ready(function () {
+    $('#exportBtn1').click(function(){
+
+ 
+  
+          TableToExcel.convert(document.getElementById("myTable"), {
+              name: "Orders.xlsx",
+              sheet: {
+              name: "Sheet1"
+              }
+            });
+          });
+    });
+
+    
+
+$('.reply').click(function(){
+  let helpdeskid = $(this).attr('value');
+  let type = 'User'
+  var reply = prompt("Enter your reply : ", "your name here");
+         if(reply==null || reply == 'null' || reply =='') alert('Enter Reply');
+          else {
+               $.post('/replied',{helpdeskid,reply,type},data=>{
+                   alert('Sent Successfully...');
+                   window.location.reload();
+
+                   
+               })
+          }
+})
+
+    function getValue() {
+           
+          }
+
+
+
+</script>
+

@@ -1,0 +1,661 @@
+
+
+<%- include ('./otherheader.ejs') %>
+
+<style>
+  @font-face {
+font-family: 'Bellerose Light:1.0';
+src: url("./fonts/Bellerose.ttf");
+/* font-family: "Sofia Pro";
+src: url("./fonts/sofiapro-light.otf"); */
+}
+@font-face {
+font-family: "Sofia Pro";
+src: url("./fonts/sofiapro-light.otf");
+}
+
+
+#exampleModal .modal-dialog {
+max-width: 1140px;
+width: 100%;
+margin: 100px auto;
+}
+.modal-content {
+position: relative;
+background-color: #fff;
+background-clip: padding-box;
+border: 1px solid rgba(0, 0, 0, 0.2);
+outline: 0;
+}
+#exampleModal .modal-header {
+/* background: #4cbb6c; */
+background: #f3f3c7;
+border-radius: 0px;
+}
+#exampleModal-modal {
+color: #222222;
+}
+.modal-header {
+padding: 15px;
+}
+
+.close {
+float: right;
+font-size: 1.5rem;
+font-weight: 700;
+line-height: 1;
+color: #000;
+text-shadow: 0 1px 0 #fff;
+opacity: 0.2;
+}
+button.close {
+padding: 0;
+cursor: pointer;
+background: 0 0;
+border: 0;
+-webkit-appearance: none;
+}
+.modal-header .close {
+margin-top: -2px;
+}
+#exampleModal .modal-title {
+font-weight: 600;
+/* color: #fff; */
+font-size: 18px;
+font-family: 'Bellerose Light:1.0';
+margin-left: 35%;
+}
+#exampleModal .modal-body {
+background: #fff;
+padding: 50px 30px;
+}
+
+.material-icons {
+font-family: "Material Icons";
+margin-right: 10px;
+font-weight: 400;
+font-style: normal;
+width:20px;
+display: inline-block;
+vertical-align: middle;
+text-transform: none;
+letter-spacing: normal;
+word-wrap: normal;
+white-space: nowrap;
+direction: ltr;
+-webkit-font-smoothing: antialiased;
+text-rendering: optimizeLegibility;
+-moz-osx-font-smoothing: grayscale;
+font-feature-settings: "liga";
+}
+#exampleModal .product-name {
+color: #222222;
+font-size: 18px;
+margin-bottom: 10px;
+font-family: 'Bellerose Light:1.0';
+}
+#exampleModal .divide-right {
+border-right: #acaaa6 1px solid;
+}
+#exampleModal .modal-body .divide-right span {
+display: inline-block;
+margin-bottom: 10px;
+font-family: "Sofia Pro";
+font-size: 14px;
+}
+#exampleModal .modal-body .divide-right p {
+color: #000;
+font-family: "Sofia Pro";
+font-size: 14px;
+}
+
+#exampleModal .cart-content {
+padding-left: 20px;
+font-family: "Sofia Pro";
+font-size: 14px;
+
+}
+#exampleModal .cart-products-count {
+font-size: 18px;
+font-family: "Sofia Pro";
+
+
+}
+#exampleModal .cart-content .btn {
+margin-bottom: 10px;
+padding: 15px;
+font-family: "Sofia Pro";
+font-size: 14px;
+
+}
+#exampleModal .cart-content button {
+margin-right: 5px;
+}
+.btn {
+position: relative;
+padding: 10px 35px;
+font-family: "Sofia Pro";
+border-radius: 0;
+text-transform: capitalize;
+border: none;
+-webkit-transition: all 0.3s ease-out 0s;
+-o-transition: all 0.3s ease-out 0s;
+transition: all 0.3s ease-out 0s;
+font-weight: 500;
+font-size: 14px;
+line-height: 28px;
+}
+@media only screen and (max-width: 600px) {
+#exampleModal .modal-title {
+  font-weight: 600;
+  font-size: 18px;
+  font-family: 'Bellerose Light:1.0';
+  margin-left: 0%;
+  text-align: center;
+}
+#exampleModal .divide-right {
+  border-right: none;
+}
+#exampleModal .product-name {
+  margin-top: 5%;
+  color: #222222;
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-family: 'Bellerose Light:1.0';
+}
+#exampleModal .cart-content {
+  padding-left: 0px;
+  font-family: "Sofia Pro";
+  font-size: 14px;
+
+}
+
+}
+
+
+
+
+/* Extra small devices (phones, 600px and down) */
+
+@media only screen and (max-width: 400) {
+    .ajax_block_product {width: 100%;height: 650px;}
+
+  /* .question{display: none;} */
+}
+
+    @media only screen and (min-width: 400px) {
+    .ajax_block_product {width: 100%;height: 450px;}
+
+  /* .question{display: none;} */
+}
+
+    @media only screen and (min-width: 440px) {
+    .ajax_block_product {width: 100%;height: 450px;}
+
+  /* .question{display: none;} */
+}
+
+@media only screen and (min-width: 486px) {
+    .ajax_block_product {width: 100%;height: 500px;}
+
+  /* .question{display: none;} */
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .ajax_block_product {width: 50%;height: 380px;}
+
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .ajax_block_product {width: 50%;height: 450px;}
+
+} 
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .ajax_block_product {width: 33%;height: 350px;}
+
+} 
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .ajax_block_product {width: 33%;height: 400px;}
+}
+
+
+
+</style>
+        
+<aside id="notifications">
+  <div class="container">
+    
+    
+    
+      </div>
+</aside>
+      
+      <section id="wrapper">
+       
+        <nav data-depth="3" class="breadcrumb hidden-sm-down">
+  <div class="container container-large">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+      
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="#">
+                <span itemprop="name">Home</span>
+              </a>
+              <meta itemprop="position" content="1">
+            </li>
+          
+          
+          
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="#">
+                <span itemprop="name">Blogs</span>
+              </a>
+              <meta itemprop="position" content="3">
+            </li>
+          
+              
+    </ol>
+  </div>
+</nav>      
+      
+
+              
+              <div class="container   ">
+                
+          <div class="row">
+            
+              <div id="left-column" class="sidebar  col-xs-12 col-sm-12 col-md-4 col-lg-3">
+                                  
+                              </div>
+            
+
+            
+  <div id="content-wrapper" class="left-column col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+    
+    
+  <section id="main">
+
+    
+  <div id="js-product-list-header">
+
+    <div class="block-category-section card card-block">
+            <h4 class="title_block">Blogs</h4>
+
+            <input type="hidden" id="categoryid" class="msg" value="Blogs">
+                            <div id="category-description" class="text-center">
+<!-- <div id="result"></div> -->
+
+                            </div>
+                        
+    </div>
+  </div>
+
+
+  <% if(result[1][0]){ %>
+
+    <section id="products">
+      
+      <div id="">
+        
+          
+<div id="js-product-list-top" class="products-selection">
+<div class="row">
+  <div class="col-lg-6 col-md-3 hidden-sm-down total-products">     
+    
+      <div class="display">
+        <div id="grid" class="leo_grid selected"><a rel="nofollow" href="#" title="Grid"><i class="fa fa-th" aria-hidden="true"></i></a></div>
+        <div id="list" class="leo_list "><a rel="nofollow" href="#" title="List"><i class="fa fa-list-ul" aria-hidden="true"></i></a></div>
+      </div>
+    
+            <p class="products-counter hidden-md-down">There are 13 products.</p>
+        </div>
+  <div class="col-lg-6 col-md-9">
+    <div class="row sort-by-row">
+      
+        <!-- <span class="col-sm-4 col-md-4 col-lg-4 hidden-md-down sort-by">Sort by:</span> -->
+
+      
+
+            </div>
+  </div>
+  <div class="col-sm-12 hidden-lg-up text-xs-center showing">
+    Showing 1-13 of 13 item(s)
+  </div>
+</div>
+</div>
+        
+      </div>
+
+      
+        <div id="" class="hidden-sm-down">
+          <section id="js-active-search-filters" class="hide">
+
+  <p class="h6 hidden-xs-up">Active filters</p>
+
+
+</section>
+
+        </div>
+      
+
+      <div id="">
+        
+          <div id="js-product-list">
+<div class="products">  
+      
+
+  
+                  
+
+
+<!-- Products list -->
+
+
+<div  class="product-list- product_list grid  product-default ">
+  <div class="row">
+                  
+          
+          <% for(i=0;i<result[1].length;i++){ %>
+                                     
+          <div class="ajax_block_product col-sp-12 col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+              
+<article class="product-miniature js-product-miniature" data-id-product="85" data-id-product-attribute="210" itemscope itemtype="http://schema.org/Product">
+<div class="thumbnail-container">
+  <div class="product-image">
+<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
+
+      <a href="<%=result[1][i].fb_link%>" target="_blank" class="thumbnail product-thumbnail">
+    <img
+      class="img-fluid"
+      src = "/images/<%=result[1][i].image%>"
+      alt = "<%=result[1][i].name%>"
+      data-full-size-image-url = "/images/<%=result[1][i].image%>"
+    > 
+            <span class="product-additional" data-idproduct="85">ss</span>
+        </a>
+
+
+
+<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
+
+<ul class="product-flags">
+</ul>
+
+
+
+
+
+<div class="functional-buttons clearfix">
+<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
+
+
+<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
+
+
+<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
+
+
+
+</div></div>
+
+
+
+  <div class="product-meta">
+<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
+
+<h3 class="h3 product-title" itemprop="name"><%=result[1][i].description%></h3>
+<h3 class="h3 product-title" itemprop="name"><a href="<%=result[1][i].fb_link%>" target="_blank"9>Read More...</a></h3>
+
+
+
+<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
+      
+            <div class="product-price-and-shipping ">
+            
+
+          </div>
+                
+
+
+<div class="product-description-short" itemprop="description"> <%=result[1][i].short_description%></div>
+</div>
+</div>
+</article>
+
+
+
+
+
+                                                          
+          </div>
+
+
+    <% } %>
+
+    
+           
+          
+          
+                                     
+       
+          </div>
+</div>
+<script>
+if (window.jQuery) {
+  $(document).ready(function(){
+      if (prestashop.page.page_name == 'category'){
+          setDefaultListGrid();
+      }
+  });
+}
+</script>   
+</div>
+   <div class="hidden-xs-up text-xs-right up">
+  <a href="#header" class="btn btn-secondary">
+    Back to top
+    <i class="material-icons">&#xE316;</i>
+  </a>
+</div>
+</div>
+
+<div id="scroll-loader-div"  class="scroll-loader-dev hidden-xs-up loadingio-spinner-ripple-dkplnf6ci3l"><div class="ldio-94kxqeup8bb">
+<div></div><div></div>
+</div></div>
+
+
+<script>
+var scrollCountLinks ={"1":{"type":"page","page":1,"clickable":false,"current":true,"url":"https:\/\/leffet.in\/17-%c3%bczvi"}};
+             
+
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('#loader-common-dev').remove();
+        var count = 1;
+        var limit = 1;
+        $(window).scroll(function(e){
+           e.preventDefault();
+          if(count < limit){
+              $('footer').hide();
+
+          }
+      //  if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+          if  ($(document).height() >= $(window).scrollTop() + $(window).height()){
+
+
+                if(parseInt(limit)>parseInt(count)){
+                    count +=1;
+
+                  if ($(".product-list-"+count).length == 0) {
+                      var redirectedUrl  = scrollCountLinks[count].url;
+                     // loadedPages.push(count);
+                      loadArticle(redirectedUrl);
+                    }                       
+                    
+                }
+          }
+
+     
+      }); 
+     
+    function loadArticle(redirectedUrl){
+      loaderScroll(true);
+      $.ajax({
+        url: redirectedUrl,
+        type:'POST',
+        dataType: 'json',
+        async :false,
+        success: function(data){
+          scrollCountLinks = data.pagination.pages;
+          setTimeout(function() {
+      if ($(".product-list-"+data.pagination.current_page).length == 0) {
+                $("#js-product-list").append(data.rendered_products);    // This will be the div where our content will be loaded
+
+                                  }
+                          $('.footer-container').show();
+
+                          loaderScroll(false);
+
+
+          }, 3000);
+        }
+        });
+      return false;
+    }
+
+
+    });
+    var loaderScroll = (function(decision){
+      if(decision){
+        $('#scroll-loader-div').removeClass('hidden-xs-up');
+      }else{
+        $('#scroll-loader-div').addClass('hidden-xs-up');
+      }
+      
+    });
+
+</script>
+        
+      </div>
+
+      <div id="js-product-list-bottom">
+        
+          <div id="js-product-list-bottom"></div>
+        
+      </div>
+
+        </section>
+
+    <% } %>
+  
+  
+
+   
+  </section>
+
+    
+  </div>
+
+
+            
+          </div>
+                  </div>
+              	
+      </section>
+
+<%- include ('./indexfooter.ejs') %> 
+
+<script>
+
+  $( document ).ready(function() {
+     let msg = $('.msg').val()
+     $.getJSON(`/content?msg=${msg}`,data=>{
+        console.log(data[0].description)
+         a(data)
+    })
+  });
+  
+   
+  
+  
+    function a(data){
+      let table = `<p>
+   <p>${data[0].description}</p>
+   </p>
+        `
+        $('#result').html(table)
+    }
+  
+
+
+
+    
+  $('.addToCart').click(function(){
+                          let booking_id = $(this).attr('booking_id');
+                            let price = $(this).attr('price');
+                            let oneprice = $(this).attr('price');
+                            let categoryid = $(this).attr('categoryid');
+                            let name = $(this).attr('productname');
+                            let imageurl = $(this).attr('imageurl');
+
+
+                            let size = 'S';
+                            let quantity = 1;
+
+
+                            let tableimage= ` <img class="product-image img-fluid" src="${imageurl}" alt="" title="" itemprop="image">
+`
+                            $('#addedimage').html(tableimage)
+                            
+
+                            let tablename= `<span>${name}</span>`
+                            $('#addedname').html(tablename)
+
+                            let tableprice= `<span>${price}</span>`
+                            $('#addedamount').html(tableprice)
+
+                            
+                            let table = `<span>${size}</span>`
+                            $('#addedsize').html(table)
+
+
+                            let table1 = `<span>${quantity}</span>`
+                            $('#addedquantity').html(table1)
+                            
+                            // let subcategoryid = $(this).attr('subcategoryid');
+                            // let totalquantity = $(this).attr('totalquantity');/
+                            // let categoryname = $(this).attr('categoryname')
+
+                
+                            // let vendorid = $(this).attr('vendorid');
+                
+                
+                                price = price*quantity
+
+                                // console.log()
+                        
+                        $.post('/cart-handler1',{booking_id,price,categoryid,oneprice,quantity,size},data=>{
+                            // swal(categoryname, "Successfully added to cart", "success");
+                            console.log(data[0][0].counter)
+
+
+                            let table3 = `<span>${data[0][0].counter}</span>`
+                            $('#newquantity').html(table3)
+
+
+                            let table4 = `<span>${data[1][0].counter}</span>`
+                            $('.newprice').html(table4)
+
+                            $('#exampleModal').modal('show');
+
+                        })  
+                      })
+                
+  
+  
+  </script>
+    

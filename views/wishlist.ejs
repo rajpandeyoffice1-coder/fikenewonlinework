@@ -1,0 +1,153 @@
+
+<%- include ('./otherheader.ejs') %>
+
+      
+        
+<aside id="notifications">
+  <div class="container">
+    
+    
+    
+      </div>
+</aside>
+      
+      <section id="wrapper">
+       
+        <nav data-depth="3" class="breadcrumb hidden-sm-down">
+  <div class="container container-large">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+      
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="/">
+                <span itemprop="name">Home</span>
+              </a>
+              <meta itemprop="position" content="1">
+            </li>
+          
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="/myaccount">
+                <span itemprop="name">My Account</span>
+              </a>
+              <meta itemprop="position" content="2">
+            </li>
+          
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="#">
+                <span itemprop="name">My Wishlist</span>
+              </a>
+              <meta itemprop="position" content="3">
+            </li>
+          
+              
+    </ol>
+  </div>
+</nav>      
+      
+
+              
+              <div class="container  ">
+                
+          <div class="row">
+            
+
+            
+  <div id="content-wrapper" class="col-lg-12 col-xs-12">
+    
+    
+	<section id="main">
+		<div id="mywishlist">
+			<h2>New wishlist</h2>
+			<div class="new-wishlist">
+				<div class="form-group">
+					<label for="wishlist_name">Name</label>
+					<input type="text" class="form-control" id="wishlist_name" placeholder="Enter name of new wishlist">
+				</div>
+				<div class="form-group has-success">
+					<div class="form-control-feedback"></div>			 
+				</div>
+				<div class="form-group has-danger">		 
+				  <div class="form-control-feedback"></div>		 
+				</div>
+				<button type="button" class="btn btn-primary leo-save-wishlist-bt">
+					<span class="leo-save-wishlist-loading cssload-speeding-wheel"></span>
+					<span class="leo-save-wishlist-bt-text">
+						Save
+					</span>
+				</button>
+			</div>
+			
+
+
+			<% if(result[6][0]) { %>
+				<div class="list-wishlist">						
+					<table class="table table-striped">
+					  <thead class="wishlist-table-head">
+						<tr>
+						  <th>Name</th>
+						  <th>Quantity</th>
+						  <th class="wishlist-datecreate-head">Created</th>
+						  <th>Direct Link</th>
+						 <!--- <th>Default</th> ---->
+						  <th>Delete</th>
+						</tr>
+					  </thead>
+					  <tbody>
+					
+
+
+						<% for(i=0;i<result[6].length;i++){ %>
+
+															<tr>					 
+									<td>
+								    
+										<%=result[6][i].name%>
+									    </td>
+									<td class="wishlist-numberproduct wishlist-numberproduct-2"><%=result[6][i].quantity%></td>
+									<td class="wishlist-datecreate"><%=result[6][i].created%></td>							
+									<td><a class="view-wishlist" data-token="C0016951F1BF8E98" target="_self" href="/view-wishlist?id=<%=result[6][i].id%>" title="View">View</a></td>
+								<!--	<td>
+										
+											<label class="form-check-label">
+												<input class="default-wishlist form-check-input" data-id-wishlist="2" type="checkbox" checked="checked">
+											</label>
+									
+									</td> ---->
+									<td><a class="delete-wishlist" data-id-wishlist="<%=result[6][i].id%>" href="javascript:void(0)" title="Delete"><i class="material-icons">&#xE872;</i></a></td>
+								</tr>
+									
+								<% } %>
+						
+					
+					  </tbody>
+					</table>
+									</div>
+
+<% } %>
+
+					<section id="products">
+				<div class="leo-wishlist-product products row">
+				
+				</div>
+			</section>
+			<ul class="footer_links">
+				<li class=""><a class="btn" href="/myaccount"><i class="material-icons"></i><span>Back to Your Account</span></a></li>
+				<li class=""><a class="btn" href="/"><i class="material-icons">&#xE88A;</i><span>Home</span></a></li>
+			</ul>
+		</div>
+	</section>
+
+    
+  </div>
+
+
+            
+          </div>
+                  </div>
+              	
+      </section>
+
+      <%- include ('./indexfooter.ejs') %> 
+  

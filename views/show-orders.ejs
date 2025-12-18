@@ -1,0 +1,164 @@
+<%- include ('./adminheader.ejs') %>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-12">
+              
+    <button type="button" class="btn btn-primary float-right" id="exportBtn1" style="float: right;margin-top:25px;margin-right:20px;margin-bottom: 20px;">Export Data</button>
+            
+                
+                <div class="table-responsive">
+
+     
+                    <table id="myTable" class="table table-bordered table-striped mb-0">
+                    <thead>
+                    <tr>
+                    <th>Order Id</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                  <th>Status</th>
+                    <th>Date</th>
+                    <th>Invoice</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+
+
+                        <% for(i=0;i<result.length;i++){ %>
+                  <tr>
+                    <td><%=result[i].orderid%></td>
+                    <td><%=result[i].name%></td>
+                    <td><%=result[i].number%></td>
+                    <td><%=result[i].address%>
+</td>
+                    <td><%=result[i].productname%></td>
+                    <td><%=result[i].quantity%></td>
+                    <td><%=result[i].price%></td>
+
+                    <% if(result[i].status == 'replacement'){ %>
+                    <td>Issue : <%=result[i].issues%>
+                      <% let video = result[i].video.replace("public\\", "") %>
+
+                    <a href="<%=video%>">View Video</a>
+                    </td>
+
+                    <%} else {%>
+                      <td><%=result[i].status%></td>
+
+                      <% } %>
+                    <td><%=result[i].date%></td>
+                    <td><a href="/invoice?orderid=<%=result[i].orderid%>">View Invoice</a></td>
+
+                  
+                    </tr>
+
+<% } %>
+
+                    </tbody>
+                    </table>
+                    </div>
+
+
+
+    
+    
+    
+   
+            
+              </div>
+             
+            </div>
+          </div>
+        </section>
+        <div class="settingSidebar">
+          <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+          </a>
+       
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- General JS Scripts -->
+  <script src="/light/assets/js/app.min.js"></script>   
+  <!-- JS Libraies -->
+  <!-- Page Specific JS File -->
+  <!-- Template JS File -->
+  <script src="/light/assets/js/scripts.js"></script>
+  <!-- Custom JS File -->
+  <script src="/light/assets/js/custom.js"></script>
+
+
+  <script src="/javascripts/users.js"></script>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+  <script>
+  
+    $('.uploadImage').submit(function (e) {
+      e.preventDefault();
+  
+      // var title = $('#title').val(); 
+  
+      $(this).ajaxSubmit({
+        // data: {title: title},
+        contentType: 'application/json',
+        success: function (response) {
+          alert('successfully')
+        }
+      });
+      return false;
+    });
+  
+
+
+
+
+
+
+
+
+
+
+
+    $(document).ready(function () {
+      $('#exportBtn1').click(function(){
+
+   
+    
+            TableToExcel.convert(document.getElementById("myTable"), {
+                name: "Orders.xlsx",
+                sheet: {
+                name: "Sheet1"
+                }
+              });
+            });
+      });
+    
+
+  
+  
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>

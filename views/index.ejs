@@ -1,0 +1,636 @@
+<%- include ('./navbar.ejs') %>
+<title>Fika | Home</title>
+<!-- Page content -->
+<main class="content-wrapper">
+  <!-- Swiper CSS -->
+ <meta charset="utf-8">
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+    <!-- SEO Meta Tags -->
+    <title>FIKA | Account - Sign Up</title>
+    <meta name="description" content="FIKA | Account - Sign Up">
+   <meta name="author" content="Createx Studio">
+
+    <!-- Webmanifest + Favicon / App icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="/images/logo.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/images/logo.png">
+
+    <!-- Theme switcher (color modes) -->
+    <script src="/theme/assets/js/theme-switcher.js"></script>
+
+    <!-- Preloaded local web font (Inter) -->
+    <link rel="preload" href="/theme/assets/fonts/inter-variable-latin.woff2" as="font" type="font/woff2" crossorigin="">
+
+    <!-- Font icons -->
+    <link rel="preload" href="/theme/assets/icons/cartzilla-icons.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="stylesheet" href="/theme/assets/icons/cartzilla-icons.min.css">
+
+    <!-- Bootstrap + Theme styles -->
+    <link rel="preload" href="/theme/assets/css/theme.min.css" as="style">
+    <link rel="preload" href="/theme/assets/css/theme.rtl.min.css" as="style">
+    <link rel="stylesheet" href="/theme/assets/css/theme.min.css" id="theme-styles">
+
+    <!-- Customizer -->
+    <script src="/theme/assets/js/customizer.min.js"></script>
+  </head>
+  
+  <style>
+    
+    .swiper-slide img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .swiper,
+.desktop-banner,
+.mobile-banner {
+  z-index: 1 !important;
+}
+
+.search-suggestion-panel {
+  display: block !important;
+}
+
+    
+    .swiper-wrapper {
+      display: flex;
+    }
+    
+    /* 🔥 FIX: Allow navbar dropdowns to overflow */
+.content-wrapper {
+  overflow: visible !important;
+}
+
+/* 🔥 Ensure search dropdown stays above banners */
+.search-suggestion-panel {
+  z-index: 99999 !important;
+}
+
+
+
+    /* Hide mobile banner by default */
+    .mobile-banner {
+      display: none;
+    }
+    
+    /* Show mobile banner, hide desktop banner on small devices */
+    @media (max-width: 767px) {
+      .mobile-banner {
+        display: block;
+      }
+      .desktop-banner {
+        display: none;
+      }
+    }
+    
+    /* Product styling */
+    .productname {
+      color: black;
+    }
+    
+    .productprice {
+      color: black;
+    }
+    
+    /* Blue Add to Cart button */
+    .blue-cart-btn {
+      background-color: #0d6efd !important;
+      border: none !important;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    
+    .blue-cart-btn:hover {
+      background-color: #0b5ed7 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+    }
+    
+    .blue-cart-btn i {
+      font-size: 16px;
+    }
+    
+    /* Fix for dark theme sections */
+    [data-bs-theme="dark"] {
+      background-color: #1a1a1a !important;
+    }
+    
+    [data-bs-theme="dark"] .text-body {
+      color: rgba(255, 255, 255, 0.75) !important;
+    }
+  </style>
+  
+  <!-- Banner Section with Safety Checks -->
+  <section class="container-fluid pt-4">
+    <div class="row">
+      <div class="col-12">
+        <% if (result && result[1] && Array.isArray(result[1])) { %>
+          <!-- Desktop Banner Swiper -->
+          <div class="swiper desktop-banner" data-swiper='{
+            "spaceBetween": 10,
+            "loop": true,
+            "speed": 400,
+            "autoplay": {
+              "delay": 5500,
+              "disableOnInteraction": false
+            },
+            "pagination": {
+              "el": ".swiper-pagination",
+              "clickable": true
+            }
+          }'>
+            <div class="swiper-wrapper">
+              <% for(let i = 0; i < result[1].length; i++) { 
+                   if(result[1][i] && result[1][i].type === 'Desktop Banner') { %>
+                <div class="swiper-slide text-center">
+                  <a href="<%= result[1][i].link || '#' %>">
+                    <img src="https://www.fikaonline.in/images/<%= result[1][i].image || '' %>" 
+                         class="d-block w-100" 
+                         alt="Desktop Banner">
+                  </a>
+                </div>
+              <% }} %>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+          <!-- Mobile Banner Swiper -->
+          <div class="swiper mobile-banner" data-swiper='{
+            "spaceBetween": 10,
+            "loop": true,
+            "speed": 400,
+            "autoplay": {
+              "delay": 5500,
+              "disableOnInteraction": false
+            },
+            "pagination": {
+              "el": ".swiper-pagination",
+              "clickable": true
+            }
+          }'>
+            <div class="swiper-wrapper">
+              <% for(let i = 0; i < result[1].length; i++) { 
+                   if(result[1][i] && result[1][i].type === 'Mobile Banner') { %>
+                <div class="swiper-slide text-center">
+                  <a href="<%= result[1][i].link || '#' %>">
+                    <img src="https://www.fikaonline.in/images/<%= result[1][i].image || '' %>" 
+                         class="d-block w-100" 
+                         alt="Mobile Banner">
+                  </a>
+                </div>
+              <% }} %>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        <% } else { %>
+          <div class="text-center py-5">
+            <h4>Welcome to FIKA</h4>
+            <p class="text-muted">Premium Audio Solutions</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="container pt-5 mt-1 mt-sm-3 mt-lg-4">
+    <div class="row row-cols-2 row-cols-md-4 g-4">
+      <div class="col">
+        <div class="d-flex flex-column flex-xxl-row align-items-center">
+          <div class="d-flex text-dark-emphasis bg-body-tertiary rounded-circle p-4 mb-3 mb-xxl-0">
+            <i class="ci-delivery fs-2 m-xxl-1"></i>
+          </div>
+          <div class="text-center text-xxl-start ps-xxl-3">
+            <h3 class="h6 mb-1">Free Shipping &amp; Returns</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="d-flex flex-column flex-xxl-row align-items-center">
+          <div class="d-flex text-dark-emphasis bg-body-tertiary rounded-circle p-4 mb-3 mb-xxl-0">
+            <i class="ci-credit-card fs-2 m-xxl-1"></i>
+          </div>
+          <div class="text-center text-xxl-start ps-xxl-3">
+            <h3 class="h6 mb-1">Secure Payment</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="d-flex flex-column flex-xxl-row align-items-center">
+          <div class="d-flex text-dark-emphasis bg-body-tertiary rounded-circle p-4 mb-3 mb-xxl-0">
+            <i class="ci-refresh-cw fs-2 m-xxl-1"></i>
+          </div>
+          <div class="text-center text-xxl-start ps-xxl-3">
+            <h3 class="h6 mb-1">1 Year Warranty</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="d-flex flex-column flex-xxl-row align-items-center">
+          <div class="d-flex text-dark-emphasis bg-body-tertiary rounded-circle p-4 mb-3 mb-xxl-0">
+            <i class="ci-chat fs-2 m-xxl-1"></i>
+          </div>
+          <div class="text-center text-xxl-start ps-xxl-3">
+            <h3 class="h6 mb-1">Customer Support</h3>
+            <p class="fs-sm mb-0">Friendly 24/7 Support</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- New arrivals with Safety Checks -->
+  <section class="container pt-5 mt-1 mt-sm-2 mt-md-3 mt-lg-4">
+    <h2 class="h3 pb-2 pb-sm-3">New Arrivals</h2>
+    <div class="row">
+      <% if (result && result[3] && result[3].length > 0) { %>
+        <!-- Banner -->
+        <div class="col-lg-4" data-bs-theme="dark">
+          <div class="d-flex flex-column align-items-center justify-content-end h-100 text-center overflow-hidden rounded-5 px-4 px-lg-3 pt-4 pb-5" 
+               style="background: #1d2c41 url(/theme/assets/img/home/electronics/banner/background.jpg) center/cover no-repeat">
+            <div class="ratio animate-up-down position-relative z-2 me-lg-4" 
+                 style="max-width: 320px; margin-bottom: -0%; --cz-aspect-ratio: calc(690 / 640 * 100%)">
+              <img src="https://fikaonline.in/images/<%= result[3][0].image || '' %>" 
+                   alt="<%= result[3][0].name || 'Product' %>">
+            </div>
+            <p class="text-body fw-medium mb-4"><%= result[3][0].name || 'Featured Product' %></p>
+            <a class="btn btn-sm btn-primary" href="/product?id=<%= result[3][0].id || '' %>">
+              Rs. <%= result[3][0].net_amount || '0' %>
+              <i class="ci-arrow-up-right fs-base ms-1 me-n1"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Product list -->
+        <div class="col-sm-6 col-lg-4 d-flex flex-column gap-3 pt-4 py-lg-4">
+          <% for(let i=0; i < Math.min(4, result[3].length); i++){ %>
+            <div class="position-relative animate-underline d-flex align-items-center ps-xl-3">
+              <div class="ratio ratio-1x1 flex-shrink-0" style="width: 110px">
+                <img src="https://www.fikaonline.in/images/<%= result[3][i].image || '' %>" 
+                     alt="<%= result[3][i].name || 'Product' %>">
+              </div>
+              <div class="w-100 min-w-0 ps-2 ps-sm-3">
+                <h4 class="mb-2">
+                  <a class="stretched-link d-block fs-sm fw-medium text-truncate" 
+                     href="/product?id=<%= result[3][i].id || '' %>">
+                    <span class="animate-target"><%= result[3][i].name || 'Product' %></span>
+                  </a>
+                </h4>
+                <div class="h5 mb-0">Rs.<%= result[3][i].net_amount || '0' %></div>
+                <button onclick="addToCart('<%= result[3][i].id || '' %>')" 
+                        class="blue-cart-btn mt-2">
+                  <i class="ci-shopping-cart"></i>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          <% } %>
+        </div>
+
+        <!-- Product list -->
+        <div class="col-sm-6 col-lg-4 d-flex flex-column gap-3 pt-3 py-lg-4">
+          <% for(let i=4; i < Math.min(8, result[3].length); i++){ %>
+            <div class="position-relative animate-underline d-flex align-items-center ps-xl-3">
+              <div class="ratio ratio-1x1 flex-shrink-0" style="width: 110px">
+                <img src="https://www.fikaonline.in/images/<%= result[3][i].image || '' %>" 
+                     width="110" 
+                     alt="<%= result[3][i].name || 'Product' %>">
+              </div>
+              <div class="w-100 min-w-0 ps-2 ps-sm-3">
+                <h4 class="mb-2">
+                  <a class="stretched-link d-block fs-sm fw-medium text-truncate" 
+                     href="/product?id=<%= result[3][i].id || '' %>">
+                    <span class="animate-target"><%= result[3][i].name || 'Product' %></span>
+                  </a>
+                </h4>
+                <div class="h5 mb-0">Rs.<%= result[3][i].net_amount || '0' %></div>
+                <button onclick="addToCart('<%= result[3][i].id || '' %>')" 
+                        class="blue-cart-btn mt-2">
+                  <i class="ci-shopping-cart"></i>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      <% } else { %>
+        <div class="col-12 text-center py-5">
+          <p class="text-muted">No new arrivals at the moment</p>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- Trending products with Safety Checks -->
+  <section class="container pt-5 mt-2 mt-sm-4 mt-lg-4">
+    <div class="d-flex align-items-center justify-content-between border-bottom pb-3 pb-md-4">
+      <h2 class="h3 mb-0">Trending Products</h2>
+    </div>
+
+    <% if (result && result[4] && result[4].length > 0) { %>
+      <div class="row row-cols-2 row-cols-md-4 row-cols-lg-4 g-4 pt-4">
+        <% for(let i=0; i < Math.min(8, result[4].length); i++){ %>
+          <div class="col-lg-4">
+            <div class="product-card animate-underline hover-effect-opacity bg-body rounded">
+              <div class="position-relative">
+                <% if (result[4][i].discount && result[4][i].discount > 0) { %>
+                  <span class="badge bg-danger position-absolute top-0 start-0 mt-2 ms-2 mt-lg-3 ms-lg-3">
+                    -<%= result[4][i].discount %>%
+                  </span>
+                <% } %>
+                
+                <a class="d-block rounded-top overflow-hidden p-3 p-sm-4" 
+                   href="/product?id=<%= result[4][i].id || '' %>" 
+                   style="background-color: whitesmoke;">
+                  <div class="ratio" style="--cz-aspect-ratio: calc(240 / 258 * 100%)">
+                    <img src="https://www.fikaonline.in/images/<%= result[4][i].image || '' %>" 
+                         alt="<%= result[4][i].name || 'Product' %>">
+                  </div>
+                </a>
+              </div>
+              
+              <div class="w-100 min-w-0 px-1 pb-2 px-sm-3 pb-sm-3" style="background-color: whitesmoke;">
+                <h3 class="pb-1 mb-2">
+                  <a class="d-block fs-sm fw-medium text-truncate" 
+                     href="/product?id=<%= result[4][i].id || '' %>">
+                    <span class="animate-target productname">
+                      <%= result[4][i].name || 'Product' %>
+                    </span>
+                  </a>
+                </h3>
+                
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="h5 lh-1 mb-0 productprice">
+                    Rs.<%= result[4][i].net_amount || '0' %>
+                    <% if (result[4][i].price) { %>
+                      <del class="text-body-tertiary fs-sm fw-normal">
+                        Rs.<%= result[4][i].price %>
+                      </del>
+                    <% } %>
+                  </div>
+                  
+                  <button type="button" 
+                          onclick="addToCart('<%= result[4][i].id || '' %>')" 
+                          class="blue-cart-btn">
+                    <i class="ci-shopping-cart"></i>
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    <% } else { %>
+      <div class="row">
+        <div class="col-12 text-center py-5">
+          <p class="text-muted">No trending products available</p>
+        </div>
+      </div>
+    <% } %>
+  </section>
+
+  <!-- Sale Banner with Safety Checks -->
+  <section class="container pt-5 mt-sm-2 mt-md-3 mt-lg-4">
+    <% if (result && result[7] && result[7].length > 0 && result[7][0]) { %>
+      <div class="row g-0">
+        <div class="col-md-3 mb-n4 mb-md-0">
+          <div class="position-relative d-flex flex-column align-items-center justify-content-center h-100 py-5">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-none d-md-block">
+              <span class="position-absolute top-0 start-0 w-100 h-100 rounded-5" 
+                    style="background-color: #accbee"></span>
+            </div>
+            
+            <div class="position-relative z-1 display-1 text-dark-emphasis text-nowrap mb-0">
+              <%= result[7][0].amount || '0' %>
+              <span class="d-inline-block ms-n2">
+                <% if (result[7][0].type == 'Flat') { %>
+                  <span class="d-block fs-1">Rs.</span>
+                <% } else { %>
+                  <span class="d-block fs-1">%</span>
+                <% } %>
+                <span class="d-block fs-5">OFF</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-9 position-relative">
+          <div class="position-relative">
+            <span class="position-absolute top-0 start-0 w-100 h-100 rounded-5" 
+                  style="background: linear-gradient(90deg, #accbee 0%, #e7f0fd 100%)"></span>
+            
+            <div class="row align-items-center position-relative z-2">
+              <div class="col-md-6 mb-3 mb-md-0">
+                <div class="text-center text-md-start py-md-5 px-4 ps-md-5 pe-md-0 me-md-n5">
+                  <h3 class="text-uppercase fw-bold ps-xxl-3 pb-2 mb-1">
+                    <%= result[7][0].title || 'Special Offer' %>
+                  </h3>
+                  <p class="text-body-emphasis ps-xxl-3 mb-0">
+                    Use code 
+                    <span class="d-inline-block fw-semibold bg-white text-dark rounded-pill py-1 px-2">
+                      <%= result[7][0].name || 'OFFER' %>
+                    </span> 
+                    to get best offer
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } else { %>
+      <div class="text-center py-5">
+        <h4>Special Offers Coming Soon!</h4>
+      </div>
+    <% } %>
+  </section>
+
+  <!-- Special offers with Safety Checks -->
+  <section class="container pt-5 mt-2 mt-sm-3 mt-lg-4">
+    <div class="d-flex align-items-start align-items-md-center justify-content-between border-bottom pb-3 pb-md-4">
+      <h2 class="h3 pe-3 me-3 mb-md-0">Special Offers</h2>
+    </div>
+
+    <% if (result && result[8] && result[8].length > 0) { %>
+      <div class="position-relative mx-md-1">
+        <!-- Slider -->
+        <div class="swiper py-4 px-sm-3" data-swiper='{
+          "slidesPerView": 2,
+          "spaceBetween": 20,
+          "loop": true,
+          "breakpoints": {
+            "768": {
+              "slidesPerView": 3
+            },
+            "992": {
+              "slidesPerView": 4
+            }
+          }
+        }'>
+          <div class="swiper-wrapper">
+            <% for(let i=0; i < Math.min(10, result[8].length); i++) { %>
+              <div class="swiper-slide">
+                <div class="product-card animate-underline hover-effect-opacity bg-body rounded">
+                  <div class="position-relative">
+                    <a class="d-block rounded-top overflow-hidden p-3 p-sm-4" 
+                       href="/product?id=<%= result[8][i].id || '' %>">
+                      <div class="ratio" style="--cz-aspect-ratio: calc(240 / 258 * 100%)">
+                        <img src="https://www.fikaonline.in/images/<%= result[8][i].image || '' %>" 
+                             alt="<%= result[8][i].name || 'Product' %>">
+                      </div>
+                    </a>
+                  </div>
+                  
+                  <div class="w-100 min-w-0 px-1 pb-2 px-sm-3 pb-sm-3">
+                    <h3 class="pb-1 mb-2">
+                      <a class="d-block fs-sm fw-medium text-truncate" 
+                         href="/product?id=<%= result[8][i].id || '' %>">
+                        <span class="animate-target">
+                          <%= result[8][i].name || 'Product' %>
+                        </span>
+                      </a>
+                    </h3>
+                    
+                    <div class="d-flex align-items-center justify-content-between pb-2 mb-1">
+                      <div class="h5 lh-1 mb-0">
+                        Rs.<%= result[8][i].net_amount || '0' %>
+                        <% if (result[8][i].price) { %>
+                          <del class="text-body-tertiary fs-sm fw-normal">
+                            Rs.<%= result[8][i].price %>
+                          </del>
+                        <% } %>
+                      </div>
+                      
+                      <button type="button" 
+                              onclick="addToCart('<%= result[8][i].id || '' %>')" 
+                              class="blue-cart-btn">
+                        <i class="ci-shopping-cart"></i>
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    <% } else { %>
+      <div class="text-center py-5">
+        <p class="text-muted">Check back soon for special offers!</p>
+      </div>
+    <% } %>
+  </section>
+</main>
+
+<%- include ('./footer1.ejs') %>
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ===============================
+     🔥 SWIPER INITIALIZATION (SAFE)
+  =============================== */
+  document.querySelectorAll('.swiper').forEach(swiperEl => {
+    try {
+      const rawConfig = swiperEl.getAttribute('data-swiper');
+      if (!rawConfig) return;
+
+      const config = JSON.parse(rawConfig.replace(/&quot;/g, '"'));
+      const slidesCount = swiperEl.querySelectorAll('.swiper-slide').length;
+
+      // 🔥 Fix Swiper loop warning
+      if (config.loop === true) {
+        const slidesPerView = config.slidesPerView || 1;
+        if (slidesCount <= slidesPerView) {
+          config.loop = false;
+        }
+      }
+
+      new Swiper(swiperEl, config);
+
+    } catch (error) {
+      console.warn('Swiper initialization failed:', error);
+    }
+  });
+
+
+  /* ===============================
+     🔍 SEARCH PANEL HANDLING
+  =============================== */
+  const searchInput = document.getElementById("searchInput");
+  const searchPanel = document.getElementById("searchPanel");
+
+  if (searchInput && searchPanel) {
+    searchInput.addEventListener("focus", () => {
+      searchPanel.style.display = "block";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("#searchPanel") &&
+          !e.target.closest("#searchInput")) {
+        searchPanel.style.display = "none";
+      }
+    });
+  }
+
+});
+
+
+/* ===============================
+   🛒 ADD TO CART
+================================ */
+function addToCart(productId) {
+  if (!productId) return;
+
+  fetch('/add-to-cart', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ productId })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) location.reload();
+  })
+  .catch(err => console.error('Add to cart error:', err));
+}
+
+
+/* ===============================
+   ❤️ ADD TO WISHLIST
+================================ */
+function addToWishlist(productId) {
+  if (!productId) return;
+
+  fetch('/add-to-wishlist', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ productId })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) alert('Added to wishlist!');
+  })
+  .catch(err => console.error('Wishlist error:', err));
+}
+</script> 

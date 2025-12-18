@@ -1,0 +1,288 @@
+<%- include ('./indexheader.ejs') %>    
+
+
+    <!-- header section end -->
+
+    <!-- main content start -->
+
+    <!-- bread crumb section start -->
+    <nav class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- <ol class="breadcrumb bg-transparent m-0 p-0 align-items-center">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Fresh Food</li>
+                    </ol> -->
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- bread crumb section end -->
+    <!-- shop product tab start-->
+    <div class="shop-product-tab section-mb">
+        <div class="container">
+            <!-- <div class="grid-nav-wraper bg-lighten2 mb-30">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                        <nav class="shop-grid-nav">
+                            <ul class="nav nav-tabs align-items-center" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab">
+                                        <i class="ion-grid"></i></a>
+                                </li>
+                              
+                              
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-12 col-md-6 position-relative">
+                        <div class="shop-grid-button d-flex align-items-center">
+                            <span class="sort-by">Sort by:</span>
+                            <span class="chevron-arrow-down ion-android-arrow-dropdown"></span>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected="" value="1">Relevance</option>
+                                <option value="2">Name, A to Z</option>
+                                <option value="3">Name, Z to A</option>
+                                <option value="4">Price, low to high</option>
+                                <option value="5">Price, high to low</option>
+                                <option value="6">Relevance</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel">
+                    <div class="row grid-view grid-view-five-column mb-n7">
+
+
+
+
+
+                        <% for(i=0;i<result[1].length;i++) { %>
+
+                        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-7">
+                            <!-- product-card start -->
+                            <div class="product-card">
+                                <!-- <span class="badge bg-success product-badge">new</span> -->
+                                <div class="product-thumb-nail">
+                                    <a href="/product?id=<%=result[1][i].productid%>">
+                                        <img class="product-image" src="/images/<%=result[1][i].productimage%>" alt="image_not_found" style="height: 200px;" />
+                                    </a>
+                                   
+                                </div>
+                                <div class="product-content">
+                                  
+                                    <h3 class="product-title"><a href="/product?id=<%=result[1][i].productid%>"><%=result[1][i].productname%></a></h3>
+                                  
+                                    <% if(result[1][i].productdiscount == 0) { %>
+
+                                        <div class="product-price-wrapp">
+                                      <span class="product-price-on-sale">Rs. <%=result[1][i].productnetamount%></span>
+                                            
+                                
+                                        </div>
+                                        <% } else { %>
+
+                                            <div class="product-price-wrapp">
+
+
+                                                <span class="product-regular-price">Rs. <%=result[1][i].productprice%></span>
+                                                <span class="product-price-on-sale">Rs. <%=result[1][i].productnetamount%></span>
+                                                <span class="badge bg-success"><%=result[1][i].productdiscount%> % Off</span>
+                                    
+                                            </div>
+                                            <% } %>
+
+                                            <% if(result[1][i].productquantity == 0 || result[1][i].productquantity < 0) { %>
+
+  
+                                                <div class="product-cart-btn-wrap">
+                                                    <button data-bs-toggle="modal" data-bs-target="#addto-cart-modal" class="btn btn-dark add-to-cart-btn ">Out Of Stock</button>
+                                                </div>
+
+                                                <% } else { %>
+
+  
+                                                    <div class="product-cart-btn-wrap">
+                                                        <button id="addToCart" subcategoryid="<%=result[1][i].productsubcategoryid%>"  booking_id="<%=result[1][i].productid%>" price="<%=result[1][i].productnetamount%>" categoryid = '<%=result[1][i].productcategoryid%>' data-bs-toggle="modal" data-bs-target="#addto-cart-modal" class="btn btn-dark add-to-cart-btn addToCart">Add to cart</button>
+                                                    </div>
+                                                    <% } %>
+
+
+
+                                
+                                </div>
+                            </div>
+                            <!-- product-card end -->
+                        </div>
+
+                        <% } %>
+                      
+                       
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+    <!-- shop product tab end-->
+
+  
+
+
+    <!-- service section start -->
+    <section class="service-section section-mt section-mb">
+        <div class="container">
+            <div class="services">
+                <div class="row mb-n7">
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service1.png" alt="images_not_found">
+                            <h3 class="service-title">100% SECURE PAYMENTS</h3>
+                            <p>Moving your card details to a much more secured place</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service2.png" alt="images_not_found">
+                            <h3 class="service-title">TRUSTPAY</h3>
+                            <p>100% Payment Protection. Easy Return Policy</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service3.png" alt="images_not_found">
+                            <h3 class="service-title">HELP CENTER</h3>
+                            <p>GGot a question? Look no further.Browse our FAQs or submit your query here.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service4.png" alt="images_not_found">
+                            <h3 class="service-title">Express Shipping</h3>
+                            <p>Fast, reliable delivery from global warehouses</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- service section end -->
+
+
+    <!-- main content end -->
+
+    <%- include ('./indexfooter.ejs') %>   
+	<div id="pageMessages" style="position: fixed;bottom:20px;right:20px">
+    
+    
+<script>
+
+$('.addToCart').click(function(){
+			
+            // id="<%=result[1][0].id%>" price="<%=result[1][0].net_amount%>" categoryid = '<%=result[1][0].categoryid%>' vendorid = '<%=result[1][0].vendorid%>' 
+            let quantity = 1
+            let booking_id = $(this).attr('booking_id');
+            let price = $(this).attr('price');
+            let oneprice = $(this).attr('price');
+            let categoryid = $(this).attr('categoryid');
+            let subcategoryid = $(this).attr('subcategoryid');
+
+            // let vendorid = $(this).attr('vendorid');
+        
+        
+             price = price*quantity
+        
+            $.post('/cart-handler',{booking_id,price,categoryid,oneprice,quantity,subcategoryid},data=>{
+                createAlert('','Nice Work!','Here is a bunch of text about some stuff that happened.','success',true,true,'pageMessages')
+            })
+            
+        })
+
+
+
+
+		function createAlert(title, summary, details, severity, dismissible, autoDismiss, appendToId) {
+			
+            var iconMap = {
+              info: "fa fa-info-circle",
+              success: "fa fa-thumbs-up",
+              warning: "fa fa-exclamation-triangle",
+              danger: "fa ffa fa-exclamation-circle"
+            };
+          
+            var iconAdded = false;
+          
+            var alertClasses = ["alert", "animated", "flipInX"];
+            alertClasses.push("alert-" + severity.toLowerCase());
+          
+            if (dismissible) {
+              alertClasses.push("alert-dismissible");
+            }
+          
+            var msgIcon = $("<i />", {
+              "class": iconMap[severity] // you need to quote "class" since it's a reserved keyword
+            });
+          
+            var msg = $("<div />", {
+              "class": alertClasses.join(" ") // you need to quote "class" since it's a reserved keyword
+            });
+          
+            if (title) {
+              var msgTitle = $("<h4 />", {
+                html: title
+              }).appendTo(msg);
+              
+              if(!iconAdded){
+                msgTitle.prepend(msgIcon);
+                iconAdded = true;
+              }
+            }
+          
+            if (summary) {
+              var msgSummary = $("<strong />", {
+                html: 'Added To Cart'
+              }).appendTo(msg);
+              
+              if(!iconAdded){
+                msgSummary.prepend(msgIcon);
+                iconAdded = true;
+              }
+            }
+          
+            
+            
+          
+            if (dismissible) {
+              var msgClose = $("<span />", {
+                "class": "close", // you need to quote "class" since it's a reserved keyword
+                "data-dismiss": "alert",
+                html: "<i class='fa fa-times-circle'></i>"
+              }).appendTo(msg);
+            }
+            
+            $('#' + appendToId).prepend(msg);
+            
+            if(autoDismiss){
+              setTimeout(function(){
+                msg.addClass("flipOutX");
+                setTimeout(function(){
+                  msg.remove();
+                },1000);
+              }, 5000);
+            }
+          }
+          
+          
+
+</script>
+  
+ 

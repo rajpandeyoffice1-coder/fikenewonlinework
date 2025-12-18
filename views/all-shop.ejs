@@ -1,0 +1,248 @@
+<%- include ('./navbar.ejs') %>
+
+
+<% if(result[2][0]){ %>
+<title><%=result[2][0].name%> |  Fika</title>
+<meta name="description" content="<%=result[2][0].name%> |  Fika">
+<% } else { %>
+
+  <% } %>
+
+    <!-- Page content -->
+    <main class="content-wrapper">
+
+      <!-- Breadcrumb -->
+      <nav class="container pt-3 my-3 my-md-4" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+        </ol>
+      </nav>
+
+
+      <!-- Page title -->
+
+
+
+
+        <style>
+        /* Light Theme */
+.productname {
+  color: black;
+}
+
+.productprice {
+  color: black;
+}
+
+
+      </style>
+
+
+      <!-- Banners that are turned into collaspse on screens < 768px wide (sm breakpoint) -->
+      <section class="accordion container pb-4 pb-md-5 mb-xl-3">
+        <div class="accordion-item border-0">
+          <div class="accordion-header d-md-none" id="offersHeading">
+            <button type="button" class="accordion-button w-auto fw-medium collapsed border border-dashed border-danger border-opacity-50 rounded py-2 px-3" data-bs-toggle="collapse" data-bs-target="#offers" aria-expanded="false" aria-controls="offers">
+              <span class="d-inline-flex ci-percent fs-lg text-danger rounded-circle me-2"></span>
+              <span class="me-2">See latest offers</span>
+            </button>
+          </div>
+          <div class="accordion-collapse collapse d-md-block" id="offers" aria-labelledby="offersHeading">
+            <div class="row g-3 g-lg-4 pt-3 pt-md-0">
+              <div class="col-md-7">
+                <div class="position-relative d-flex flex-column flex-sm-row align-items-center h-100 rounded-5 overflow-hidden px-5 px-sm-0 pe-sm-4">
+                  <span class="position-absolute top-0 start-0 w-100 h-100 d-none-dark rtl-flip" style="background: linear-gradient(90deg, #accbee 0%, #e7f0fd 100%)"></span>
+                  <span class="position-absolute top-0 start-0 w-100 h-100 d-none d-block-dark rtl-flip" style="background: linear-gradient(90deg, #1b273a 0%, #1f2632 100%)"></span>
+                 
+                  <% if (result[1] && result[1].length > 0) { %>
+                    <div class="position-relative z-1 text-center text-sm-start pt-4 pt-sm-0 ps-xl-4 mt-2 mt-sm-0 order-sm-2">
+                      <p class="fs-sm text-light-emphasis mb-sm-4 productname"><%= result[1][0].name %></p>
+                      <a class="btn btn-primary productprice" href="/product?id=<%= result[1][0].id %>">
+                        From <%= result[1][0].net_amount %>
+                        <i class="ci-arrow-up-right fs-base ms-1 me-n1"></i>
+                      </a>
+                    </div>
+                    <div class="position-relative z-1 w-100 align-self-end order-sm-1" style="max-width: 416px">
+                      <div class="ratio rtl-flip" style="--cz-aspect-ratio: calc(320 / 416 * 100%)">
+                        <img src="/images/<%= result[1][0].image %>" alt="Product Image">
+                      </div>
+                    </div>
+                  <% } else { %>
+                    <p class="text-center text-danger">No products found.</p>
+                  <% } %>
+                  
+                
+                </div>
+              </div>
+
+              <% if(result[1][1]) { %>
+              <div class="col-md-5">
+                <div class="position-relative d-flex flex-column flex-sm-row align-items-center h-100 rounded-5 overflow-hidden px-5 px-sm-0 pe-sm-4">
+                  <span class="position-absolute top-0 start-0 w-100 h-100 d-none-dark rtl-flip" style="background: linear-gradient(90deg, #accbee 0%, #e7f0fd 100%)"></span>
+                  <span class="position-absolute top-0 start-0 w-100 h-100 d-none d-block-dark rtl-flip" style="background: linear-gradient(90deg, #1b273a 0%, #1f2632 100%)"></span>
+                  <div class="position-relative z-1 text-center text-sm-start pt-4 pt-sm-0 ps-xl-4 mt-2 mt-sm-0 order-sm-2">
+                    <!-- <h2 class="h3 mb-2"><%=result[1][0].name%></h2> -->
+                    <p class="fs-sm text-light-emphasis mb-sm-4 productname"><%=result[1][1].name%></p>
+                    <a class="btn btn-primary productprice" href="/product?id=<%=result[1][1].id%>">
+                      From <%=result[1][1].net_amount%>
+                      <i class="ci-arrow-up-right fs-base ms-1 me-n1"></i>
+                    </a>
+                  </div>
+                  <div class="position-relative z-1 w-100 align-self-end order-sm-1" style="max-width: 416px">
+                    <div class="ratio rtl-flip" style="--cz-aspect-ratio: calc(320 / 416 * 100%)">
+                      <img src="/images/<%=result[1][1].image%>" alt="iPhone 14">
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+<% } %>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Selected filters + Sorting -->
+      <section class="container mb-4">
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="d-md-flex align-items-start">
+              <div class="h6 fs-sm fw-normal text-nowrap translate-middle-y mt-3 mb-0 me-4">Found <span class="fw-semibold"><%=result[1].length%></span> items</div>
+          
+            </div>
+          </div>
+          <div class="col-lg-3 mt-3 mt-lg-0">
+            <div class="d-flex align-items-center justify-content-lg-end text-nowrap">
+              <label class="form-label fw-semibold mb-0 me-2">Sort by:</label>
+              <div style="width: 190px">
+                <select class="form-select border-0 rounded-0 px-1" data-select="{
+                  &quot;removeItemButton&quot;: false,
+                  &quot;classNames&quot;: {
+                    &quot;containerInner&quot;: [&quot;form-select&quot;, &quot;border-0&quot;, &quot;rounded-0&quot;, &quot;px-1&quot;]
+                  }
+                }">
+                  <option value="Relevance">Relevance</option>
+                  <option value="Popularity">Popularity</option>
+                  <option value="Price: Low to High">Price: Low to High</option>
+                  <option value="Price: High to Low">Price: High to Low</option>
+                  <option value="Newest Arrivals">Newest Arrivals</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="d-lg-none my-3">
+      </section>
+
+
+      <!-- Products grid + Sidebar with filters -->
+      <section class="container pb-5 mb-sm-2 mb-md-3 mb-lg-4 mb-xl-5">
+        <div class="row">
+
+          <!-- Filter sidebar that turns into offcanvas on screens < 992px wide (lg breakpoint) -->
+        
+
+
+          <!-- Product grid -->
+          <div class="col-lg-12">
+            <div class="row row-cols-2 row-cols-md-4 g-4 pb-3 mb-3">
+
+
+                <% for(i=0;i<result[1].length;i++) { %>
+              <!-- Item -->
+              <div class="col-lg-4">
+                <div class="product-card animate-underline hover-effect-opacity bg-body rounded">
+                  <div class="position-relative">
+                    <div class="position-absolute top-0 end-0 z-2 hover-effect-target opacity-0 mt-3 me-3">
+                      <div class="d-flex flex-column gap-2">
+                        
+                        <button type="button" onclick="addToWishlist('<%=result[1][i].id%>')" class="btn btn-icon btn-secondary animate-pulse d-none d-lg-inline-flex" aria-label="Add to Wishlist">
+                          <i class="ci-heart fs-base animate-target"></i>
+                        </button>
+                       
+                      </div>
+                    </div>
+                    <div class="dropdown d-lg-none position-absolute top-0 end-0 z-2 mt-2 me-2">
+                      <button type="button" class="btn btn-icon btn-sm btn-secondary bg-body" data-bs-toggle="dropdown" aria-expanded="false" aria-label="More actions">
+                        <i class="ci-more-vertical fs-lg"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-end fs-xs p-2" style="min-width: auto">
+                        <li>
+                          <button class="dropdown-item" onclick="addToWishlist('<%=result[1][i].id%>')">
+                            <i class="ci-heart fs-sm ms-n1 me-2"></i>
+                            Add to Wishlist
+                          </button>
+                        </li>
+                       
+                      </ul>
+                    </div>
+                    <a class="d-block rounded-top overflow-hidden p-3 p-sm-4" href="/product?id=<%=result[1][i].id%>" style="background-color: whitesmoke;">
+
+                        <% if(result[1][i].discount > 0) { %>
+                      <span class="badge bg-danger position-absolute top-0 start-0 mt-2 ms-2 mt-lg-3 ms-lg-3"><%=result[1][i].discount%>%</span>
+                      <% } %>
+                      
+                      <div class="ratio" style="--cz-aspect-ratio: calc(240 / 258 * 100%)">
+                        <img src="/images/<%=result[1][i].image%>" alt="VR Glasses">
+                      </div>
+                    </a>
+                  </div>
+                  <div class="w-100 min-w-0 px-1 pb-2 px-sm-3 pb-sm-3" style="background-color: whitesmoke;">
+                    <!-- <div class="d-flex align-items-center gap-2 mb-2">
+                      <div class="d-flex gap-1 fs-xs">
+                        <i class="ci-star-filled text-warning"></i>
+                        <i class="ci-star-filled text-warning"></i>
+                        <i class="ci-star-filled text-warning"></i>
+                        <i class="ci-star-filled text-warning"></i>
+                        <i class="ci-star text-body-tertiary opacity-75"></i>
+                      </div>
+                      <span class="text-body-tertiary fs-xs">(123)</span>
+                    </div> -->
+                    <h3 class="pb-1 mb-2">
+                      <a class="d-block fs-sm fw-medium text-truncate" href="/product?id=<%=result[1][i].id%>">
+                        <span class="animate-target productname"><%=result[1][i].name%></span>
+                      </a>
+                    </h3>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="h5 lh-1 mb-0 productprice">Rs.<%=result[1][i].net_amount%> <del class="text-body-tertiary fs-sm fw-normal">Rs.<%=result[1][i].price%></del></div>
+                      <button type="button" onclick="addToCart('<%=result[1][i].id%>')" class="product-card-button btn btn-icon btn-secondary animate-slide-end ms-2" aria-label="Add to Cart">
+                        <i class="ci-shopping-cart fs-base animate-target"></i>
+                      </button>
+                    </div>
+                  </div>
+                 
+                </div>
+              </div>
+
+              <% } %>
+             
+
+
+              <!-- Item -->
+          
+            </div>
+
+            <!-- Banner -->
+          
+
+          
+
+            <!-- Pagination -->
+         
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Subscription form + Vlog -->
+    
+    </main>
+
+
+    <!-- Page footer -->
+
+<%- include ('./footer1.ejs') %>
+
+<%- include ('./footer.ejs') %>

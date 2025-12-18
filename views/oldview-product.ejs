@@ -1,0 +1,489 @@
+<%- include ('./indexheader.ejs') %>    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
+
+    <!-- header section end -->
+
+    <!-- main content start -->
+
+    <!-- bread crumb section start -->
+    <nav class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                   
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- bread crumb section end -->
+
+
+    <section>
+
+        <div class="container">
+            <div class="row mb-n7">
+                <div class="col-md-5 mb-7">
+                    <div class="modal-gallery-slider">
+                        <div class="gallery position-relative">
+                            <!-- <span class="badge bg-success product-badge">new</span> -->
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide gallery-item">
+                                        <img src="/images/<%=result[1][0].image%>" alt="image_not_found" style="height:200px">
+                                    </div>
+                                    <div class="swiper-slide gallery-item">
+                                        <img src="/images/<%=result[1][0].image1%>" alt="image_not_found" style="height:200px">
+                                    </div>
+                                    <div class="swiper-slide gallery-item">
+                                        <img src="/images/<%=result[1][0].image2%>" alt="image_not_found" style="height:200px">
+                                    </div>
+                                 
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="gallery-thumbs">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide gallery-thumbs-item">
+                                        <a href="#?">
+                                            <img src="/images/<%=result[1][0].image%>" alt="image_not_found" style="height:200px">
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide gallery-thumbs-item">
+                                        <a href="#?"> <img src="/images/<%=result[1][0].image1%>" alt="image_not_found" style="height:200px"></a>
+                                    </div>
+                                    <div class="swiper-slide gallery-thumbs-item">
+                                        <a href="#?"> <img src="/images/<%=result[1][0].image2%>" alt="image_not_found" style="height:200px"></a>
+                                    </div>
+                                   
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-7 mb-7">
+                    <div class="modal-product-des">
+                        <h3 class="modal-product-title"><%=result[1][0].name%></h3>
+                      
+
+                        <!-- <div class="reviews">
+                            <span class="las la-star"></span>
+                            <span class="las la-star"></span>
+                            <span class="las la-star"></span>
+                            <span class="las la-star"></span>
+                            <span class="las la-star"></span>
+
+                        </div> -->
+
+
+                        <% if(result[1][0].discount == 0) { %>
+
+                            <div class="product-price-wrapp-lg">
+                                
+                                <span class="product-price-on-sale-lg">Rs. <%=result[1][0].net_amount%></span>
+                        
+                            </div>
+
+                        <% } else { %>
+
+                            <div class="product-price-wrapp-lg">
+                                <span class="product-regular-price-lg">Rs. <%=result[1][0].price%></span>
+                                <span class="product-price-on-sale-lg">Rs. <%=result[1][0].net_amount%></span>
+                                <span class="badge badge-lg bg-dark">Save <%=result[1][0].discount%> %</span>
+                            </div>
+                            <% } %>
+
+                        <div class="product-description-short pb-7 mb-7">
+                            <ul>
+                                <li>
+                                    <%=result[1][0].description%>
+                                </li>
+
+                                <li>
+                                    <%=result[1][0].sizename%>
+                                </li>
+                                
+                            </ul>
+                        </div>
+
+                       
+                        <% if(result[1][0].quantity == 0 || result[1][0].quantity < 0) { %>
+
+                            <div class="product-add-to-cart">
+                              
+    
+                                <div class="product-count style d-flex my-7">
+                                   
+                                    <div>
+                                      
+    
+                                        <button  data-bs-toggle="modal" data-bs-target="#addto-cart-modal" class="modal-add-to-cart-btn">
+                                           Out Of Stock
+                                        </button>
+                                       
+                                    </div>
+                                </div>
+                              
+    
+                            </div>
+                            <% } else { %>
+
+                                <div class="product-add-to-cart">
+                                    <span class="control-label">Quantity</span>
+        
+                                    <div class="product-count style d-flex my-7">
+                                        <div class="count d-flex">
+                                            <input type="number" min="1" max="100" step="1" value="1" id="userquantity">
+                                            <div class="button-group">
+                                                <button class="count-btn increment">
+                                                    <span class="las la-angle-up"></span>
+                                                </button>
+                                                <button class="count-btn decrement">
+                                                    <span class="las la-angle-down"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div>
+                                          
+        
+                                            <button  id="addToCart" subcategoryid="<%=result[1][0].subcategoryid%>"  booking_id="<%=result[1][0].id%>" price="<%=result[1][0].net_amount%>" categoryid = '<%=result[1][0].categoryid%>' totalquantity = '<%=result[1][0].quantity%>' data-bs-toggle="modal" data-bs-target="#addto-cart-modal" class="modal-add-to-cart-btn addToCart">
+                                                Add to cart
+                                            </button>
+                                           
+                                        </div>
+                                    </div>
+                                  
+        
+                                </div>
+
+                                <% } %>
+
+                      
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- new arrival carousel section start -->
+
+    <section class="new-arrival-carousel-section section-mb" style="margin-top:50px">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2 class="title">You might also like</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="new-arrival-carousel">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+
+
+
+<% for(i=0;i<result[3].length;i++) { %>
+
+                                <!-- swiper-slide start -->
+                              
+                              
+                                <div class="new-arrival-carousel-item swiper-slide">
+                                    <!-- product-card-list start -->
+                                    <div class="product-card-list">
+                                        <!-- product-card start -->
+                                        <div class="product-card">
+                                          
+                                            <div class="product-thumb-nail">
+                                                <a href="/product?id=<%=result[3][i].id%>">
+                                                    <img class="product-image" src="/images/<%=result[3][i].image%>" alt="image_not_found" style="height: 200px;" />
+                                                </a>
+                                               
+                                            </div>
+                                            <div class="product-content">
+                                            
+                                                <h3 class="product-title"><a href="/product?id=<%=result[3][i].id%>"><%=result[3][i].name%></a></h3>
+
+
+                                                <% if(result[3][i].discount == 0) { %>
+
+                                                    <div class="product-price-wrapp">
+                                                       
+                                                        <span class="product-price-on-sale">Rs. <%=result[3][i].net_amount%></span>
+                                                      
+                                                    </div>
+                                                    <% } else { %>
+                                                        <div class="product-price-wrapp">
+                                                            <span class="product-regular-price">Rs. <%=result[3][i].price%></span>
+                                                            <span class="product-price-on-sale">Rs. <%=result[3][i].net_amount%></span>
+                                                            <span class="badge bg-success"><%=result[3][i].discount%> %</span>
+                                                        </div>
+
+                                                        <% } %>
+
+
+
+                                                        <% if(result[3][i].quantity == 0 || result[3][i].quantity < 0) { %>
+
+                                                            <div class="product-cart-btn-wrap">
+                                                                <button     data-bs-toggle="modal" data-bs-target="#addto-cart-modal" class="btn btn-dark add-to-cart-btn ">Out Of Stock</button>
+                                                            </div>
+
+                                                        <% } else { %>
+                                                            <div class="product-cart-btn-wrap">
+                                                                <button id="addToCart" subcategoryid="<%=result[3][i].subcategoryid%>"  booking_id="<%=result[3][i].id%>" price="<%=result[3][i].net_amount%>" categoryid = '<%=result[3][i].categoryid%>'  data-bs-toggle="modal" data-bs-target="#addto-cart-modal" class="btn btn-dark add-to-cart-btn addToCart">Add to cart</button>
+                                                            </div>
+
+                                                            <% } %>
+
+                                                    
+                                              
+                                                
+                                                  
+                                                    <!-- <button  id="addToCart" subcategoryid="<%=result[3][i].subcategoryid%>"  booking_id="<%=result[3][i].id%>" price="<%=result[3][i].net_amount%>" categoryid = '<%=result[3][i].categoryid%>' data-bs-toggle="modal" data-bs-target="#addto-cart-modal" class="modal-add-to-cart-btn">
+                                                        Add to cart
+                                                    </button> -->
+                                               
+                                            </div>
+                                        </div>
+                                        <!-- product-card end -->
+                                    </div>
+
+                                    <!-- product-card-list end -->
+
+                                </div>
+                                <!-- swiper-slide end-->
+
+                                <% } %>
+                            
+                                
+                            </div>
+
+                        </div>
+
+                        <!-- swiper navigation -->
+                        <div class="swiper-button-prev common-swiper-button-prev">
+                            <i class="las la-angle-left"></i>
+                        </div>
+                        <div class="swiper-button-next common-swiper-button-next">
+                            <i class="las la-angle-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- new arrival carousel section end -->
+
+
+
+    <!-- featured carousel section start -->
+
+    
+    <!-- featured carousel section end -->
+
+    <!-- news letter section start -->
+    <section class="news-letter-sectoin bg-success">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 col-xl-9">
+                    <div class="news-letter-wrap">
+                        <div class="news-letter-title">
+                            <h3 class="title">Join Our Newsletter Now</h3>
+                            <p>Register now to get updates on promotions andcoupons.</p>
+                        </div>
+
+                        <form id="mc-form" class="news-letter-form" action="#">
+                            <input id="mc-email" class="form-control" name="email" type="email" placeholder="Your email address">
+                            <button class="sign-up-btn" type="submit">Sign up</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xl-3">
+                    <div class="text-center text-lg-end mt-7 mt-lg-0">
+                        <a class="store-btn" href="#">
+                            <img src="assets/images/icon/app_store.png" alt="images_not_found">
+                        </a>
+                        <a class="store-btn" href="#">
+                            <img src="assets/images/icon/google_play.png" alt="images_not_found">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- news letter section end -->
+
+
+    <!-- service section start -->
+    <section class="service-section section-mt section-mb">
+        <div class="container">
+            <div class="services">
+                <div class="row mb-n7">
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service1.png" alt="images_not_found">
+                            <h3 class="service-title">100% SECURE PAYMENTS</h3>
+                            <p>Moving your card details to a much more secured place</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service2.png" alt="images_not_found">
+                            <h3 class="service-title">TRUSTPAY</h3>
+                            <p>100% Payment Protection. Easy Return Policy</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service3.png" alt="images_not_found">
+                            <h3 class="service-title">HELP CENTER</h3>
+                            <p>GGot a question? Look no further.Browse our FAQs or submit your query here.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service4.png" alt="images_not_found">
+                            <h3 class="service-title">Express Shipping</h3>
+                            <p>Fast, reliable delivery from global warehouses</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- service section end -->
+
+
+    <!-- main content end -->
+
+    <!-- footer section start -->
+    <%- include ('./indexfooter.ejs') %>   
+	<div id="pageMessages" style="position: fixed;bottom:20px;right:20px">
+    
+    
+<script>
+
+$('.addToCart').click(function(){
+			
+            // id="<%=result[1][0].id%>" price="<%=result[1][0].net_amount%>" categoryid = '<%=result[1][0].categoryid%>' vendorid = '<%=result[1][0].vendorid%>' 
+            let quantity = $('#userquantity').val()
+            let booking_id = $(this).attr('booking_id');
+            let price = $(this).attr('price');
+            let oneprice = $(this).attr('price');
+            let categoryid = $(this).attr('categoryid');
+            let subcategoryid = $(this).attr('subcategoryid');
+            let totalquantity = $(this).attr('totalquantity');
+
+            // let vendorid = $(this).attr('vendorid');
+
+
+            if(quantity > totalquantity){
+                
+                alert(`We have only ${totalquantity} stock availbale`)
+            }
+        
+            else {
+                price = price*quantity
+        
+        $.post('/cart-handler',{booking_id,price,categoryid,oneprice,quantity,subcategoryid},data=>{
+            createAlert('','Nice Work!','Here is a bunch of text about some stuff that happened.','success',true,true,'pageMessages')
+        })  
+            }
+        
+             
+            
+        })
+
+
+
+
+		function createAlert(title, summary, details, severity, dismissible, autoDismiss, appendToId) {
+			
+            var iconMap = {
+              info: "fa fa-info-circle",
+              success: "fa fa-thumbs-up",
+              warning: "fa fa-exclamation-triangle",
+              danger: "fa ffa fa-exclamation-circle"
+            };
+          
+            var iconAdded = false;
+          
+            var alertClasses = ["alert", "animated", "flipInX"];
+            alertClasses.push("alert-" + severity.toLowerCase());
+          
+            if (dismissible) {
+              alertClasses.push("alert-dismissible");
+            }
+          
+            var msgIcon = $("<i />", {
+              "class": iconMap[severity] // you need to quote "class" since it's a reserved keyword
+            });
+          
+            var msg = $("<div />", {
+              "class": alertClasses.join(" ") // you need to quote "class" since it's a reserved keyword
+            });
+          
+            if (title) {
+              var msgTitle = $("<h4 />", {
+                html: title
+              }).appendTo(msg);
+              
+              if(!iconAdded){
+                msgTitle.prepend(msgIcon);
+                iconAdded = true;
+              }
+            }
+          
+            if (summary) {
+              var msgSummary = $("<strong />", {
+                html: 'Added To Cart'
+              }).appendTo(msg);
+              
+              if(!iconAdded){
+                msgSummary.prepend(msgIcon);
+                iconAdded = true;
+              }
+            }
+          
+            
+            
+          
+            if (dismissible) {
+              var msgClose = $("<span />", {
+                "class": "close", // you need to quote "class" since it's a reserved keyword
+                "data-dismiss": "alert",
+                html: "<i class='fa fa-times-circle'></i>"
+              }).appendTo(msg);
+            }
+            
+            $('#' + appendToId).prepend(msg);
+            
+            if(autoDismiss){
+              setTimeout(function(){
+                msg.addClass("flipOutX");
+                setTimeout(function(){
+                  msg.remove();
+                },1000);
+              }, 5000);
+            }
+          }
+          
+          
+
+</script>
+

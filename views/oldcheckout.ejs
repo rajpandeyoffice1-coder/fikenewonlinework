@@ -1,0 +1,246 @@
+<%- include ('./indexheader.ejs') %>    
+
+    <!-- main content start -->
+
+    <!-- bread crumb section start -->
+    <nav class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- <ol class="breadcrumb bg-transparent m-0 p-0 align-items-center">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item acti	<form action='/order-now' method='post'>ve" aria-current="page">check out page</li>
+                    </ol> -->
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- bread crumb section end -->
+
+    <div class="check-out-section section-mb">
+        <div class="container">
+            <form class="personal-information" action="/order-now" method="post">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="billing-info-wrap">
+                        <h3 class="title">Billing Details</h3>
+                       
+                       
+                            <div class="row">
+                          
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-5">
+                                        <label>First Name</label>
+                                        <input type="text" name="first_name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-5">
+                                        <label>Last Name</label>
+                                        <input type="text" name="last_name" required>
+                                    </div>
+                                </div>
+                            
+                              
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-5">
+                                        <label>Street Address</label>
+                                        <input class="billing-address mb-3"  name="address1" required placeholder="House number and street name" type="text">
+                                        <input placeholder="Apartment, suite, unit etc." name="address2" required type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-5">
+                                        <label>Town / City</label>
+                                        <input type="text" name="city" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-5">
+                                        <label>State </label>
+                                        <input type="text" name="state" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-5">
+                                        <label>Postcode / ZIP</label>
+                                        <input type="text" name="pincode" required>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                      
+
+                      
+                       
+                       
+                    
+                    </div>
+                </div>
+                <div class="col-lg-5 mt-4 mt-lg-0">
+                    <div class="your-order-area">
+                        <h3 class="title">Your order</h3>
+                        <div class="your-order-wrap gray-bg-4">
+                            <div class="your-order-product-info">
+                                <div class="your-order-top">
+                                    <ul>
+                                        <li>Product</li>
+                                        <li>Total</li>
+                                    </ul>
+                                </div>
+                                <div class="your-order-middle">
+                                    <ul>
+                                        <% for(i=0;i<result[1].length;i++) { %>
+                                        <li>
+                                            <span class="order-middle-left"><%=result[1][i].bookingname%></span>
+                                            <span class="order-price">Rs. <%=result[1][i].price%> </span>
+                                        </li>
+                                        <% } %>
+                                      
+                                    </ul>
+                                </div>
+                               
+                                <div class="your-order-total">
+                                    <ul>
+                                        <li class="order-total">Total</li>
+                                        <li>Rs. <%=result[2][0].totalprice%></li>
+                                    </ul>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-md-3" >Time Slot</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name='time' id="time" required>
+                                           
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="payment-method">
+                                <div class="payment-accordion element-mrg">
+                                    <div class="panel-group" id="accordion">
+                                        
+                                        
+                                        <div class="panel payment-accordion">
+                                            <div class="panel-heading" id="method-three">
+                                                <h4 class="panel-title">
+                                                    <div class="form-check">
+                                                        <input class="collapsed" type="radio" name="payment_mode" id="exampleRadios2" value="cash" required>
+                                                        <label class="form-check-label" for="exampleRadios2">
+                                                            Cash on delivery
+                                                        </label>
+                                                      </div>
+                                                      <div class="form-check">
+                                                        <input class="collapsed" type="radio" name="payment_mode" id="exampleRadios2" value="online">
+                                                        <label class="form-check-label" for="exampleRadios2">
+                                                            Pay Online
+                                                        </label>
+                                                      </div>
+                                                    <!-- <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#method3">
+                                                        Cash on delivery
+                                                    </a> -->
+                                                </h4>
+                                            </div>
+                                            <div id="method3" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        Please send a check to Store Name, Store Street,
+                                                        Store Town, Store State / County, Store Postcode.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Place-order mt-25">
+                            <button type="submit" class="btn btn-dark btn-block">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+    <!-- news letter section start -->
+ 
+    <!-- news letter section end -->
+
+
+    <!-- service section start -->
+    <section class="service-section section-mt section-mb">
+        <div class="container">
+            <div class="services">
+                <div class="row mb-n7">
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service1.png" alt="images_not_found">
+                            <h3 class="service-title">100% SECURE PAYMENTS</h3>
+                            <p>Moving your card details to a much more secured place</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service2.png" alt="images_not_found">
+                            <h3 class="service-title">TRUSTPAY</h3>
+                            <p>100% Payment Protection. Easy Return Policy</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service3.png" alt="images_not_found">
+                            <h3 class="service-title">HELP CENTER</h3>
+                            <p>GGot a question? Look no further.Browse our FAQs or submit your query here.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service4.png" alt="images_not_found">
+                            <h3 class="service-title">Express Shipping</h3>
+                            <p>Fast, reliable delivery from global warehouses</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- service section end -->
+
+
+    <!-- main content end -->
+
+<%- include ('./indexfooter.ejs') %> 
+
+
+<script>
+    
+
+$.getJSON(`/api/time`, data => {
+    categories1 = data
+    fillDropDown('time', data, 'Choose Time Slot', 0)
+  
+})
+
+
+function fillDropDown(id, data, label, selectedid = 0) {
+    $(`#${id}`).empty()
+    // $(`#${id}`).append($('<option>').val("null").text(label))
+
+    $.each(data, (i, item) => {
+        if (item.id == selectedid) {
+            $(`#${id}`).append($('<option selected>').val(`${item.date} at ${item.time}`).text(`${item.date} at ${item.time}`))
+        } else {
+            $(`#${id}`).append($('<option>').val(`${item.date} at ${item.time}`).text(`${item.date} at ${item.time}`))
+        }
+    })
+}
+
+
+</script>
+
+ 

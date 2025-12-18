@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" data-pwa="true">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>FIKA | Create Your Account</title>
+    <meta name="description" content="Join FIKA - Create your account and enjoy exclusive benefits">
+    <meta name="author" content="Createx Studio">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="/images/logo.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/images/logo.png">
+    <script src="/theme/assets/js/theme-switcher.js"></script>
+    <link rel="preload" href="/theme/assets/fonts/inter-variable-latin.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="/theme/assets/icons/cartzilla-icons.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="stylesheet" href="/theme/assets/icons/cartzilla-icons.min.css">
+    <link rel="preload" href="/theme/assets/css/theme.min.css" as="style">
+    <link rel="preload" href="/theme/assets/css/theme.rtl.min.css" as="style">
+    <link rel="stylesheet" href="/theme/assets/css/theme.min.css" id="theme-styles">
+    
+    <!-- Custom CSS for enhancements -->
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #f55266 0%, #ff7b8f 100%);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 15px 50px rgba(245, 82, 102, 0.15);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
+            min-height: 100vh;
+        }
+        
+        .signup-container {
+            background: white;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .signup-container:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .form-section {
+            padding: 3rem 2.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .form-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        .benefits-section {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .form-control-lg {
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control-lg:focus {
+            border-color: #f55266;
+            box-shadow: 0 0 0 0.25rem rgba(245, 82, 102, 0.25);
+        }
+        
+        .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 12px;
+            padding: 0.875rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(245, 82, 102, 0.3);
+        }
+        
+        .header-title {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        .password-toggle-button {
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            color: #6c757d;
+            font-weight: 500;
+        }
+        
+        .step.active {
+            color: #f55266;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .step.active .step-number {
+            background: #f55266;
+            color: white;
+        }
+        
+        .step-divider {
+            width: 40px;
+            height: 2px;
+            background: #e9ecef;
+            margin: 0 1rem;
+        }
+        
+        .input-group-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            z-index: 5;
+        }
+        
+        .form-control-with-icon {
+            padding-left: 3rem !important;
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, #33b36b 0%, #5dd895 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        
+        .feature-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(245, 82, 102, 0.1);
+            color: #f55266;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-badge i {
+            margin-right: 0.25rem;
+        }
+    </style>
+    <script src="/theme/assets/js/customizer.min.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <%- include('./navbar.ejs') %>
+
+    <!-- Main Content -->
+    <main class="content-wrapper w-100 px-3 ps-lg-5 pe-lg-4 mx-auto" style="max-width: 1920px">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-xxl-10 col-xl-11 col-lg-12">
+                    <div class="signup-container">
+                        <div class="row g-0">
+                            <!-- Signup Form Section -->
+                            <div class="col-lg-7">
+                                <div class="form-section">
+                                    <!-- Step Indicator -->
+                                    <div class="step-indicator">
+                                        <div class="step active">
+                                            <div class="step-number">1</div>
+                                            <span>Create Account</span>
+                                        </div>
+                                        <div class="step-divider"></div>
+                                        <div class="step">
+                                            <div class="step-number">2</div>
+                                            <span>Verify Email</span>
+                                        </div>
+                                        <div class="step-divider"></div>
+                                        <div class="step">
+                                            <div class="step-number">3</div>
+                                            <span>Complete Profile</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <h1 class="h2 mb-1 header-title">Join FIKA Community</h1>
+                                    <p class="text-muted mb-4">Create your account and unlock exclusive benefits</p>
+                                    
+                                    <!-- Success Message (Hidden by default) -->
+                                    <div class="success-message" id="successMessage">
+                                        <i class="ci-check-circle me-2"></i>
+                                        Account created successfully! Redirecting to dashboard...
+                                    </div>
+                                    
+                                    <!-- Error Message -->
+                                    <% if(msg) { %>
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <i class="ci-close-circle me-2"></i>
+                                            <%=msg%>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    <% } %>
+                                    
+                                    <!-- Signup Form -->
+                                    <form class="needs-validation" novalidate method="post" action="/login/new-user" id="signupForm">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="register-fname" class="form-label">First Name</label>
+                                                <div class="position-relative">
+                                                    <i class="ci-user input-group-icon"></i>
+                                                    <input type="text" name="firstname" class="form-control form-control-lg form-control-with-icon" 
+                                                           id="register-fname" placeholder="Enter your First Name" required>
+                                                </div>
+                                                <div class="invalid-feedback">Please enter your first name</div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="register-lname" class="form-label">Last Name</label>
+                                                <div class="position-relative">
+                                                    <i class="ci-user input-group-icon"></i>
+                                                    <input type="text" name="lastname" class="form-control form-control-lg form-control-with-icon" 
+                                                           id="register-lname" placeholder="Enter your First Name" required>
+                                                </div>
+                                                <div class="invalid-feedback">Please enter your last name</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="register-usernumber" class="form-label">Mobile Number</label>
+                                            <div class="position-relative">
+                                                <i class="ci-smartphone input-group-icon"></i>
+                                                <input type="tel" name="usernumber" class="form-control form-control-lg form-control-with-icon" 
+                                                       id="register-usernumber" placeholder="+1 234 567 8900" required>
+                                            </div>
+                                            <div class="invalid-feedback">Please enter a valid mobile number</div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="register-email" class="form-label">Email Address</label>
+                                            <div class="position-relative">
+                                                <i class="ci-mail input-group-icon"></i>
+                                                <input type="email" name="email" class="form-control form-control-lg form-control-with-icon" 
+                                                       id="register-email" placeholder="enter you email address" required>
+                                            </div>
+                                            <div class="invalid-feedback">Please enter a valid email address</div>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <label for="register-password" class="form-label">Password</label>
+                                            <div class="position-relative">
+                                                <i class="ci-locked input-group-icon"></i>
+                                                <div class="password-toggle">
+                                                    <input type="password" name="password" class="form-control form-control-lg form-control-with-icon" 
+                                                           id="register-password" minlength="8" placeholder="Minimum 8 characters" required>
+                                                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                                                        <input class="password-toggle-check" type="checkbox">
+                                                        <span class="password-toggle-indicator"></span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-text">
+                                                    <i class="ci-security-check text-success me-1"></i>
+                                                    Password must be at least 8 characters with letters and numbers
+                                                </div>
+                                            </div>
+                                            <div class="invalid-feedback">Password must be at least 8 characters</div>
+                                        </div>
+                                        
+                                        <!-- Password Strength Indicator -->
+                                        <div class="mb-4">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span class="text-muted">Password strength</span>
+                                                <span id="passwordStrength" class="fw-medium">Weak</span>
+                                            </div>
+                                            <div class="progress" style="height: 5px;">
+                                                <div class="progress-bar bg-danger" id="passwordStrengthBar" 
+                                                     role="progressbar" style="width: 25%"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-check mb-4">
+                                            <input type="checkbox" class="form-check-input" id="terms" required>
+                                            <label for="terms" class="form-check-label">
+                                                I agree to the <a href="#" class="text-decoration-underline">Terms of Service</a> 
+                                                and <a href="#" class="text-decoration-underline">Privacy Policy</a>
+                                            </label>
+                                            <div class="invalid-feedback">You must agree to the terms and conditions</div>
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
+                                            <i class="ci-user-plus me-2"></i>
+                                            Create Account
+                                        </button>
+                                        
+                                        <div class="text-center">
+                                            <span class="text-muted">Already have an account?</span>
+                                            <a href="/login" class="text-decoration-underline fw-medium ms-1">Sign In</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <!-- Benefits Section -->
+                            <div class="col-lg-5 d-none d-lg-block">
+                                <div class="benefits-section">
+                                    <h2 class="h3 mb-4">Why Join FIKA?</h2>
+                                    
+                                    <div class="benefit-card">
+                                        <div class="benefit-icon">
+                                            <i class="ci-heart"></i>
+                                        </div>
+                                        <h4 class="h5 mb-2">Personalized Wishlist</h4>
+                                        <p class="mb-0 opacity-75">Save your favorite products and access them anytime</p>
+                                    </div>
+                                    
+                                    <div class="benefit-card">
+                                        <div class="benefit-icon">
+                                            <i class="ci-settings"></i>
+                                        </div>
+                                        <h4 class="h5 mb-2">Order Management</h4>
+                                        <p class="mb-0 opacity-75">Track and manage all your orders in one place</p>
+                                    </div>
+                                    
+                                    <div class="benefit-card">
+                                        <div class="benefit-icon">
+                                            <i class="ci-rocket"></i>
+                                        </div>
+                                        <h4 class="h5 mb-2">Fast Checkout</h4>
+                                        <p class="mb-0 opacity-75">Save your details for quicker future purchases</p>
+                                    </div>
+                                    
+                                    <div class="benefit-card">
+                                        <div class="benefit-icon">
+                                            <i class="ci-percent"></i>
+                                        </div>
+                                        <h4 class="h5 mb-2">Exclusive Offers</h4>
+                                        <p class="mb-0 opacity-75">Get member-only discounts and early access to sales</p>
+                                    </div>
+                                    
+                                    <div class="mt-4 pt-3">
+                                        <span class="feature-badge">
+                                            <i class="ci-shield-check"></i> Secure & Encrypted
+                                        </span>
+                                        <span class="feature-badge ms-2">
+                                            <i class="ci-clock"></i> 24/7 Support
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap + Theme scripts -->
+    <script src="/theme/assets/js/theme.min.js"></script>
+    
+    <!-- Enhanced Form Validation & Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password strength indicator
+            const passwordInput = document.getElementById('register-password');
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            const strengthText = document.getElementById('passwordStrength');
+            
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = 0;
+                
+                // Length check
+                if (password.length >= 8) strength += 25;
+                
+                // Contains numbers
+                if (/\d/.test(password)) strength += 25;
+                
+                // Contains lowercase
+                if (/[a-z]/.test(password)) strength += 25;
+                
+                // Contains uppercase
+                if (/[A-Z]/.test(password)) strength += 25;
+                
+                // Update progress bar
+                strengthBar.style.width = strength + '%';
+                
+                // Update text and color
+                if (strength <= 25) {
+                    strengthBar.className = 'progress-bar bg-danger';
+                    strengthText.textContent = 'Weak';
+                } else if (strength <= 50) {
+                    strengthBar.className = 'progress-bar bg-warning';
+                    strengthText.textContent = 'Fair';
+                } else if (strength <= 75) {
+                    strengthBar.className = 'progress-bar bg-info';
+                    strengthText.textContent = 'Good';
+                } else {
+                    strengthBar.className = 'progress-bar bg-success';
+                    strengthText.textContent = 'Strong';
+                }
+            });
+            
+            // Password toggle functionality
+            const togglePassword = document.querySelector('.password-toggle-check');
+            const passwordField = document.getElementById('register-password');
+            
+            if (togglePassword) {
+                togglePassword.addEventListener('change', function() {
+                    const type = this.checked ? 'text' : 'password';
+                    passwordField.setAttribute('type', type);
+                });
+            }
+            
+            // Form validation
+            const form = document.getElementById('signupForm');
+            form.addEventListener('submit', function(event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                
+                form.classList.add('was-validated');
+                
+                // If form is valid, show success message
+                if (form.checkValidity()) {
+                    event.preventDefault(); // Prevent actual submission for demo
+                    
+                    const successMessage = document.getElementById('successMessage');
+                    successMessage.style.display = 'block';
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Simulate form submission
+                    setTimeout(() => {
+                        form.submit();
+                    }, 2000);
+                }
+            }, false);
+            
+            // Real-time input validation
+            const inputs = form.querySelectorAll('input[required]');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    this.classList.add('validated');
+                    
+                    if (!this.checkValidity()) {
+                        this.classList.add('is-invalid');
+                    } else {
+                        this.classList.remove('is-invalid');
+                        this.classList.add('is-valid');
+                    }
+                });
+            });
+            
+            // Mobile number formatting
+            const mobileInput = document.getElementById('register-usernumber');
+            mobileInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    value = '+' + 91;
+                }
+                e.target.value = value;
+            });
+        });
+    </script>
+</body>
+</html>

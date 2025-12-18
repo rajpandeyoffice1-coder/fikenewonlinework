@@ -1,0 +1,130 @@
+<%- include ('./adminheader.ejs') %>
+<!-- Main Content -->
+<div class="main-content">
+  <section class="section">
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+          <button type="button" class="btn btn-primary float-right" id="exportBtn1" style="margin-top:25px;margin-right:20px;margin-bottom: 20px;">
+            Export Data
+          </button>
+          <div class="table-responsive">
+            <table id="myTable" class="table table-bordered table-striped mb-0">
+              <thead>
+                <tr>
+                  <th>Order Id</th>
+                  <th>Name</th>
+                  <th>Mobile</th>
+                  <th>Address</th>
+                  <th>Product Name</th>
+                  <th>Quantity</th>
+                  <th>Amount</th>
+                  <th>Issue</th>
+                  <th>Video</th>
+                  <th>Date</th>
+                  <th>Action</th> <!-- Added Action Column -->
+                </tr>
+              </thead>
+              <tbody>
+                <% for(i=0; i<result.length; i++) { %>
+                <tr>
+                  <td><%= result[i].orderid %></td>
+                  <td><%= result[i].name %></td>
+                  <td><%= result[i].number %></td>
+                  <td><%= result[i].address %></td>
+                  <td><%= result[i].productname %></td>
+                  <td><%= result[i].quantity %></td>
+                  <td><%= result[i].price %></td>
+                  <td><%= result[i].issues %></td>
+                  <td>
+                    <% let video = result[i].video.replace("public\\", "").replace("public/", ""); %>
+                    <a href="<%= video %>" target="_blank">View Video</a>
+                  </td>
+                  <td><%= result[i].date %></td>
+                  <td>
+                    <!-- Accept Button -->
+                    <button style="margin:5px;" class="btn btn-success btn-sm accept-btn" data-orderid="<%= result[i].id %>" data-productid="<%= result[i].booking_id %>">
+                      Accept
+                    </button>
+                    <!-- Reject Button -->
+                    <button style="margin:5px;" class="btn btn-danger btn-sm reject-btn" data-orderid="<%= result[i].id %>" data-productid="<%= result[i].booking_id %>">
+                      Reject
+                    </button>
+                  </td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- JavaScript for Handling Accept & Reject -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Accept Request
+    document.body.addEventListener("click", function (event) {
+      if (event.target.classList.contains("accept-btn")) {
+        const orderId = event.target.dataset.orderid;
+        const productId = event.target.dataset.productid;
+
+        
+        
+        if (confirm("Are you sure you want to accept this replacement request?")) {
+          fetch("/accept-replacement", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ orderId, productId })
+          }).then(response => response.json())
+            .then(data => {
+              alert(data.message);
+              location.reload(); // Refresh Page
+            }).catch(error => console.error("Error:", error));
+        }
+      }
+    });
+
+    // Reject Request
+    document.body.addEventListener("click", function (event) {
+      if (event.target.classList.contains("reject-btn")) {
+        const orderId = event.target.dataset.orderid;
+        const productId = event.target.dataset.productid;
+        
+        if (confirm("Are you sure you want to reject this replacement request?")) {
+          fetch("/reject-replacement", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ orderId, productId })
+          }).then(response => response.json())
+            .then(data => {
+              alert(data.message);
+              location.reload(); // Refresh Page
+            }).catch(error => console.error("Error:", error));
+        }
+      }
+    });
+  });
+</script>
+
+<!-- Scripts -->
+<script src="/light/assets/js/app.min.js"></script>   
+<script src="/light/assets/js/scripts.js"></script>
+<script src="/light/assets/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $('#exportBtn1').click(function () {
+      TableToExcel.convert(document.getElementById("myTable"), {
+        name: "Orders.xlsx",
+        sheet: { name: "Sheet1" }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

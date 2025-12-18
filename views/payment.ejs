@@ -1,0 +1,542 @@
+<%- include ('./checkoutheader.ejs') %>
+
+    
+      
+<aside id="notifications">
+  <div class="container">
+    
+    
+    
+      </div>
+</aside>
+    
+
+    <section id="wrapper">
+      
+        <nav data-depth="2" class="breadcrumb hidden-sm-down">
+  <div class="container container-large">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+      
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href=/">
+                <span itemprop="name">Home</span>
+              </a>
+              <meta itemprop="position" content="1">
+            </li>
+          
+                  
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="#">
+                <span itemprop="name">Checkout</span>
+              </a>
+              <meta itemprop="position" content="2">
+            </li>
+          
+              
+    </ol>
+  </div>
+</nav>      
+      
+      <div class="container">
+
+      
+        <section id="content">
+          <div class="row">
+            <div class="col-lg-8">
+              
+                  
+  <section  id    = "checkout-personal-information-step"
+            class = "checkout-step -reachable -complete"
+  >
+    <h1 class="step-title h3">
+      <i class="material-icons rtl-no-flip done">&#xE876;</i>
+      <span class="step-number">1</span>
+      Personal Information
+      <span class="step-edit text-muted"><i class="material-icons">&#xE254;</i> edit</span>
+    </h1>
+
+    <div class="content">
+      
+  
+    <p class="identity">
+            Connected as <a href='/identity'><%=result[5][0].first_name%> <%=result[5][0].last_name%></a>.
+    </p>
+    <p>
+            Not you? <a href='/mylogout'>Log out</a>
+    </p>
+    
+  
+    </div>
+  </section>
+
+
+  
+  <section  id    = "checkout-addresses-step"
+  class = "checkout-step -reachable -complete"
+>
+<h1 class="step-title h3">
+<i class="material-icons rtl-no-flip done">&#xE876;</i>
+<span class="step-number">2</span>
+Addresses
+<span class="step-edit text-muted"><i class="material-icons">&#xE254;</i> edit</span>
+</h1>
+
+<div class="content">
+
+<div class="js-address-form">
+<form
+method="GET"
+action="/shipping"
+data-refresh-url="//leffet.in/order?ajax=1&action=addressForm"
+>
+
+
+    <p>
+The selected address will be used both as your personal address (for invoice) and as your delivery address.
+</p>
+
+    <div id="delivery-addresses" class="address-selector js-address-selector">
+
+
+
+      
+      <% for(i=0;i<result[4].length;i++){ %>
+
+        <article
+        class="address-item selected col-lg-6 col-md-12 col-sm-6 col-xs-12 clearfix"
+        id="id-address-delivery-address-28"
+      >
+        <div class="box-adress">
+          <header class="h4">
+          <label class="radio-block">
+            <span class="custom-radio">
+              <input
+                type="radio"
+                name="id_address_delivery"
+                value="<%=result[4][i].id%>"
+                <% if(result[4][i].id == addressid){ %>
+                checked
+                <% } %>
+      >
+              <span></span>
+            </span>
+            <span class="address-alias h4"><%=result[4][i].alias%></span>
+            <div class="address"><%=result[4][i].firstname%> <%=result[4][i].lastname%><br><%=result[4][i].company%><br><%=result[4][i].address1%><br><%=result[4][i].address2%><br><%=result[4][i].city%><br><%=result[4][i].postcode%><br><%=result[4][i].id_state%><br><%=result[4][i].id_country%><br><%=result[4][i].phone%></div>
+          </label>
+        </header>
+        <hr>
+        <footer class="address-footer">
+                    <a
+              class="edit-address text-muted"
+              data-link-action="edit-address"
+              href="/edit-address?id=<%=result[4][i].id%>"
+            >
+              <i class="material-icons edit">&#xE254;</i>Edit
+            </a>
+            <a
+              class="delete-address text-muted"
+              data-link-action="delete-address"
+              href="delete-address?id=<%=result[4][i].id%>"
+            >
+              <i class="material-icons delete">&#xE872;</i>Delete
+            </a>
+                </footer>
+        </div>
+  
+        
+      </article>
+  
+  <% } %>
+
+
+<p>
+<button class="ps-hidden-by-js form-control-submit center-block" type="submit">Save</button>
+</p>
+
+</div>
+
+        <p class="alert alert-danger js-address-error" name="alert-delivery" style="display: none">Your address is incomplete, please update it.</p>
+
+<p class="add-address">
+<a href="/add-new-address"><i class="material-icons">&#xE145;</i>add new address</a>
+</p>
+
+        <p>
+  <a data-link-action="different-invoice-address" href="#">
+    Billing address differs from shipping address
+  </a>
+</p>
+
+
+
+    <div class="clearfix">
+<button type="submit" class="btn btn-primary continue float-xs-right" value="1">
+  Continue
+</button>
+<input type="hidden" id="not-valid-addresses" value="">
+</div>
+
+</form>
+</div>
+
+</div>
+</section>
+
+
+  
+  <section  id    = "checkout-delivery-step"
+            class = "checkout-step -reachable -complete"
+  >
+    <h1 class="step-title h3">
+      <i class="material-icons rtl-no-flip done">&#xE876;</i>
+      <span class="step-number">3</span>
+      Shipping Method
+      <span class="step-edit text-muted"><i class="material-icons">&#xE254;</i> edit</span>
+    </h1>
+
+    <div class="content">
+      
+  <div id="hook-display-before-carrier">
+    
+  </div>
+
+  <div class="delivery-options-list">
+         
+        <div class="form-fields">
+          
+            <div class="delivery-options">
+                                <div class="delivery-option">
+                    <div class="col-xs-2 col-sm-1 col-md-1 text-xs-center">
+                      <span class="custom-radio float-xs-left">
+                        <input type="radio" name="delivery_option[28]" id="delivery_option_30" value="30," checked>
+                        <span></span>
+                      </span>
+                    </div>
+                    <label for="delivery_option_30" class="col-xs-10  col-sm-11 col-md-11 delivery-option-2">
+                      <div class="row">
+                        <div class="col-sm-10 col-xs-12 p-0">
+                          <div class="row">
+                                                        <div class="col-xs-12 p-0">
+                              <span class=" carrier-name">Delhivery</span>
+                            </div>
+                          </div>
+                        </div>
+                                               <div class="col-sm-2 col-xs-12 text-right">
+                                                <% if(result[8][0].charges==0 || result[8][0].charges=='0'){ %>
+                                                  <span class="carrier-price font-weight-bold">Free</span>
+                                                                        
+                                                                       <% } else { %>
+                                                                        <span class="carrier-price font-weight-bold">Paid</span>
+                        
+                        
+                                                                        <% } %>
+                        </div>
+                      </div>
+                    </label>
+                    <div class="col-lg-12 col-md-12 carrier-extra-content">
+                        
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                          </div>
+          
+          <div class="order-options">
+            <div id="delivery">
+              <label for="delivery_message">If you would like to add a comment about your order, please write it in the field below.</label>
+              <textarea rows="6" cols="120" id="delivery_message" class="form-control" name="delivery_message"><%=message%></textarea>
+            </div>
+
+                        
+          </div>
+        </div>
+        <button type="button" class="continue btn btn-primary float-xs-right" name="confirmDeliveryOption" value="1">
+          Continue
+        </button>
+      </form>
+      </div>
+
+  <div id="hook-display-after-carrier">
+    
+  </div>
+
+  <div id="extra_carrier"></div>
+
+    </div>
+  </section>
+
+
+  
+  <section  id    = "checkout-payment-step"
+            class = "checkout-step -current -reachable js-current-step"
+  >
+    <h1 class="step-title h3">
+      <i class="material-icons rtl-no-flip done">&#xE876;</i>
+      <span class="step-number">4</span>
+      Payment
+      <span class="step-edit text-muted"><i class="material-icons">&#xE254;</i> edit</span>
+    </h1>
+
+    <div class="content">
+      
+
+  
+
+    <div style="display:none" class="js-cart-payment-step-refresh"></div>
+
+  
+    <div class="payment-options ">
+                  <div>
+          <div id="payment-option-1-container" class="payment-option clearfix">
+                        <span class="custom-radio float-xs-left">
+              <input
+                class="ps-shown-by-js "
+                id="payment-option-1"
+                data-module-name=""
+                name="payment-option"
+                type="radio"
+                required
+                              >
+              <span></span>
+            </span>
+                        <form method="GET" class="ps-hidden-by-js">
+                              <button class="ps-hidden-by-js" type="submit" name="select_payment_option" value="payment-option-1">
+                  Choose
+                </button>
+                          </form>
+
+            <label for="payment-option-1">
+              <span>Pay With Razorpay</span>
+                          </label>
+
+          </div>
+        </div>
+
+                  <div
+            id="payment-option-1-additional-information"
+            class="js-additional-information definition-list additional-information ps-hidden "
+          >
+            <div class="ccav">
+	<img src="https://woocommerce.com/wp-content/uploads/2021/01/fb-razorpay@2x.png" alt="Pay with Razorpay" class="ccavimg" style="width: 150px;" />
+</div>
+
+          </div>
+        
+        <div
+          id="pay-with-payment-option-1-form"
+          class="js-payment-option-form  ps-hidden "
+        >
+                      <form id="payment-form" method="POST" action="/payment-create">
+                        <input type="hidden" name="amount" value="<%=(+result[2][0].totalprice) + (+result[8][0].charges)%>">
+                            <button style="display:none" id="pay-with-payment-option-1" type="submit"></button>
+            </form>
+                  </div>
+            </div>
+
+      <p class="ps-hidden-by-js">
+            By confirming the order, you certify that you have read and agree with all of the conditions below:
+    </p>
+
+    <form id="conditions-to-approve" method="GET">
+      <ul>
+                  <li>
+            <div class="float-xs-left">
+              <span class="custom-checkbox">
+                <input  id    = "conditions_to_approve[terms-and-conditions]"
+                        name  = "conditions_to_approve[terms-and-conditions]"
+                        required
+                        type  = "checkbox"
+                        value = "1"
+                        class = "ps-shown-by-js"
+                >
+                <span><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
+              </span>
+            </div>
+            <div class="condition-label">
+              <label class="js-terms" for="conditions_to_approve[terms-and-conditions]">
+                I agree to the <a href="https://leffet.in/content/3-terms-and-conditions" id="cta-terms-and-conditions-0">terms of service</a> and will adhere to them unconditionally.
+              </label>
+            </div>
+          </li>
+              </ul>
+    </form>
+  
+  
+  <div id="payment-confirmation">
+    <div class="ps-shown-by-js">
+      <button type="button"  disabled  class="btn btn-primary center-block razorpay">
+        Order with an obligation to pay
+      </button>
+          </div>
+    <div class="ps-hidden-by-js">
+          </div>
+  </div>
+
+  
+
+  <div class="modal fade" id="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="js-modal-content"></div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </section>
+
+
+
+              
+            </div>
+            <div class="col-lg-4">
+
+              
+              <section id="js-checkout-summary" class="card js-cart" data-refresh-url="https://leffet.in/cart?ajax=1&action=refresh">
+                <div class="card-block">
+                  
+                    
+                  
+              
+                  
+                    <div class="cart-summary-products">
+              
+                      <p><%=result[3][0].counter%> items</p>
+              
+                      <p>
+                        <a href="#" data-toggle="collapse" data-target="#cart-summary-product-list" class="btn btn-outline">
+                          show details
+                        </a>
+                      </p>
+              
+                      
+                        <div class="collapse" id="cart-summary-product-list">
+                          <ul class="media-list">
+              
+                            <% for(i=0;i<result[1].length;i++){%>
+              
+              
+              
+                                            <li class="media">
+                <div class="media-left">
+                  <a href="/product?id=<%=result[1][i].booking_id%>" title="<%=result[1][i].name%>">
+                    <img class="media-object" src="/images/<%=result[1][i].bookingimage%>" alt="<%=result[1][i].name%>">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <span class="product-name"><%=result[1][i].name%></span>
+                  <span class="product-quantity">x<%=result[1][i].quantity%></span>
+                  <span class="product-price float-xs-right">₹<%=result[1][i].price%></span>
+                  
+                   <span class="label"></span>
+                          <div class="product-line-info product-line-info-secondary text-muted">
+              
+                          <span class="label">Size:</span>
+                          <span class="value"><%=result[1][i].size%></span>
+              
+                      </div>
+                      <br/>
+                </div>
+              
+              </li>
+              
+              <% } %>
+                                     </ul>
+                        </div>
+                      
+                    </div>
+                  
+              
+                  
+                                      <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-products">
+                          <span class="label">Subtotal</span>
+                          <span class="value">₹<%=result[2][0].totalprice%></span>
+                        </div>
+                                                            <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-shipping">
+                          <span class="label">Shipping</span>
+                          <% if(result[8][0].charges==0 || result[8][0].charges=='0'){ %>
+                            <span class="value">Free</span>
+                                                  
+                                                 <% } else { %>
+                                                  <span class="value">₹<%=result[8][0].charges%></span>
+  
+  
+                                                  <% } %>
+                        </div>
+                                              
+              
+                </div>
+              
+                
+                    
+              
+                <hr class="separator">
+              
+                
+                  <div class="card-block cart-summary-totals">
+              
+                
+                  <div class="cart-summary-line cart-total">
+                    <span class="label">Total (tax incl.)</span>
+                    <span class="value">₹<%=(+result[2][0].totalprice) + (+result[8][0].charges)%></span>
+                  </div>
+                
+                  <input type="hidden" class="amount" value="<%=result[2][0].totalprice%>">
+              
+                
+                  <div class="cart-summary-line">
+                    <span class="label sub"></span>
+                    <span class="value sub"></span>
+                  </div>
+                
+              
+              </div>
+                
+              
+              </section>
+              
+
+              <div class="blockreassurance_product">
+               <div>
+            <span class="item-product">
+                                                        <img src="leffet.in/modules/blockreassurance/views/img/img_perso/freedom.png">
+                                    &nbsp;
+            </span>
+                          <p class="block-title" style="color:#000000;">OPEN TO CUSTOMISATION*</p>
+             
+                    </div>
+            <div>
+            <span class="item-product">
+                                                        <img src="leffet.in/modules/blockreassurance/views/img/img_perso/timeless-classic-icon.png">
+                                    &nbsp;
+            </span>
+                          <p class="block-title" style="color:#000000;">TIMELESS CLASSICS*</p>
+             
+                    </div>
+            <div>
+            <span class="item-product">
+                                                        <img src="leffet.in/modules/blockreassurance/views/img/img_perso/craftedfor-class-icon.png">
+                                    &nbsp;
+            </span>
+                          <p class="block-title" style="color:#000000;">CRAFTED FOR CLASS*</p>
+             
+                    </div>
+        <div class="clearfix"></div>
+</div>
+
+<div class="bootstrap">
+	</div>
+            </div>
+          </div>
+        </section>
+      
+      </div>
+      
+    </section>
+
+    <%- include ('./indexfooter.ejs') %> 
+
+    

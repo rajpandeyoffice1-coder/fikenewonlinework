@@ -1,0 +1,239 @@
+<%- include ('./navbar1.ejs') %>
+
+
+<title>My Wishlist |  Fika</title>
+<meta name="description" content="My Wishlist |  Fika">
+
+
+          <!-- Wishlist content -->
+          <div class="col-lg-9">
+            <div class="ps-lg-3 ps-xl-0">
+
+              <!-- Page title + Add list button-->
+              <div class="d-flex align-items-center justify-content-between pb-3 mb-1 mb-sm-2 mb-md-3">
+                <h1 class="h2 me-3 mb-0">Wishlist</h1>
+                <!-- <div class="nav">
+                  <a class="nav-link animate-underline px-0 py-1 py-ms-2" href="#wishlistModal" data-bs-toggle="modal">
+                    <i class="ci-plus fs-base me-1"></i>
+                    <span class="animate-target">Add wishlist</span>
+                  </a>
+                </div> -->
+              </div>
+
+              <!-- Wishlist selector -->
+              <div class="border-bottom pb-4 mb-3">
+                <!-- <div class="row align-items-center justify-content-between">
+                  <div class="col-sm-7 col-md-8 col-xxl-9 d-flex align-items-center mb-3 mb-sm-0">
+                    <h5 class="me-2 mb-0">Interesting offers</h5>
+                    <div class="dropdown ms-auto ms-sm-0">
+                      <button type="button" class="btn btn-icon btn-ghost btn-secondary border-0" id="wishlist-selector" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false" aria-label="Select wishlist">
+                        <i class="ci-more-vertical fs-xl"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-end">
+                        <div class="d-flex flex-column gap-1 mb-2">
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input" id="wishlist-1" name="wishlist" checked="">
+                            <label for="wishlist-1" class="form-check-label text-body">Interesting offers</label>
+                          </div>
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input" id="wishlist-2" name="wishlist">
+                            <label for="wishlist-2" class="form-check-label text-body">Top picks collection</label>
+                          </div>
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input" id="wishlist-3" name="wishlist">
+                            <label for="wishlist-3" class="form-check-label text-body">Family stuff</label>
+                          </div>
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input" id="wishlist-4" name="wishlist">
+                            <label for="wishlist-4" class="form-check-label text-body">My must-haves</label>
+                          </div>
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input" id="wishlist-5" name="wishlist">
+                            <label for="wishlist-5" class="form-check-label text-body">For my husband</label>
+                          </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-dark w-100" onclick="document.getElementById('wishlist-selector').click()">Select wishlist</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-5 col-md-4 col-xxl-3">
+                    <select class="form-select" data-select="{&quot;removeItemButton&quot;: false}" aria-label="Wishlist sorting">
+                      <option value="date">By date added</option>
+                      <option value="price-ascend">By price ascending</option>
+                      <option value="price-descend">By price descending</option>
+                      <option value="rating">By rating</option>
+                    </select>
+                  </div>
+                </div> -->
+              </div>
+
+              <!-- Master checkbox + Action buttons -->
+              <!-- <div class="nav align-items-center mb-4">
+                <div class="form-checkl nav-link animate-underline fs-lg ps-0 pe-2 py-2 mt-n1 me-4" data-master-checkbox="{&quot;container&quot;: &quot;#wishlistSelection&quot;, &quot;label&quot;: &quot;Select all&quot;, &quot;labelChecked&quot;: &quot;Unselect all&quot;, &quot;showOnCheck&quot;: &quot;#action-buttons&quot;}">
+                  <input type="checkbox" class="form-check-input" id="wishlist-master" checked="">
+                  <label for="wishlist-master" class="form-check-label animate-target mt-1 ms-2">Unselect all</label>
+                </div>
+                <div class="d-flex flex-wrap" id="action-buttons">
+                  <a class="nav-link animate-underline px-0 pe-sm-2 py-2 me-4" href="#!">
+                    <i class="ci-shopping-cart fs-base me-2"></i>
+                    <span class="animate-target d-none d-md-inline">Add to cart</span>
+                  </a>
+                  <a class="nav-link animate-underline px-0 pe-sm-2 py-2 me-4" href="#!">
+                    <i class="ci-repeat fs-base me-2"></i>
+                    <span class="animate-target d-none d-md-inline">Relocate</span>
+                  </a>
+                  <a class="nav-link animate-underline px-0 py-2" href="#!">
+                    <i class="ci-trash fs-base me-1"></i>
+                    <span class="animate-target d-none d-md-inline">Remove selected</span>
+                  </a>
+                </div>
+              </div> -->
+
+
+              <!-- Wishlist items (Grid) -->
+              <div class="row row-cols-2 row-cols-md-3 g-4" id="wishlistSelection">
+
+                <% for(i=0;i<result[6].length;i++){ %>
+
+                  <!-- Item -->
+                  <div class="col">
+                    <div class="product-card animate-underline hover-effect-opacity bg-body rounded">
+                      <div class="position-relative">
+                        <div class="position-absolute top-0 end-0 z-2 hover-effect-target opacity-0 mt-3 me-3">
+                          <div class="d-flex flex-column gap-2">
+                            
+        
+        
+                  <button type="button" onclick="addToWishlist('<%=result[6][i].booking_id%>')" class="btn btn-icon btn-secondary animate-pulse d-none d-lg-inline-flex" aria-label="Add to Wishlist">
+                              <i class="ci-heart fs-base animate-target"></i>
+                            </button>
+                          
+                          </div>
+                        </div>
+                        <div class="dropdown d-lg-none position-absolute top-0 end-0 z-2 mt-2 me-2">
+                          <button type="button" class="btn btn-icon btn-sm btn-secondary bg-body" data-bs-toggle="dropdown" aria-expanded="false" aria-label="More actions">
+                            <i class="ci-more-vertical fs-lg"></i>
+                          </button>
+                          <ul class="dropdown-menu dropdown-menu-end fs-xs p-2" style="min-width: auto">
+                            <li>
+                              <a class="dropdown-item" href="#!">
+                                <i class="ci-heart fs-sm ms-n1 me-2"></i>
+                                Add to Wishlist
+                              </a>
+                            </li>
+                        
+                          </ul>
+                        </div>
+                        <a class="d-block rounded-top overflow-hidden p-3 p-sm-4" href="/product?id=<%=result[6][i].booking_id%>">
+                  <% if (result[6][i].productdiscount && result[6][i].productdiscount > 0) { %>
+                    <span class="badge bg-danger position-absolute top-0 start-0 mt-2 ms-2 mt-lg-3 ms-lg-3">
+                      -<%= result[6][i].productdiscount %>%
+                    </span>
+                    <% } %>
+                    
+                          <div class="ratio" style="--cz-aspect-ratio: calc(240 / 258 * 100%)">
+                            <img src="/images/<%=result[6][i].productimage%>" alt="VR Glasses">
+                          </div>
+                        </a>
+                      </div>
+                      <div class="w-100 min-w-0 px-1 pb-2 px-sm-3 pb-sm-3">
+                        <!-- <div class="d-flex align-items-center gap-2 mb-2">
+                          <div class="d-flex gap-1 fs-xs">
+                            <i class="ci-star-filled text-warning"></i>
+                            <i class="ci-star-filled text-warning"></i>
+                            <i class="ci-star-filled text-warning"></i>
+                            <i class="ci-star-filled text-warning"></i>
+                            <i class="ci-star text-body-tertiary opacity-75"></i>
+                          </div>
+                          <span class="text-body-tertiary fs-xs">(123)</span>
+                        </div> -->
+                        <h3 class="pb-1 mb-2">
+                          <a class="d-block fs-sm fw-medium text-truncate" href="/product?id=<%=result[6][i].booking_id%>">
+                            <span class="animate-target"><%=result[6][i].productname%></span>
+                          </a>
+                        </h3>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="h5 lh-1 mb-0">Rs.<%=result[6][i].productnetamount%> <del class="text-body-tertiary fs-sm fw-normal">Rs.<%=result[6][i].productprice%></del></div>
+                          <button type="button" onclick="addToCart('<%=result[6][i].booking_id%>')" class="product-card-button btn btn-icon btn-secondary animate-slide-end ms-2" aria-label="Add to Cart">
+                            <i class="ci-shopping-cart fs-base animate-target"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <!-- <div class="product-card-details position-absolute top-100 start-0 w-100 bg-body rounded-bottom shadow mt-n2 p-3 pt-1">
+                        <span class="position-absolute top-0 start-0 w-100 bg-body mt-n2 py-2"></span>
+                        <ul class="list-unstyled d-flex flex-column gap-2 m-0">
+                          <li class="d-flex align-items-center">
+                            <span class="fs-xs">Display:</span>
+                            <span class="d-block flex-grow-1 border-bottom border-dashed px-1 mt-2 mx-2"></span>
+                            <span class="text-dark-emphasis fs-xs fw-medium text-end">OLED 1440x1600</span>
+                          </li>
+                          <li class="d-flex align-items-center">
+                            <span class="fs-xs">Graphics:</span>
+                            <span class="d-block flex-grow-1 border-bottom border-dashed px-1 mt-2 mx-2"></span>
+                            <span class="text-dark-emphasis fs-xs fw-medium text-end">Adreno 540</span>
+                          </li>
+                          <li class="d-flex align-items-center">
+                            <span class="fs-xs">Sound:</span>
+                            <span class="d-block flex-grow-1 border-bottom border-dashed px-1 mt-2 mx-2"></span>
+                            <span class="text-dark-emphasis fs-xs fw-medium text-end">2x3.5mm jack</span>
+                          </li>
+                          <li class="d-flex align-items-center">
+                            <span class="fs-xs">Input:</span>
+                            <span class="d-block flex-grow-1 border-bottom border-dashed px-1 mt-2 mx-2"></span>
+                            <span class="text-dark-emphasis fs-xs fw-medium text-end">4 built-in cameras</span>
+                          </li>
+                        </ul>
+                      </div> -->
+                    </div>
+                  </div>
+        
+                  <!-- Item -->
+        
+        
+              <% } %>
+        
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <!-- Page footer -->
+  
+
+
+    <!-- Sidebar navigation offcanvas toggle that is visible on screens < 992px wide (lg breakpoint) -->
+    <button type="button" class="fixed-bottom z-sticky w-100 btn btn-lg btn-dark border-0 border-top border-light border-opacity-10 rounded-0 pb-4 d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#accountSidebar" aria-controls="accountSidebar" data-bs-theme="light">
+      <i class="ci-sidebar fs-base me-2"></i>
+      Account menu
+    </button>
+
+
+    <!-- Back to top button -->
+    <div class="floating-buttons position-fixed top-50 end-0 z-sticky me-3 me-xl-4 pb-4">
+      <a class="btn-scroll-top btn btn-sm bg-body border-0 rounded-pill shadow animate-slide-end" href="#top">
+        Top
+        <i class="ci-arrow-right fs-base ms-1 me-n1 animate-target"></i>
+        <span class="position-absolute top-0 start-0 w-100 h-100 border rounded-pill z-0"></span>
+        <svg class="position-absolute top-0 start-0 w-100 h-100 z-1" viewBox="0 0 62 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x=".75" y=".75" width="60.5" height="30.5" rx="15.25" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></rect>
+        </svg>
+      </a>
+      
+    </div>
+
+
+    <!-- Vendor scripts -->
+    <script src="/theme/assets/vendor/choices.js/choices.min.js"></script>
+
+    <!-- Bootstrap + Theme scripts -->
+    <script src="/theme/assets/js/theme.min.js"></script>
+  
+
+</body>
+<!-- Mirrored from cartzilla-html.createx.studio/account-wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Dec 2024 06:38:32 GMT -->
+</html>
+<%- include ('./footer.ejs') %>

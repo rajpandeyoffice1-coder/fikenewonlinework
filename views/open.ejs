@@ -1,0 +1,41 @@
+<input type="hidden" value="<%=resu%>"  id="resu">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        $( document ).ready(function(e) {
+            let searchParams = new URLSearchParams(window.location.search)
+    let param = $('#resu').val()
+    $.get('/api/demo1',{param},data=>{
+        console.log("datahai",data.param)
+        var options1 = {
+    "key": "rzp_live_73LM5AK2fWqoob", // Enter the Key ID generated from the Dashboar
+    "amount": "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise or INR 500.
+    "currency": "INR",
+    "name": "",
+    "description": '',
+    "image": "/images/black-logo.png",
+    "order_id": data.param,//This is a sample Order ID. Create an Order using Orders API. (https://razorpay.com/docs/payment-gateway/orders/integration/#step-1-create-an-order). Refer the Checkout form table given below
+     "callback_url" : "https://www.fikaonline.in/razorpay-response",
+     "redirect": true,
+     "modal": {
+        "ondismiss": function(){
+            window.location.href = '/payment-failed'
+        }
+    },
+    "theme": {
+        "color": "#FBFBE0"
+    }
+};
+
+
+var rzp1 = new Razorpay(options1);
+    rzp1.open();
+    e.preventDefault();
+
+    })
+});
+   
+ 
+    </script>

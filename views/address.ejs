@@ -1,0 +1,753 @@
+<%- include ('./checkoutheader.ejs') %>
+
+    <aside id="notifications">
+        <div class="container">
+
+
+
+        </div>
+    </aside>
+
+
+    <section id="wrapper">
+
+        <nav data-depth="2" class="breadcrumb hidden-sm-down">
+            <div class="container container-large">
+                <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+
+
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/">
+                            <span itemprop="name">Home</span>
+                        </a>
+                        <meta itemprop="position" content="1">
+                    </li>
+
+
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="#">
+                            <span itemprop="name">Checkout</span>
+                        </a>
+                        <meta itemprop="position" content="2">
+                    </li>
+
+
+                </ol>
+            </div>
+        </nav>
+
+        <div class="container">
+
+
+            <section id="content">
+                <div class="row">
+                    <div class="col-lg-8">
+
+
+                        <section id="checkout-personal-information-step" class="checkout-step -reachable -complete">
+                            <h1 class="step-title h3">
+                                <i class="material-icons rtl-no-flip done">&#xE876;</i>
+                                <span class="step-number">1</span> Personal Information
+                                <span class="step-edit text-muted"><i class="material-icons">&#xE254;</i> edit</span>
+                            </h1>
+
+                            <div class="content">
+
+
+                                <p class="identity">
+                                    Connected as <a href='/identity'>naman Jain</a>.
+                                </p>
+                                <p>
+                                    Not you? <a href='https://leffet.in/?mylogout='>Log out</a>
+                                </p>
+
+
+                            </div>
+                        </section>
+
+
+
+                        <section id="checkout-addresses-step" class="checkout-step -current -reachable js-current-step">
+                            <h1 class="step-title h3">
+                                <i class="material-icons rtl-no-flip done">&#xE876;</i>
+                                <span class="step-number">2</span> Addresses
+                                <span class="step-edit text-muted"><i class="material-icons">&#xE254;</i> edit</span>
+                            </h1>
+
+                            <div class="content">
+
+                                <div class="js-address-form">
+                                    <form method="POST" action="/save-address" data-refresh-url="//leffet.in/order?ajax=1&action=addressForm">
+
+
+                                        <p>
+                                            The selected address will be used both as your personal address (for invoice) and as your delivery address.
+                                        </p>
+
+                                        <div id="delivery-address">
+
+                                            <div class="js-address-form">
+
+
+                                                <form method="POST" action="/save-address" data-id-address="0" data-refresh-url="//leffet.in/order?ajax=1&action=addressForm">
+
+
+
+                                                    <section class="form-fields">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <div class="form-group row ">
+                                                            <label class="col-md-3 form-control-label required">
+              First name
+          </label>
+                                                            <div class="col-md-6">
+
+
+
+                                                                <input class="form-control" name="firstname" type="text" maxlength="255" required>
+
+
+
+
+
+
+                                                            </div>
+
+                                                            <div class="col-md-3 form-control-comment">
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+
+
+                                                        <div class="form-group row ">
+                                                            <label class="col-md-3 form-control-label required">
+              Last name
+          </label>
+                                                            <div class="col-md-6">
+
+
+
+                                                                <input class="form-control" name="lastname" type="text" maxlength="255" required>
+
+
+
+
+
+
+                                                            </div>
+
+                                                            <div class="col-md-3 form-control-comment">
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+
+
+                                                        <div class="form-group row ">
+                                                            <label class="col-md-3 form-control-label">
+              Company
+          </label>
+                                                            <div class="col-md-6">
+
+
+
+                                                                <input class="form-control" name="company" type="text" value="" maxlength="255">
+
+
+
+
+
+
+                                                            </div>
+
+                                                            <div class="col-md-3 form-control-comment">
+
+                                                                Optional
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+
+
+                                                        <div class="form-group row ">
+                                                            <label class="col-md-3 form-control-label">
+              VAT number
+          </label>
+                                                            <div class="col-md-6">
+
+
+
+                                                                <input class="form-control" name="vat_number" type="text" value="">
+
+
+
+
+
+
+                                                            </div>
+
+                                                            <div class="col-md-3 form-control-comment">
+
+                                                                Optional
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+
+
+                                                        <div class="form-group row ">
+                                                            <label class="col-md-3 form-control-label required">
+              Address
+          </label>
+                                                            <div class="col-md-6">
+
+
+
+                                                                <input class="form-control" name="address1" type="text" value="" maxlength="128" required>
+
+
+
+
+
+
+                                                            </div>
+
+                                                            <div class="col-md-3 form-control-comment">
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+
+
+                                                        <div class="form-group row ">
+                                                            <label class="col-md-3 form-control-label">
+              Address Complement
+          </label>
+                                                            <div class="col-md-6">
+
+
+
+                                                                <input class="form-control" name="address2" type="text" value="" maxlength="128">
+
+
+
+
+
+
+                                                            </div>
+
+                                                            <div class="col-md-3 form-control-comment">
+
+                                                                Optional
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+
+
+                                                        <div class="form-group row ">
+                                                            <label class="col-md-3 form-control-label required">
+              City
+          </label>
+                                                            <div class="col-md-6">
+
+
+
+                                                                <input class="form-control" name="city" type="text" value="" maxlength="64" required>
+
+
+
+
+
+
+                                                            </div>
+
+                                                            <div class="col-md-3 form-control-comment">
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+
+
+                                                        <div class="form-group row ">
+                                                            <label class="col-md-3 form-control-label required">
+              Zip/Postal Code
+          </label>
+                                                            <div class="col-md-6">
+
+
+
+                                                                <input class="form-control" name="postcode" type="text" value="" maxlength="12" required>
+
+
+
+
+
+
+                                                            </div>
+
+                                                            <div class="col-md-3 form-control-comment">
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="form-group row ">
+                                                            <label class="col-md-3 form-control-label required">
+              Country
+          </label>
+                                                            <div class="col-md-6">
+
+
+                                                                <!--         
+          <select
+          class="form-control form-control-select js-country"
+          name="id_country"
+          required          >
+            <option value disabled selected>-- please choose --</option>
+                          <option value="231" >Afghanistan</option>
+                          <option value="39" >American Samoa</option>
+                          <option value="43" >Antigua and Barbuda</option>
+                          <option value="45" >Armenia</option>
+                          <option value="47" >Azerbaijan</option>
+                          <option value="48" >Bahamas</option>
+                          <option value="49" >Bahrain</option>
+                          <option value="50" >Bangladesh</option>
+                          <option value="51" >Barbados</option>
+                          <option value="55" >Bermuda</option>
+                          <option value="56" >Bhutan</option>
+                          <option value="59" >Brunei</option>
+                          <option value="61" >Burma (Myanmar)</option>
+                          <option value="63" >Cambodia</option>
+                          <option value="4" >Canada</option>
+                          <option value="5" >China</option>
+                          <option value="238" >Christmas Island</option>
+                          <option value="239" >Cocos (Keeling) Islands</option>
+                          <option value="80" >East Timor</option>
+                          <option value="93" >Georgia</option>
+                          <option value="22" >HongKong</option>
+                          <option value="110"  selected >India</option>
+                          <option value="111" >Indonesia</option>
+                          <option value="112" >Iran</option>
+                          <option value="113" >Iraq</option>
+                          <option value="29" >Israel</option>
+                          <option value="11" >Japan</option>
+                          <option value="117" >Jordan</option>
+                          <option value="118" >Kazakhstan</option>
+                          <option value="121" >Korea, Dem. Republic of</option>
+                          <option value="122" >Kuwait</option>
+                          <option value="123" >Kyrgyzstan</option>
+                          <option value="124" >Laos</option>
+                          <option value="126" >Lebanon</option>
+                          <option value="132" >Macau</option>
+                          <option value="136" >Malaysia</option>
+                          <option value="137" >Maldives</option>
+                          <option value="145" >Mexico</option>
+                          <option value="149" >Mongolia</option>
+                          <option value="156" >Nepal</option>
+                          <option value="164" >Oman</option>
+                          <option value="165" >Pakistan</option>
+                          <option value="167" >Palestinian Territories</option>
+                          <option value="172" >Philippines</option>
+                          <option value="175" >Qatar</option>
+                          <option value="188" >Saudi Arabia</option>
+                          <option value="25" >Singapore</option>
+                          <option value="28" >South Korea</option>
+                          <option value="197" >Sri Lanka</option>
+                          <option value="202" >Syria</option>
+                          <option value="203" >Taiwan</option>
+                          <option value="204" >Tajikistan</option>
+                          <option value="206" >Thailand</option>
+                          <option value="212" >Turkmenistan</option>
+                          <option value="217" >United Arab Emirates</option>
+                          <option value="21" >United States</option>
+                          <option value="219" >Uzbekistan</option>
+                          <option value="222" >Vietnam</option>
+                          <option value="223" >Virgin Islands (British)</option>
+                          <option value="224" >Virgin Islands (U.S.)</option>
+                          <option value="227" >Yemen</option>
+                      </select> -->
+
+
+                                                                <select id="countryid" name="id_country" class="form-control form-control-select" required></select>
+
+
+
+
+                                                            </div>
+
+                                                            <div class="col-md-3 form-control-comment">
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+                                                        <div class="form-group row ">
+                                                            <label class="col-md-3 form-control-label required">
+              State
+          </label>
+                                                            <div class="col-md-6">
+
+
+                                                                <select id="stateid" name="id_state" class="form-control" required></select>
+
+                                                            </div>
+
+                                                            <div class="col-md-3 form-control-comment">
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <div class="form-group row ">
+                                                            <label class="col-md-3 form-control-label required">
+              Phone
+          </label>
+                                                            <div class="col-md-6">
+
+
+
+                                                                <input class="form-control" name="phone" type="tel" value="" maxlength="12" required>
+
+
+
+
+
+
+                                                            </div>
+
+                                                            <div class="col-md-3 form-control-comment">
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <input type="hidden" name="alias" value="My Address">
+
+
+                                                        <div class="form-group row">
+                                                            <div class="col-md-9 col-md-offset-3">
+                                                                <input name="use_same_address" id="use_same_address" type="checkbox" value="1" checked>
+                                                                <label for="use_same_address">Use this address for invoice too</label>
+                                                            </div>
+                                                        </div>
+
+                                                    </section>
+
+
+
+                                                    <footer class="form-footer clearfix">
+
+                                                        <form>
+                                                            <button type="submit" class="continue btn btn-primary float-xs-right" value="1">
+          Continue
+      </button>
+                                                        </form>
+
+                                                    </footer>
+
+
+                                                </form>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </section>
+
+
+
+                        <section class="checkout-step -unreachable" id="checkout-delivery-step">
+                            <h1 class="step-title h3">
+                                <span class="step-number">3</span> Shipping Method
+                            </h1>
+                        </section>
+
+
+
+                        <section class="checkout-step -unreachable" id="checkout-payment-step">
+                            <h1 class="step-title h3">
+                                <span class="step-number">4</span> Payment
+                            </h1>
+                        </section>
+
+
+
+
+                    </div>
+                    <div class="col-lg-4">
+
+
+                        <section id="js-checkout-summary" class="card js-cart" data-refresh-url="https://leffet.in/cart?ajax=1&action=refresh">
+                            <div class="card-block">
+
+
+
+
+
+                                <div class="cart-summary-products">
+
+                                    <p>
+                                        <%=result[3][0].counter%> items</p>
+
+                                    <p>
+                                        <a href="#" data-toggle="collapse" data-target="#cart-summary-product-list" class="btn btn-outline">
+                          show details
+                        </a>
+                                    </p>
+
+
+                                    <div class="collapse" id="cart-summary-product-list">
+                                        <ul class="media-list">
+
+                                            <% for(i=0;i<result[1].length;i++){%>
+
+
+
+                                                <li class="media">
+                                                    <div class="media-left">
+                                                        <a href="/product?id=<%=result[1][i].booking_id%>" title="<%=result[1][i].name%>">
+                    <img class="media-object" src="/images/<%=result[1][i].bookingimage%>" alt="<%=result[1][i].name%>">
+                  </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <span class="product-name"><%=result[1][i].name%></span>
+                                                        <span class="product-quantity">x<%=result[1][i].quantity%></span>
+                                                        <span class="product-price float-xs-right">₹<%=result[1][i].price%></span>
+
+                                                        <span class="label"></span>
+                                                        <div class="product-line-info product-line-info-secondary text-muted">
+
+                                                            <span class="label">Size:</span>
+                                                            <span class="value"><%=result[1][i].size%></span>
+
+                                                        </div>
+                                                        <br/>
+                                                    </div>
+
+                                                </li>
+
+                                                <% } %>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-products">
+                                    <span class="label">Subtotal</span>
+                                    <span class="value">₹<%=result[2][0].totalprice%></span>
+                                </div>
+                                <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-shipping">
+                                    <span class="label">Shipping</span>
+                                    <span class="value">Free</span>
+                                </div>
+
+
+                            </div>
+
+
+
+
+                            <hr class="separator">
+
+
+                            <div class="card-block cart-summary-totals">
+
+
+                                <div class="cart-summary-line cart-total">
+                                    <span class="label">Total (tax incl.)</span>
+                                    <span class="value">₹<%=result[2][0].totalprice%></span>
+                                </div>
+
+
+
+                                <div class="cart-summary-line">
+                                    <span class="label sub"></span>
+                                    <span class="value sub"></span>
+                                </div>
+
+
+                            </div>
+
+
+                        </section>
+
+                        <div class="blockreassurance_product">
+                            <div>
+                                <span class="item-product">
+                                                        <img src="/leffet.in//modules/blockreassurance/views/img/img_perso/freedom.png">
+                                    &nbsp;
+            </span>
+                                <p class="block-title" style="color:#000000;">OPEN TO CUSTOMISATION*</p>
+
+                            </div>
+                            <div>
+                                <span class="item-product">
+                                                        <img src="/leffet.in//modules/blockreassurance/views/img/img_perso/timeless-classic-icon.png">
+                                    &nbsp;
+            </span>
+                                <p class="block-title" style="color:#000000;">TIMELESS CLASSICS*</p>
+
+                            </div>
+                            <div>
+                                <span class="item-product">
+                                                        <img src="/leffet.in//modules/blockreassurance/views/img/img_perso/craftedfor-class-icon.png">
+                                    &nbsp;
+            </span>
+                                <p class="block-title" style="color:#000000;">CRAFTED FOR CLASS*</p>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="bootstrap">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <%- include ('./indexfooter.ejs') %>
+
+
+        <script>
+            $.getJSON(`country/all`, data => {
+                countries = data
+                fillDropDown('countryid', data, 'Choose Country', 0)
+
+            })
+
+
+
+            $.getJSON(`/state/all/indian`, data => {
+                indiancity = data
+                console.log(data)
+                fillDropDown('stateid', data, 'Choose State', 0)
+            })
+
+
+            $.getJSON(`/state/all`, data => {
+
+                subcategories = data
+                fillDropDown('stateid', data, 'Choose State', 0)
+            })
+
+
+
+
+            $('#countryid').change(() => {
+                console.log(subcategories)
+
+                const filteredData = subcategories.filter(item => item.countryname == $('#countryid').val())
+                console.log(filteredData)
+                fillDropDown('stateid', filteredData, 'Choose States', 0)
+            })
+
+
+
+
+            function fillDropDown(id, data, label, selectedid = 0) {
+                $(`#${id}`).empty()
+                    // $(`#${id}`).append($('<option>').val("null").text(label))
+
+                $.each(data, (i, item) => {
+                    if (item.id == selectedid) {
+                        $(`#${id}`).append($('<option selected>').val(item.name).text(item.name))
+                    } else {
+                        $(`#${id}`).append($('<option>').val(item.name).text(item.name))
+                    }
+                })
+            }
+        </script>

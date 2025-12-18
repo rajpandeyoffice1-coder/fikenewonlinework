@@ -1,0 +1,92 @@
+  <%- include ('./adminheader.ejs') %>
+        <!-- Main Content -->
+        <div class="main-content">
+          <section class="section">
+            <div class="section-body">
+              <div class="row">
+
+                <div class="col-12 col-md-12 col-lg-12">
+                
+              
+
+                  
+
+           
+                  
+  <div class="card mb-4" id='result'></div>
+
+
+
+
+
+
+
+
+
+  <input type="hidden" value="<%=msg%>" id="name123">
+
+
+      
+      
+      
+    
+              
+                </div>
+              
+              </div>
+            </div>
+          </section>
+          <div class="settingSidebar">
+            <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+            </a>
+        
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <!-- General JS Scripts -->
+    <script src="/light/assets/js/app.min.js"></script>   
+    <!-- JS Libraies -->
+    <!-- Page Specific JS File -->
+    <!-- Template JS File -->
+    <script src="/light/assets/js/scripts.js"></script>
+    <!-- Custom JS File -->
+    <script src="/light/assets/js/custom.js"></script>
+
+
+    <script src="/javascripts/users.js"></script>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    <script>
+    
+      $('.uploadImage').submit(function (e) {
+        e.preventDefault();
+    
+        // var title = $('#title').val(); 
+    
+        $(this).ajaxSubmit({
+          // data: {title: title},
+          contentType: 'application/json',
+          success: function (response) {
+            alert('successfully')
+          }
+        });
+        return false;
+      });
+    
+    
+    
+    </script>
+
+  </body>
+
+
+
+  <script>
+   
+  </script>
+
+
+  </html>

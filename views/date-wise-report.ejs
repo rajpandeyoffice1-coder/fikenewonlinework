@@ -1,0 +1,340 @@
+<%- include ('./adminheader.ejs') %>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-12">
+                <div class="card insertdiv" id='insertdiv'>
+                  <div class="card-header">
+                    <h4>Date Wise Report </h4>
+                  </div>
+                
+                  <div class="card-body">
+                  
+                      <div class="row">
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>From Date</label>
+                                <input type="date" class="form-control" id="from_date" required>
+                              </div>
+                              
+                          </div>
+
+
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>To Date</label>
+                                <input type="date" class="form-control" id="to_date" required>
+                              </div>
+                              
+                          </div>
+
+                     
+
+                        
+                      </div>
+                  
+              
+                  
+                  </div>
+                  <div class="card-footer text-right">
+                    <button class="btn btn-primary mr-1 show-reports" type="button">Search</button>
+                  </div>
+                 
+                </div>
+            
+                
+                
+<div class="card mb-4" id='result'></div>
+
+
+
+<div class="card mb-4" id='editdiv'>
+    <h6 class="card-header"><span><button type="button" class="btn btn-primary show" id="back1" style="margin:10px">Back</button></span>Edit Data</h6>
+    <div class="card-body">
+    
+        <form>
+            <div class="form-row">
+    
+                <input type="hidden" class="form-control" placeholder="Email" id="pid" name="id" readonly>
+
+             
+    
+            <div class="form-group col-md-6">
+            <label class="form-label">Country</label>
+            <input type="text" class="form-control" placeholder="Email" id="pname">
+            <div class="clearfix"></div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>Shipping Charges</label>
+                    <input type="text" class="form-control" id="pcharges" required>
+                  </div>
+                  
+              </div>
+
+    
+         
+            </div>
+          
+            
+            <button type="button" id='update' class="btn btn-primary">Submit</button>
+            </form>
+    </div>
+    </div>
+    
+    
+    
+    <div class="card mb-4" id="updateimagediv">
+    <h6 class="card-header"><span><button type="button" class="btn btn-primary show" id="back2" style="margin:10px">Back</button></span> Upload Image</h6>
+    <div class="card-body">
+    
+        <form action="/category/update_image" method="POST" enctype="multipart/form-data">
+            <div class="form-row">
+       
+                <div class="form-group col-md-6">
+                    <label class="form-label">ID</label>
+                    <input type="text" class="form-control" placeholder="Email" id="peid" name="id" readonly>
+                    <div class="clearfix"></div>
+                    </div>
+    
+    
+            <div class="form-group col-md-6">
+            <label class="form-label">Image</label>
+            <input type="file" class="form-control" name='image' placeholder="Password">
+            <div class="clearfix"></div>
+            </div>
+            </div>
+            
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    </div>
+    </div>
+    
+            
+              </div>
+             
+            </div>
+          </div>
+        </section>
+        <div class="settingSidebar">
+          <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+          </a>
+       
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- General JS Scripts -->
+  <script src="/light/assets/js/app.min.js"></script>   
+  <!-- JS Libraies -->
+  <!-- Page Specific JS File -->
+  <!-- Template JS File -->
+  <script src="/light/assets/js/scripts.js"></script>
+  <!-- Custom JS File -->
+  <script src="/light/assets/js/custom.js"></script>
+
+
+  <script src="/javascripts/country.js"></script>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+  <script>
+  $('.submit').click(function(){
+      if($('#name').val() == [] || $('#name').val() == '') alert('Enter Name');
+    
+      else {
+          let name = $('#name').val()
+          let charges = $('#charges').val()
+      
+          $.post('/country/insert',{name,charges},data=>{
+           
+          if(data.status=='300' || data.status==300) alert(data.description)
+          else {
+         alert('successfully')
+          window.location.reload()
+          }
+         
+        
+          })
+      }
+  })
+  
+  
+  
+  </script>
+
+</body>
+
+
+</html>
+
+
+<script>
+    $('.show-reports').click(function(){
+        if( $('#from_date').val() == '' || $('#from_date').val() == [] ) alert('Choose From Date')
+        else if ( $('#to_date').val() == '' || $('#to_date').val() == [] ) alert('Choose To Date')
+        else {
+         
+            let from_date = $('#from_date').val()
+            let to_date = $('#to_date').val()
+
+
+// let from_date = '2021-09-01'
+// let to_date = '2021-09-15'
+
+            $.get('/sales/report',{from_date,to_date},data=>{
+                console.log(data)
+                makeTable(data)
+            })
+        }
+    })
+
+
+ 
+
+
+    function makeTable(data){
+    let table = ` <div class="table-responsive">
+
+        <div class = 'container'>
+        <div class='row'>
+           
+            <div class = 'col-lg-6'>
+    <button type="button"  class="btn btn-warning" style="padding:10px;margin:20px" id="exportBtn1" >Export Data </button>
+                
+                </div>
+
+            </div>
+            </div>
+
+  
+<table id="myTable" class="table  table-striped mb-0">
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Address</th>
+<th>Product Name</th>
+<th>Quantity</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Date</th>
+
+
+</tr>
+</thead>
+<tbody>`
+
+$.each(data,(i,item)=>{
+table+=`<tr>
+
+
+<td>${item.name}</td>
+<td>${item.usermobilenumber}</td>
+<td>${item.useraddress1} , ${item.useraddress2} , ${item.useraddress1}, ${item.userstate} , ${item.usercity} , ${item.userpostcode} , ${item.usercountry}</td>
+<td>${item.productname}</td>
+<td>${item.quantity}</td>
+
+<td>${item.price}</td>
+<td>${item.status}</td>
+<td>${item.date}</td>
+
+
+
+</tr>`
+})
+table+=`</tbody>
+</table>
+</div>
+
+  
+<!-- End Row -->`
+    $('#result').html(table)
+    $('#result').show()
+}
+
+
+
+
+
+
+
+
+
+
+$(function () {
+        // add multiple select / deselect functionality
+$('#result').on('click', '#selectall', function() {
+
+        // $("#selectall").click(function () {
+           
+            $('.check').prop('checked', true);
+        });
+ 
+        // if all checkbox are selected, then check the select all checkbox
+        // and viceversa
+        $('#result').on('click', '#submit1', function() {
+
+    // alert($('.check').val())
+
+  
+    let productid =$('#products:checked').val();
+    
+    var a = [];
+                $("#products:checked").each(function() {
+                    a.push(this.value);
+                });
+               
+    console.log('products',a.length)
+
+    if($('.referenceid').val() == '' || $('.referenceid').val() == null || $('.referenceid').val() == []) alert('Enter Reference ID')
+     else if( a.length == 0 || a.length == '0' ) alert('Select Atleast One Account')
+
+    else{
+        let b = JSON.stringify(a)
+        let reference_id = $('.referenceid').val()
+
+
+ $.post('/admin/dashboard/update/booking-status',{reference_id,b},data=>{
+            alert('Update Successfully')
+            window.location.reload()
+        })
+
+    }
+
+
+   
+
+        //    alert('hi')
+ 
+        });
+    });
+
+
+
+
+
+
+
+
+
+    $(document).ready(function () {
+$('#result').on('click', '#exportBtn1', function() {
+
+        TableToExcel.convert(document.getElementById("myTable"), {
+            name: "Date Wise Reports.xlsx",
+            sheet: {
+            name: "Sheet1"
+            }
+          });
+        });
+  });
+
+
+</script>

@@ -1,0 +1,204 @@
+<%- include ('./adminheader.ejs') %>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-12">
+                <div class="card insertdiv" id='insertdiv'>
+                  <div class="card-header">
+                    <h4>New Time Slot </h4>
+                  </div>
+                
+                  <div class="card-body">
+                  
+                      <div class="row">
+                          <div class="col-lg-3 col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label>From Date</label>
+                                <input type="date" class="form-control" id="date" required>
+                              </div>
+                              
+                          </div>
+
+
+                          <div class="col-lg-3 col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label>To Date</label>
+                                <input type="date" class="form-control" id="to_date" required>
+                              </div>
+                              
+                          </div>
+
+                          <div class="col-lg-3 col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label>Time</label>
+                                <input type="text" class="form-control" id="time" placeholder="7:00 AM TO 10:30 PM" required>
+                              </div>
+                              
+                          </div>
+
+
+                          <div class="col-lg-3 col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select id="status" class="form-control">
+                                    <option value="Available">Available</option>
+                                    <option value="Not Available">Not Available</option>
+                                </select>
+                              </div>
+                              
+                          </div>
+                      </div>
+                  
+                     
+                  
+                  </div>
+                  <div class="card-footer text-right">
+                    <button class="btn btn-primary mr-1 submit" type="button">Submit</button>
+                    <button class="btn btn-danger mr-1 show" id="show" type="button" >Show All Time Slot</button>
+                  </div>
+                 
+                </div>
+            
+                
+                
+<div class="card mb-4" id='result'></div>
+
+
+
+<div class="card mb-4" id='editdiv'>
+    <h6 class="card-header"><span><button type="button" class="btn btn-primary show" id="back1" style="margin:10px">Back</button></span>Edit Data</h6>
+    <div class="card-body">
+    
+        <form>
+            <div class="form-row">
+    
+    
+                <div class="form-group col-md-6">
+                    <label class="form-label">ID</label>
+                    <input type="text" class="form-control" placeholder="Email" id="pid" readonly>
+                    <div class="clearfix"></div>
+                    </div>
+    
+            <div class="form-group col-md-6">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" placeholder="Email" id="pdate">
+            <div class="clearfix"></div>
+            </div>
+
+          
+         
+            </div>
+            <div class="form-row">
+    
+              <div class="form-group col-md-6">
+                <label class="form-label">Time</label>
+                <input type="text" class="form-control" placeholder="Email" id="ptime">
+                <div class="clearfix"></div>
+                </div>
+    
+                <div class="form-group col-md-6">
+                  <label class="form-label">Status</label>
+                  <select id="pstatus" class="form-control">
+                    <option value="Available">Available</option>
+                    <option value="Not Available">Not Available</option>
+                </select>
+                  <div class="clearfix"></div>
+                  </div>
+
+                
+         
+            </div>
+            
+            <button type="button" id='update' class="btn btn-primary">Submit</button>
+            </form>
+    </div>
+    </div>
+    
+    
+    
+    <div class="card mb-4" id="updateimagediv">
+    <h6 class="card-header"><span><button type="button" class="btn btn-primary show" id="back2" style="margin:10px">Back</button></span> Upload Image</h6>
+    <div class="card-body">
+    
+        <form action="/category/update_image" method="POST" enctype="multipart/form-data">
+            <div class="form-row">
+       
+                <div class="form-group col-md-6">
+                    <label class="form-label">ID</label>
+                    <input type="text" class="form-control" placeholder="Email" id="peid" name="id" readonly>
+                    <div class="clearfix"></div>
+                    </div>
+    
+    
+            <div class="form-group col-md-6">
+            <label class="form-label">Image</label>
+            <input type="file" class="form-control" name='image' placeholder="Password">
+            <div class="clearfix"></div>
+            </div>
+            </div>
+            
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    </div>
+    </div>
+    
+            
+              </div>
+             
+            </div>
+          </div>
+        </section>
+        <div class="settingSidebar">
+          <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+          </a>
+       
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  <!-- General JS Scripts -->
+  <script src="/light/assets/js/app.min.js"></script>   
+  <!-- JS Libraies -->
+  <!-- Page Specific JS File -->
+  <!-- Template JS File -->
+  <script src="/light/assets/js/scripts.js"></script>
+  <!-- Custom JS File -->
+  <script src="/light/assets/js/custom.js"></script>
+
+
+
+  <script src="/javascripts/time.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+  <script>
+  $('.submit').click(function(){
+      if($('#date').val() == [] || $('#date').val() == '') alert('Select From Date');
+      else if($('#to_date').val() == [] || $('#to_date').val() == '') alert('Select To Date')
+      else if($('#time').val()==[] || $('#time').val()=='') alert('Enter Time');
+      else {
+          let date = $('#date').val()
+          let time = $('#time').val()
+          let status = $('#status').val()
+          let to_date = $('#to_date').val()
+         
+          $.post('/time-slot/insert',{date,time,status},data=>{
+              alert('Successfully')
+          })
+      }
+  })
+  
+  
+  
+  </script>
+
+</body>
+
+
+</html>

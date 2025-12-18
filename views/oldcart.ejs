@@ -1,0 +1,256 @@
+<%- include ('./indexheader.ejs') %>    
+
+    <!-- header section end -->
+
+    <!-- main content start -->
+
+    <!-- bread crumb section start -->
+    <nav class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                   
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- bread crumb section end -->
+
+
+
+    <section class="whish-list-section section-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="title mb-5 pb-3 text-capitalize">Your cart items</h3>
+
+
+                    <% if(!result[0]) { %>
+						<div class="col-lg-4"></div>
+						<div class="col-lg-4">
+							<img src='/images/emptycart.png' style="text-align: center;justify-content: center;">
+
+						</div>
+						<div class="col-lg-4"></div>
+            
+						<% } else { %>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-light">
+
+
+
+
+                                <tr>
+                                    <th class="text-center" scope="col">Product Image</th>
+                                    <th class="text-center" scope="col">Product Name</th>
+                                    <th class="text-center" scope="col">Product Price</th>
+                                    <th class="text-center" scope="col">Qty</th>
+                                    <th class="text-center" scope="col">Price</th>
+                                    <th class="text-center" scope="col">action</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+
+                                <% for(i=0;i<result[1].length;i++) { %>
+
+
+                                <tr>
+                                    <th class="text-center" scope="row">
+                                        <img src="/images/<%=result[1][i].bookingimage%>" alt="img" style="height: 100px;">
+                                    </th>
+                                    <td class="text-center">
+                                        <span class="whish-title"><%=result[1][i].bookingname%></span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-success">Rs. <%=result[1][i].oneprice%></span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="product-count style">
+                                            <div class="count d-flex justify-content-center">
+                                                <input type="number" min="1" max="100" step="1" value="<%=result[1][i].quantity%>">
+                                                <div class="button-group">
+                                                    <button class="count-btn increment">
+                                                        <span class="las la-angle-up add" categoryid="<%=result[1][i].categoryid%>" booking_id = "<%=result[1][i].booking_id%>" number="<%=result[1][i].number%>" availablequantity="<%=result[1][i].availablequantity%>"  value="<%=result[1][i].quantity%>" price="<%=result[1][i].oneprice%>"></span>
+                                                    </button>
+                                                    <button class="count-btn decrement">
+                                                        <span class="las la-angle-down minus" categoryid="<%=result[1][i].categoryid%>" availablequantity="<%=result[1][i].availablequantity%>" booking_id = "<%=result[1][i].booking_id%>" number="<%=result[1][i].number%>" value="<%=result[1][i].quantity%>" price="<%=result[1][i].oneprice%>"></span></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+
+                                    <td class="text-center">
+                                        <span class="whish-list-price"> Rs. <%=result[1][i].price%> </span>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <a href="/delete?id=<%=result[1][i].id%>">
+                                            <span class="trash"><i class="ion-android-delete"></i> </span></a>
+                                    </td>
+                                  
+                                </tr>
+                               
+
+<% } %>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="check-out-section section-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+
+                </div>
+                <div class="col-lg-5 mt-4 mt-lg-0">
+                    <div class="your-order-area">
+                        <div class="your-order-wrap gray-bg-4">
+                            <div class="your-order-product-info">
+                               
+
+                               
+                                <div class="your-order-total mb-0">
+                                    <ul>
+                                        <li class="order-total">Total</li>
+                                        <li>Rs. <%=result[2][0].totalprice%></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Place-order mt-5">
+                            <!-- <a class="btn btn-dark me-3" href="#">update cart</a> -->
+                            <a class="btn btn-dark my-2 my-sm-0" href="/checkout">checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- news letter section start -->
+ 
+    <!-- news letter section end -->
+
+
+    <!-- service section start -->
+    <section class="service-section section-mt section-mb">
+        <div class="container">
+            <div class="services">
+                <div class="row mb-n7">
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service1.png" alt="images_not_found">
+                            <h3 class="service-title">100% SECURE PAYMENTS</h3>
+                            <p>Moving your card details to a much more secured place</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service2.png" alt="images_not_found">
+                            <h3 class="service-title">TRUSTPAY</h3>
+                            <p>100% Payment Protection. Easy Return Policy</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service3.png" alt="images_not_found">
+                            <h3 class="service-title">HELP CENTER</h3>
+                            <p>GGot a question? Look no further.Browse our FAQs or submit your query here.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-7">
+                        <div class="service-item">
+                            <img class="service-icon" src="assets/images/icon/service4.png" alt="images_not_found">
+                            <h3 class="service-title">Express Shipping</h3>
+                            <p>Fast, reliable delivery from global warehouses</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- service section end -->
+
+
+    <!-- main content end -->
+
+    <!-- footer section start -->
+    <%- include ('./indexfooter.ejs') %>    
+
+
+
+    <script>
+        $('.add').click(function(){
+     let value = $(this).attr('value')
+     let price = $(this).attr('price')
+     let booking_id = $(this).attr('booking_id');
+     let usernumber = $(this).attr('number');
+     let categoryid = $(this).attr('categoryid');
+     let availablequantity = $(this).attr('availablequantity')
+
+    
+    
+    
+     let quantity = (+value)+1;
+
+
+     if(quantity>availablequantity){
+      alert(`We have only ${availablequantity} stocks available`)
+     }
+     else{
+        $.post('/cart-handler',{quantity,price,booking_id,usernumber,categoryid},data=>{
+                window.location.href = '/mycart'
+          })
+     }
+    
+     
+    
+         
+        })
+    
+    
+    
+    
+    
+        $('.minus').click(function(){
+     let value = $(this).attr('value')
+     let price = $(this).attr('price')
+     let booking_id = $(this).attr('booking_id');
+     let usernumber = $(this).attr('number');
+     let categoryid = $(this).attr('categoryid');
+    
+    
+     let quantity = (+value)-1;
+    
+     
+    
+    
+    $.post('/cart-handler',{quantity,price,booking_id,usernumber,categoryid},data=>{
+                window.location.href = '/mycart'
+          })
+    
+         
+        })
+    
+    
+    </script>

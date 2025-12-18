@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" data-pwa="true">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-42QLWK8ESK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-42QLWK8ESK');
+
+    (function () {
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById("themeToggleBtn");
+      const toggleIcon = document.getElementById("themeToggleIcon");
+
+      if (!toggleBtn || !toggleIcon) return;
+
+      // Load saved theme OR system preference
+      const savedTheme = localStorage.getItem("theme");
+      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+
+      applyTheme(initialTheme);
+
+      toggleBtn.addEventListener("click", () => {
+        const current = html.getAttribute("data-bs-theme");
+        const next = current === "dark" ? "light" : "dark";
+        applyTheme(next);
+        localStorage.setItem("theme", next);
+      });
+
+      function applyTheme(theme) {
+        html.setAttribute("data-bs-theme", theme);
+        toggleIcon.className =
+          theme === "dark"
+            ? "ci-sun icon-size-lg"
+            : "ci-moon icon-size-lg";
+      }
+    })();
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById("themeToggleBtn");
+      const toggleIcon = document.getElementById("themeToggleIcon");
+
+      if (!toggleBtn || !toggleIcon) return;
+
+      const savedTheme = localStorage.getItem("theme");
+      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+
+      applyTheme(initialTheme);
+
+      toggleBtn.addEventListener("click", () => {
+        const next = html.getAttribute("data-bs-theme") === "dark" ? "light" : "dark";
+        applyTheme(next);
+        localStorage.setItem("theme", next);
+      });
+
+      function applyTheme(theme) {
+        html.setAttribute("data-bs-theme", theme);
+        toggleIcon.className =
+          theme === "dark"
+            ? "ci-sun icon-size-lg"
+            : "ci-moon icon-size-lg";
+      }
+    });
+  </script>
+
+  <!-- SEO -->
+  <meta name="keywords"
+    content="FikA, trolley speakers, Bluetooth speakers, soundbars, wireless speakers, portable speakers, home audio, best speakers, high-quality audio, speaker system, electronic gadgets">
+  <meta name="author" content="Fika">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/logo.png" sizes="32x32">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Theme -->
+  <script src="/theme/assets/js/theme-switcher.js"></script>
+  <link rel="stylesheet" href="/theme/assets/icons/cartzilla-icons.min.css">
+  <link rel="stylesheet" href="/theme/assets/vendor/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/theme/assets/vendor/simplebar/simplebar.min.css">
+  <link rel="stylesheet" href="/theme/assets/css/theme.min.css">
+
+  <script src="/theme/assets/js/customizer.min.js"></script>
+
+  <style>
+    /* ================ ENHANCED HEADER STYLES ================ */
+    .compact-header {
+      min-height: 70px !important;
+      padding: 0 !important;
+      transition: all 0.3s ease;
+    }
+
+    /* ================ PREMIUM LOGO DESIGN ================ */
+    .compact-logo {
+      height: 90px !important;
+      width: 280px !important;
+      object-fit: contain;
+      margin-right: 400px;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+      transition: transform 0.3s ease;
+    }
+
+    .compact-logo:hover {
+      transform: scale(1.03);
+    }
+
+    /* ================ HEADER BACKGROUND ENHANCEMENT ================ */
+    [data-bs-theme="light"] header.navbar {
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+      color: #000000 !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    [data-bs-theme="dark"] header.navbar {
+      background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%) !important;
+      color: #ffffff !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    header.navbar {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    /* ================ IMPORTANT FIX: DROPDOWN OVERLAY ================ */
+    .dropdown-backdrop {
+      display: none !important;
+    }
+
+    /* Hide body scroll when dropdown is open */
+    body.dropdown-open {
+      overflow: hidden;
+    }
+
+    /* Dropdown overlay to hide content behind */
+    .dropdown-overlay {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 70px);
+      background: rgba(255, 255, 255, 0.95);
+      z-index: 1050;
+      backdrop-filter: blur(2px);
+    }
+
+    [data-bs-theme="dark"] .dropdown-overlay {
+      background: rgba(18, 18, 18, 0.95);
+    }
+
+    /* ================ ENHANCED MEGA CATEGORY ================ */
+    .mega-category-dropdown {
+      width: 1100px;
+      padding: 28px 40px;
+      left: 50% !important;
+      transform: translateX(-50%);
+      background: #ffffff;
+      border-radius: 0 0 16px 16px;
+      border-top: 3px solid #007bff !important;
+      animation: slideDown 0.3s ease-out;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+      /* IMPORTANT: Make dropdown appear above all content */
+      z-index: 1060 !important;
+      position: fixed !important;
+      top: 70px !important;
+      border: none !important;
+      margin: 0 !important;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .mega-category-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(180px, 1fr));
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .mega-category-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: #ffffff;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #212121;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mega-category-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mega-category-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #007bff;
+      transition: width 0.3s ease;
+    }
+
+    .mega-category-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mega-category-icon img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .mega-category-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1f1f1f;
+      transition: 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hover Effects */
+    .mega-category-item:hover {
+      background: #ffffff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      transform: translateY(-3px);
+    }
+
+    .mega-category-item:hover::before {
+      opacity: 1;
+    }
+
+    .mega-category-item:hover::after {
+      width: 100%;
+    }
+
+    .mega-category-item:hover .mega-category-icon {
+      background: linear-gradient(135deg, #eef2f6 0%, #e3e8f1 100%);
+      transform: scale(1.08);
+    }
+
+    .mega-category-item:hover .mega-category-icon img {
+      transform: scale(1.1);
+    }
+
+    /* ================ ENHANCED CATEGORY BUTTON ================ */
+    .btn-outline-secondary.rounded-pill {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border: 2px solid #dee2e6;
+      padding: 0.6rem 1.6rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      font-size: 14px;
+    }
+
+    .btn-outline-secondary.rounded-pill:hover {
+      background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+      border-color: #007bff;
+      transform: translateY(-1 px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-outline-secondary.rounded-pill i {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-outline-secondary.rounded-pill:hover i {
+      transform: translateY(-1px);
+    }
+
+    /* ================ PREMIUM SEARCH BAR ================ */
+    .search-input-fixed {
+      border-radius: 50px !important;
+      border: 2px solid #e0e0e0 !important;
+      padding: 0.7rem 1.5rem 0.7rem 3rem !important;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.95) !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .search-input-fixed:focus {
+      border-color: #007bff !important;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15) !important;
+      transform: translateY(-1px);
+      background: #ffffff !important;
+    }
+
+    [data-bs-theme="dark"] .search-input-fixed {
+      background: rgba(30, 30, 30, 0.95) !important;
+      border-color: #444 !important;
+      color: #ffffff;
+    }
+
+    [data-bs-theme="dark"] .search-input-fixed:focus {
+      background: #1a1a1a !important;
+    }
+
+    .ci-search {
+      left: 20px !important;
+      color: #666;
+      z-index: 5;
+      font-size: 18px;
+    }
+
+    /* ================ ENHANCED ACTION ICONS ================ */
+    .icons-container {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .compact-btn {
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 50% !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #dee2e6 !important;
+      background: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .compact-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      border-color: #adb5bd !important;
+    }
+
+    .compact-btn:hover i {
+      transform: scale(1.15);
+      animation: iconPulse 0.6s ease;
+    }
+
+    @keyframes iconPulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1.15);
+      }
+    }
+
+    .icon-size-lg {
+      font-size: 22px !important;
+      transition: transform 0.3s ease;
+    }
+
+    /* Cart Button Special Style */
+    .compact-btn.btn-dark {
+      background: linear-gradient(135deg, #343a40 0%, #495057 100%) !important;
+      border-color: #343a40 !important;
+      box-shadow: 0 4px 15px rgba(52, 58, 64, 0.2);
+    }
+
+    .compact-btn.btn-dark:hover {
+      background: linear-gradient(135deg, #495057 0%, #6c757d 100%) !important;
+      box-shadow: 0 8px 25px rgba(52, 58, 64, 0.3);
+      border-color: #6c757d !important;
+    }
+
+    /* Animated Badge */
+    .compact-badge {
+      animation: pulse 2s infinite;
+      padding: 0.3em 0.6em;
+      font-size: 0.75rem;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 10px rgba(220, 53, 69, 0.5);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1) translate(-50%, -50%);
+      }
+
+      50% {
+        transform: scale(1.15) translate(-50%, -50%);
+      }
+
+      100% {
+        transform: scale(1) translate(-50%, -50%);
+      }
+    }
+
+    /* ================ DARK MODE ENHANCEMENTS ================ */
+    [data-bs-theme="dark"] .compact-btn {
+      border-color: #444 !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    [data-bs-theme="dark"] .compact-btn:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      border-color: #666 !important;
+    }
+
+    [data-bs-theme="dark"] .mega-category-dropdown {
+      background-color: #1a1a1a !important;
+      border-top: 3px solid #0d6efd !important;
+    }
+
+    [data-bs-theme="dark"] .mega-category-item {
+      background-color: #1a1a1a !important;
+      color: #ffffff;
+    }
+
+    [data-bs-theme="dark"] .mega-category-text {
+      color: #ffffff;
+    }
+
+    [data-bs-theme="dark"] .mega-category-icon {
+      background-color: #2d2d2d;
+    }
+
+    [data-bs-theme="dark"] .mega-category-item:hover {
+      background: #2d2d2d !important;
+    }
+
+    [data-bs-theme="dark"] .btn-outline-secondary.rounded-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #444;
+      color: #ffffff;
+    }
+
+    [data-bs-theme="dark"] .btn-outline-secondary.rounded-pill:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #0d6efd;
+    }
+
+    /* ================ RESPONSIVE DESIGN ================ */
+    @media (max-width: 1200px) {
+      .mega-category-grid {
+        grid-template-columns: repeat(4, minmax(160px, 1fr));
+      }
+
+      .compact-logo {
+        margin-right: 300px;
+      }
+
+      .mega-category-dropdown {
+        width: 95%;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .mega-category-dropdown {
+        width: 98%;
+        padding: 20px;
+      }
+
+      .mega-category-grid {
+        grid-template-columns: repeat(3, minmax(150px, 1fr));
+        gap: 12px;
+      }
+
+      .compact-logo {
+        height: 80px !important;
+        width: 240px !important;
+        margin-right: 0;
+      }
+
+      .icons-container {
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .compact-header {
+        min-height: 65px !important;
+      }
+
+      .compact-logo {
+        height: 70px !important;
+        width: 200px !important;
+      }
+
+      .compact-btn {
+        width: 40px !important;
+        height: 40px !important;
+      }
+
+      .icon-size-lg {
+        font-size: 20px !important;
+      }
+
+      .btn-outline-secondary.rounded-pill {
+        padding: 0.5rem 1.2rem;
+        font-size: 13px;
+      }
+
+      .search-input-fixed {
+        padding: 0.6rem 1.2rem 0.6rem 2.8rem !important;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .compact-btn {
+        width: 38px !important;
+        height: 38px !important;
+      }
+
+      .icon-size-lg {
+        font-size: 18px !important;
+      }
+
+      .compact-badge {
+        font-size: 0.65rem;
+        padding: 0.2em 0.5em;
+      }
+    }
+
+    /* ================ SMOOTH TRANSITIONS ================ */
+    .btn,
+    .compact-btn,
+    .mega-category-item,
+    .search-input-fixed,
+    .compact-logo {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Active state feedback */
+    .compact-btn:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CART -->
+  <%- include('./shoppingCart.ejs') %>
+
+    <!-- ================ DROPDOWN OVERLAY ================ -->
+    <div class="dropdown-overlay" id="dropdownOverlay"></div>
+
+    <!-- ================ ENHANCED HEADER ================ -->
+    <header class="navbar navbar-expand-lg border-bottom sticky-top compact-header p-0">
+      <div class="container py-2">
+        <div class="row align-items-center w-100 g-3">
+
+          <!-- LOGO + TOGGLER -->
+          <div class="col-lg-3 d-flex align-items-center">
+            <button class="navbar-toggler compact-nav-toggler me-3" data-bs-toggle="offcanvas"
+              data-bs-target="#navbarNav"
+              style="border: 2px solid var(--bs-border-color); border-radius: 8px; padding: 6px 10px;">
+              <span class="navbar-toggler-icon" style="font-size:1.4rem;"></span>
+            </button>
+
+            <a href="/" class="navbar-brand p-0">
+              <img src="/images/L3.png" class="compact-logo" alt="Fika Logo">
+            </a>
+          </div>
+
+          <!-- CATEGORY + SEARCH -->
+          <div class="col-lg-6 d-flex justify-content-center py-2">
+            <div class="d-flex align-items-center gap-3 w-100 justify-content-center">
+
+              <!-- CATEGORY BUTTON -->
+              <div class="dropdown d-none d-lg-block" id="categoryDropdown">
+                <button class="btn btn-outline-secondary rounded-pill d-flex align-items-center px-3"
+                  data-bs-toggle="dropdown" data-bs-trigger="hover" style="min-width: 140px;">
+                  <i class="ci-grid me-2"></i>
+                  <span>Categories</span>
+                  <i class="ci-chevron-down ms-2 fs-sm"></i>
+                </button>
+
+                <!-- MEGA CATEGORY DROPDOWN -->
+                <ul class="dropdown-menu mega-category-dropdown shadow p-0 mt-2">
+                  <li class="mega-category-wrapper">
+                    <div class="mega-category-grid">
+                      <% for (let i=0; i < result[0].length; i++) { %>
+                        <a href="/category?id=<%= result[0][i].id %>" class="mega-category-item">
+                          <div class="mega-category-icon">
+                            <img src="/images/<%= result[0][i].image %>" alt="<%= result[0][i].name %>">
+                          </div>
+                          <span class="mega-category-text">
+                            <%= result[0][i].name %>
+                          </span>
+                        </a>
+                        <% } %>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- SEARCH BAR -->
+              <div class="position-relative" style="max-width:400px;width:100%;">
+                <form action="/search" method="GET">
+                  <i class="ci-search position-absolute top-50 translate-middle-y"
+                    style="left:18px;color:#6c757d;font-size:18px;"></i>
+
+                  <input type="search" name="q" class="form-control rounded-pill search-input-fixed ps-5"
+                    placeholder="Search for speakers, soundbars & more..." aria-label="Search products">
+                </form>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- RIGHT ACTION ICONS -->
+          <div class="col-lg-3 d-flex justify-content-end py-2">
+            <div class="icons-container">
+
+              <!-- THEME TOGGLE -->
+              <button class="btn btn-sm btn-outline-secondary compact-btn" id="themeToggleBtn" title="Toggle theme"
+                aria-label="Toggle theme">
+                <i class="ci-moon icon-size-lg" id="themeToggleIcon"></i>
+              </button>
+
+              <!-- ACCOUNT -->
+              <% if (login) { %>
+                <a href="/myaccount" class="btn btn-sm btn-outline-secondary compact-btn" title="My Account"
+                  aria-label="My Account">
+                  <i class="ci-user icon-size-lg"></i>
+                </a>
+                <% } else { %>
+                  <button class="btn btn-sm btn-outline-secondary compact-btn" title="Login" aria-label="Login"
+                    data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="ci-user icon-size-lg"></i>
+                  </button>
+                  <% } %>
+
+                    <!-- WISHLIST -->
+                    <a href="/view-wishlist"
+                      class="btn btn-sm btn-outline-secondary compact-btn d-none d-md-inline-flex" title="Wishlist"
+                      aria-label="Wishlist">
+                      <i class="ci-heart icon-size-lg"></i>
+                    </a>
+
+                    <!-- CART -->
+                    <button class="btn btn-sm btn-dark compact-btn position-relative" data-bs-toggle="offcanvas"
+                      data-bs-target="#shoppingCart" title="Shopping Cart" aria-label="Shopping Cart">
+                      <i class="ci-shopping-cart icon-size-lg"></i>
+                      <% if (cartData.cartItems.length> 0) { %>
+                        <span class="badge bg-danger compact-badge position-absolute top-0 start-100 translate-middle">
+                          <%= cartData.cartItems.length %>
+                        </span>
+                        <% } %>
+                    </button>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MOBILE SEARCH -->
+      <div class="collapse d-lg-none border-top" id="searchBarMobile">
+        <div class="container py-3">
+          <form action="/search" method="GET" class="position-relative">
+            <i class="ci-search position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+            <input type="search" name="q" class="form-control compact-search rounded-pill ps-5 py-2"
+              placeholder="Search products...">
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4 overflow-hidden">
+
+          <div class="modal-body p-0">
+            <div class="row g-0">
+
+              <div class="col-md-6 d-none d-md-flex flex-column justify-content-center text-center p-4"
+                style="background: linear-gradient(135deg, #f1f3f5, #e9ecef);">
+
+                <img src="/images/logo.png" alt="Logo" style="width:160px;" class="mb-4 mx-auto d-block">
+
+                <h5 class="fw-bold mb-3">Welcome! Register to avail the best deals</h5>
+
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                  <div class="bg-white rounded-3 p-3 shadow-sm">
+                    <small>1 Year Warranty</small>
+                  </div>
+                  <div class="bg-white rounded-3 p-3 shadow-sm">
+                    <small>7 Days Replacement</small>
+                  </div>
+                  <div class="bg-white rounded-3 p-3 shadow-sm">
+                    <small>Free Shipping</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 p-4">
+                <h4 class="fw-bold mb-2">Get Started</h4>
+                <p class="text-muted mb-4">Please enter Mobile Number</p>
+
+                <form id="loginForm">
+                  <div class="mb-3">
+                    <div class="d-flex align-items-center border rounded-3 px-2" style="height:48px;">
+                      <div class="d-flex align-items-center pe-2 border-end">
+                        <img src="https://flagcdn.com/w20/in.png" alt="India" style="width:20px;height:14px;">
+                        <span class="ms-2 fw-medium">+91</span>
+                      </div>
+                      <input type="tel" class="border-0 ms-3 flex-grow-1" placeholder="Enter Mobile Number"
+                        maxlength="10" required inputmode="numeric" pattern="[0-9]*">
+                    </div>
+                  </div>
+
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" checked>
+                    <label class="form-check-label small">
+                      Notify me for any updates & offers
+                    </label>
+                  </div>
+
+                  <button type="submit" class="btn btn-dark w-100 rounded-pill">
+                    Continue
+                  </button>
+
+                  <p class="small text-muted mt-3">
+                    I accept the <a href="#">Privacy Policy</a> & <a href="#">T&C</a>
+                  </p>
+                </form>
+
+                <form id="otpForm" class="d-none">
+                  <h5 class="fw-bold mb-2">Verify OTP</h5>
+                  <p class="text-muted mb-4">Enter the OTP sent to your mobile number</p>
+
+                  <div class="d-flex justify-content-between gap-2 mb-3">
+                    <input type="text" class="form-control text-center otp-input" maxlength="1">
+                    <input type="text" class="form-control text-center otp-input" maxlength="1">
+                    <input type="text" class="form-control text-center otp-input" maxlength="1">
+                    <input type="text" class="form-control text-center otp-input" maxlength="1">
+                    <input type="text" class="form-control text-center otp-input" maxlength="1">
+                    <input type="text" class="form-control text-center otp-input" maxlength="1">
+                  </div>
+
+                  <button type="submit" class="btn btn-dark w-100 rounded-pill">
+                    Verify OTP
+                  </button>
+
+                  <p class="small text-muted mt-3 text-center">
+                    Didn’t receive OTP? <a href="#">Resend</a>
+                  </p>
+                </form>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const loginModal = document.getElementById('loginModal');
+      const loginForm = document.getElementById('loginForm');
+      const otpForm = document.getElementById('otpForm');
+
+      loginModal.addEventListener('show.bs.modal', () => {
+        document.body.style.overflow = 'hidden';
+      });
+
+      loginModal.addEventListener('hidden.bs.modal', () => {
+        document.body.style.overflow = '';
+        loginForm.classList.remove('d-none');
+        otpForm.classList.add('d-none');
+      });
+
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        loginForm.classList.add('d-none');
+        otpForm.classList.remove('d-none');
+        const firstOtp = otpForm.querySelector('.otp-input');
+        if (firstOtp) firstOtp.focus();
+      });
+
+      document.querySelectorAll('.otp-input').forEach((input, index, inputs) => {
+        input.addEventListener('input', () => {
+          if (input.value && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          }
+        });
+      });
+    </script>
+
+    <!-- NAVIGATION / CATEGORIES -->
+    <nav class="offcanvas offcanvas-start" id="navbarNav">
+      <div class="offcanvas-header py-4 border-bottom">
+        <h5 class="h5 mb-0">Browse Categories</h5>
+        <button class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
+      </div>
+
+      <div class="offcanvas-body p-0">
+        <% if (result && result[0]) { %>
+          <div class="list-group list-group-flush">
+            <% for (let i=0; i < result[0].length; i++) { %>
+              <a href="/category?id=<%= result[0][i].id %>"
+                class="list-group-item list-group-item-action border-0 py-3 d-flex align-items-center hover-bg">
+                <img src="/images/<%= result[0][i].image %>" class="me-3 rounded"
+                  style="width: 32px; height: 32px; object-fit: cover;" alt="<%= result[0][i].name %>">
+                <span class="fw-medium">
+                  <%= result[0][i].name %>
+                </span>
+              </a>
+              <% } %>
+          </div>
+          <% } %>
+      </div>
+    </nav>
+
+    <script>
+      // Dropdown overlay control
+      document.addEventListener('DOMContentLoaded', function () {
+        const dropdownButton = document.querySelector('[data-bs-toggle="dropdown"]');
+        const dropdownMenu = document.querySelector('.mega-category-dropdown');
+        const dropdownOverlay = document.getElementById('dropdownOverlay');
+        const body = document.body;
+
+        if (dropdownButton && dropdownMenu) {
+          dropdownButton.addEventListener('show.bs.dropdown', function () {
+            dropdownOverlay.style.display = 'block';
+            body.classList.add('dropdown-open');
+            setTimeout(() => {
+              dropdownOverlay.style.opacity = '1';
+            }, 10);
+          });
+
+          dropdownButton.addEventListener('hide.bs.dropdown', function () {
+            dropdownOverlay.style.opacity = '0';
+            setTimeout(() => {
+              dropdownOverlay.style.display = 'none';
+              body.classList.remove('dropdown-open');
+            }, 300);
+          });
+
+          // Close dropdown when clicking on overlay
+          dropdownOverlay.addEventListener('click', function () {
+            const bsDropdown = bootstrap.Dropdown.getInstance(dropdownButton);
+            if (bsDropdown) {
+              bsDropdown.hide();
+            }
+          });
+        }
+      });
+    </script>
