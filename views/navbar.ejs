@@ -88,6 +88,7 @@
   <link rel="stylesheet" href="/theme/assets/css/theme.min.css">
 
   <script src="/theme/assets/js/customizer.min.js"></script>
+  <script src="/theme/assets/js/theme.min.js"></script>
 
   <style>
     .compact-header {
@@ -128,6 +129,7 @@
     .icon-btn i {
       font-size: 18px
     }
+
     .icon-btn:hover {
       background: #f5f5f5;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
@@ -232,6 +234,7 @@
         display: none !important
       }
     }
+
     .compact-logo {
       /* height: 36px !important; */
       width: 25% !important;
@@ -242,6 +245,31 @@
 
     .compact-logo:hover {
       transform: scale(1.03);
+    }
+
+    .mobile-category-item {
+      transition: background 0.2s ease;
+    }
+
+    .mobile-category-item:hover {
+      background: #f5f5f5;
+    }
+
+    .mobile-category-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f1f3f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mobile-category-icon img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
     }
   </style>
 
@@ -254,8 +282,8 @@
       <div class="d-flex align-items-center w-100">
 
         <div class="col-lg-3 d-flex align-items-center">
-          <button class="navbar-toggler compact-nav-toggler me-3" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
-            style="border: 2px solid var(--bs-border-color); border-radius: 8px; padding: 6px 10px;">
+          <button class="navbar-toggler d-lg-none compact-nav-toggler me-3" data-bs-toggle="offcanvas"
+            data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon" style="font-size:1.4rem;"></span>
           </button>
 
@@ -324,4 +352,75 @@
 
       </div>
     </div>
+    <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="navbarNav">
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title">
+          <img src="/images/L3.png" style="height:32px">
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+      </div>
+
+      <div class="offcanvas-body">
+
+        <ul class="navbar-nav gap-3">
+
+          <li class="nav-item">
+            <a class="nav-link fw-semibold" href="/">Home</a>
+          </li>
+
+          <li class="nav-item">
+
+            <button class="nav-link w-100 text-start fw-semibold d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse" data-bs-target="#mobileCategories" aria-expanded="false">
+              <span>Categories</span>
+              <i class="ci-chevron-down fs-sm"></i>
+            </button>
+
+            <div class="collapse mt-2 ps-2" id="mobileCategories">
+
+              <% if(result && result[0]){ for(let i=0;i<result[0].length;i++){ %>
+                <a href="/category?id=<%= result[0][i].id %>"
+                  class="d-flex align-items-center gap-3 py-2 px-2 rounded text-decoration-none text-dark mobile-category-item">
+                  <span class="mobile-category-icon">
+                    <img src="/images/<%= result[0][i].image %>" alt="" />
+                  </span>
+                  <span class="fw-medium">
+                    <%= result[0][i].name %>
+                  </span>
+                </a>
+                <% }} %>
+
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link fw-semibold" href="#">boAt Personalisation</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link fw-semibold" href="#">Corporate Orders</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link fw-semibold" href="#">Gifting Store</a>
+          </li>
+
+          <li class="nav-item border-top pt-3 mt-3">
+            <% if(login==true){ %>
+              <a href="/myaccount" class="btn btn-outline-secondary w-100 rounded-pill">
+                <i class="ci-user me-2"></i> My Account
+              </a>
+              <% } else { %>
+                <a href="/login" class="btn btn-outline-secondary w-100 rounded-pill">
+                  <i class="ci-user me-2"></i> Login
+                </a>
+                <% } %>
+          </li>
+
+        </ul>
+
+
+      </div>
+    </div>
+
   </header>
