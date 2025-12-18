@@ -45,7 +45,6 @@
         width: 100%;
         height: auto;
         object-fit: cover;
-        border-radius: 10px;
       }
 
       .swiper {
@@ -135,7 +134,7 @@
     </style>
 
     <!-- Banner Section with Safety Checks -->
-    <section class="container-fluid pt-4">
+    <section class="container-fluid px-0">
       <div class="row">
         <div class="col-12">
           <% if (result && result[1] && Array.isArray(result[1])) { %>
@@ -205,342 +204,731 @@
     </section>
 
     <!-- Features -->
-    <section class="container pt-5 mt-1 mt-sm-3 mt-lg-4">
-      <div class="row row-cols-2 row-cols-md-4 g-4">
-        <div class="col">
-          <div class="d-flex flex-column flex-xxl-row align-items-center">
-            <div class="d-flex text-dark-emphasis bg-body-tertiary rounded-circle p-4 mb-3 mb-xxl-0">
-              <i class="ci-delivery fs-2 m-xxl-1"></i>
+    <section class="container-fluid px-0">
+      <div class="row" style="
+    background:#f6f7f8;
+    border-radius:12px;
+    padding:20px 10px;
+    text-align:center;
+  ">
+
+        <div class="col-6 col-md-3">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+            <div style="
+          width:56px;
+          height:56px;
+          border-radius:50%;
+          background:#ffffff;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+        ">
+              <i class="ci-delivery" style="font-size:26px;"></i>
             </div>
-            <div class="text-center text-xxl-start ps-xxl-3">
-              <h3 class="h6 mb-1">Free Shipping &amp; Returns</h3>
-            </div>
+            <h3 style="font-size:14px;font-weight:600;margin:0;">
+              Free Shipping &amp; Returns
+            </h3>
           </div>
         </div>
 
-        <div class="col">
-          <div class="d-flex flex-column flex-xxl-row align-items-center">
-            <div class="d-flex text-dark-emphasis bg-body-tertiary rounded-circle p-4 mb-3 mb-xxl-0">
-              <i class="ci-credit-card fs-2 m-xxl-1"></i>
+        <div class="col-6 col-md-3">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+            <div style="
+          width:56px;
+          height:56px;
+          border-radius:50%;
+          background:#ffffff;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+        ">
+              <i class="ci-credit-card" style="font-size:26px;"></i>
             </div>
-            <div class="text-center text-xxl-start ps-xxl-3">
-              <h3 class="h6 mb-1">Secure Payment</h3>
-            </div>
+            <h3 style="font-size:14px;font-weight:600;margin:0;">
+              Secure Payment
+            </h3>
           </div>
         </div>
 
-        <div class="col">
-          <div class="d-flex flex-column flex-xxl-row align-items-center">
-            <div class="d-flex text-dark-emphasis bg-body-tertiary rounded-circle p-4 mb-3 mb-xxl-0">
-              <i class="ci-refresh-cw fs-2 m-xxl-1"></i>
+        <div class="col-6 col-md-3">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+            <div style="
+          width:56px;
+          height:56px;
+          border-radius:50%;
+          background:#ffffff;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+        ">
+              <i class="ci-refresh-cw" style="font-size:26px;"></i>
             </div>
-            <div class="text-center text-xxl-start ps-xxl-3">
-              <h3 class="h6 mb-1">1 Year Warranty</h3>
-            </div>
+            <h3 style="font-size:14px;font-weight:600;margin:0;">
+              1 Year Warranty
+            </h3>
           </div>
         </div>
 
-        <div class="col">
-          <div class="d-flex flex-column flex-xxl-row align-items-center">
-            <div class="d-flex text-dark-emphasis bg-body-tertiary rounded-circle p-4 mb-3 mb-xxl-0">
-              <i class="ci-chat fs-2 m-xxl-1"></i>
+        <div class="col-6 col-md-3">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+            <div style="
+          width:56px;
+          height:56px;
+          border-radius:50%;
+          background:#ffffff;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+        ">
+              <i class="ci-chat" style="font-size:26px;"></i>
             </div>
-            <div class="text-center text-xxl-start ps-xxl-3">
-              <h3 class="h6 mb-1">Customer Support</h3>
-              <p class="fs-sm mb-0">Friendly 24/7 Support</p>
-            </div>
+            <h3 style="font-size:14px;font-weight:600;margin:0;">
+              24/7 Customer Support
+            </h3>
+            <!-- <p style="font-size:12px;color:#6c757d;margin:0;">
+              Friendly 24/7 Support
+            </p> -->
           </div>
         </div>
+
       </div>
     </section>
+
 
     <!-- New arrivals with Safety Checks -->
-    <section class="container pt-5 mt-1 mt-sm-2 mt-md-3 mt-lg-4">
-      <h2 class="h3 pb-2 pb-sm-3">New Arrivals</h2>
-      <div class="row">
-        <% if (result && result[3] && result[3].length> 0) { %>
-          <!-- Banner -->
-          <div class="col-lg-4" data-bs-theme="dark">
-            <div
-              class="d-flex flex-column align-items-center justify-content-end h-100 text-center overflow-hidden rounded-5 px-4 px-lg-3 pt-4 pb-5"
-              style="background: #1d2c41 url(/theme/assets/img/home/electronics/banner/background.jpg) center/cover no-repeat">
-              <div class="ratio animate-up-down position-relative z-2 me-lg-4"
-                style="max-width: 320px; margin-bottom: -0%; --cz-aspect-ratio: calc(690 / 640 * 100%)">
-                <img src="https://fikaonline.in/images/<%= result[3][0].image || '' %>"
-                  alt="<%= result[3][0].name || 'Product' %>">
-              </div>
-              <p class="text-body fw-medium mb-4">
-                <%= result[3][0].name || 'Featured Product' %>
-              </p>
-              <a class="btn btn-sm btn-primary" href="/product?id=<%= result[3][0].id || '' %>">
-                Rs. <%= result[3][0].net_amount || '0' %>
-                  <i class="ci-arrow-up-right fs-base ms-1 me-n1"></i>
-              </a>
-            </div>
-          </div>
+    <section class="container-fluid px-4 px-md-5" style="margin-top:80px;">
 
-          <!-- Product list -->
-          <div class="col-sm-6 col-lg-4 d-flex flex-column gap-3 pt-4 py-lg-4">
-            <% for(let i=0; i < Math.min(4, result[3].length); i++){ %>
-              <div class="position-relative animate-underline d-flex align-items-center ps-xl-3">
-                <div class="ratio ratio-1x1 flex-shrink-0" style="width: 110px">
-                  <img src="https://www.fikaonline.in/images/<%= result[3][i].image || '' %>"
-                    alt="<%= result[3][i].name || 'Product' %>">
-                </div>
-                <div class="w-100 min-w-0 ps-2 ps-sm-3">
-                  <h4 class="mb-2">
-                    <a class="stretched-link d-block fs-sm fw-medium text-truncate"
-                      href="/product?id=<%= result[3][i].id || '' %>">
-                      <span class="animate-target">
-                        <%= result[3][i].name || 'Product' %>
-                      </span>
-                    </a>
-                  </h4>
-                  <div class="h5 mb-0">Rs.<%= result[3][i].net_amount || '0' %>
-                  </div>
-                  <button class="blue-cart-btn mt-2" data-id="<%= result[3][i].id %>"
-                    onclick="addToCart(this.dataset.id)">
-                    <i class="ci-shopping-cart"></i>
-                    Add to Cart
-                  </button>
-                </div>
-              </div>
-              <% } %>
-          </div>
+      <!-- HEADER -->
+      <div style="
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+  ">
+        <h2 style="font-weight:700;margin:0;">New Arrivals</h2>
 
-          <!-- Product list -->
-          <div class="col-sm-6 col-lg-4 d-flex flex-column gap-3 pt-3 py-lg-4">
-            <% for(let i=4; i < Math.min(8, result[3].length); i++){ %>
-              <div class="position-relative animate-underline d-flex align-items-center ps-xl-3">
-                <div class="ratio ratio-1x1 flex-shrink-0" style="width: 110px">
-                  <img src="https://www.fikaonline.in/images/<%= result[3][i].image || '' %>" width="110"
-                    alt="<%= result[3][i].name || 'Product' %>">
-                </div>
-                <div class="w-100 min-w-0 ps-2 ps-sm-3">
-                  <h4 class="mb-2">
-                    <a class="stretched-link d-block fs-sm fw-medium text-truncate"
-                      href="/product?id=<%= result[3][i].id || '' %>">
-                      <span class="animate-target">
-                        <%= result[3][i].name || 'Product' %>
-                      </span>
-                    </a>
-                  </h4>
-                  <div class="h5 mb-0">Rs.<%= result[3][i].net_amount || '0' %>
-                  </div>
-                  <button class="blue-cart-btn mt-2" data-id="<%= result[3][i].id %>"
-                    onclick="addToCart(this.dataset.id)">
-                    <i class="ci-shopping-cart"></i>
-                    Add to Cart
-                  </button>
-                </div>
-              </div>
-              <% } %>
-          </div>
-          <% } else { %>
-            <div class="col-12 text-center py-5">
-              <p class="text-muted">No new arrivals at the moment</p>
-            </div>
-            <% } %>
-      </div>
-    </section>
-
-    <!-- Trending products with Safety Checks -->
-    <section class="container pt-5 mt-2 mt-sm-4 mt-lg-4">
-      <div class="d-flex align-items-center justify-content-between border-bottom pb-3 pb-md-4">
-        <h2 class="h3 mb-0">Trending Products</h2>
+        <a href="/products" style="
+         font-size:14px;
+         font-weight:600;
+         color:#0d6efd;
+         text-decoration:none;
+       ">
+          View More →
+        </a>
       </div>
 
-      <% if (result && result[4] && result[4].length> 0) { %>
-        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-4 g-4 pt-4">
-          <% for(let i=0; i < Math.min(8, result[4].length); i++){ %>
-            <div class="col-lg-4">
-              <div class="product-card animate-underline hover-effect-opacity bg-body rounded">
-                <div class="position-relative">
-                  <% if (result[4][i].discount && result[4][i].discount> 0) { %>
-                    <span class="badge bg-danger position-absolute top-0 start-0 mt-2 ms-2 mt-lg-3 ms-lg-3">
-                      -<%= result[4][i].discount %>%
-                    </span>
+      <% if (result && result[3] && result[3].length> 0) { %>
+
+        <!-- GRID ROW -->
+        <div class="row g-3">
+
+          <% result[3].slice(0, 6).forEach(product=> { %>
+
+            <!-- COL-2 -->
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+
+              <!-- CARD -->
+              <div style="
+        width:100%;
+        background:#ffffff;
+        border-radius:16px;
+        border:2px dashed #d0d0d0;
+        overflow:hidden;
+        height:100%;
+      ">
+
+                <!-- IMAGE -->
+                <img src="https://www.fikaonline.in/images/<%= product.image %>" alt="<%= product.name %>" style="
+               width:100%;
+               height:160px;
+               object-fit:contain;
+               padding:12px;
+               background:#f8f8f8;
+             ">
+
+                <!-- YELLOW BAR -->
+                <div style="
+          background:#ffc107;
+          font-size:12px;
+          font-weight:600;
+          text-align:center;
+          padding:5px 0;
+        ">
+                  <%= product.spec || 'High Playback' %>
+                </div>
+
+                <!-- CONTENT -->
+                <div style="padding:10px 12px;">
+
+                  <!-- NAME -->
+                  <a href="/product?id=<%= product.id %>" style="
+               text-decoration:none;
+               color:#000;
+               display:block;
+               font-size:14px;
+               font-weight:600;
+               white-space:nowrap;
+               overflow:hidden;
+               text-overflow:ellipsis;
+               margin-bottom:6px;
+             ">
+                    <%= product.name %>
+                  </a>
+
+                  <!-- RATING -->
+                  <div style="
+            display:inline-flex;
+            align-items:center;
+            gap:4px;
+            font-size:12px;
+            border:1px solid #ddd;
+            border-radius:12px;
+            padding:2px 6px;
+            margin-bottom:6px;
+          ">
+                    ⭐ <%= product.rating || '4.8' %>
+                  </div>
+
+                  <% if(product.mrp){ %>
+                    <div style="font-size:12px;color:#6c757d;margin-bottom:6px;">
+                      <del>₹<%= product.mrp %></del>
+                      <span style="color:#198754;font-weight:600;margin-left:4px;">
+                        <%= product.discount %>% off
+                      </span>
+                    </div>
                     <% } %>
 
-                      <a class="d-block rounded-top overflow-hidden p-3 p-sm-4"
-                        href="/product?id=<%= result[4][i].id || '' %>" style="background-color: whitesmoke;">
-                        <div class="ratio" style="--cz-aspect-ratio: calc(240 / 258 * 100%)">
-                          <img src="https://www.fikaonline.in/images/<%= result[4][i].image || '' %>"
-                            alt="<%= result[4][i].name || 'Product' %>">
-                        </div>
-                      </a>
-                </div>
-
-                <div class="w-100 min-w-0 px-1 pb-2 px-sm-3 pb-sm-3" style="background-color: whitesmoke;">
-                  <h3 class="pb-1 mb-2">
-                    <a class="d-block fs-sm fw-medium text-truncate" href="/product?id=<%= result[4][i].id || '' %>">
-                      <span class="animate-target productname">
-                        <%= result[4][i].name || 'Product' %>
-                      </span>
-                    </a>
-                  </h3>
-
-                  <div class="d-flex align-items-center justify-content-between">
-                    <div class="h5 lh-1 mb-0 productprice">
-                      Rs.<%= result[4][i].net_amount || '0' %>
-                        <% if (result[4][i].price) { %>
-                          <del class="text-body-tertiary fs-sm fw-normal">
-                            Rs.<%= result[4][i].price %>
-                          </del>
-                          <% } %>
-                    </div>
-
-                    <button class="blue-cart-btn mt-2" data-id="<%= result[3][i].id %>"
-                      onclick="addToCart(this.dataset.id)">
-                      <i class="ci-shopping-cart"></i>
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <% } %>
-        </div>
-        <% } else { %>
-          <div class="row">
-            <div class="col-12 text-center py-5">
-              <p class="text-muted">No trending products available</p>
-            </div>
-          </div>
-          <% } %>
-    </section>
-
-    <!-- Sale Banner with Safety Checks -->
-    <section class="container pt-5 mt-sm-2 mt-md-3 mt-lg-4">
-      <% if (result && result[7] && result[7].length> 0 && result[7][0]) { %>
-        <div class="row g-0">
-          <div class="col-md-3 mb-n4 mb-md-0">
-            <div class="position-relative d-flex flex-column align-items-center justify-content-center h-100 py-5">
-              <div class="position-absolute top-0 start-0 w-100 h-100 d-none d-md-block">
-                <span class="position-absolute top-0 start-0 w-100 h-100 rounded-5"
-                  style="background-color: #accbee"></span>
-              </div>
-
-              <div class="position-relative z-1 display-1 text-dark-emphasis text-nowrap mb-0">
-                <%= result[7][0].amount || '0' %>
-                  <span class="d-inline-block ms-n2">
-                    <% if (result[7][0].type=='Flat' ) { %>
-                      <span class="d-block fs-1">Rs.</span>
-                      <% } else { %>
-                        <span class="d-block fs-1">%</span>
-                        <% } %>
-                          <span class="d-block fs-5">OFF</span>
-                  </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-9 position-relative">
-            <div class="position-relative">
-              <span class="position-absolute top-0 start-0 w-100 h-100 rounded-5"
-                style="background: linear-gradient(90deg, #accbee 0%, #e7f0fd 100%)"></span>
-
-              <div class="row align-items-center position-relative z-2">
-                <div class="col-md-6 mb-3 mb-md-0">
-                  <div class="text-center text-md-start py-md-5 px-4 ps-md-5 pe-md-0 me-md-n5">
-                    <h3 class="text-uppercase fw-bold ps-xxl-3 pb-2 mb-1">
-                      <%= result[7][0].title || 'Special Offer' %>
-                    </h3>
-                    <p class="text-body-emphasis ps-xxl-3 mb-0">
-                      Use code
-                      <span class="d-inline-block fw-semibold bg-white text-dark rounded-pill py-1 px-2">
-                        <%= result[7][0].name || 'OFFER' %>
-                      </span>
-                      to get best offer
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <% } else { %>
-          <div class="text-center py-5">
-            <h4>Special Offers Coming Soon!</h4>
-          </div>
-          <% } %>
-    </section>
-
-    <!-- Special offers with Safety Checks -->
-    <section class="container pt-5 mt-2 mt-sm-3 mt-lg-4">
-      <div class="d-flex align-items-start align-items-md-center justify-content-between border-bottom pb-3 pb-md-4">
-        <h2 class="h3 pe-3 me-3 mb-md-0">Special Offers</h2>
-      </div>
-
-      <% if (result && result[8] && result[8].length> 0) { %>
-        <div class="position-relative mx-md-1">
-          <!-- Slider -->
-          <div class="swiper py-4 px-sm-3" data-swiper='{
-          "slidesPerView": 2,
-          "spaceBetween": 20,
-          "loop": true,
-          "breakpoints": {
-            "768": {
-              "slidesPerView": 3
-            },
-            "992": {
-              "slidesPerView": 4
-            }
-          }
-        }'>
-            <div class="swiper-wrapper">
-              <% for(let i=0; i < Math.min(10, result[8].length); i++) { %>
-                <div class="swiper-slide">
-                  <div class="product-card animate-underline hover-effect-opacity bg-body rounded">
-                    <div class="position-relative">
-                      <a class="d-block rounded-top overflow-hidden p-3 p-sm-4"
-                        href="/product?id=<%= result[8][i].id || '' %>">
-                        <div class="ratio" style="--cz-aspect-ratio: calc(240 / 258 * 100%)">
-                          <img src="https://www.fikaonline.in/images/<%= result[8][i].image || '' %>"
-                            alt="<%= result[8][i].name || 'Product' %>">
-                        </div>
-                      </a>
-                    </div>
-
-                    <div class="w-100 min-w-0 px-1 pb-2 px-sm-3 pb-sm-3">
-                      <h3 class="pb-1 mb-2">
-                        <a class="d-block fs-sm fw-medium text-truncate"
-                          href="/product?id=<%= result[8][i].id || '' %>">
-                          <span class="animate-target">
-                            <%= result[8][i].name || 'Product' %>
-                          </span>
-                        </a>
-                      </h3>
-
-                      <div class="d-flex align-items-center justify-content-between pb-2 mb-1">
-                        <div class="h5 lh-1 mb-0">
-                          Rs.<%= result[8][i].net_amount || '0' %>
-                            <% if (result[8][i].price) { %>
-                              <del class="text-body-tertiary fs-sm fw-normal">
-                                Rs.<%= result[8][i].price %>
-                              </del>
-                              <% } %>
+                      <!-- PRICE + CART -->
+                      <div style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-top:6px;
+          ">
+                        <div style="font-size:18px;font-weight:700;">
+                          ₹<%= product.net_amount %>
                         </div>
 
-                        <button class="blue-cart-btn mt-2" data-id="<%= result[3][i].id %>"
-                          onclick="addToCart(this.dataset.id)">
+                        <button onclick="addToCart('<%= product.id %>')" style="
+                width:34px;
+                height:34px;
+                border-radius:50%;
+                border:1px solid #0d6efd;
+                background:#ffffff;
+                color:#0d6efd;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+              ">
                           <i class="ci-shopping-cart"></i>
-                          Add to Cart
                         </button>
                       </div>
-                    </div>
-                  </div>
+
                 </div>
-                <% } %>
+
+              </div>
             </div>
-          </div>
+
+            <% }) %>
+
         </div>
+
         <% } else { %>
-          <div class="text-center py-5">
-            <p class="text-muted">Check back soon for special offers!</p>
+          <div style="text-align:center;padding:40px;color:#6c757d;">
+            No new arrivals at the moment
           </div>
           <% } %>
+
     </section>
+
+
+    <!-- Trending products with Safety Checks -->
+    <section class="container-fluid px-4 px-md-5" style="margin-top:80px;">
+
+  <!-- HEADER -->
+  <div style="
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-bottom:20px;
+  ">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <h2 style="font-weight:700;margin:0;">Trending Products</h2>
+    </div>
+
+    <!-- CATEGORY FILTER (TOP 5) -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button onclick="filterTrending('all')"
+        style="
+          padding:6px 14px;
+          border-radius:20px;
+          border:1px solid #0d6efd;
+          background:#0d6efd;
+          color:#fff;
+          font-size:13px;
+          font-weight:500;
+        ">
+        All
+      </button>
+
+      <% for(let c = 0; c < Math.min(5, result[0].length); c++) { %>
+        <button onclick="filterTrending('<%= String(result[0][c].id) %>')"
+          style="
+            padding:6px 14px;
+            border-radius:20px;
+            border:1px solid #ddd;
+            background:#ffffff;
+            font-size:13px;
+            font-weight:500;
+          ">
+          <%= result[0][c].name %>
+        </button>
+      <% } %>
+    </div>
+  </div>
+
+  <% if (result && result[4] && result[4].length > 0) { %>
+
+  <!-- PRODUCTS GRID -->
+  <div class="row g-3" id="trendingGrid">
+
+    <% result[4].forEach(product => { %>
+
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2 trending-item"
+         data-category="<%= String(product.category_id || product.category || 'all') %>">
+
+      <!-- CARD -->
+      <div style="
+        width:100%;
+        background:#ffffff;
+        border-radius:16px;
+        border:2px dashed #d0d0d0;
+        overflow:hidden;
+        height:100%;
+      ">
+
+        <!-- IMAGE -->
+        <a href="/product?id=<%= product.id %>" style="text-decoration:none;">
+          <img src="https://www.fikaonline.in/images/<%= product.image %>"
+               alt="<%= product.name %>"
+               style="
+                 width:100%;
+                 height:160px;
+                 object-fit:contain;
+                 padding:12px;
+                 background:#f8f8f8;
+               ">
+        </a>
+
+        <!-- YELLOW BAR -->
+        <div style="
+          background:#ffc107;
+          font-size:12px;
+          font-weight:600;
+          text-align:center;
+          padding:5px 0;
+        ">
+          <%= product.spec || 'High Playback' %>
+        </div>
+
+        <!-- CONTENT -->
+        <div style="padding:10px 12px;">
+
+          <!-- NAME -->
+          <a href="/product?id=<%= product.id %>"
+             style="
+               text-decoration:none;
+               color:#000;
+               display:block;
+               font-size:14px;
+               font-weight:600;
+               white-space:nowrap;
+               overflow:hidden;
+               text-overflow:ellipsis;
+               margin-bottom:6px;
+             ">
+            <%= product.name %>
+          </a>
+
+          <!-- RATING -->
+          <div style="
+            display:inline-flex;
+            align-items:center;
+            gap:4px;
+            font-size:12px;
+            border:1px solid #ddd;
+            border-radius:12px;
+            padding:2px 6px;
+            margin-bottom:6px;
+          ">
+            ⭐ <%= product.rating || '4.8' %>
+          </div>
+
+          <% if(product.price){ %>
+          <div style="font-size:12px;color:#6c757d;margin-bottom:6px;">
+            <del>₹<%= product.price %></del>
+            <span style="color:#198754;font-weight:600;margin-left:4px;">
+              <%= product.discount || 0 %>% off
+            </span>
+          </div>
+          <% } %>
+
+          <!-- PRICE + CART -->
+          <div style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-top:6px;
+          ">
+            <div style="font-size:18px;font-weight:700;">
+              ₹<%= product.net_amount %>
+            </div>
+
+            <button onclick="addToCart('<%= product.id %>')"
+              style="
+                width:34px;
+                height:34px;
+                border-radius:50%;
+                border:1px solid #0d6efd;
+                background:#ffffff;
+                color:#0d6efd;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+              ">
+              <i class="ci-shopping-cart"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <% }) %>
+
+  </div>
+
+  <% } else { %>
+    <div style="text-align:center;padding:40px;color:#6c757d;">
+      No trending products available
+    </div>
+  <% } %>
+
+</section>
+<script>
+  function filterTrending(categoryId) {
+    const items = document.querySelectorAll('.trending-item');
+    let visibleCount = 0;
+
+    items.forEach(item => {
+      // reset first
+      item.style.display = 'none';
+
+      const itemCat = item.getAttribute('data-category');
+
+      if (categoryId === 'all' || itemCat === categoryId) {
+        if (visibleCount < 6) {
+          item.style.display = 'block';
+          visibleCount++;
+        }
+      }
+    });
+  }
+
+  // INITIAL LOAD – SHOW FIRST 6
+  document.addEventListener('DOMContentLoaded', function () {
+    filterTrending('all');
+  });
+</script>
+
+
+    <!-- Sale Banner with Safety Checks -->
+    <section class="container-fluid  px-4 px-md-5" style="margin-top:80px;">
+
+  <% if (result && result[7] && result[7].length > 0 && result[7][0]) { %>
+
+  <div style="
+    width:100%;
+    border-radius:18px;
+    overflow:hidden;
+    background:
+      linear-gradient(90deg,
+        rgba(0,0,0,0.85) 0%,
+        rgba(120,0,0,0.85) 55%,
+        rgba(0,0,0,0.9) 100%
+      );
+    position:relative;
+  ">
+
+    <!-- INNER -->
+    <div style="
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:28px 32px;
+      min-height:180px;
+      color:#ffffff;
+      position:relative;
+      z-index:2;
+      flex-wrap:wrap;
+    ">
+
+      <!-- LEFT CONTENT -->
+      <div style="max-width:520px;">
+
+        <!-- BRAND STYLE TITLE -->
+        <div style="
+          font-size:42px;
+          font-weight:800;
+          letter-spacing:1px;
+          line-height:1;
+          margin-bottom:8px;
+        ">
+          <%= result[7][0].title || 'SPECIAL OFFER' %>
+        </div>
+
+        <!-- SUB TEXT -->
+        <div style="
+          font-size:14px;
+          letter-spacing:2px;
+          text-transform:uppercase;
+          opacity:0.85;
+          margin-bottom:14px;
+        ">
+          Premium Audio Experience
+        </div>
+
+        <!-- COUPON -->
+        <div style="font-size:15px;">
+          Use code
+          <span style="
+            display:inline-block;
+            background:#ffffff;
+            color:#000;
+            font-weight:700;
+            border-radius:20px;
+            padding:4px 14px;
+            margin-left:6px;
+          ">
+            <%= result[7][0].name || 'OFFER' %>
+          </span>
+          to get best deal
+        </div>
+
+      </div>
+
+      <!-- RIGHT DISCOUNT -->
+      <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        min-width:160px;
+        text-align:center;
+      ">
+        <div style="
+          font-size:56px;
+          font-weight:900;
+          line-height:1;
+        ">
+          <%= result[7][0].amount || '0' %>
+        </div>
+
+        <div style="margin-left:6px;text-align:left;">
+          <% if (result[7][0].type === 'Flat') { %>
+            <div style="font-size:22px;font-weight:700;">Rs.</div>
+          <% } else { %>
+            <div style="font-size:22px;font-weight:700;">%</div>
+          <% } %>
+          <div style="font-size:14px;letter-spacing:1px;">OFF</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SOFT GLOW OVERLAY -->
+    <div style="
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 70% 50%,
+          rgba(255,0,0,0.35),
+          transparent 60%
+        );
+      z-index:1;
+    "></div>
+
+  </div>
+
+  <% } else { %>
+
+  <div style="text-align:center;padding:40px;">
+    <h4>Special Offers Coming Soon!</h4>
+  </div>
+
+  <% } %>
+
+</section>
+
+
+    <!-- Special offers with Safety Checks -->
+    <section class="container-fluid px-4 px-md-5" style="margin-top:80px;">
+
+  <!-- HEADER -->
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
+    <h2 style="font-weight:700;margin:0;">Special Offers</h2>
+  </div>
+
+  <% if (result && result[8] && result[8].length > 0) { %>
+
+  <div class="position-relative">
+
+    <!-- SWIPER -->
+    <div class="swiper py-3"
+      data-swiper='{
+        "slidesPerView": 2,
+        "spaceBetween": 16,
+        "loop": true,
+        "breakpoints": {
+          "768": { "slidesPerView": 3 },
+          "992": { "slidesPerView": 4 },
+          "1200": { "slidesPerView": 6 }
+        }
+      }'>
+
+      <div class="swiper-wrapper">
+
+        <% for(let i = 0; i < Math.min(10, result[8].length); i++) { %>
+
+        <div class="swiper-slide">
+
+          <!-- CARD -->
+          <div style="
+            width:100%;
+            background:#ffffff;
+            border-radius:16px;
+            border:2px dashed #d0d0d0;
+            overflow:hidden;
+            height:100%;
+          ">
+
+            <!-- IMAGE -->
+            <a href="/product?id=<%= result[8][i].id || '' %>" style="text-decoration:none;">
+              <img src="https://www.fikaonline.in/images/<%= result[8][i].image || '' %>"
+                   alt="<%= result[8][i].name || 'Product' %>"
+                   style="
+                     width:100%;
+                     height:160px;
+                     object-fit:contain;
+                     padding:12px;
+                     background:#f8f8f8;
+                   ">
+            </a>
+
+            <!-- YELLOW BAR -->
+            <div style="
+              background:#ffc107;
+              font-size:12px;
+              font-weight:600;
+              text-align:center;
+              padding:5px 0;
+            ">
+              <%= result[8][i].spec || 'Special Deal' %>
+            </div>
+
+            <!-- CONTENT -->
+            <div style="padding:10px 12px;">
+
+              <!-- NAME -->
+              <a href="/product?id=<%= result[8][i].id || '' %>"
+                 style="
+                   text-decoration:none;
+                   color:#000;
+                   display:block;
+                   font-size:14px;
+                   font-weight:600;
+                   white-space:nowrap;
+                   overflow:hidden;
+                   text-overflow:ellipsis;
+                   margin-bottom:6px;
+                 ">
+                <%= result[8][i].name || 'Product' %>
+              </a>
+
+              <!-- RATING (OPTIONAL SAFE) -->
+              <% if (result[8][i].rating) { %>
+              <div style="
+                display:inline-flex;
+                align-items:center;
+                gap:4px;
+                font-size:12px;
+                border:1px solid #ddd;
+                border-radius:12px;
+                padding:2px 6px;
+                margin-bottom:6px;
+              ">
+                ⭐ <%= result[8][i].rating %>
+              </div>
+              <% } %>
+
+              <% if(result[8][i].price){ %>
+              <div style="font-size:12px;color:#6c757d;margin-bottom:6px;">
+                <del>₹<%= result[8][i].price %></del>
+                <% if(result[8][i].discount){ %>
+                <span style="color:#198754;font-weight:600;margin-left:4px;">
+                  <%= result[8][i].discount %>% off
+                </span>
+                <% } %>
+              </div>
+              <% } %>
+
+              <!-- PRICE + CART -->
+              <div style="
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                margin-top:6px;
+              ">
+                <div style="font-size:18px;font-weight:700;">
+                  ₹<%= result[8][i].net_amount || '0' %>
+                </div>
+
+                <button onclick="addToCart('<%= result[8][i].id %>')"
+                  style="
+                    width:34px;
+                    height:34px;
+                    border-radius:50%;
+                    border:1px solid #0d6efd;
+                    background:#ffffff;
+                    color:#0d6efd;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                  ">
+                  <i class="ci-shopping-cart"></i>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <% } %>
+
+      </div>
+    </div>
+
+  </div>
+
+  <% } else { %>
+    <div class="text-center py-5">
+      <p class="text-muted">Check back soon for special offers!</p>
+    </div>
+  <% } %>
+
+</section>
+
   </main>
 
   <%- include ('./footer1.ejs') %>
