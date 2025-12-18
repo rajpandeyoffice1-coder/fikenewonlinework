@@ -372,7 +372,7 @@
                text-overflow:ellipsis;
                margin-bottom:6px;
              ">
-                    <%= product.name %>
+                    <%= (result[3][i].name || 'Product').replace(/["“”]/g, '') %>
                   </a>
 
                   <!-- RATING -->
@@ -547,7 +547,7 @@
                text-overflow:ellipsis;
                margin-bottom:6px;
              ">
-            <%= product.name %>
+            <%= (product.name || 'Product').replace(/["“”]/g, '').trim() %>
           </a>
 
           <!-- RATING -->
@@ -852,7 +852,7 @@
                    text-overflow:ellipsis;
                    margin-bottom:6px;
                  ">
-                <%= result[8][i].name || 'Product' %>
+                <%= (result[8][i].name || 'Product').replace(/["“”]/g, '') %>
               </a>
 
               <!-- RATING (OPTIONAL SAFE) -->
