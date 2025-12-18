@@ -90,19 +90,18 @@
   <style>
     /* ================ ENHANCED HEADER STYLES ================ */
     .compact-header {
-      min-height: 70px !important;
+      min-height: 64px !important;
       padding: 0 !important;
       transition: all 0.3s ease;
     }
     
     /* ================ PREMIUM LOGO DESIGN ================ */
     .compact-logo {
-      height: 90px !important;
-      width: 280px !important;
+      /* height: 36px !important; */
+      width: 25% !important;
+      margin-right: 0 !important;
       object-fit: contain;
-      margin-right: 400px;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-      transition: transform 0.3s ease;
+      filter: none;
     }
     
     .compact-logo:hover {
@@ -499,7 +498,7 @@
 
     @media (max-width: 768px) {
       .compact-header {
-        min-height: 65px !important;
+        min-height: 60px !important;
       }
       
       .compact-logo {
@@ -578,106 +577,235 @@
         </button>
 
         <a href="/" class="navbar-brand p-0">
-          <img src="/images/L3.png" class="compact-logo" alt="Fika Logo">
-        </a>
+            <img src="/images/L3.png" class="compact-logo" alt="Fika Logo">
+          </a>
       </div>
 
+      <style>
+
+    .search-pill {
+      border-radius: 999px;
+      padding-left: 44px;
+      height: 40px;
+      border: 1px solid #e5e7eb;
+      width: 260px
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      transform: translateY(-50%);
+      color: #777
+    }
+        .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #dee2e6 !important;
+      background: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .icon-btn i {
+      font-size: 18px
+    }
+
+    .icon-btn:hover {
+      background: #f5f5f5;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      border-color: #adb5bd !important;
+    }
+
+    .icon-btn:hover i {
+      transform: scale(1.15);
+      animation: iconPulse 0.6s ease;
+    }
+    .compact-btn {
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 50% !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #dee2e6 !important;
+      background: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .compact-btn:hover {
+      background: #f5f5f5;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      border-color: #adb5bd !important;
+    }
+
+    .compact-btn:hover i {
+      transform: scale(1.15);
+      animation: iconPulse 0.6s ease;
+    }
+      </style>
       <!-- CATEGORY + SEARCH -->
       <div class="col-lg-6 d-flex justify-content-center py-2">
-        <div class="d-flex align-items-center gap-3 w-100 justify-content-center">
+        <style>
+            .mega-dropdown {
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 64px;
+              background: #fff;
+              margin-top: 25px;
+              padding: 32px 64px;
+              box-shadow: 0 20px 40px rgba(0, 0, 0, .12);
+              display: none;
+            }
 
-          <!-- CATEGORY BUTTON -->
-          <div class="dropdown d-none d-lg-block" id="categoryDropdown">
-            <button class="btn btn-outline-secondary rounded-pill d-flex align-items-center px-3"
-                    data-bs-toggle="dropdown"
-                    data-bs-trigger="hover"
-                    style="min-width: 140px;">
-              <i class="ci-grid me-2"></i>
-              <span>Categories</span>
-              <i class="ci-chevron-down ms-2 fs-sm"></i>
-            </button>
+            .nav-item.dropdown:hover .mega-dropdown {
+              display: block
+            }
 
-            <!-- MEGA CATEGORY DROPDOWN -->
-            <ul class="dropdown-menu mega-category-dropdown shadow p-0 mt-2">
-              <li class="mega-category-wrapper">
-                <div class="mega-category-grid">
-                  <% for (let i = 0; i < result[0].length; i++) { %>
-                    <a href="/category?id=<%= result[0][i].id %>" class="mega-category-item">
-                      <div class="mega-category-icon">
-                        <img src="/images/<%= result[0][i].image %>"
-                             alt="<%= result[0][i].name %>">
+            .mega-grid {
+              display: grid;
+              grid-template-columns: repeat(5, 1fr);
+              gap: 24px
+            }
+
+            .compact-btn {
+              width: 44px !important;
+              height: 44px !important;
+              border-radius: 50% !important;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              position: relative;
+              overflow: hidden;
+              border: 2px solid #dee2e6 !important;
+              background: rgba(255, 255, 255, 0.9) !important;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            }
+
+            .compact-btn:hover {
+              background: #f5f5f5;
+              box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+              border-color: #adb5bd !important;
+            }
+
+            .compact-btn:hover i {
+              transform: scale(1.15);
+              animation: iconPulse 0.6s ease;
+            }
+
+
+            .mega-card {
+              display: flex;
+              align-items: center;
+              gap: 14px;
+              padding: 14px 16px;
+              border-radius: 14px;
+              background: #fff;
+              text-decoration: none;
+              color: #111;
+              transition: .25s;
+              border: 1px solid #f1f1f1
+            }
+
+            .mega-card:hover {
+              box-shadow: 0 10px 25px rgba(0, 0, 0, .12);
+              transform: translateY(-4px)
+            }
+
+            .mega-icon {
+              width: 56px;
+              height: 56px;
+              border-radius: 50%;
+              background: #f4f4f4;
+              display: flex;
+              align-items: center;
+              justify-content: center
+            }
+
+            .mega-icon img {
+              width: 34px;
+              height: 34px;
+              object-fit: contain
+            }
+
+            .mega-text {
+              font-size: 14px;
+              font-weight: 600
+            }
+
+            @media(max-width:992px) {
+              .mega-dropdown {
+                display: none !important
+              }
+            }
+          </style>
+          <!-- CATEGORY + SEARCH -->
+          <ul class="navbar-nav d-none d-lg-flex flex-row align-items-center gap-4 me-auto">
+
+            <li class="nav-item dropdown position-static">
+              <a class="btn btn-outline-secondary rounded-pill d-flex align-items-center px-3" href="#">
+                Categories <i class="ci-chevron-down fs-xs"></i>
+              </a>
+
+              <div class="mega-dropdown">
+                <div class="mega-grid">
+
+                  <% if(result && result[0]){ for(let i=0;i<result[0].length;i++){ %>
+                    <a href="/category?id=<%= result[0][i].id %>" class="mega-card">
+                      <div class="mega-icon">
+                        <img src="/images/<%= result[0][i].image %>">
                       </div>
-                      <span class="mega-category-text">
+                      <div class="mega-text">
                         <%= result[0][i].name %>
-                      </span>
+                      </div>
                     </a>
-                  <% } %>
+                    <% }} %>
+
                 </div>
-              </li>
-            </ul>
-          </div>
+              </div>
+            </li>
 
-          <!-- SEARCH BAR -->
-          <div class="position-relative" style="max-width:400px;width:100%;">
-            <form action="/search" method="GET">
-              <i class="ci-search position-absolute top-50 translate-middle-y"
-                 style="left:18px;color:#6c757d;font-size:18px;"></i>
-
-              <input type="search"
-                     name="q"
-                     class="form-control rounded-pill search-input-fixed ps-5"
-                     placeholder="Search for speakers, soundbars & more..."
-                     aria-label="Search products">
-            </form>
-          </div>
-
-        </div>
+          </ul>
       </div>
 
       <!-- RIGHT ACTION ICONS -->
       <div class="col-lg-3 d-flex justify-content-end py-2">
-        <div class="icons-container">
+        <div class="d-flex align-items-center gap-3">
 
-          <!-- THEME TOGGLE -->
-          <button class="btn btn-sm btn-outline-secondary compact-btn"
-                  id="themeToggleBtn"
-                  title="Toggle theme"
-                  aria-label="Toggle theme">
-            <i class="ci-moon icon-size-lg" id="themeToggleIcon"></i>
-          </button>
+          <form action="/search" method="GET" class="position-relative d-none d-lg-block">
+            <i class="ci-search search-icon"></i>
+            <input type="search" name="q" class="search-pill" placeholder='Search "Smartwatches"'>
+          </form>
 
-          <!-- ACCOUNT -->
-          <% if (login) { %>
-            <a href="/myaccount" class="btn btn-sm btn-outline-secondary compact-btn" title="My Account" aria-label="My Account">
-              <i class="ci-user icon-size-lg"></i>
-            </a>
-          <% } else { %>
-            <a href="/login" class="btn btn-sm btn-outline-secondary compact-btn" title="Login" aria-label="Login">
-              <i class="ci-user icon-size-lg"></i>
-            </a>
-          <% } %>
-
-          <!-- WISHLIST -->
-          <a href="/view-wishlist"
-             class="btn btn-sm btn-outline-secondary compact-btn d-none d-md-inline-flex"
-             title="Wishlist"
-             aria-label="Wishlist">
-            <i class="ci-heart icon-size-lg"></i>
+          <a href="/view-wishlist" class="btn btn-sm btn-outline-secondary compact-btn d-none d-md-inline-flex">
+            <i class="ci-heart"></i>
           </a>
 
-          <!-- CART -->
-          <button class="btn btn-sm btn-dark compact-btn position-relative"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#shoppingCart"
-                  title="Shopping Cart"
-                  aria-label="Shopping Cart">
-            <i class="ci-shopping-cart icon-size-lg"></i>
-            <% if (cartData.cartItems.length > 0) { %>
-              <span class="badge bg-danger compact-badge position-absolute top-0 start-100 translate-middle">
-                <%= cartData.cartItems.length %>
-              </span>
-            <% } %>
-          </button>
+          <% if(login==true){ %>
+            <a href="/myaccount" class="btn btn-sm btn-outline-secondary compact-btn d-none d-md-inline-flex">
+              <i class="ci-user"></i>
+            </a>
+            <% } else { %>
+              <a href="/login" class="btn btn-sm btn-outline-secondary compact-btn d-none d-md-inline-flex">
+                <i class="ci-user"></i>
+              </a>
+              <% } %>
+
+                <button class="icon-btn position-relative" data-bs-toggle="offcanvas" data-bs-target="#shoppingCart">
+                  <i class="ci-shopping-cart"></i>
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                    <%= cartData && cartData.cartItems ? cartData.cartItems.length : 0 %>
+                  </span>
+                </button>
 
         </div>
       </div>
@@ -698,31 +826,103 @@
     </div>
   </div>
 </header>
+<style>
+  .mobile-category-item {
+      transition: background 0.2s ease;
+    }
 
+    .mobile-category-item:hover {
+      background: #f5f5f5;
+    }
+
+    .mobile-category-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f1f3f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mobile-category-icon img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+</style>
 <!-- NAVIGATION / CATEGORIES -->
-<nav class="offcanvas offcanvas-start" id="navbarNav">
-  <div class="offcanvas-header py-4 border-bottom">
-    <h5 class="h5 mb-0">Browse Categories</h5>
-    <button class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
-  </div>
-
-  <div class="offcanvas-body p-0">
-    <% if (result && result[0]) { %>
-      <div class="list-group list-group-flush">
-        <% for (let i = 0; i < result[0].length; i++) { %>
-          <a href="/category?id=<%= result[0][i].id %>"
-             class="list-group-item list-group-item-action border-0 py-3 d-flex align-items-center hover-bg">
-            <img src="/images/<%= result[0][i].image %>" 
-                 class="me-3 rounded" 
-                 style="width: 32px; height: 32px; object-fit: cover;"
-                 alt="<%= result[0][i].name %>">
-            <span class="fw-medium"><%= result[0][i].name %></span>
-          </a>
-        <% } %>
+<div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="navbarNav">
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title">
+          <img src="/images/L3.png" style="height:32px">
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
       </div>
-    <% } %>
-  </div>
-</nav>
+
+      <div class="offcanvas-body">
+
+        <ul class="navbar-nav gap-3">
+
+          <li class="nav-item">
+            <a class="nav-link fw-semibold" href="/">Home</a>
+          </li>
+
+          <li class="nav-item">
+
+            <button class="nav-link w-100 text-start fw-semibold d-flex justify-content-between align-items-center"
+              data-bs-toggle="collapse" data-bs-target="#mobileCategories" aria-expanded="false">
+              <span>Categories</span>
+              <i class="ci-chevron-down fs-sm"></i>
+            </button>
+
+            <div class="collapse mt-2 ps-2" id="mobileCategories">
+
+              <% if(result && result[0]){ for(let i=0;i<result[0].length;i++){ %>
+                <a href="/category?id=<%= result[0][i].id %>"
+                  class="d-flex align-items-center gap-3 py-2 px-2 rounded text-decoration-none text-dark mobile-category-item">
+                  <span class="mobile-category-icon">
+                    <img src="/images/<%= result[0][i].image %>" alt="" />
+                  </span>
+                  <span class="fw-medium">
+                    <%= result[0][i].name %>
+                  </span>
+                </a>
+                <% }} %>
+
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link fw-semibold" href="#">boAt Personalisation</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link fw-semibold" href="#">Corporate Orders</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link fw-semibold" href="#">Gifting Store</a>
+          </li>
+
+          <li class="nav-item border-top pt-3 mt-3">
+            <% if(login==true){ %>
+              <a href="/myaccount" class="btn btn-outline-secondary w-100 rounded-pill">
+                <i class="ci-user me-2"></i> My Account
+              </a>
+              <% } else { %>
+                <a href="/login" class="btn btn-outline-secondary w-100 rounded-pill">
+                  <i class="ci-user me-2"></i> Login
+                </a>
+                <% } %>
+          </li>
+
+        </ul>
+
+
+      </div>
+    </div>
 
 <script>
   // Dropdown overlay control
