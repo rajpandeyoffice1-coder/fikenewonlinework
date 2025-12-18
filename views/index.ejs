@@ -362,17 +362,17 @@
 
                   <!-- NAME -->
                   <a href="/product?id=<%= product.id %>" style="
-               text-decoration:none;
-               color:#000;
-               display:block;
-               font-size:14px;
-               font-weight:600;
-               white-space:nowrap;
-               overflow:hidden;
-               text-overflow:ellipsis;
-               margin-bottom:6px;
-             ">
-                    <%= (result[3][i].name || 'Product').replace(/["“”]/g, '') %>
+  text-decoration:none;
+  color:#000;
+  display:block;
+  font-size:14px;
+  font-weight:600;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-bottom:6px;
+">
+                    <%= (product.name || 'Product' ).replace(/["“”]/g, '' ) %>
                   </a>
 
                   <!-- RATING -->
@@ -445,21 +445,20 @@
     <!-- Trending products with Safety Checks -->
     <section class="container-fluid px-4 px-md-5" style="margin-top:80px;">
 
-  <!-- HEADER -->
-  <div style="
+      <!-- HEADER -->
+      <div style="
     display:flex;
     flex-direction:column;
     gap:12px;
     margin-bottom:20px;
   ">
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-      <h2 style="font-weight:700;margin:0;">Trending Products</h2>
-    </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <h2 style="font-weight:700;margin:0;">Trending Products</h2>
+        </div>
 
-    <!-- CATEGORY FILTER (TOP 5) -->
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <button onclick="filterTrending('all')"
-        style="
+        <!-- CATEGORY FILTER (TOP 5) -->
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button onclick="filterTrending('all')" style="
           padding:6px 14px;
           border-radius:20px;
           border:1px solid #0d6efd;
@@ -468,12 +467,11 @@
           font-size:13px;
           font-weight:500;
         ">
-        All
-      </button>
+            All
+          </button>
 
-      <% for(let c = 0; c < Math.min(5, result[0].length); c++) { %>
-        <button onclick="filterTrending('<%= String(result[0][c].id) %>')"
-          style="
+          <% for(let c=0; c < Math.min(5, result[0].length); c++) { %>
+            <button onclick="filterTrending('<%= String(result[0][c].id) %>')" style="
             padding:6px 14px;
             border-radius:20px;
             border:1px solid #ddd;
@@ -481,24 +479,24 @@
             font-size:13px;
             font-weight:500;
           ">
-          <%= result[0][c].name %>
-        </button>
-      <% } %>
-    </div>
-  </div>
+              <%= result[0][c].name %>
+            </button>
+            <% } %>
+        </div>
+      </div>
 
-  <% if (result && result[4] && result[4].length > 0) { %>
+      <% if (result && result[4] && result[4].length> 0) { %>
 
-  <!-- PRODUCTS GRID -->
-  <div class="row g-3" id="trendingGrid">
+        <!-- PRODUCTS GRID -->
+        <div class="row g-3" id="trendingGrid">
 
-    <% result[4].forEach(product => { %>
+          <% result[4].forEach(product=> { %>
 
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 trending-item"
-         data-category="<%= String(product.category_id || product.category || 'all') %>">
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 trending-item"
+              data-category="<%= String(product.category_id || product.category || 'all') %>">
 
-      <!-- CARD -->
-      <div style="
+              <!-- CARD -->
+              <div style="
         width:100%;
         background:#ffffff;
         border-radius:16px;
@@ -507,36 +505,33 @@
         height:100%;
       ">
 
-        <!-- IMAGE -->
-        <a href="/product?id=<%= product.id %>" style="text-decoration:none;">
-          <img src="https://www.fikaonline.in/images/<%= product.image %>"
-               alt="<%= product.name %>"
-               style="
+                <!-- IMAGE -->
+                <a href="/product?id=<%= product.id %>" style="text-decoration:none;">
+                  <img src="https://www.fikaonline.in/images/<%= product.image %>" alt="<%= product.name %>" style="
                  width:100%;
                  height:160px;
                  object-fit:contain;
                  padding:12px;
                  background:#f8f8f8;
                ">
-        </a>
+                </a>
 
-        <!-- YELLOW BAR -->
-        <div style="
+                <!-- YELLOW BAR -->
+                <div style="
           background:#ffc107;
           font-size:12px;
           font-weight:600;
           text-align:center;
           padding:5px 0;
         ">
-          <%= product.spec || 'High Playback' %>
-        </div>
+                  <%= product.spec || 'High Playback' %>
+                </div>
 
-        <!-- CONTENT -->
-        <div style="padding:10px 12px;">
+                <!-- CONTENT -->
+                <div style="padding:10px 12px;">
 
-          <!-- NAME -->
-          <a href="/product?id=<%= product.id %>"
-             style="
+                  <!-- NAME -->
+                  <a href="/product?id=<%= product.id %>" style="
                text-decoration:none;
                color:#000;
                display:block;
@@ -547,11 +542,11 @@
                text-overflow:ellipsis;
                margin-bottom:6px;
              ">
-            <%= (product.name || 'Product').replace(/["“”]/g, '').trim() %>
-          </a>
+                    <%= (product.name || 'Product' ).replace(/["“”]/g, '' ).trim() %>
+                  </a>
 
-          <!-- RATING -->
-          <div style="
+                  <!-- RATING -->
+                  <div style="
             display:inline-flex;
             align-items:center;
             gap:4px;
@@ -561,31 +556,30 @@
             padding:2px 6px;
             margin-bottom:6px;
           ">
-            ⭐ <%= product.rating || '4.8' %>
-          </div>
+                    ⭐ <%= product.rating || '4.8' %>
+                  </div>
 
-          <% if(product.price){ %>
-          <div style="font-size:12px;color:#6c757d;margin-bottom:6px;">
-            <del>₹<%= product.price %></del>
-            <span style="color:#198754;font-weight:600;margin-left:4px;">
-              <%= product.discount || 0 %>% off
-            </span>
-          </div>
-          <% } %>
+                  <% if(product.price){ %>
+                    <div style="font-size:12px;color:#6c757d;margin-bottom:6px;">
+                      <del>₹<%= product.price %></del>
+                      <span style="color:#198754;font-weight:600;margin-left:4px;">
+                        <%= product.discount || 0 %>% off
+                      </span>
+                    </div>
+                    <% } %>
 
-          <!-- PRICE + CART -->
-          <div style="
+                      <!-- PRICE + CART -->
+                      <div style="
             display:flex;
             align-items:center;
             justify-content:space-between;
             margin-top:6px;
           ">
-            <div style="font-size:18px;font-weight:700;">
-              ₹<%= product.net_amount %>
-            </div>
+                        <div style="font-size:18px;font-weight:700;">
+                          ₹<%= product.net_amount %>
+                        </div>
 
-            <button onclick="addToCart('<%= product.id %>')"
-              style="
+                        <button onclick="addToCart('<%= product.id %>')" style="
                 width:34px;
                 height:34px;
                 border-radius:50%;
@@ -596,59 +590,59 @@
                 align-items:center;
                 justify-content:center;
               ">
-              <i class="ci-shopping-cart"></i>
-            </button>
-          </div>
+                          <i class="ci-shopping-cart"></i>
+                        </button>
+                      </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <% }) %>
 
         </div>
 
-      </div>
-    </div>
+        <% } else { %>
+          <div style="text-align:center;padding:40px;color:#6c757d;">
+            No trending products available
+          </div>
+          <% } %>
 
-    <% }) %>
+    </section>
+    <script>
+      function filterTrending(categoryId) {
+        const items = document.querySelectorAll('.trending-item');
+        let visibleCount = 0;
 
-  </div>
+        items.forEach(item => {
+          // reset first
+          item.style.display = 'none';
 
-  <% } else { %>
-    <div style="text-align:center;padding:40px;color:#6c757d;">
-      No trending products available
-    </div>
-  <% } %>
+          const itemCat = item.getAttribute('data-category');
 
-</section>
-<script>
-  function filterTrending(categoryId) {
-    const items = document.querySelectorAll('.trending-item');
-    let visibleCount = 0;
-
-    items.forEach(item => {
-      // reset first
-      item.style.display = 'none';
-
-      const itemCat = item.getAttribute('data-category');
-
-      if (categoryId === 'all' || itemCat === categoryId) {
-        if (visibleCount < 6) {
-          item.style.display = 'block';
-          visibleCount++;
-        }
+          if (categoryId === 'all' || itemCat === categoryId) {
+            if (visibleCount < 6) {
+              item.style.display = 'block';
+              visibleCount++;
+            }
+          }
+        });
       }
-    });
-  }
 
-  // INITIAL LOAD – SHOW FIRST 6
-  document.addEventListener('DOMContentLoaded', function () {
-    filterTrending('all');
-  });
-</script>
+      // INITIAL LOAD – SHOW FIRST 6
+      document.addEventListener('DOMContentLoaded', function () {
+        filterTrending('all');
+      });
+    </script>
 
 
     <!-- Sale Banner with Safety Checks -->
     <section class="container-fluid  px-4 px-md-5" style="margin-top:80px;">
 
-  <% if (result && result[7] && result[7].length > 0 && result[7][0]) { %>
+      <% if (result && result[7] && result[7].length> 0 && result[7][0]) { %>
 
-  <div style="
+        <div style="
     width:100%;
     border-radius:18px;
     overflow:hidden;
@@ -661,8 +655,8 @@
     position:relative;
   ">
 
-    <!-- INNER -->
-    <div style="
+          <!-- INNER -->
+          <div style="
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -674,35 +668,35 @@
       flex-wrap:wrap;
     ">
 
-      <!-- LEFT CONTENT -->
-      <div style="max-width:520px;">
+            <!-- LEFT CONTENT -->
+            <div style="max-width:520px;">
 
-        <!-- BRAND STYLE TITLE -->
-        <div style="
+              <!-- BRAND STYLE TITLE -->
+              <div style="
           font-size:42px;
           font-weight:800;
           letter-spacing:1px;
           line-height:1;
           margin-bottom:8px;
         ">
-          <%= result[7][0].title || 'SPECIAL OFFER' %>
-        </div>
+                <%= result[7][0].title || 'SPECIAL OFFER' %>
+              </div>
 
-        <!-- SUB TEXT -->
-        <div style="
+              <!-- SUB TEXT -->
+              <div style="
           font-size:14px;
           letter-spacing:2px;
           text-transform:uppercase;
           opacity:0.85;
           margin-bottom:14px;
         ">
-          Premium Audio Experience
-        </div>
+                Premium Audio Experience
+              </div>
 
-        <!-- COUPON -->
-        <div style="font-size:15px;">
-          Use code
-          <span style="
+              <!-- COUPON -->
+              <div style="font-size:15px;">
+                Use code
+                <span style="
             display:inline-block;
             background:#ffffff;
             color:#000;
@@ -711,43 +705,43 @@
             padding:4px 14px;
             margin-left:6px;
           ">
-            <%= result[7][0].name || 'OFFER' %>
-          </span>
-          to get best deal
-        </div>
+                  <%= result[7][0].name || 'OFFER' %>
+                </span>
+                to get best deal
+              </div>
 
-      </div>
+            </div>
 
-      <!-- RIGHT DISCOUNT -->
-      <div style="
+            <!-- RIGHT DISCOUNT -->
+            <div style="
         display:flex;
         align-items:center;
         justify-content:center;
         min-width:160px;
         text-align:center;
       ">
-        <div style="
+              <div style="
           font-size:56px;
           font-weight:900;
           line-height:1;
         ">
-          <%= result[7][0].amount || '0' %>
-        </div>
+                <%= result[7][0].amount || '0' %>
+              </div>
 
-        <div style="margin-left:6px;text-align:left;">
-          <% if (result[7][0].type === 'Flat') { %>
-            <div style="font-size:22px;font-weight:700;">Rs.</div>
-          <% } else { %>
-            <div style="font-size:22px;font-weight:700;">%</div>
-          <% } %>
-          <div style="font-size:14px;letter-spacing:1px;">OFF</div>
-        </div>
-      </div>
+              <div style="margin-left:6px;text-align:left;">
+                <% if (result[7][0].type==='Flat' ) { %>
+                  <div style="font-size:22px;font-weight:700;">Rs.</div>
+                  <% } else { %>
+                    <div style="font-size:22px;font-weight:700;">%</div>
+                    <% } %>
+                      <div style="font-size:14px;letter-spacing:1px;">OFF</div>
+              </div>
+            </div>
 
-    </div>
+          </div>
 
-    <!-- SOFT GLOW OVERLAY -->
-    <div style="
+          <!-- SOFT GLOW OVERLAY -->
+          <div style="
       position:absolute;
       inset:0;
       background:
@@ -758,34 +752,33 @@
       z-index:1;
     "></div>
 
-  </div>
+        </div>
 
-  <% } else { %>
+        <% } else { %>
 
-  <div style="text-align:center;padding:40px;">
-    <h4>Special Offers Coming Soon!</h4>
-  </div>
+          <div style="text-align:center;padding:40px;">
+            <h4>Special Offers Coming Soon!</h4>
+          </div>
 
-  <% } %>
+          <% } %>
 
-</section>
+    </section>
 
 
     <!-- Special offers with Safety Checks -->
     <section class="container-fluid px-4 px-md-5" style="margin-top:80px;">
 
-  <!-- HEADER -->
-  <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
-    <h2 style="font-weight:700;margin:0;">Special Offers</h2>
-  </div>
+      <!-- HEADER -->
+      <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
+        <h2 style="font-weight:700;margin:0;">Special Offers</h2>
+      </div>
 
-  <% if (result && result[8] && result[8].length > 0) { %>
+      <% if (result && result[8] && result[8].length> 0) { %>
 
-  <div class="position-relative">
+        <div class="position-relative">
 
-    <!-- SWIPER -->
-    <div class="swiper py-3"
-      data-swiper='{
+          <!-- SWIPER -->
+          <div class="swiper py-3" data-swiper='{
         "slidesPerView": 2,
         "spaceBetween": 16,
         "loop": true,
@@ -796,14 +789,14 @@
         }
       }'>
 
-      <div class="swiper-wrapper">
+            <div class="swiper-wrapper">
 
-        <% for(let i = 0; i < Math.min(10, result[8].length); i++) { %>
+              <% for(let i=0; i < Math.min(10, result[8].length); i++) { %>
 
-        <div class="swiper-slide">
+                <div class="swiper-slide">
 
-          <!-- CARD -->
-          <div style="
+                  <!-- CARD -->
+                  <div style="
             width:100%;
             background:#ffffff;
             border-radius:16px;
@@ -812,36 +805,34 @@
             height:100%;
           ">
 
-            <!-- IMAGE -->
-            <a href="/product?id=<%= result[8][i].id || '' %>" style="text-decoration:none;">
-              <img src="https://www.fikaonline.in/images/<%= result[8][i].image || '' %>"
-                   alt="<%= result[8][i].name || 'Product' %>"
-                   style="
+                    <!-- IMAGE -->
+                    <a href="/product?id=<%= result[8][i].id || '' %>" style="text-decoration:none;">
+                      <img src="https://www.fikaonline.in/images/<%= result[8][i].image || '' %>"
+                        alt="<%= result[8][i].name || 'Product' %>" style="
                      width:100%;
                      height:160px;
                      object-fit:contain;
                      padding:12px;
                      background:#f8f8f8;
                    ">
-            </a>
+                    </a>
 
-            <!-- YELLOW BAR -->
-            <div style="
+                    <!-- YELLOW BAR -->
+                    <div style="
               background:#ffc107;
               font-size:12px;
               font-weight:600;
               text-align:center;
               padding:5px 0;
             ">
-              <%= result[8][i].spec || 'Special Deal' %>
-            </div>
+                      <%= result[8][i].spec || 'Special Deal' %>
+                    </div>
 
-            <!-- CONTENT -->
-            <div style="padding:10px 12px;">
+                    <!-- CONTENT -->
+                    <div style="padding:10px 12px;">
 
-              <!-- NAME -->
-              <a href="/product?id=<%= result[8][i].id || '' %>"
-                 style="
+                      <!-- NAME -->
+                      <a href="/product?id=<%= result[8][i].id || '' %>" style="
                    text-decoration:none;
                    color:#000;
                    display:block;
@@ -852,12 +843,12 @@
                    text-overflow:ellipsis;
                    margin-bottom:6px;
                  ">
-                <%= (result[8][i].name || 'Product').replace(/["“”]/g, '') %>
-              </a>
+                        <%= (result[8][i].name || 'Product' ).replace(/["“”]/g, '' ) %>
+                      </a>
 
-              <!-- RATING (OPTIONAL SAFE) -->
-              <% if (result[8][i].rating) { %>
-              <div style="
+                      <!-- RATING (OPTIONAL SAFE) -->
+                      <% if (result[8][i].rating) { %>
+                        <div style="
                 display:inline-flex;
                 align-items:center;
                 gap:4px;
@@ -867,34 +858,33 @@
                 padding:2px 6px;
                 margin-bottom:6px;
               ">
-                ⭐ <%= result[8][i].rating %>
-              </div>
-              <% } %>
+                          ⭐ <%= result[8][i].rating %>
+                        </div>
+                        <% } %>
 
-              <% if(result[8][i].price){ %>
-              <div style="font-size:12px;color:#6c757d;margin-bottom:6px;">
-                <del>₹<%= result[8][i].price %></del>
-                <% if(result[8][i].discount){ %>
-                <span style="color:#198754;font-weight:600;margin-left:4px;">
-                  <%= result[8][i].discount %>% off
-                </span>
-                <% } %>
-              </div>
-              <% } %>
+                          <% if(result[8][i].price){ %>
+                            <div style="font-size:12px;color:#6c757d;margin-bottom:6px;">
+                              <del>₹<%= result[8][i].price %></del>
+                              <% if(result[8][i].discount){ %>
+                                <span style="color:#198754;font-weight:600;margin-left:4px;">
+                                  <%= result[8][i].discount %>% off
+                                </span>
+                                <% } %>
+                            </div>
+                            <% } %>
 
-              <!-- PRICE + CART -->
-              <div style="
+                              <!-- PRICE + CART -->
+                              <div style="
                 display:flex;
                 align-items:center;
                 justify-content:space-between;
                 margin-top:6px;
               ">
-                <div style="font-size:18px;font-weight:700;">
-                  ₹<%= result[8][i].net_amount || '0' %>
-                </div>
+                                <div style="font-size:18px;font-weight:700;">
+                                  ₹<%= result[8][i].net_amount || '0' %>
+                                </div>
 
-                <button onclick="addToCart('<%= result[8][i].id %>')"
-                  style="
+                                <button onclick="addToCart('<%= result[8][i].id %>')" style="
                     width:34px;
                     height:34px;
                     border-radius:50%;
@@ -905,29 +895,29 @@
                     align-items:center;
                     justify-content:center;
                   ">
-                  <i class="ci-shopping-cart"></i>
-                </button>
-              </div>
+                                  <i class="ci-shopping-cart"></i>
+                                </button>
+                              </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <% } %>
 
             </div>
-
           </div>
+
         </div>
 
-        <% } %>
+        <% } else { %>
+          <div class="text-center py-5">
+            <p class="text-muted">Check back soon for special offers!</p>
+          </div>
+          <% } %>
 
-      </div>
-    </div>
-
-  </div>
-
-  <% } else { %>
-    <div class="text-center py-5">
-      <p class="text-muted">Check back soon for special offers!</p>
-    </div>
-  <% } %>
-
-</section>
+    </section>
 
   </main>
 
