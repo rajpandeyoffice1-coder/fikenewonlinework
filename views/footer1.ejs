@@ -29,7 +29,7 @@
 </style>
 <footer class="footer bg-dark text-white pt-5" style="margin-top: 60px;">
   <div class="container-fluid px-4 px-md-5">
-    
+
     <!-- NEWSLETTER SECTION -->
     <div class="newsletter-section mb-5">
       <div class="row align-items-center">
@@ -44,15 +44,9 @@
         <div class="col-lg-6">
           <form class="newsletter-form" id="newsletterForm">
             <div class="input-group input-group-lg shadow-sm">
-              <input type="email" 
-                     class="form-control bg-black border-0 text-white" 
-                     placeholder="Your email address" 
-                     aria-label="Email"
-                     required
-                     style="border-radius: 12px 0 0 12px; padding-left: 20px;">
-              <button class="btn btn-primary px-4 fw-semibold" 
-                      type="submit"
-                      style="border-radius: 0 12px 12px 0;">
+              <input type="email" class="form-control bg-black border-0 text-white" placeholder="Your email address"
+                aria-label="Email" required style="border-radius: 12px 0 0 12px; padding-left: 20px;">
+              <button class="btn btn-primary px-4 fw-semibold" type="submit" style="border-radius: 0 12px 12px 0;">
                 Subscribe <i class="ci-send ms-2"></i>
               </button>
             </div>
@@ -66,7 +60,7 @@
 
     <!-- MAIN FOOTER CONTENT -->
     <div class="row g-5">
-      
+
       <!-- BRAND & ABOUT -->
       <div class="col-lg-4 col-md-6">
         <div class="brand-info mb-4">
@@ -75,39 +69,29 @@
               <img src="/images/L3.png" alt="FIKA" class="logo-img">
             </div>
           </a>
-          
+
           <p class="text-light opacity-75 mb-4 lh-lg">
-            FIKA delivers premium audio experiences through innovative technology and exceptional design. 
+            FIKA delivers premium audio experiences through innovative technology and exceptional design.
             Redefining how you listen to the world.
           </p>
-          
+
           <!-- SOCIAL MEDIA -->
           <div class="social-media mb-4">
             <h6 class="text-uppercase fw-semibold mb-3 text-light">Follow Us</h6>
             <div class="social-icons d-flex gap-3">
-              <a href="https://www.instagram.com/fika.offical?igsh=ODV5eHZucjJhNzFx" 
-                 target="_blank"
-                 class="social-link instagram">
+              <a href="https://www.instagram.com/fika.offical?igsh=ODV5eHZucjJhNzFx" target="_blank"
+                class="social-link instagram">
                 <i class="ci-instagram fs-5"></i>
                 <span class="social-tooltip">Instagram</span>
               </a>
-              <a href="https://youtube.com/@fika-h5q?feature=shared" 
-                 target="_blank"
-                 class="social-link youtube">
+              <a href="https://youtube.com/@fika-h5q?feature=shared" target="_blank" class="social-link youtube">
                 <i class="ci-youtube fs-5"></i>
                 <span class="social-tooltip">YouTube</span>
               </a>
-              <a href="#" class="social-link facebook">
-                <i class="ci-facebook fs-5"></i>
-                <span class="social-tooltip">Facebook</span>
-              </a>
-              <a href="#" class="social-link twitter">
-                <i class="ci-twitter fs-5"></i>
-                <span class="social-tooltip">Twitter</span>
-              </a>
-              <a href="#" class="social-link linkedin">
-                <i class="ci-linkedin fs-5"></i>
-                <span class="social-tooltip">LinkedIn</span>
+              <a href="https://wa.me/918198958764?text=Hello%20FIKA%20Support" target="_blank"
+                class="social-link whatsapp">
+                <i class="ci-whatsapp fs-5"></i>
+                <span class="social-tooltip">WhatsApp</span>
               </a>
             </div>
           </div>
@@ -132,7 +116,7 @@
               <div>
                 <div class="text-light opacity-75 small">Email Support</div>
                 <a href="mailto:support@fikaonline.in" class="text-white text-decoration-none">
-                  support@fikaonline.in
+                  info@fikaonline.in
                 </a>
               </div>
             </div>
@@ -146,22 +130,19 @@
           <h5 class="category-title mb-4">Shop</h5>
           <ul class="category-list list-unstyled">
             <% if(result && result[0]){ %>
-              <% result[0].forEach((category, index) => { %>
-                <% if(index < 6) { %>
-                <li class="mb-2">
-                  <a href="/category?id=<%= category.id %>" class="category-link">
-                    <i class="ci-chevron-right me-2"></i>
-                    <span><%= category.name %></span>
-                  </a>
-                </li>
-                <% } %>
-              <% }) %>
-            <% } %>
-            <li class="mt-3">
-              <a href="/products" class="btn btn-outline-light btn-sm rounded-pill px-3">
-                View All Products
-              </a>
-            </li>
+              <% result[0].forEach((category, index)=> { %>
+                <% if(index < 5) { %>
+                  <li class="mb-2">
+                    <a href="/category?id=<%= category.id %>" class="category-link">
+                      <i class="ci-chevron-right me-2"></i>
+                      <span>
+                        <%= category.name %>
+                      </span>
+                    </a>
+                  </li>
+                  <% } %>
+                    <% }) %>
+                      <% } %>
           </ul>
         </div>
       </div>
@@ -178,25 +159,25 @@
               </a>
             </li>
             <li class="mb-2">
-              <a href="/careers" class="category-link">
-                <i class="ci-users me-2"></i>
+              <a href="#" class="category-link">
+                <i class="ci-user me-2"></i>
                 <span>Careers</span>
               </a>
             </li>
             <li class="mb-2">
-              <a href="/press" class="category-link">
+              <a href="/#" class="category-link">
                 <i class="ci-mic me-2"></i>
                 <span>Press & Media</span>
               </a>
             </li>
             <li class="mb-2">
-              <a href="/blog" class="category-link">
+              <a href="#" class="category-link">
                 <i class="ci-pen-tool me-2"></i>
                 <span>Blog</span>
               </a>
             </li>
             <li class="mb-2">
-              <a href="/testimonials" class="category-link">
+              <a href="#" class="category-link">
                 <i class="ci-message-square me-2"></i>
                 <span>Testimonials</span>
               </a>
@@ -211,37 +192,37 @@
           <h5 class="category-title mb-4">Support</h5>
           <ul class="category-list list-unstyled">
             <li class="mb-2">
-              <a href="/contact" class="category-link">
+              <a href="#" class="category-link">
                 <i class="ci-headphones me-2"></i>
                 <span>Contact Support</span>
               </a>
             </li>
             <li class="mb-2">
-              <a href="/track-order" class="category-link">
-                <i class="ci-location me-2"></i>
+              <a href="#" class="category-link">
+                <i class="ci-map me-2"></i>
                 <span>Track Your Order</span>
               </a>
             </li>
             <li class="mb-2">
-              <a href="/faq" class="category-link">
+              <a href="#" class="category-link">
                 <i class="ci-help-circle me-2"></i>
                 <span>FAQ</span>
               </a>
             </li>
             <li class="mb-2">
-              <a href="/shipping-info" class="category-link">
+              <a href="#" class="category-link">
                 <i class="ci-delivery me-2"></i>
                 <span>Shipping Info</span>
               </a>
             </li>
             <li class="mb-2">
-              <a href="/returns" class="category-link">
-                <i class="ci-refresh me-2"></i>
+              <a href="#" class="category-link">
+                <i class="ci-delivery me-2"></i>
                 <span>Returns & Exchanges</span>
               </a>
             </li>
           </ul>
-          
+
           <!-- PAYMENT METHODS -->
           <div class="payment-methods mt-4">
             <h6 class="text-uppercase fw-semibold mb-3 text-light">We Accept</h6>
@@ -274,9 +255,9 @@
             <span class="text-secondary">•</span>
             <a href="/refund-policy" class="legal-link">Refund Policy</a>
             <span class="text-secondary">•</span>
-            <a href="/shipping-policy" class="legal-link">Shipping Policy</a>
+            <a href="#" class="legal-link">Shipping Policy</a>
             <span class="text-secondary">•</span>
-            <a href="/warranty" class="legal-link">Warranty</a>
+            <a href="#" class="legal-link">Warranty</a>
           </div>
         </div>
       </div>
@@ -286,388 +267,406 @@
 </footer>
 
 <style>
-/* ================= FOOTER STYLES ================= */
-.footer {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    #3b82f6, 
-    #8b5cf6, 
-    #3b82f6, 
-    transparent);
-  opacity: 0.5;
-}
-
-/* Gradient Text */
-.gradient-text {
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Logo Styling */
-.logo-container {
-  position: relative;
-  display: inline-block;
-}
-
-.logo-img {
-  width: 160px;
-  height: auto;
-  filter: brightness(0) invert(1);
-  transition: transform 0.3s ease;
-}
-
-.logo-container:hover .logo-img {
-  transform: scale(1.05);
-}
-
-/* Newsletter Form */
-.newsletter-form .form-control {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  transition: all 0.3s ease;
-}
-
-.newsletter-form .form-control:focus {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border-color: #3b82f6 !important;
-  box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25) !important;
-}
-
-.newsletter-form .btn {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  border: none;
-  transition: all 0.3s ease;
-}
-
-.newsletter-form .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-}
-
-/* Social Media Icons */
-.social-icons {
-  display: flex;
-  gap: 12px;
-}
-
-.social-link {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.social-link:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.social-link.instagram:hover {
-  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-}
-
-.social-link.youtube:hover {
-  background: #FF0000;
-}
-
-.social-link.facebook:hover {
-  background: #1877F2;
-}
-
-.social-link.twitter:hover {
-  background: #1DA1F2;
-}
-
-.social-link.linkedin:hover {
-  background: #0077B5;
-}
-
-.social-tooltip {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 11px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  margin-bottom: 5px;
-}
-
-.social-tooltip::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 4px solid transparent;
-  border-top-color: rgba(0, 0, 0, 0.8);
-}
-
-.social-link:hover .social-tooltip {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Contact Info */
-.contact-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: rgba(59, 130, 246, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #3b82f6;
-}
-
-.contact-info a:hover {
-  color: #3b82f6 !important;
-}
-
-/* Category Titles */
-.category-title {
-  position: relative;
-  padding-bottom: 10px;
-  color: white;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-}
-
-.category-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 30px;
-  height: 2px;
-  background: linear-gradient(90deg, #3b82f6, transparent);
-  border-radius: 2px;
-}
-
-/* Category Links */
-.category-list {
-  margin-top: 10px;
-}
-
-.category-link {
-  display: flex;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.7) !important;
-  text-decoration: none;
-  padding: 6px 0;
-  transition: all 0.3s ease;
-  font-size: 14px;
-}
-
-.category-link:hover {
-  color: white !important;
-  transform: translateX(5px);
-}
-
-.category-link i {
-  width: 16px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.category-link:hover i {
-  transform: scale(1.2);
-  color: #3b82f6;
-}
-
-/* Payment Icons */
-.payment-methods .payment-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  transition: all 0.3s ease;
-}
-
-.payment-methods .payment-icon:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-}
-
-/* Legal Links */
-.legal-links {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.legal-link {
-  color: rgba(255, 255, 255, 0.6) !important;
-  text-decoration: none;
-  font-size: 13px;
-  transition: all 0.3s ease;
-}
-
-.legal-link:hover {
-  color: white !important;
-}
-
-/* Footer Bottom */
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
+  /* ================= FOOTER STYLES ================= */
   .footer {
-    text-align: center;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+    position: relative;
+    overflow: hidden;
   }
-  
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+        transparent,
+        #3b82f6,
+        #8b5cf6,
+        #3b82f6,
+        transparent);
+    opacity: 0.5;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Logo Styling */
+  .logo-container {
+    position: relative;
+    display: inline-block;
+  }
+
   .logo-img {
-    width: 140px;
+    width: 160px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
   }
-  
-  .category-title::after {
+
+  .logo-container:hover .logo-img {
+    transform: scale(1.05);
+  }
+
+  /* Newsletter Form */
+  .newsletter-form .form-control {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease;
+  }
+
+  .newsletter-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25) !important;
+  }
+
+  .newsletter-form .btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .newsletter-form .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+  }
+
+  /* Social Media Icons */
+  .social-icons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-link {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .social-link:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .social-link.instagram:hover {
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+  }
+
+  .social-link.youtube:hover {
+    background: #FF0000;
+  }
+
+  .social-link.facebook:hover {
+    background: #1877F2;
+  }
+
+  .social-link.twitter:hover {
+    background: #1DA1F2;
+  }
+
+  .social-link.linkedin:hover {
+    background: #0077B5;
+  }
+
+  .social-tooltip {
+    position: absolute;
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
-  }
-  
-  .category-link:hover {
-    transform: translateX(0);
-  }
-  
-  .social-icons {
-    justify-content: center;
-  }
-  
-  .contact-info .d-flex {
-    justify-content: center;
-  }
-  
-  .legal-links {
-    justify-content: center !important;
-  }
-  
-  .payment-methods {
-    text-align: center;
-  }
-  
-  .payment-methods .d-flex {
-    justify-content: center;
-  }
-}
-
-/* Animation */
-@keyframes fadeInUp {
-  from {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    white-space: nowrap;
     opacity: 0;
-    transform: translateY(20px);
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
   }
-  to {
+
+  .social-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .social-link:hover .social-tooltip {
     opacity: 1;
-    transform: translateY(0);
+    visibility: visible;
   }
-}
 
-.footer * {
-  animation: fadeInUp 0.6s ease forwards;
-}
+  /* Contact Info */
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(59, 130, 246, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b82f6;
+  }
 
-.footer .newsletter-section { animation-delay: 0.1s; }
-.footer .brand-info { animation-delay: 0.2s; }
-.footer .footer-category:nth-child(2) { animation-delay: 0.3s; }
-.footer .footer-category:nth-child(3) { animation-delay: 0.4s; }
-.footer .footer-category:nth-child(4) { animation-delay: 0.5s; }
-.footer .footer-bottom { animation-delay: 0.6s; }
+  .contact-info a:hover {
+    color: #3b82f6 !important;
+  }
+
+  /* Category Titles */
+  .category-title {
+    position: relative;
+    padding-bottom: 10px;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
+
+  .category-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, transparent);
+    border-radius: 2px;
+  }
+
+  /* Category Links */
+  .category-list {
+    margin-top: 10px;
+  }
+
+  .category-link {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-decoration: none;
+    padding: 6px 0;
+    transition: all 0.3s ease;
+    font-size: 14px;
+  }
+
+  .category-link:hover {
+    color: white !important;
+    transform: translateX(5px);
+  }
+
+  .category-link i {
+    width: 16px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .category-link:hover i {
+    transform: scale(1.2);
+    color: #3b82f6;
+  }
+
+  /* Payment Icons */
+  .payment-methods .payment-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+  }
+
+  .payment-methods .payment-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  /* Legal Links */
+  .legal-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .legal-link {
+    color: rgba(255, 255, 255, 0.6) !important;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.3s ease;
+  }
+
+  .legal-link:hover {
+    color: white !important;
+  }
+
+  /* Footer Bottom */
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer {
+      text-align: center;
+    }
+
+    .logo-img {
+      width: 140px;
+    }
+
+    .category-title::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .category-link:hover {
+      transform: translateX(0);
+    }
+
+    .social-icons {
+      justify-content: center;
+    }
+
+    .contact-info .d-flex {
+      justify-content: center;
+    }
+
+    .legal-links {
+      justify-content: center !important;
+    }
+
+    .payment-methods {
+      text-align: center;
+    }
+
+    .payment-methods .d-flex {
+      justify-content: center;
+    }
+  }
+
+  /* Animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .footer * {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .footer .newsletter-section {
+    animation-delay: 0.1s;
+  }
+
+  .footer .brand-info {
+    animation-delay: 0.2s;
+  }
+
+  .footer .footer-category:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+
+  .footer .footer-category:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  .footer .footer-category:nth-child(4) {
+    animation-delay: 0.5s;
+  }
+
+  .footer .footer-bottom {
+    animation-delay: 0.6s;
+  }
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Newsletter Form Submission
-  const newsletterForm = document.getElementById('newsletterForm');
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const emailInput = this.querySelector('input[type="email"]');
-      const submitBtn = this.querySelector('button[type="submit"]');
-      
-      if (emailInput.value) {
-        // Simulate API call
-        submitBtn.innerHTML = '<i class="ci-loader spinner-border spinner-border-sm me-2"></i> Subscribing...';
-        submitBtn.disabled = true;
-        
-        setTimeout(() => {
-          // Success state
-          submitBtn.innerHTML = '<i class="ci-check-circle me-2"></i> Subscribed!';
-          submitBtn.classList.remove('btn-primary');
-          submitBtn.classList.add('btn-success');
-          
-          // Reset after 2 seconds
+  document.addEventListener('DOMContentLoaded', function () {
+    // Newsletter Form Submission
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const emailInput = this.querySelector('input[type="email"]');
+        const submitBtn = this.querySelector('button[type="submit"]');
+
+        if (emailInput.value) {
+          // Simulate API call
+          submitBtn.innerHTML = '<i class="ci-loader spinner-border spinner-border-sm me-2"></i> Subscribing...';
+          submitBtn.disabled = true;
+
           setTimeout(() => {
-            emailInput.value = '';
-            submitBtn.innerHTML = 'Subscribe <i class="ci-send ms-2"></i>';
-            submitBtn.classList.remove('btn-success');
-            submitBtn.classList.add('btn-primary');
-            submitBtn.disabled = false;
-          }, 2000);
-        }, 1500);
-      }
+            // Success state
+            submitBtn.innerHTML = '<i class="ci-check-circle me-2"></i> Subscribed!';
+            submitBtn.classList.remove('btn-primary');
+            submitBtn.classList.add('btn-success');
+
+            // Reset after 2 seconds
+            setTimeout(() => {
+              emailInput.value = '';
+              submitBtn.innerHTML = 'Subscribe <i class="ci-send ms-2"></i>';
+              submitBtn.classList.remove('btn-success');
+              submitBtn.classList.add('btn-primary');
+              submitBtn.disabled = false;
+            }, 2000);
+          }, 1500);
+        }
+      });
+    }
+
+    // Add hover effects to category links
+    const categoryLinks = document.querySelectorAll('.category-link');
+    categoryLinks.forEach(link => {
+      link.addEventListener('mouseenter', function () {
+        const icon = this.querySelector('i');
+        if (icon) {
+          icon.style.transform = 'translateX(3px)';
+        }
+      });
+
+      link.addEventListener('mouseleave', function () {
+        const icon = this.querySelector('i');
+        if (icon) {
+          icon.style.transform = 'translateX(0)';
+        }
+      });
     });
-  }
-  
-  // Add hover effects to category links
-  const categoryLinks = document.querySelectorAll('.category-link');
-  categoryLinks.forEach(link => {
-    link.addEventListener('mouseenter', function() {
-      const icon = this.querySelector('i');
-      if (icon) {
-        icon.style.transform = 'translateX(3px)';
-      }
-    });
-    
-    link.addEventListener('mouseleave', function() {
-      const icon = this.querySelector('i');
-      if (icon) {
-        icon.style.transform = 'translateX(0)';
-      }
+
+    // Smooth scroll for footer links
+    document.querySelectorAll('a[href^="/"]').forEach(link => {
+      link.addEventListener('click', function (e) {
+        // You can add smooth scroll logic here if needed
+        // For now, it will follow the normal link behavior
+      });
     });
   });
-  
-  // Smooth scroll for footer links
-  document.querySelectorAll('a[href^="/"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      // You can add smooth scroll logic here if needed
-      // For now, it will follow the normal link behavior
-    });
-  });
-});
 </script>
