@@ -1,259 +1,239 @@
-<%- include ('./navbar.ejs') %>
+<%- include('./navbar.ejs') %>
 
-  <title>Checkout Page | Fika</title>
-  <meta name="description" content="Checkout Page | Fika">
+  <title>Checkout | Fika</title>
+  <meta name="description" content="Checkout | Fika">
 
   <main class="content-wrapper">
     <div class="container py-5">
-      <div class="row pt-1 pt-lg-4 pb-2 pb-lg-4">
-        <div class="col-lg-8 col-xl-7 mb-5">
-          <div class="accordion d-flex flex-column gap-5 pe-lg-4" id="checkout">
-          
-            <!-- Delivery Info -->
 
-            <div class="accordion-item d-flex align-items-start border-0">
-              <div
-                class="d-flex align-items-center justify-content-center bg-body-secondary text-dark-emphasis rounded-circle flex-shrink-0"
-                style="width: 2rem; height: 2rem;">
-                <i class="ci-check fs-base"></i>
-              </div>
-              <div class="w-100 ps-3">
-                <h2 class="accordion-header h5 mb-0">Delivery Information</h2>
-                <div class="accordion-collapse collapse show" id="deliveryInfo">
+      <div class="d-flex justify-content-center mb-5">
+        <div class="d-flex align-items-center" style="width:100%;max-width:520px;gap:12px">
+          <button type="button" class="btn btn-primary rounded-pill px-4" id="tab-shipping-btn"
+            onclick="openTab('shipping')">Shipping</button>
+          <div style="flex:1;border-top:2px dashed #cbd5e1"></div>
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4" id="tab-payment-btn"
+            onclick="openTab('payment')">Payment</button>
+          <div style="flex:1;border-top:2px dashed #cbd5e1"></div>
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4"
+            id="tab-process-btn">Process</button>
+        </div>
+      </div>
 
-                  <% if (result[7] && result[7].length> 0) { %>
-                    <div class="list-group">
-                      <% result[7].forEach((address, index)=> { %>
-                        <label class="list-group-item d-flex align-items-center">
-                          <input type="radio" name="savedAddress" class="saved-address me-2"
-                            data-address='<%= JSON.stringify(address) %>'>
-                          <div>
-                            <strong>
-                              <%= address.firstname %>
-                                <%= address.lastname %>
-                            </strong><br>
-                            <%= address.address %>, <%= address.city %>, <%= address.state %> - <%= address.pincode %>
-                                    <br>
-                                    <span class="text-muted">Phone: <%= address.usernumber %></span>
-                          </div>
-                        </label>
-                        <% }) %>
+      <div class="row g-4">
+
+        <div class="col-12 col-lg-7">
+
+          <div id="tab-shipping">
+
+            <h4 class="mb-4">Shipping Address</h4>
+
+            <% if (result && result[7] && result[7].length> 0) { %>
+              <div class="list-group mb-4">
+                <% for(var i=0;i<result[7].length;i++){ var address=result[7][i]; %>
+                  <label class="list-group-item d-flex gap-2 align-items-start">
+                    <input type="radio" name="savedAddress" class="saved-address mt-1">
+                    <div>
+                      <strong>
+                        <%=address.firstname%>
+                          <%=address.lastname%>
+                      </strong><br>
+                      <%=address.address%>, <%=address.city%>, <%=address.state%> - <%=address.pincode%><br>
+                              <span class="text-muted">Phone: <%=address.usernumber%></span>
                     </div>
-                    <% } else { %>
-                      <p>No saved addresses found.</p>
-                      <% } %>
+                  </label>
+                  <% } %>
+              </div>
+              <% } %>
+
+                <div id="shipping-form">
+                  <form method="post" action="/save-address">
+                    <div class="row g-3">
+
+                      <div class="col-sm-6">
+                        <label class="form-label">First Name</label>
+                        <input class="form-control form-control-lg" name="firstname" required>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <label class="form-label">Last Name</label>
+                        <input class="form-control form-control-lg" name="lastname" required>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <label class="form-label">Email</label>
+                        <input class="form-control form-control-lg" name="email" required>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <label class="form-label">Mobile</label>
+                        <input class="form-control form-control-lg" name="usernumber" required>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <label class="form-label">Pincode</label>
+                        <input class="form-control form-control-lg" name="pincode" required>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <label class="form-label">Village / City</label>
+                        <input class="form-control form-control-lg" name="village" required>
+                      </div>
+
+                      <div class="col-12">
+                        <label class="form-label">Address</label>
+                        <input class="form-control form-control-lg" name="address" required>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <label class="form-label">District</label>
+                        <select class="form-select form-select-lg" name="city" required>
+                          <option value="">Select</option>
+                          <option>Mumbai</option>
+                          <option>Delhi</option>
+                          <option>Bangalore</option>
+                          <option>Hyderabad</option>
+                          <option>Ahmedabad</option>
+                          <option>Chennai</option>
+                          <option>Kolkata</option>
+                          <option>Pune</option>
+                        </select>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <label class="form-label">State</label>
+                        <select class="form-select form-select-lg" name="state" required>
+                          <option value="">Select</option>
+                          <option>Maharashtra</option>
+                          <option>Delhi</option>
+                          <option>Karnataka</option>
+                          <option>Telangana</option>
+                          <option>Gujarat</option>
+                          <option>Tamil Nadu</option>
+                          <option>West Bengal</option>
+                        </select>
+                      </div>
+
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn-lg w-100 mt-4" onclick="goToPayment()">
+                      Continue to Payment
+                    </button>
+                  </form>
                 </div>
-              </div>
-            </div>
 
-            <!-- Shipping Address Form -->
-            <div class="d-flex align-items-start">
-              <div
-                class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle fs-sm fw-semibold flex-shrink-0"
-                style="width: 2rem; height: 2rem;">1</div>
-              <div class="w-100 ps-3">
-                <h1 class="h5 mb-4">Shipping Address</h1>
-                <form class="needs-validation" novalidate method="post" action="/save-address">
-                  <div class="row g-3 mb-4">
-                    <% let fields=[ { label: "First Name" , name: "firstname" , type: "text" }, { label: "Last Name" ,
-                      name: "lastname" , type: "text" }, { label: "Email Address" , name: "email" , type: "email" }, {
-                      label: "Mobile Number" , name: "usernumber" , type: "text" }, { label: "Postcode" ,
-                      name: "pincode" , type: "text" }, { label: "village / City" , name: "village" , type: "village" },
-                      { label: "House / Apartment & Street" , name: "address" , type: "text" }, { label: "LandMark" ,
-                      name: "LandMark" , type: "LandMark" } ]; %>
-                      <% fields.forEach(field=> { %>
-                        <div class="col-12 col-sm-6">
-                          <label class="form-label">
-                            <%= field.label %> <span class="text-danger">*</span>
-                          </label>
-                          <input type="<%= field.type %>" class="form-control form-control-lg" name="<%= field.name %>"
-                            required>
-                        </div>
-                        <% }) %>
-
-                          <!-- City Dropdown -->
-                           
-                          <div class="col-12 col-sm-6">
-                            <label class="form-label">District <span class="text-danger">*</span></label>
-                            <select class="form-select form-select-lg" name="city" required>
-                              <option value="">Select your city</option>
-                              <% let cities=["Mumbai", "Delhi" , "Bangalore" , "Hyderabad" , "Ahmedabad" , "Chennai"
-                                , "Kolkata" , "Surat" , "Pune" ,"Morena"]; %>
-                                <% cities.forEach(city=> { %>
-                                  <option value="<%= city %>">
-                                    <%= city %>
-                                  </option>
-                                  <% }) %>
-                            </select>
-                          </div>
-
-                          <!-- State Dropdown -->
-                          <div class="col-12 col-sm-6">
-                            <label class="form-label">State <span class="text-danger">*</span></label>
-                            <select class="form-select form-select-lg" name="state" required>
-                              <option value="">Select your state</option>
-
-                              <% let states=[ "Andhra Pradesh" , "Arunachal Pradesh" , "Assam" , "Bihar"
-                                , "Chhattisgarh" , "Goa" , "Gujarat" , "Haryana" , "Himachal Pradesh" , "Jharkhand"
-                                , "Karnataka" , "Kerala" , "Madhya Pradesh" , "Maharashtra" , "Manipur" , "Meghalaya"
-                                , "Mizoram" , "Nagaland" , "Odisha" , "Punjab" , "Rajasthan" , "Sikkim" , "Tamil Nadu"
-                                , "Telangana" , "Tripura" , "Uttar Pradesh" , "Uttarakhand" , "West Bengal" ]; %>
-                                <% states.forEach(state=> { %>
-                                  <option value="<%= state %>">
-                                    <%= state %>
-                                  </option>
-                                  <% }) %>
-                            </select>
-                          </div>
-                  </div>
-
-                  <button type="submit" class="btn btn-lg btn-primary w-100">Continue <i
-                      class="ci-chevron-right fs-lg ms-1"></i></button>
-                </form>
-              </div>
-            </div>
-
-
-            <!-- Payment Section -->
-            <div class="d-flex align-items-start">
-              <div
-                class="d-flex align-items-center justify-content-center bg-body-secondary text-body-secondary rounded-circle fs-sm fw-semibold flex-shrink-0"
-                style="width: 2rem; height: 2rem;">2</div>
-              <h2 class="h5 text-body-secondary ps-3 mb-0">Payment</h2>
-            </div>
           </div>
+
+          <div id="tab-payment" class="d-none">
+            <h4 class="mb-4">Select Payment Method</h4>
+
+            <div class="list-group mb-4">
+              <label class="list-group-item"><input type="radio" name="paymentMethod" value="online" checked> Online
+                Payment</label>
+              <label class="list-group-item"><input type="radio" name="paymentMethod" value="cod"> Cash on
+                Delivery</label>
+            </div>
+
+            <button class="btn btn-primary btn-lg w-100" onclick="proceedPayment()">Continue</button>
+          </div>
+
+          <button type="tab-payment-page" class="btn btn-primary btn-lg w-100 mt-4 d-no" onclick="goToPayment()">
+            Continue to Payment
+          </button>
+
+          <div id="tab-payment-process " class="d-none">
+            <h4 class="mb-4">Complete Payment</h4>
+            <button class="btn btn-success btn-lg w-100">Pay Rs. <%=cartData.totalPrice%></button>
+          </div>
+
         </div>
 
-        <!-- Order Summary -->
-        <aside class="col-lg-4 offset-xl-1">
-          <div class="position-sticky top-0" style="padding-top: 100px">
-            <div class="bg-body-tertiary rounded-5 p-4 mb-3">
-              <div class="border-bottom pb-4 mb-4">
-                <div class="d-flex justify-content-between mb-4">
-                  <h5>Order Summary</h5>
-                  <a class="text-decoration-underline" href="/mycart">Edit</a>
+        <aside class="col-12 col-lg-5">
+          <div class="position-sticky top-0" style="padding-top:80px">
+            <div class="border rounded-4 p-4">
+
+              <h5 class="mb-3">Order Summary</h5>
+
+              <% for(var j=0;j<cartData.cartItems.length;j++){ var item=cartData.cartItems[j]; %>
+                <div class="d-flex align-items-center mb-3" style="gap:12px">
+                  <img src="/images/<%=item.bookingimage%>"
+                    style="width:60px;height:60px;border-radius:8px;object-fit:cover">
+                  <div style="flex:1;min-width:0">
+                    <div
+                      style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+                      <%=item.bookingname.replace( /"/g,'')%>
+                    </div>
+                    <div style="font-size:14px;font-weight:700">Rs. <%=item.price%>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <ul class="list-unstyled fs-sm gap-3 mb-0">
-                <li class="d-flex justify-content-between">
-                  Subtotal: <span class="text-dark-emphasis fw-medium">Rs. <%= cartData.totalPrice %></span>
-                </li>
-                <li class="d-flex justify-content-between">
-                  Shipping: <span class="text-dark-emphasis fw-medium">Free</span>
-                </li>
-              </ul>
-              <div class="border-top pt-4 mt-4">
-                <div class="d-flex justify-content-between mb-3">
-                  <span class="fs-sm">Estimated Total:</span>
-                  <span class="h5 mb-0">Rs. <%= cartData.totalPrice %></span>
-                </div>
-              </div>
+                <% } %>
+
+                  <hr>
+
+                  <div class="d-flex justify-content-between">
+                    <span>Subtotal</span>
+                    <strong>Rs. <%=cartData.totalPrice%></strong>
+                  </div>
+
+                  <div class="d-flex justify-content-between mt-2">
+                    <span>Shipping</span>
+                    <span>Free</span>
+                  </div>
+
+                  <hr>
+
+                  <div class="d-flex justify-content-between fs-5">
+                    <strong>Total</strong>
+                    <strong>Rs. <%=cartData.totalPrice%></strong>
+                  </div>
+
             </div>
           </div>
         </aside>
+
       </div>
     </div>
   </main>
 
-  <!-- Back to Top Button -->
-  <div class="floating-buttons position-fixed top-50 end-0 me-3">
-    <a class="btn-scroll-top btn btn-sm bg-body border-0 rounded-pill shadow" href="#top">
-      Top <i class="ci-arrow-right fs-base ms-1"></i>
-    </a>
-  </div>
-
-  <!-- Scripts -->
-  <script src="/theme/assets/js/theme.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
 
-      /* =========================
-         SAVED ADDRESS AUTO-FILL
-         ========================= */
-      const savedAddresses = document.querySelectorAll(".saved-address");
+    function goToPayment() {
+      openTab('payment');
+    }
+    var addressSelected = false;
 
-      savedAddresses.forEach((radio) => {
-        radio.addEventListener("change", function () {
-          const addressData = JSON.parse(this.dataset.address);
-
-          window.location.href = `/shipping?id_address_delivery=${addressData.id}`;
-
-          document.querySelector('input[name="firstname"]').value = addressData.firstname || "";
-          document.querySelector('input[name="lastname"]').value = addressData.lastname || "";
-          document.querySelector('input[name="email"]').value = addressData.email || "";
-          document.querySelector('input[name="usernumber"]').value = addressData.usernumber || "";
-          document.querySelector('input[name="pincode"]').value = addressData.pincode || "";
-          document.querySelector('input[name="address"]').value = addressData.address || "";
-
-          // NEW FIELDS SAFE
-          const village = document.querySelector('input[name="Village"]');
-          const landMark = document.querySelector('input[name="LandMark"]');
-          if (village) village.value = addressData.village || "";
-          if (landMark) landMark.value = addressData.landmark || "";
-
-          document.querySelector('select[name="city"]').value = addressData.city || "";
-          document.querySelector('select[name="state"]').value = addressData.state || "";
-        });
+    var radios = document.getElementsByClassName('saved-address');
+    for (var i = 0; i < radios.length; i++) {
+      radios[i].addEventListener('change', function () {
+        addressSelected = true;
+        document.getElementById('shipping-form').style.display = 'none';
       });
+    }
 
-      /* =========================
-         PINCODE → DISTRICT / STATE
-         ========================= */
-      const pincodeInput = document.querySelector('input[name="pincode"]');
-      const citySelect = document.querySelector('select[name="city"]');
-      const stateSelect = document.querySelector('select[name="state"]');
+    function proceedPayment() {
+      var method = document.querySelector('input[name="paymentMethod"]:checked').value;
+      if (method === 'cod') {
+        Swal.fire({ icon: 'success', title: 'Thank you', text: 'Your order has been placed successfully' })
+          .then(function () { window.location.href = '/' });
+      } else {
+        openTab('payment-process');
+      }
+    }
 
-      let debounceTimer;
-
-      pincodeInput.addEventListener("input", function () {
-        const pincode = this.value.trim();
-
-        if (pincode.length !== 6) {
-          citySelect.value = "";
-          stateSelect.value = "";
-          return;
-        }
-
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-
-          fetch(`/api/map/${pincode}`)
-            .then(res => res.json())
-            .then(data => {
-              if (!data.success) return;
-
-              /* ===== DISTRICT (CITY) ===== */
-              let cityOption = [...citySelect.options].find(
-                opt => opt.value.trim().toLowerCase() === data.city.trim().toLowerCase()
-              );
-
-              if (!cityOption) {
-                citySelect.insertAdjacentHTML(
-                  "beforeend",
-                  `<option value="${data.city}">${data.city}</option>`
-                );
-              }
-              citySelect.value = data.city;
-
-              /* ===== STATE (FIXED) ===== */
-              let stateOption = [...stateSelect.options].find(
-                opt => opt.value.trim().toLowerCase() === data.state.trim().toLowerCase()
-              );
-
-              if (!stateOption) {
-                stateSelect.insertAdjacentHTML(
-                  "beforeend",
-                  `<option value="${data.state}">${data.state}</option>`
-                );
-              }
-              stateSelect.value = data.state;
-
-            })
-            .catch(err => console.error("Pincode API error", err));
-
-        }, 400);
-      });
-
-    });
+    function openTab(tab) {
+      var tabs = ['shipping', 'payment', 'payment-process'];
+      for (var i = 0; i < tabs.length; i++) {
+        var el = document.getElementById('tab-' + tabs[i]);
+        if (el) el.classList.add('d-none');
+      }
+      var show = document.getElementById('tab-' + tab);
+      if (show) show.classList.remove('d-none');
+    }
   </script>
+
+  <script src="/theme/assets/js/theme.min.js"></script>
+
+  <%- include('./footer2.ejs') %>
+    <%- include('./footer.ejs') %>

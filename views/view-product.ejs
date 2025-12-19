@@ -1,7 +1,7 @@
 <%- include ('./navbar.ejs') %>
 
   <title>
-    <%=result[1][0].name%> | Fika
+    <%= (result[1][0].name || '').replace(/"/g, '') %> | Fika
   </title>
   <meta name="description" content="<%=result[1][0].name%> | Fika">
 
@@ -42,7 +42,7 @@
         <div class="col-md-6" style="padding-left:30px">
 
           <h1 style="font-size:22px;font-weight:600;margin-bottom:6px">
-            <%=result[1][0].name%>
+            <%= (result[1][0].name || '').replace(/"/g, '') %>
           </h1>
 
           <div style="font-size:13px;color:#666;margin-bottom:12px">

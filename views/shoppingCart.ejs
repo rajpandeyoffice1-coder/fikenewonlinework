@@ -1,64 +1,83 @@
-<div class="offcanvas offcanvas-end pb-sm-2 px-sm-2" id="shoppingCart" tabindex="-1" aria-labelledby="shoppingCartLabel" style="width: 500px">
+<div class="offcanvas offcanvas-end" id="shoppingCart" tabindex="-1" aria-labelledby="shoppingCartLabel"
+  style="width:100%;max-width:420px">
 
-    <!-- Header -->
-    <div class="offcanvas-header flex-column align-items-start py-3 pt-lg-4">
-      <div class="d-flex align-items-center justify-content-between w-100 mb-3 mb-lg-4">
-        <h4 class="offcanvas-title" id="shoppingCartLabel">Shopping cart</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-    
-    </div>
+  <div class="offcanvas-header" style="border-bottom:1px solid #e5e7eb;padding:16px">
+    <h5 class="offcanvas-title" id="shoppingCartLabel" style="font-size:18px;font-weight:700">
+      Shopping Cart
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
 
-    <!-- Items -->
-    <div class="offcanvas-body d-flex flex-column gap-4 pt-2">
+  <div class="offcanvas-body" style="padding:12px;display:flex;flex-direction:column;gap:12px">
 
-      <!-- Item -->
-    
+    <% for(let i=0;i<cartData.cartItems.length;i++){ let item=cartData.cartItems[i]; %>
 
-      <!-- Item -->
+      <div
+        style="display:flex;gap:12px;align-items:flex-start;border:1px solid #e5e7eb;border-radius:12px;padding:12px">
 
-
-      <% for(i=0;i<cartData.cartItems.length;i++) { %>
-
-      <div class="d-flex align-items-center">
-        <a class="position-relative flex-shrink-0" href="/product?id=<%=cartData.cartItems[i].booking_id%>">
-          <img src="/images/<%=cartData.cartItems[i].bookingimage%>" width="110" alt="iPad Pro">
+        <a href="/product?id=<%=item.booking_id%>" style="flex-shrink:0">
+          <img src="/images/<%=item.bookingimage%>" style="width:64px;height:64px;border-radius:8px;object-fit:cover">
         </a>
-        <div class="w-100 min-w-0 ps-2 ps-sm-3">
-          <h5 class="d-flex animate-underline mb-2">
-            <a class="d-block fs-sm fw-medium text-truncate animate-target" href="/product?id=<%=cartData.cartItems[i].booking_id%>"><%=cartData.cartItems[i].bookingname%></a>
-          </h5>
-          <div class="h6 pb-1 mb-2">Rs. <%=cartData.cartItems[i].price%> </div>
-          <div class="d-flex align-items-center justify-content-between">
-            <div class="count-input rounded-2">
-              <button type="button" onclick="addToCart1('<%=cartData.cartItems[i].booking_id%>' , '-1' , '<%=cartData.cartItems[i].quantity%>')" class="btn btn-icon btn-sm" data-decrement="" aria-label="Decrement quantity">
-                <i class="ci-minus"></i>
-              </button>
-              <input type="number" class="form-control form-control-sm quantity"  value="<%=cartData.cartItems[i].quantity%>" readonly="">
-              <button type="button" onclick="addToCart1('<%=cartData.cartItems[i].booking_id%>' , '+1' , '<%=cartData.cartItems[i].quantity%>')" class="btn btn-icon btn-sm" data-increment="" aria-label="Increment quantity">
-                <i class="ci-plus"></i>
-              </button>
-            </div>
-            <button type="button" onclick="addToCart1('<%=cartData.cartItems[i].booking_id%>' , '0','0')" class="btn-close fs-sm" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-sm" data-bs-title="Remove" aria-label="Remove from cart"></button>
+
+        <div style="flex:1;min-width:0">
+
+          <a href="/product?id=<%=item.booking_id%>"
+            style="display:block;font-size:14px;font-weight:600;color:#111;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+            <%= (item.bookingname || '' ).replace(/"/g,'') %>
+          </a>
+
+          <div style="font-size:14px;font-weight:700;margin:6px 0">
+            Rs. <%=item.price%>
           </div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+
+            <div style="display:flex;align-items:center;border:1px solid #d1d5db;border-radius:8px;overflow:hidden">
+
+              <button onclick="addToCart1('<%=item.booking_id%>','-1','<%=item.quantity%>')"
+                style="width:28px;height:28px;border:none;background:#f5f5f5;font-size:16px">−</button>
+
+              <input value="<%=item.quantity%>" readonly
+                style="width:36px;height:28px;border:none;text-align:center;font-size:13px">
+
+              <button onclick="addToCart1('<%=item.booking_id%>','+1','<%=item.quantity%>')"
+                style="width:28px;height:28px;border:none;background:#f5f5f5;font-size:16px">+</button>
+
+            </div>
+
+            <button onclick="addToCart1('<%=item.booking_id%>','0','0')"
+              style="border:none;background:none;font-size:18px;cursor:pointer">
+              🗑
+            </button>
+
+          </div>
+
         </div>
+
       </div>
 
       <% } %>
 
-      <!-- Item -->
-   
+  </div>
+
+  <div style="border-top:1px solid #e5e7eb;padding:14px;display:flex;flex-direction:column;gap:12px">
+
+    <div style="display:flex;justify-content:space-between;font-size:14px">
+      <span style="color:#6b7280">Subtotal</span>
+      <span style="font-weight:700">Rs. <%=cartData.totalPrice%></span>
     </div>
 
-    <!-- Footer -->
-    <div class="offcanvas-header flex-column align-items-start">
-      <div class="d-flex align-items-center justify-content-between w-100 mb-3 mb-md-4">
-        <span class="text-light-emphasis">Subtotal:</span>
-        <span class="h6 mb-0">Rs.<%=cartData.totalPrice%></span>
-      </div>
-      <div class="d-flex w-100 gap-3">
-        <a class="btn btn-lg btn-secondary w-100" href="/mycart">View cart</a>
-        <a class="btn btn-lg btn-primary w-100" href="/checkout">Checkout</a>
-      </div>
+    <div style="display:flex;gap:10px">
+      <a href="/mycart"
+        style="flex:1;text-align:center;padding:12px;border-radius:10px;border:1px solid #2563eb;color:#2563eb;font-weight:600;text-decoration:none">
+        View Cart
+      </a>
+      <a href="/checkout"
+        style="flex:1;text-align:center;padding:12px;border-radius:10px;background:#2563eb;color:#fff;font-weight:600;text-decoration:none">
+        Checkout
+      </a>
     </div>
+
   </div>
+
+</div>
