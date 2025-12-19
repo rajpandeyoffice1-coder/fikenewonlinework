@@ -650,131 +650,144 @@
 
 
     <!-- Sale Banner with Safety Checks -->
-    <section class="container-fluid  px-4 px-md-5" style="margin-top:80px;">
+    <section class="container-fluid px-4 px-md-5" style="margin-top:80px;">
 
-      <% if (result && result[7] && result[7].length> 0 && result[7][0]) { %>
+  <% if (result && result[7] && result[7].length > 0 && result[7][0]) { %>
 
-        <div style="
-    width:100%;
+  <div style="
+    max-width:1200px;
+    margin:auto;
     border-radius:18px;
     overflow:hidden;
-    background:
-      linear-gradient(90deg,
-        rgba(0,0,0,0.85) 0%,
-        rgba(120,0,0,0.85) 55%,
-        rgba(0,0,0,0.9) 100%
-      );
-    position:relative;
+    background:linear-gradient(90deg,#3b0000 0%,#b00000 50%,#3b0000 100%);
   ">
 
-          <!-- INNER -->
-          <div style="
+    <!-- CENTER WRAPPER -->
+    <div style="
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      padding:28px 32px;
-      min-height:180px;
-      color:#ffffff;
-      position:relative;
-      z-index:2;
-      flex-wrap:wrap;
+      justify-content:center;
+      padding:40px 24px;
+      color:#fff;
     ">
 
-            <!-- LEFT CONTENT -->
-            <div style="max-width:520px;">
-
-              <!-- BRAND STYLE TITLE -->
-              <div style="
-          font-size:42px;
-          font-weight:800;
-          letter-spacing:1px;
-          line-height:1;
-          margin-bottom:8px;
-        ">
-                <%= result[7][0].title || 'SPECIAL OFFER' %>
-              </div>
-
-              <!-- SUB TEXT -->
-              <div style="
-          font-size:14px;
-          letter-spacing:2px;
-          text-transform:uppercase;
-          opacity:0.85;
-          margin-bottom:14px;
-        ">
-                Premium Audio Experience
-              </div>
-
-              <!-- COUPON -->
-              <div style="font-size:15px;">
-                Use code
-                <span style="
-            display:inline-block;
-            background:#ffffff;
-            color:#000;
-            font-weight:700;
-            border-radius:20px;
-            padding:4px 14px;
-            margin-left:6px;
-          ">
-                  <%= result[7][0].name || 'OFFER' %>
-                </span>
-                to get best deal
-              </div>
-
-            </div>
-
-            <!-- RIGHT DISCOUNT -->
-            <div style="
+      <!-- CONTENT GROUP (CENTERED) -->
+      <div style="
         display:flex;
         align-items:center;
         justify-content:center;
-        min-width:160px;
+        gap:32px;
+        flex-wrap:wrap;
         text-align:center;
       ">
-              <div style="
-          font-size:56px;
-          font-weight:900;
-          line-height:1;
-        ">
-                <%= result[7][0].amount || '0' %>
-              </div>
 
-              <div style="margin-left:6px;text-align:left;">
-                <% if (result[7][0].type==='Flat' ) { %>
-                  <div style="font-size:22px;font-weight:700;">Rs.</div>
-                  <% } else { %>
-                    <div style="font-size:22px;font-weight:700;">%</div>
-                    <% } %>
-                      <div style="font-size:14px;letter-spacing:1px;">OFF</div>
-              </div>
-            </div>
+        <!-- LEFT TEXT -->
+        <div>
 
+          <div style="
+            font-size:40px;
+            font-weight:900;
+            margin-bottom:10px;
+          ">
+            <%= result[7][0].title || 'Welcome Offer' %>
           </div>
 
-          <!-- SOFT GLOW OVERLAY -->
           <div style="
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 70% 50%,
-          rgba(255,0,0,0.35),
-          transparent 60%
-        );
-      z-index:1;
-    "></div>
+            font-size:14px;
+            letter-spacing:3px;
+            opacity:.85;
+            margin-bottom:16px;
+          ">
+            PREMIUM AUDIO EXPERIENCE
+          </div>
+
+          <div style="
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+            flex-wrap:wrap;
+            font-size:15px;
+          ">
+            <span>Use code</span>
+
+            <span style="
+              background:#fff;
+              color:#000;
+              padding:6px 18px;
+              border-radius:999px;
+              font-weight:800;
+              font-size:14px;
+            ">
+              <%= result[7][0].name || 'WEL5' %>
+            </span>
+
+            <span>to get best deal</span>
+          </div>
 
         </div>
 
-        <% } else { %>
+        <!-- DIVIDER -->
+        <div style="
+          width:2px;
+          height:90px;
+          background:rgba(255,255,255,.7);
+        "></div>
 
-          <div style="text-align:center;padding:40px;">
-            <h4>Special Offers Coming Soon!</h4>
+        <!-- RIGHT DISCOUNT BOX -->
+        <div style="
+          background:rgba(0,0,0,.35);
+          padding:18px 24px;
+          border-radius:10px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+        ">
+
+          <div style="
+            font-size:56px;
+            font-weight:900;
+            line-height:1;
+          ">
+            <%= result[7][0].amount || '5' %>
           </div>
 
-          <% } %>
+          <div style="margin-left:6px;text-align:left;">
+            <% if (result[7][0].type === 'Flat') { %>
+              <div style="font-size:20px;font-weight:700;">Rs.</div>
+            <% } else { %>
+              <div style="font-size:20px;font-weight:700;">%</div>
+            <% } %>
+            <div style="font-size:13px;letter-spacing:2px;">OFF</div>
+          </div>
 
-    </section>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MOBILE CENTER FIX -->
+  <script>
+    if (window.innerWidth < 768) {
+      const group = document.querySelector('[style*="gap:32px"]');
+      if (group) {
+        group.style.flexDirection = 'column';
+      }
+    }
+  </script>
+
+  <% } else { %>
+
+  <div style="text-align:center;padding:40px;">
+    <h4>Special Offers Coming Soon!</h4>
+  </div>
+
+  <% } %>
+
+</section>
+
 
 
     <!-- Special offers with Safety Checks -->
@@ -933,6 +946,7 @@
 
   </main>
 
+  <%- include ('./footer.ejs') %>
   <%- include ('./footer1.ejs') %>
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -987,43 +1001,5 @@
         }
 
       });
-
-
-      /* ===============================
-         🛒 ADD TO CART
-      ================================ */
-      function addToCart(productId) {
-        if (!productId) return;
-
-        fetch('/add-to-cart', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ productId })
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.success) location.reload();
-          })
-          .catch(err => console.error('Add to cart error:', err));
-      }
-
-
-      /* ===============================
-         ❤️ ADD TO WISHLIST
-      ================================ */
-      function addToWishlist(productId) {
-        if (!productId) return;
-
-        fetch('/add-to-wishlist', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ productId })
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.success) alert('Added to wishlist!');
-          })
-          .catch(err => console.error('Wishlist error:', err));
-      }
     </script>
     <script src="/theme/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>

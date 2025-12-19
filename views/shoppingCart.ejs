@@ -1,83 +1,195 @@
-<div class="offcanvas offcanvas-end" id="shoppingCart" tabindex="-1" aria-labelledby="shoppingCartLabel"
-  style="width:100%;max-width:420px">
+<div class="offcanvas offcanvas-end" id="shoppingCart" tabindex="-1"
+  style="width:100%;max-width:420px;display:flex;flex-direction:column;height:100vh">
 
-  <div class="offcanvas-header" style="border-bottom:1px solid #e5e7eb;padding:16px">
-    <h5 class="offcanvas-title" id="shoppingCartLabel" style="font-size:18px;font-weight:700">
-      Shopping Cart
-    </h5>
+  <div
+    style="padding:16px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
+    <h5 style="margin:0;font-size:18px;font-weight:700">Your Cart</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
 
-  <div class="offcanvas-body" style="padding:12px;display:flex;flex-direction:column;gap:12px">
+  <% if(!cartData.cartItems || cartData.cartItems.length===0){ %>
+    <div
+      style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px">
+      <img src="/images/empty-cart.png" style="width:160px;margin-bottom:20px">
+      <div style="font-size:16px;font-weight:700;margin-bottom:6px">Your cart is feeling lonely</div>
+      <a href="/"
+        style="margin-top:14px;background:#111;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:600">Start
+        Shopping</a>
+    </div>
+    <% } else { %>
 
-    <% for(let i=0;i<cartData.cartItems.length;i++){ let item=cartData.cartItems[i]; %>
+      <div id="cartBody" style="flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:12px">
 
-      <div
-        style="display:flex;gap:12px;align-items:flex-start;border:1px solid #e5e7eb;border-radius:12px;padding:12px">
-
-        <a href="/product?id=<%=item.booking_id%>" style="flex-shrink:0">
-          <img src="/images/<%=item.bookingimage%>" style="width:64px;height:64px;border-radius:8px;object-fit:cover">
-        </a>
-
-        <div style="flex:1;min-width:0">
-
-          <a href="/product?id=<%=item.booking_id%>"
-            style="display:block;font-size:14px;font-weight:600;color:#111;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
-            <%= (item.bookingname || '' ).replace(/"/g,'') %>
-          </a>
-
-          <div style="font-size:14px;font-weight:700;margin:6px 0">
-            Rs. <%=item.price%>
+        <% if(login==true){ %>
+          <div
+            style="background:#ecfdf5;padding:10px 12px;border-radius:10px;font-size:13px;font-weight:600;color:#065f46">
+            You will earn loyalty points on this order
           </div>
+          <% } %>
 
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <% for(let i=0;i<cartData.cartItems.length;i++){ let item=cartData.cartItems[i]; %>
+              <div style="display:flex;gap:12px;padding:12px;border-bottom:1px solid #e5e7eb">
+                <img src="/images/<%=item.bookingimage%>"
+                  style="width:70px;height:70px;border-radius:8px;object-fit:cover">
 
-            <div style="display:flex;align-items:center;border:1px solid #d1d5db;border-radius:8px;overflow:hidden">
+                <div style="flex:1">
+                  <div
+                    style="font-size:14px;font-weight:600;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">
+                    <%= ((item.bookingname||'').replace(/"/g,'').length>100 ?
+                      (item.bookingname||'').replace(/"/g,'').substring(0,100)+'…' :
+                      (item.bookingname||'').replace(/"/g,'')) %>
+                  </div>
 
-              <button onclick="addToCart1('<%=item.booking_id%>','-1','<%=item.quantity%>')"
-                style="width:28px;height:28px;border:none;background:#f5f5f5;font-size:16px">−</button>
+                  <div style="font-size:15px;font-weight:700;margin:4px 0">
+                    ₹<%=item.price%>
+                  </div>
 
-              <input value="<%=item.quantity%>" readonly
-                style="width:36px;height:28px;border:none;text-align:center;font-size:13px">
+                  <div style="display:flex;align-items:center;gap:6px">
+                    <button
+                      onclick="addToCartone1('<%= item.booking_id %>', -1, '<%= item.quantity > 0 ? item.quantity : 1 %>')"
+                      style="width:26px;height:26px;border:1px solid #d1d5db;background:#fff;border-radius:6px">−</button>
 
-              <button onclick="addToCart1('<%=item.booking_id%>','+1','<%=item.quantity%>')"
-                style="width:28px;height:28px;border:none;background:#f5f5f5;font-size:16px">+</button>
+                    <input value="<%= item.quantity > 0 ? item.quantity : 1 %>" readonly
+                      style="width:34px;height:26px;border:1px solid #d1d5db;border-radius:6px;text-align:center;font-size:13px">
 
-            </div>
+                    <button
+                      onclick="addToCartone1('<%= item.booking_id %>', 1, '<%= item.quantity > 0 ? item.quantity : 1 %>')"
+                      style="width:26px;height:26px;border:1px solid #d1d5db;background:#fff;border-radius:6px">+</button>
+                  </div>
+                </div>
+              </div>
+              <% } %>
 
-            <button onclick="addToCart1('<%=item.booking_id%>','0','0')"
-              style="border:none;background:none;font-size:18px;cursor:pointer">
-              🗑
-            </button>
-
-          </div>
-
-        </div>
+                <a href="javascript:void(0)" onclick="toggleCoupon(true)"
+                  style="background:#f3f4f6;border-radius:12px;padding:12px;text-decoration:none;color:#111;font-size:14px;font-weight:600;text-align:center">
+                  View all coupons →
+                </a>
 
       </div>
 
+      <div id="couponBody" style="display:none;flex:1;overflow-y:auto;padding:12px;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <button onclick="toggleCoupon(false)" style="border:none;background:none;font-size:18px">←</button>
+          <span style="font-size:16px;font-weight:700">Coupons</span>
+        </div>
+
+        <div style="border:1px dashed #d1d5db;border-radius:12px;padding:12px">
+          <div style="font-weight:700">PREPAID5</div>
+          <button onclick="applyCoupon(5)"
+            style="margin-top:8px;background:#111;color:#fff;border:none;padding:6px 14px;border-radius:8px">Apply</button>
+        </div>
+
+        <div style="border:1px dashed #d1d5db;border-radius:12px;padding:12px">
+          <div style="font-weight:700">FIKA100</div>
+          <button onclick="applyCoupon(100)"
+            style="margin-top:8px;background:#111;color:#fff;border:none;padding:6px 14px;border-radius:8px">Apply</button>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid #e5e7eb;flex-shrink:0">
+        <div style="padding:12px;font-size:14px">
+          <div style="display:flex;justify-content:space-between">
+            <span>Subtotal</span>
+            <span id="baseAmount" class="d-none" data-value="<%= cartData.totalPrice %>"></span>
+            <span id="subTotal">₹<%=cartData.totalPrice%></span>
+          </div>
+
+          <div id="couponRow" style="display:none;justify-content:space-between;color:#059669;margin-top:6px">
+            <span>Coupon Applied <button onclick="removeCoupon()"
+                style="border:none;background:none;color:#dc2626;font-size:12px">Remove</button></span>
+            <span>-₹<span id="couponValue"></span></span>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span>GST (18%)</span>
+            <span id="gstAmount">₹0</span>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span>Shipping</span>
+            <span>₹100</span>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;font-weight:700;margin-top:10px">
+            <span>Total</span>
+            <span id="finalAmount">₹<%=cartData.totalPrice%></span>
+          </div>
+        </div>
+
+        <div style="padding:12px;display:flex;gap:10px">
+          <a href="/mycart"
+            style="flex:1;text-align:center;border:1px solid #111;padding:12px;border-radius:10px;font-weight:600;text-decoration:none;color:#111">Go
+            to Cart</a>
+          <a href="/checkout"
+            style="flex:1;text-align:center;background:#111;color:#fff;padding:12px;border-radius:10px;font-weight:600;text-decoration:none">Pay
+            Now</a>
+        </div>
+      </div>
+
       <% } %>
-
-  </div>
-
-  <div style="border-top:1px solid #e5e7eb;padding:14px;display:flex;flex-direction:column;gap:12px">
-
-    <div style="display:flex;justify-content:space-between;font-size:14px">
-      <span style="color:#6b7280">Subtotal</span>
-      <span style="font-weight:700">Rs. <%=cartData.totalPrice%></span>
-    </div>
-
-    <div style="display:flex;gap:10px">
-      <a href="/mycart"
-        style="flex:1;text-align:center;padding:12px;border-radius:10px;border:1px solid #2563eb;color:#2563eb;font-weight:600;text-decoration:none">
-        View Cart
-      </a>
-      <a href="/checkout"
-        style="flex:1;text-align:center;padding:12px;border-radius:10px;background:#2563eb;color:#fff;font-weight:600;text-decoration:none">
-        Checkout
-      </a>
-    </div>
-
-  </div>
-
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+  function addToCartone1(booking_id, updated_one, quantity) {
+    quantity = parseInt(quantity) + parseInt(updated_one);
+    if (quantity < 0) quantity = 0;
+    const size = 'free';
+
+    $.post('/cart-handler1', { booking_id, quantity, size }, (data) => {
+      if (data.msg === 'updated successfully' || Array.isArray(data)) {
+        showSuccess('Cart updated');
+        location.reload();
+      }
+    }).fail(() => { showError('Failed to connect to server') });
+  }
+</script>
+<script>
+  function getBaseAmount() {
+    return parseInt(document.getElementById('baseAmount')?.dataset.value || 0);
+  }
+
+  function calculateTotal() {
+    const baseAmount = getBaseAmount();
+    let gst = Math.round((baseAmount - appliedDiscount) * 0.18);
+    let final = baseAmount - appliedDiscount + gst + 100;
+    document.getElementById('gstAmount').innerText = '₹' + gst;
+    document.getElementById('finalAmount').innerText = '₹' + final;
+  }
+</script>
+<script>
+  let baseAmount = '<%=cartData.totalPrice||0%>';
+  let appliedDiscount = 0;
+  function removeItem(id) {
+    $.post('/cart-handler1', { booking_id: id, quantity: 0, size: 'free' }, () => { refreshAndOpenCart(); });
+  }
+
+  function toggleCoupon(show) {
+    document.getElementById('cartBody').style.display = show ? 'none' : 'flex';
+    document.getElementById('couponBody').style.display = show ? 'flex' : 'none';
+  }
+
+  function applyCoupon(val) {
+    appliedDiscount = val === 5 ? Math.round(baseAmount * 0.05) : 100;
+    document.getElementById('couponRow').style.display = 'flex';
+    document.getElementById('couponValue').innerText = appliedDiscount;
+    toggleCoupon(false);
+    calculateTotal();
+  }
+
+  function removeCoupon() {
+    appliedDiscount = 0;
+    document.getElementById('couponRow').style.display = 'none';
+    calculateTotal();
+  }
+
+  function calculateTotal() {
+    let gst = Math.round((baseAmount - appliedDiscount) * 0.18);
+    let final = baseAmount - appliedDiscount + gst + 100;
+    document.getElementById('gstAmount').innerText = '₹' + gst;
+    document.getElementById('finalAmount').innerText = '₹' + final;
+  }
+
+  calculateTotal();
+</script>

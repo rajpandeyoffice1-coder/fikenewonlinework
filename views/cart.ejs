@@ -73,63 +73,67 @@
 
             <div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px">
               <span>Subtotal</span>
-              <span>Rs. <%=subtotal%></span>
+              <span>Rs. <span id="subTotal">
+                  <%= subtotal %>
+                </span></span>
+            </div>
+
+            <div id="discountRow"
+              style="display:none;justify-content:space-between;font-size:14px;margin-bottom:8px;color:#059669">
+              <span>
+                Coupon Applied
+                <button onclick="removeCoupon()"
+                  style="border:none;background:none;color:#dc2626;font-size:12px;margin-left:6px;cursor:pointer">
+                  Remove
+                </button>
+              </span>
+              <span>- Rs. <span id="discountAmount">0</span></span>
             </div>
 
             <div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px">
               <span>Shipping</span>
-              <span>Rs. <%=shipping%></span>
+              <span>Rs. 100</span>
             </div>
 
             <div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:12px">
-              <span>Tax (18%)</span>
-              <span>Rs. <%=tax%></span>
+              <span>GST (18%)</span>
+              <span>Rs. <span id="gstAmount">
+                  <%= tax %>
+                </span></span>
             </div>
 
             <hr>
 
             <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;margin-bottom:14px">
               <span>Order Total</span>
-              <span>Rs. <%=orderTotal%></span>
+              <span>Rs. <span id="orderTotal">
+                  <%= orderTotal %>
+                </span></span>
             </div>
 
             <div style="display:flex;gap:10px;align-items:center;margin-bottom:14px">
-
               <input id="couponInput" placeholder="Coupon Code" oninput="toggleCouponBtn()" style="
-      flex:1;
-      height:44px;
-      border:2px solid #d1d5db;
-      border-radius:12px;
-      padding:0 14px;
-      font-size:15px;
-      outline:none;
+      flex:1;height:44px;border:2px solid #d1d5db;border-radius:12px;
+      padding:0 14px;font-size:15px;outline:none;
     ">
 
-              <button id="applyCouponBtn" style="
-      height:44px;
-      padding:0 22px;
-      border-radius:12px;
-      border:none;
-      background:#1d4ed8;
-      color:#fff;
-      font-size:15px;
-      font-weight:600;
-      display:none;
-      white-space:nowrap;
-      cursor:pointer;
+              <button id="applyCouponBtn" onclick="applyCoupon()" style="
+      height:44px;padding:0 22px;border-radius:12px;border:none;
+      background:#1d4ed8;color:#fff;font-size:15px;font-weight:600;
+      display:none;cursor:pointer;
     ">
                 Apply
               </button>
-
             </div>
 
-
-            <a href="/checkout"
-              style="display:block;text-align:center;background:#2563eb;color:#fff;border-radius:10px;padding:12px;font-weight:600;text-decoration:none">
+            <a href="/checkout" style="display:block;text-align:center;background:#2563eb;color:#fff;
+    border-radius:10px;padding:12px;font-weight:600;text-decoration:none">
               Proceed to Checkout
             </a>
 
           </div>
+
+
 
         </div>
 
@@ -138,10 +142,58 @@
 
   </main>
   <script>
+function toggleCouponBtn() {
+  const input = document.getElementById('couponInput');
+  const btn = document.getElementById('applyCouponBtn');
+
+  if (!input || !btn) return;
+
+  btn.style.display = input.value.trim().length > 0 ? 'block' : 'none';
+}
+</script>
+  <script>
+    let baseSubtotal = '<%= subtotal %>';
+    let appliedDiscount = 0;
+    const shippingCharge = 100;
+
     function toggleCouponBtn() {
       const input = document.getElementById('couponInput');
-      const btn = document.getElementById('applyCouponBtn');
-      btn.style.display = input.value.trim() ? 'block' : 'none';
+      document.getElementById('applyCouponBtn').style.display =
+        input.value.trim() ? 'block' : 'none';
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('couponInput').value.trim().toUpperCase();
+
+      if (code === 'PREPAID5') {
+        appliedDiscount = Math.round(baseSubtotal * 0.05);
+      } else if (code === 'FIKA100') {
+        appliedDiscount = 100;
+      } else {
+        alert('Invalid coupon code');
+        return;
+      }
+
+      document.getElementById('discountRow').style.display = 'flex';
+      document.getElementById('discountAmount').innerText = appliedDiscount;
+      recalculateTotal();
+    }
+
+    function removeCoupon() {
+      appliedDiscount = 0;
+      document.getElementById('discountRow').style.display = 'none';
+      document.getElementById('couponInput').value = '';
+      document.getElementById('applyCouponBtn').style.display = 'none';
+      recalculateTotal();
+    }
+
+    function recalculateTotal() {
+      const taxable = baseSubtotal - appliedDiscount;
+      const gst = Math.round(taxable * 0.18);
+      const finalTotal = taxable + gst + shippingCharge;
+
+      document.getElementById('gstAmount').innerText = gst;
+      document.getElementById('orderTotal').innerText = finalTotal;
     }
   </script>
   <%- include ('./footer1.ejs') %>
