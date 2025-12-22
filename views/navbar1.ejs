@@ -99,11 +99,22 @@
 
     /* ================ PREMIUM LOGO DESIGN ================ */
     .compact-logo {
-      /* height: 36px !important; */
-      width: 25% !important;
-      margin-right: 0 !important;
       object-fit: contain;
       filter: none;
+      margin-right: 0 !important;
+    }
+
+    @media (min-width: 992px) {
+      .compact-logo {
+        width: 25% !important;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .compact-logo {
+        padding-left: 8% !important;
+        width: 60% !important;
+      }
     }
 
     .compact-logo:hover {
@@ -763,7 +774,7 @@
             </button>
 
             <a href="/" class="navbar-brand p-0">
-              <img src="/images/L3.png" class="compact-logo" alt="Fika Logo">
+              <img src="/images/L3.png" style="width: 30%; object-fit: contain;" alt="Fika Logo">
             </a>
           </div>
 
