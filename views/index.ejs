@@ -131,8 +131,21 @@
       [data-bs-theme="dark"] .text-body {
         color: rgba(255, 255, 255, 0.75) !important;
       }
-    </style>
 
+      /* Mobile only */
+      @media (max-width: 767px) {
+        .mobile-banner {
+          margin-left: 8px;
+          margin-right: 8px;
+          border-radius: 12px;
+          overflow: hidden;
+        }
+
+        .mobile-banner .swiper-slide img {
+          border-radius: 12px;
+        }
+      }
+    </style>
     <!-- Banner Section with Safety Checks -->
     <section class="container-fluid px-0">
       <div class="row g-0">
@@ -222,7 +235,7 @@
     <section class="container-fluid px-0">
       <div class="row g-0 features-row" style="background:#f6f7f8; border-radius:12px; padding:20px 10px;">
 
-        
+
 
         <div class="col-6 col-md-3">
           <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
@@ -261,7 +274,7 @@
             </h3>
           </div>
         </div>
-        
+
         <div class="col-6 col-md-3">
           <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
             <div style="
@@ -359,7 +372,7 @@
              ">
 
                 <!-- YELLOW BAR -->
-                <div style="
+                <!-- <div style="
           background:#ffc107;
           font-size:12px;
           font-weight:600;
@@ -367,7 +380,7 @@
           padding:5px 0;
         ">
                   <%= product.spec || 'High Playback' %>
-                </div>
+                </div> -->
 
                 <!-- CONTENT -->
                 <div style="padding:10px 12px;">
@@ -536,7 +549,7 @@
           text-align:center;
           padding:5px 0;
         ">
-                  <%= product.spec || 'High Playback' %>
+                  <%= product.spec || 'Trending Product' %>
                 </div>
 
                 <!-- CONTENT -->
@@ -652,17 +665,17 @@
     <!-- Sale Banner with Safety Checks -->
     <section class="container-fluid px-4 px-md-5" style="margin-top:80px;">
 
-  <% if (result && result[7] && result[7].length > 0 && result[7][0]) { %>
+      <% if (result && result[7] && result[7].length> 0 && result[7][0]) { %>
 
-  <div style="
+        <div style="
     margin:auto;
     border-radius:18px;
     overflow:hidden;
     background:linear-gradient(90deg,#3b0000 0%,#b00000 50%,#3b0000 100%);
   ">
 
-    <!-- CENTER WRAPPER -->
-    <div style="
+          <!-- CENTER WRAPPER -->
+          <div style="
       display:flex;
       align-items:center;
       justify-content:center;
@@ -670,8 +683,8 @@
       color:#fff;
     ">
 
-      <!-- CONTENT GROUP (CENTERED) -->
-      <div style="
+            <!-- CONTENT GROUP (CENTERED) -->
+            <div style="
         display:flex;
         align-items:center;
         justify-content:center;
@@ -680,27 +693,27 @@
         text-align:center;
       ">
 
-        <!-- LEFT TEXT -->
-        <div>
+              <!-- LEFT TEXT -->
+              <div>
 
-          <div style="
+                <div style="
             font-size:40px;
             font-weight:900;
             margin-bottom:10px;
           ">
-            <%= result[7][0].title || 'Welcome Offer' %>
-          </div>
+                  <%= result[7][0].title || 'Welcome Offer' %>
+                </div>
 
-          <div style="
+                <div style="
             font-size:14px;
             letter-spacing:3px;
             opacity:.85;
             margin-bottom:16px;
           ">
-            PREMIUM AUDIO EXPERIENCE
-          </div>
+                  PREMIUM AUDIO EXPERIENCE
+                </div>
 
-          <div style="
+                <div style="
             display:flex;
             align-items:center;
             justify-content:center;
@@ -708,9 +721,9 @@
             flex-wrap:wrap;
             font-size:15px;
           ">
-            <span>Use code</span>
+                  <span>Use code</span>
 
-            <span style="
+                  <span style="
               background:#fff;
               color:#000;
               padding:6px 18px;
@@ -718,23 +731,23 @@
               font-weight:800;
               font-size:14px;
             ">
-              <%= result[7][0].name || 'WEL5' %>
-            </span>
+                    <%= result[7][0].name || 'WEL5' %>
+                  </span>
 
-            <span>to get best deal</span>
-          </div>
+                  <span>to get best deal</span>
+                </div>
 
-        </div>
+              </div>
 
-        <!-- DIVIDER -->
-        <div style="
+              <!-- DIVIDER -->
+              <div style="
           width:2px;
           height:90px;
           background:rgba(255,255,255,.7);
         "></div>
 
-        <!-- RIGHT DISCOUNT BOX -->
-        <div style="
+              <!-- RIGHT DISCOUNT BOX -->
+              <div style="
           padding:18px 24px;
           border-radius:10px;
           display:flex;
@@ -742,49 +755,49 @@
           justify-content:center;
         ">
 
-          <div style="
+                <div style="
             font-size:56px;
             font-weight:900;
             line-height:1;
           ">
-            <%= result[7][0].amount || '5' %>
-          </div>
+                  <%= result[7][0].amount || '5' %>
+                </div>
 
-          <div style="margin-left:6px;text-align:left;">
-            <% if (result[7][0].type === 'Flat') { %>
-              <div style="font-size:20px;font-weight:700;">Rs.</div>
-            <% } else { %>
-              <div style="font-size:20px;font-weight:700;">%</div>
-            <% } %>
-            <div style="font-size:13px;letter-spacing:2px;">OFF</div>
+                <div style="margin-left:6px;text-align:left;">
+                  <% if (result[7][0].type==='Flat' ) { %>
+                    <div style="font-size:20px;font-weight:700;">Rs.</div>
+                    <% } else { %>
+                      <div style="font-size:20px;font-weight:700;">%</div>
+                      <% } %>
+                        <div style="font-size:13px;letter-spacing:2px;">OFF</div>
+                </div>
+
+              </div>
+
+            </div>
           </div>
 
         </div>
 
-      </div>
-    </div>
+        <!-- MOBILE CENTER FIX -->
+        <script>
+          if (window.innerWidth < 768) {
+            const group = document.querySelector('[style*="gap:32px"]');
+            if (group) {
+              group.style.flexDirection = 'column';
+            }
+          }
+        </script>
 
-  </div>
+        <% } else { %>
 
-  <!-- MOBILE CENTER FIX -->
-  <script>
-    if (window.innerWidth < 768) {
-      const group = document.querySelector('[style*="gap:32px"]');
-      if (group) {
-        group.style.flexDirection = 'column';
-      }
-    }
-  </script>
+          <div style="text-align:center;padding:40px;">
+            <h4>Special Offers Coming Soon!</h4>
+          </div>
 
-  <% } else { %>
+          <% } %>
 
-  <div style="text-align:center;padding:40px;">
-    <h4>Special Offers Coming Soon!</h4>
-  </div>
-
-  <% } %>
-
-</section>
+    </section>
 
 
 
@@ -945,59 +958,59 @@
   </main>
 
   <%- include ('./footer.ejs') %>
-  <%- include ('./footer1.ejs') %>
-    <!-- Swiper JS -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <%- include ('./footer1.ejs') %>
+      <!-- Swiper JS -->
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
 
-        /* ===============================
-           🔥 SWIPER INITIALIZATION (SAFE)
-        =============================== */
-        document.querySelectorAll('.swiper').forEach(swiperEl => {
-          try {
-            const rawConfig = swiperEl.getAttribute('data-swiper');
-            if (!rawConfig) return;
+          /* ===============================
+             🔥 SWIPER INITIALIZATION (SAFE)
+          =============================== */
+          document.querySelectorAll('.swiper').forEach(swiperEl => {
+            try {
+              const rawConfig = swiperEl.getAttribute('data-swiper');
+              if (!rawConfig) return;
 
-            const config = JSON.parse(rawConfig.replace(/&quot;/g, '"'));
-            const slidesCount = swiperEl.querySelectorAll('.swiper-slide').length;
+              const config = JSON.parse(rawConfig.replace(/&quot;/g, '"'));
+              const slidesCount = swiperEl.querySelectorAll('.swiper-slide').length;
 
-            // 🔥 Fix Swiper loop warning
-            if (config.loop === true) {
-              const slidesPerView = config.slidesPerView || 1;
-              if (slidesCount <= slidesPerView) {
-                config.loop = false;
+              // 🔥 Fix Swiper loop warning
+              if (config.loop === true) {
+                const slidesPerView = config.slidesPerView || 1;
+                if (slidesCount <= slidesPerView) {
+                  config.loop = false;
+                }
               }
+
+              new Swiper(swiperEl, config);
+
+            } catch (error) {
+              console.warn('Swiper initialization failed:', error);
             }
+          });
 
-            new Swiper(swiperEl, config);
 
-          } catch (error) {
-            console.warn('Swiper initialization failed:', error);
+          /* ===============================
+             🔍 SEARCH PANEL HANDLING
+          =============================== */
+          const searchInput = document.getElementById("searchInput");
+          const searchPanel = document.getElementById("searchPanel");
+
+          if (searchInput && searchPanel) {
+            searchInput.addEventListener("focus", () => {
+              searchPanel.style.display = "block";
+            });
+
+            document.addEventListener("click", (e) => {
+              if (!e.target.closest("#searchPanel") &&
+                !e.target.closest("#searchInput")) {
+                searchPanel.style.display = "none";
+              }
+            });
           }
+
         });
-
-
-        /* ===============================
-           🔍 SEARCH PANEL HANDLING
-        =============================== */
-        const searchInput = document.getElementById("searchInput");
-        const searchPanel = document.getElementById("searchPanel");
-
-        if (searchInput && searchPanel) {
-          searchInput.addEventListener("focus", () => {
-            searchPanel.style.display = "block";
-          });
-
-          document.addEventListener("click", (e) => {
-            if (!e.target.closest("#searchPanel") &&
-              !e.target.closest("#searchInput")) {
-              searchPanel.style.display = "none";
-            }
-          });
-        }
-
-      });
-    </script>
-    <script src="/theme/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+      </script>
+      <script src="/theme/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
