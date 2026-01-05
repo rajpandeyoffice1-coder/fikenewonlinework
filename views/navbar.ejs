@@ -85,7 +85,7 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 80px;
+      /* top: 80px; */
       background: #fff;
       padding: 32px 64px;
       display: none
@@ -138,132 +138,178 @@
       align-items: center;
       justify-content: center
     }
+
+    .navbar-container {
+      padding-left: 30px !important;
+      padding-right: 30px !important;
+    }
+
+    @media (max-width: 767px) {
+      .navbar-container {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+      }
+    }
   </style>
+  
+    <style>
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden !important;
+      }
+
+      .container-fluid {
+        padding-left: 12 !important;
+        padding-right: 12 !important;
+        overflow-x: hidden;
+      }
+
+
+      @media (max-width: 767px) {
+        .mobile-banner {
+          margin: 0 auto;
+          padding: 0 8px;
+          box-sizing: border-box;
+        }
+
+        .container-fluid {
+          padding-left: 6 !important;
+          padding-right: 6 !important;
+          overflow-x: hidden;
+        }
+      }
+    </style>
 </head>
 
 <body>
 
-  <div class="modal fade" id="mobileSearch" tabindex="-1">
-    <div class="modal-dialog modal-fullscreen">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Search</h5>
-          <button class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <form action="/search">
-            <input type="search" name="q" class="form-control form-control-lg" placeholder="Search products">
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%- include('./shoppingCart.ejs') %>
 
-  <header class="navbar navbar-expand-lg border-bottom sticky-top compact-header bg-light">
-    <div class="container-fluid">
-      <div class="row align-items-center mx-auto w-100">
-
-        <div class="col-lg-3 col-6 d-flex align-items-center">
-          <button class="navbar-toggler d-lg-none me-3" data-bs-toggle="offcanvas" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <a href="/" class="navbar-brand p-0">
-            <img src="/images/L3.png" class="compact-logo">
-          </a>
-        </div>
-
-        <div class="col-lg-6 d-none d-lg-flex justify-content-center">
-          <div class="d-flex align-items-center gap-3 w-100 justify-content-center">
-            <div class="nav-item dropdown position-static">
-              <a class="btn btn-outline-secondary rounded-pill px-4" href="#">Categories <i
-                  class="ci-chevron-down ms-1"></i></a>
-              <div class="mega-dropdown">
-                <div class="mega-grid">
-                  <% if(result&&result[0]){for(let i=0;i<result[0].length;i++){ %>
-                    <a href="/category?id=<%=result[0][i].id%>" class="mega-card">
-                      <div class="mega-icon"><img src="/images/<%=result[0][i].image%>"></div>
-                      <div>
-                        <%=result[0][i].name%>
-                      </div>
-                    </a>
-                    <% }} %>
-                </div>
-              </div>
-            </div>
-
-            <form action="/search" class="position-relative" style="width:420px">
-              <i class="ci-search search-icon"></i>
-              <input type="search" name="q" class="search-pill" placeholder="Search products">
+    <div class="modal fade" id="mobileSearch" tabindex="-1">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Search</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/search">
+              <input type="search" name="q" class="form-control form-control-lg" placeholder="Search products">
             </form>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="col-lg-3 col-6 d-flex justify-content-end align-items-end gap-3">
-          <button class="mobile-search-btn d-lg-none" data-bs-toggle="modal" data-bs-target="#mobileSearch">
-            <i class="ci-search"></i>
-          </button>
+    <header class="navbar navbar-expand-lg border-bottom sticky-top compact-header bg-light">
+      <div class="container-fluid navbar-container">
+        <div class="row align-items-center mx-auto w-100">
 
-          <a href="/view-wishlist" class="compact-btn d-none d-md-flex " style="text-decoration: none;background: white;color: black;">
-            <i class="ci-heart"></i>
-          </a>
-
-          <% if(login){ %>
-            <a href="/myaccount" class="compact-btn d-none d-md-flex" style="text-decoration: none;background: white;color: black;">
-              <i class="ci-user"></i>
+          <div class="col-lg-3 col-6 d-flex align-items-center">
+            <button class="navbar-toggler d-lg-none me-3" data-bs-toggle="offcanvas" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="/" class="navbar-brand p-0">
+              <img src="/images/L3.png" class="compact-logo">
             </a>
-            <% } else { %>
-              <a href="/login" class="compact-btn d-none d-md-flex" style="text-decoration: none;background: white;color: black;">
+          </div>
+
+          <div class="col-lg-6 d-none d-lg-flex justify-content-center">
+            <div class="d-flex align-items-center gap-3 w-100 justify-content-center">
+              <div class="nav-item dropdown position-static">
+                <a class="btn btn-outline-secondary rounded-pill px-4" href="#">Categories <i
+                    class="ci-chevron-down ms-1"></i></a>
+                <div class="mega-dropdown">
+                  <div class="mega-grid">
+                    <% if(result&&result[0]){for(let i=0;i<result[0].length;i++){ %>
+                      <a href="/category?id=<%=result[0][i].id%>" class="mega-card">
+                        <div class="mega-icon"><img src="/images/<%=result[0][i].image%>"></div>
+                        <div>
+                          <%=result[0][i].name%>
+                        </div>
+                      </a>
+                      <% }} %>
+                  </div>
+                </div>
+              </div>
+
+              <form action="/search" class="position-relative" style="width:420px">
+                <i class="ci-search search-icon"></i>
+                <input type="search" name="q" class="search-pill" placeholder="Search products">
+              </form>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6 d-flex justify-content-end align-items-end gap-3">
+            <button class="mobile-search-btn d-lg-none" data-bs-toggle="modal" data-bs-target="#mobileSearch">
+              <i class="ci-search"></i>
+            </button>
+
+            <a href="/view-wishlist" class="compact-btn d-none d-md-flex "
+              style="text-decoration: none;background: white;color: black;">
+              <i class="ci-heart"></i>
+            </a>
+
+            <% if(login){ %>
+              <a href="/myaccount" class="compact-btn d-none d-md-flex"
+                style="text-decoration: none;background: white;color: black;">
                 <i class="ci-user"></i>
               </a>
-              <% } %>
-
-                <button class="icon-btn" data-bs-toggle="offcanvas" data-bs-target="#shoppingCart">
-                  <i class="ci-shopping-cart"></i>
-                  <span class="position-absolute top-0 start-100 translate-middle badge bg-dark">
-                    <%=cartData&&cartData.cartItems?cartData.cartItems.length:0%>
-                  </span>
-                </button>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="offcanvas offcanvas-start d-lg-none" id="navbarNav">
-      <div class="offcanvas-header bg-light">
-        <img src="/images/L3.png" style="width:30%">
-        <button class="btn-close" data-bs-dismiss="offcanvas"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav gap-3">
-          <li class="nav-item"><a href="/" class="nav-link fw-semibold">Home</a></li>
-          <li class="nav-item">
-            <button class="nav-link fw-semibold w-100 text-start" data-bs-toggle="collapse"
-              data-bs-target="#mobileCat">Categories</button>
-            <div class="collapse ps-2" id="mobileCat">
-              <% if(result&&result[0]){for(let i=0;i<result[0].length;i++){ %>
-                <a href="/category?id=<%=result[0][i].id%>"
-                  class="d-flex align-items-center gap-3 py-2 text-dark text-decoration-none">
-                  <img src="/images/<%=result[0][i].image%>" width="28">
-                  <span>
-                    <%=result[0][i].name%>
-                  </span>
-                </a>
-                <% }} %>
-            </div>
-          </li>
-          <li class="nav-item"><a class="nav-link fw-semibold" href="#">Corporate Orders</a></li>
-          <li class="nav-item"><a class="nav-link fw-semibold" href="#">Gifting Store</a></li>
-          <li class="nav-item pt-3">
-            <% if(login){ %>
-              <a href="/myaccount" class="btn btn-outline-secondary w-100 rounded-pill">My Account</a>
               <% } else { %>
-                <a href="/login" class="btn btn-outline-secondary w-100 rounded-pill">Login</a>
+                <a href="/login" class="compact-btn d-none d-md-flex"
+                  style="text-decoration: none;background: white;color: black;">
+                  <i class="ci-user"></i>
+                </a>
                 <% } %>
-          </li>
-        </ul>
+
+                  <button class="icon-btn position-relative" data-bs-toggle="offcanvas" data-bs-target="#shoppingCart">
+                    <i class="ci-shopping-cart"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                      <%= cartData && cartData.cartItems ? cartData.cartItems.length : 0 %>
+                    </span>
+                  </button>
+          </div>
+
+        </div>
       </div>
-    </div>
-  </header>
+
+      <div class="offcanvas offcanvas-start d-lg-none" id="navbarNav">
+        <div class="offcanvas-header bg-light">
+          <img src="/images/L3.png" style="width:30%">
+          <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav gap-3">
+            <li class="nav-item"><a href="/" class="nav-link fw-semibold">Home</a></li>
+            <li class="nav-item">
+              <button class="nav-link fw-semibold w-100 text-start" data-bs-toggle="collapse"
+                data-bs-target="#mobileCat">Categories</button>
+              <div class="collapse ps-2" id="mobileCat">
+                <% if(result&&result[0]){for(let i=0;i<result[0].length;i++){ %>
+                  <a href="/category?id=<%=result[0][i].id%>"
+                    class="d-flex align-items-center gap-3 py-2 text-dark text-decoration-none">
+                    <img src="/images/<%=result[0][i].image%>" width="28">
+                    <span>
+                      <%=result[0][i].name%>
+                    </span>
+                  </a>
+                  <% }} %>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link fw-semibold" href="#">Corporate Orders</a></li>
+            <li class="nav-item"><a class="nav-link fw-semibold" href="#">Gifting Store</a></li>
+            <li class="nav-item pt-3">
+              <% if(login){ %>
+                <a href="/myaccount" class="btn btn-outline-secondary w-100 rounded-pill">My Account</a>
+                <% } else { %>
+                  <a href="/login" class="btn btn-outline-secondary w-100 rounded-pill">Login</a>
+                  <% } %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
 
 </body>
 

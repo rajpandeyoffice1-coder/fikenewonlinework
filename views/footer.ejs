@@ -49,6 +49,7 @@
       if (data.msg === 'updated successfully' || Array.isArray(data)) {
         showSuccess('Added to cart');
         updateCartBadge(data);
+        location.reload();
       } else {
         showError('Something went wrong');
       }

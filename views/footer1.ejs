@@ -27,244 +27,6 @@
     scrollbar-color: #9e9e9e transparent;
   }
 </style>
-<footer class="footer bg-dark text-white pt-5" style="margin-top: 60px;">
-  <div class="container-fluid px-4 px-md-5">
-
-    <!-- NEWSLETTER SECTION -->
-    <div class="newsletter-section mb-5">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-4 mb-lg-0">
-          <h3 class="h2 fw-bold mb-3">
-            <span class="gradient-text">Stay in the Audio Loop</span>
-          </h3>
-          <p class="text-light opacity-75 mb-0">
-            Subscribe for exclusive deals, new releases, and audio tips delivered to your inbox.
-          </p>
-        </div>
-        <div class="col-lg-6">
-          <form class="newsletter-form" id="newsletterForm">
-            <div class="input-group input-group-lg shadow-sm">
-              <input type="email" class="form-control bg-black border-0 text-white" placeholder="Your email address"
-                aria-label="Email" required style="border-radius: 12px 0 0 12px; padding-left: 20px;">
-              <button class="btn btn-primary px-4 fw-semibold" type="submit" style="border-radius: 0 12px 12px 0;">
-                Subscribe <i class="ci-send ms-2"></i>
-              </button>
-            </div>
-            <div class="form-text text-light opacity-75 mt-2 ps-2">
-              No spam ever. Unsubscribe anytime.
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- MAIN FOOTER CONTENT -->
-    <div class="row g-5">
-
-      <!-- BRAND & ABOUT -->
-      <div class="col-lg-4 col-md-6">
-        <div class="brand-info mb-4">
-          <a href="/" class="d-inline-block mb-4">
-            <div class="logo-container">
-              <img src="/images/L3.png" alt="FIKA" class="logo-img">
-            </div>
-          </a>
-
-          <p class="text-light opacity-75 mb-4 lh-lg">
-            FIKA delivers premium audio experiences through innovative technology and exceptional design.
-            Redefining how you listen to the world.
-          </p>
-
-          <!-- SOCIAL MEDIA -->
-          <div class="social-media mb-4">
-            <h6 class="text-uppercase fw-semibold mb-3 text-light">Follow Us</h6>
-            <div class="social-icons d-flex gap-3">
-              <a href="https://www.instagram.com/fika.offical?igsh=ODV5eHZucjJhNzFx" target="_blank"
-                class="social-link instagram">
-                <i class="ci-instagram fs-5"></i>
-                <span class="social-tooltip">Instagram</span>
-              </a>
-              <a href="https://youtube.com/@fika-h5q?feature=shared" target="_blank" class="social-link youtube">
-                <i class="ci-youtube fs-5"></i>
-                <span class="social-tooltip">YouTube</span>
-              </a>
-              <a href="https://wa.me/918198958764?text=Hello%20FIKA%20Support" target="_blank"
-                class="social-link whatsapp">
-                <i class="ci-whatsapp fs-5"></i>
-                <span class="social-tooltip">WhatsApp</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- CONTACT INFO -->
-          <div class="contact-info">
-            <div class="d-flex align-items-center mb-3">
-              <div class="contact-icon me-3">
-                <i class="ci-phone text-primary"></i>
-              </div>
-              <div>
-                <div class="text-light opacity-75 small">Customer Care</div>
-                <a href="tel:+918198958764" class="text-white text-decoration-none h5 mb-0">
-                  +91 819 895 8764
-                </a>
-              </div>
-            </div>
-            <div class="d-flex align-items-center">
-              <div class="contact-icon me-3">
-                <i class="ci-mail text-primary"></i>
-              </div>
-              <div>
-                <div class="text-light opacity-75 small">Email Support</div>
-                <a href="mailto:support@fikaonline.in" class="text-white text-decoration-none">
-                  info@fikaonline.in
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CATEGORIES -->
-      <div class="col-lg-4 col-md-6">
-        <div class="footer-category">
-          <h5 class="category-title mb-4">Shop</h5>
-          <ul class="category-list list-unstyled">
-            <% if(result && result[0]){ %>
-              <% result[0].forEach((category, index)=> { %>
-                <% if(index < 5) { %>
-                  <li class="mb-2">
-                    <a href="/category?id=<%= category.id %>" class="category-link">
-                      <i class="ci-chevron-right me-2"></i>
-                      <span>
-                        <%= category.name %>
-                      </span>
-                    </a>
-                  </li>
-                  <% } %>
-                    <% }) %>
-                      <% } %>
-          </ul>
-        </div>
-      </div>
-
-      <!-- COMPANY -->
-      <div class="col-lg-3 col-md-6 d-none">
-        <div class="footer-category">
-          <h5 class="category-title mb-4">Company</h5>
-          <ul class="category-list list-unstyled">
-            <li class="mb-2">
-              <a href="/about" class="category-link">
-                <i class="ci-star me-2"></i>
-                <span>Our Story</span>
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="#" class="category-link">
-                <i class="ci-user me-2"></i>
-                <span>Careers</span>
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="/#" class="category-link">
-                <i class="ci-mic me-2"></i>
-                <span>Press & Media</span>
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="#" class="category-link">
-                <i class="ci-pen-tool me-2"></i>
-                <span>Blog</span>
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="#" class="category-link">
-                <i class="ci-message-square me-2"></i>
-                <span>Testimonials</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- SUPPORT -->
-      <div class="col-lg-4 col-md-6">
-        <div class="footer-category">
-          <h5 class="category-title mb-4">Support</h5>
-          <ul class="category-list list-unstyled">
-            <li class="mb-2">
-              <a href="#" class="category-link">
-                <i class="ci-headphones me-2"></i>
-                <span>Contact Support</span>
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="#" class="category-link">
-                <i class="ci-map me-2"></i>
-                <span>Track Your Order</span>
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="#" class="category-link">
-                <i class="ci-help-circle me-2"></i>
-                <span>FAQ</span>
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="#" class="category-link">
-                <i class="ci-delivery me-2"></i>
-                <span>Shipping Info</span>
-              </a>
-            </li>
-            <li class="mb-2">
-              <a href="#" class="category-link">
-                <i class="ci-delivery me-2"></i>
-                <span>Returns & Exchanges</span>
-              </a>
-            </li>
-          </ul>
-
-          <!-- PAYMENT METHODS -->
-          <div class="payment-methods mt-4">
-            <h6 class="text-uppercase fw-semibold mb-3 text-light">We Accept</h6>
-            <div class="d-flex flex-wrap gap-2">
-              <div class="payment-icon">💳</div>
-              <div class="payment-icon">🔒</div>
-              <div class="payment-icon">🏦</div>
-              <div class="payment-icon">📱</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BOTTOM BAR -->
-    <div class="footer-bottom mt-5 pt-5 border-top border-secondary">
-      <div class="row align-items-center">
-        <div class="col-md-6 mb-3 mb-md-0">
-          <div class="copyright">
-            <p class="mb-0 text-light opacity-75">
-              © 2025 <strong class="text-white">FIKA Audio Technologies</strong>. All rights reserved.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="legal-links d-flex flex-wrap justify-content-md-end gap-3">
-            <a href="/privacy-policy" class="legal-link">Privacy Policy</a>
-            <span class="text-secondary">•</span>
-            <a href="/terms-and-conditions" class="legal-link">Terms of Service</a>
-            <span class="text-secondary">•</span>
-            <a href="/refund-policy" class="legal-link">Refund Policy</a>
-            <span class="text-secondary">•</span>
-            <a href="#" class="legal-link">Shipping Policy</a>
-            <span class="text-secondary">•</span>
-            <a href="#" class="legal-link">Warranty</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</footer>
 
 <style>
   /* ================= FOOTER STYLES ================= */
@@ -383,6 +145,10 @@
 
   .social-link.linkedin:hover {
     background: #0077B5;
+  }
+
+  .social-link.whatsapp:hover {
+    background: #027a04;
   }
 
   .social-tooltip {
@@ -608,6 +374,245 @@
     animation-delay: 0.6s;
   }
 </style>
+<footer class="footer bg-dark text-white pt-5" style="margin-top: 60px;">
+  <div class="container-fluid px-4 px-md-5">
+
+    <!-- NEWSLETTER SECTION -->
+    <div class="newsletter-section mb-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h3 class="h2 fw-bold mb-3">
+            <span class="gradient-text">Stay in the Audio Loop</span>
+          </h3>
+          <p class="text-light opacity-75 mb-0">
+            Subscribe for exclusive deals, new releases, and audio tips delivered to your inbox.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <form class="newsletter-form" id="newsletterForm">
+            <div class="input-group input-group-lg shadow-sm">
+              <input type="email" class="form-control bg-black border-0 text-white" placeholder="Your email address"
+                aria-label="Email" required style="border-radius: 12px 0 0 12px; padding-left: 20px;">
+              <button class="btn btn-primary px-4 fw-semibold" type="submit" style="border-radius: 0 12px 12px 0;">
+                Subscribe <i class="ci-send ms-2"></i>
+              </button>
+            </div>
+            <div class="form-text text-light opacity-75 mt-2 ps-2">
+              No spam ever. Unsubscribe anytime.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN FOOTER CONTENT -->
+    <div class="row g-5">
+
+      <!-- BRAND & ABOUT -->
+      <div class="col-lg-4 col-md-6">
+        <div class="brand-info mb-4">
+          <a href="/" class="d-inline-block mb-4">
+            <div class="logo-container">
+              <img src="/images/L3.png" alt="FIKA" class="logo-img">
+            </div>
+          </a>
+
+          <p class="text-light opacity-75 mb-4 lh-lg">
+            FIKA delivers premium audio experiences through innovative technology and exceptional design.
+            Redefining how you listen to the world.
+          </p>
+
+          <!-- SOCIAL MEDIA -->
+          <div class="social-media mb-4">
+            <h6 class="text-uppercase fw-semibold mb-3 text-light">Follow Us</h6>
+            <div class="social-icons d-flex gap-3">
+              <a href="https://www.instagram.com/fika.offical?igsh=ODV5eHZucjJhNzFx" target="_blank"
+                class="social-link instagram">
+                <i class="ci-instagram fs-5"></i>
+                <span class="social-tooltip">Instagram</span>
+              </a>
+              <a href="https://youtube.com/@fika-h5q?feature=shared" target="_blank" class="social-link youtube">
+                <i class="ci-youtube fs-5"></i>
+                <span class="social-tooltip">YouTube</span>
+              </a>
+              <a href="https://wa.me/918198958764?text=Hello%20FIKA%20Support" target="_blank"
+                class="social-link whatsapp">
+                <i class="ci-whatsapp fs-5"></i>
+                <span class="social-tooltip">WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- CONTACT INFO -->
+          <div class="contact-info">
+            <div class="d-flex align-items-center mb-3">
+              <div class="contact-icon me-3">
+                <i class="ci-phone text-primary"></i>
+              </div>
+              <div>
+                <div class="text-light opacity-75 small">Customer Care</div>
+                <a href="tel:+918198958764" class="text-white text-decoration-none h5 mb-0">
+                  +91 819 895 8764
+                </a>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="contact-icon me-3">
+                <i class="ci-mail text-primary"></i>
+              </div>
+              <div>
+                <div class="text-light opacity-75 small">Email Support</div>
+                <a href="mailto:support@fikaonline.in" class="text-white text-decoration-none">
+                  info@fikaonline.in
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-category">
+          <h5 class="category-title mb-4">Shop</h5>
+          <ul class="category-list list-unstyled">
+            <% if(result && result[0]){ %>
+              <% result[0].forEach((category, index)=> { %>
+                <% if(index < 5) { %>
+                  <li class="mb-2">
+                    <a href="/category?id=<%= category.id %>" class="category-link">
+                      <i class="ci-chevron-right me-2"></i>
+                      <span>
+                        <%= category.name %>
+                      </span>
+                    </a>
+                  </li>
+                  <% } %>
+                    <% }) %>
+                      <% } %>
+          </ul>
+        </div>
+      </div>
+
+      <!-- COMPANY -->
+      <div class="col-lg-3 col-md-6 d-none">
+        <div class="footer-category">
+          <h5 class="category-title mb-4">Company</h5>
+          <ul class="category-list list-unstyled">
+            <li class="mb-2">
+              <a href="/about" class="category-link">
+                <i class="ci-star me-2"></i>
+                <span>Our Story</span>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="category-link">
+                <i class="ci-user me-2"></i>
+                <span>Careers</span>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="/#" class="category-link">
+                <i class="ci-mic me-2"></i>
+                <span>Press & Media</span>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="category-link">
+                <i class="ci-pen-tool me-2"></i>
+                <span>Blog</span>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="category-link">
+                <i class="ci-message-square me-2"></i>
+                <span>Testimonials</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SUPPORT -->
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-category">
+          <h5 class="category-title mb-4">Support</h5>
+          <ul class="category-list list-unstyled">
+            <li class="mb-2">
+              <a href="#" class="category-link">
+                <i class="ci-headphones me-2"></i>
+                <span>Contact Support</span>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="category-link">
+                <i class="ci-map me-2"></i>
+                <span>Track Your Order</span>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="category-link">
+                <i class="ci-help-circle me-2"></i>
+                <span>FAQ</span>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="category-link">
+                <i class="ci-delivery me-2"></i>
+                <span>Shipping Info</span>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="category-link">
+                <i class="ci-delivery me-2"></i>
+                <span>Returns & Exchanges</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- PAYMENT METHODS -->
+          <div class="payment-methods mt-4">
+            <h6 class="text-uppercase fw-semibold mb-3 text-light">We Accept</h6>
+            <div class="d-flex flex-wrap gap-2">
+              <div class="payment-icon">💳</div>
+              <div class="payment-icon">🔒</div>
+              <div class="payment-icon">🏦</div>
+              <div class="payment-icon">📱</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div class="footer-bottom mt-5 pt-5 border-top border-secondary">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <div class="copyright">
+            <p class="mb-0 text-light opacity-75">
+              © 2025 <strong class="text-white"><a href="/" style="text-decoration: none;color: white;">FIKA</a></strong> All rights reserved.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="legal-links d-flex flex-wrap justify-content-md-end gap-3">
+            <a href="/privacy-policy" class="legal-link">Privacy Policy</a>
+            <span class="text-secondary">•</span>
+            <a href="/terms-and-conditions" class="legal-link">Terms of Service</a>
+            <span class="text-secondary">•</span>
+            <a href="/refund-policy" class="legal-link">Refund Policy</a>
+            <span class="text-secondary">•</span>
+            <a href="#" class="legal-link">Shipping Policy</a>
+            <span class="text-secondary">•</span>
+            <a href="#" class="legal-link">Warranty</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
