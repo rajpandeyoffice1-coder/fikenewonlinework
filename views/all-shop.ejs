@@ -4,479 +4,266 @@
     <%= result[2][0]?.name || 'Products' %> | Fika
   </title>
 
-  <main class="content-wrapper">
+  <style>
+    body {
+      background: #f6f7f8
+    }
 
-    <nav class="container pt-3 my-3">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-      </ol>
-    </nav>
+    .filter-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 100%;
+      background: #fff;
+      z-index: 1055;
+      transform: translateX(-100%);
+      transition: .35s ease;
+      box-shadow: 4px 0 18px rgba(0, 0, 0, .12);
+      display: flex;
+      flex-direction: column
+    }
 
-    <style>
-      .shop-layout {
-        display: grid;
-        grid-template-columns: 260px 1fr;
-        gap: 24px
-      }
+    .filter-drawer.active {
+      transform: translateX(0)
+    }
 
-      @media(max-width:991px) {
-        .shop-layout {
-          grid-template-columns: 1fr
-        }
-      }
+    .filter-header {
+      padding: 16px;
+      font-weight: 700;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
 
-      .filter-box {
-        background: #fff;
-        border-radius: 14px;
-        padding: 16px;
-        border: 1px solid #eee
-      }
+    .filter-body {
+      padding: 16px;
+      overflow: auto
+    }
 
-      .filter-group {
-        margin-bottom: 16px;
-        font-size: 13px
-      }
+    .filter-footer {
+      padding: 12px;
+      border-top: 1px solid #eee
+    }
 
-      .filter-group h6 {
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 8px
-      }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .4);
+      z-index: 1050;
+      display: none
+    }
 
-      .mobile-filter {
-        display: none
-      }
+    .overlay.show {
+      display: block
+    }
 
-      @media(max-width:991px) {
-        .mobile-filter {
-          display: block;
-          margin-bottom: 16px
-        }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px
+    }
 
-        .filter-box {
-          display: none
-        }
-      }
-
+    @media(max-width:1200px) {
       .product-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px
+        grid-template-columns: repeat(3, 1fr)
       }
+    }
 
-      @media(max-width:991px) {
-        .product-grid {
-          grid-template-columns: repeat(2, 1fr)
-        }
+    @media(max-width:768px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr)
       }
+    }
 
-      .product-card {
-        border: 2px dashed #dcdcdc;
-        border-radius: 18px;
-        padding: 12px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background: #fff
-      }
+    .product-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .06)
+    }
 
-      .product-card img {
-        width: 100%;
-        max-height: 140px;
-        object-fit: contain
-      }
+    .product-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: contain
+    }
 
-      .product-name {
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 1.3;
-        white-space: normal;
-        overflow: hidden
-      }
+    .badge {
+      background: #ffc107;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 10px;
+      display: inline-block
+    }
 
-      .product-feature {
-        background: #ffc107;
-        font-size: 12px;
-        font-weight: 600;
-        text-align: center;
-        padding: 6px;
-        border-radius: 10px;
-        margin-bottom: 6px
-      }
+    .rating {
+      font-size: 13px;
+      margin: 6px 0
+    }
 
-      .price-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 10px
-      }
+    .price {
+      font-size: 18px;
+      font-weight: 700
+    }
 
-      .price {
-        font-size: 18px;
-        font-weight: 700;
-        color: #495057
-      }
+    .cart-btn {
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 12px;
+      width: 100%
+    }
 
-      .cart-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 2px solid #0d6efd;
-        background: #fff;
-        color: #0d6efd;
-        display: flex;
-        align-items: center;
-        justify-content: center
-      }
-    </style>
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px
+    }
+  </style>
 
-    <section class="container mb-3 d-flex justify-content-between align-items-center">
-      <h2 class="h4 mb-0">
-        <%= result[2][0]?.name || 'Products' %>
-      </h2>
+  <main class="container py-3">
+
+    <div class="top-bar">
+      <button class="btn btn-light" onclick="openFilter()">☰ Filter</button>
       <select id="sortSelect" class="form-select form-select-sm" style="width:180px">
-        <option value="popularity">Popularity</option>
+        <option value="popularity">Featured</option>
         <option value="low">Price: Low to High</option>
         <option value="high">Price: High to Low</option>
       </select>
-    </section>
-
-    <section class="container pb-5">
-
-      <div class="mobile-filter">
-        <div class="d-lg-none mb-3">
-          <button class="btn btn-outline-primary w-100" onclick="openMobileFilter()">
-            Filters
-          </button>
-        </div>
-      </div>
-
-      <div class="shop-layout">
-
-        <aside class="filter-box">
-          <div class="filter-group">
-            <h6>Brand</h6>
-            <div><input type="checkbox" class="brand-filter" value="boAt"> boAt</div>
-            <div><input type="checkbox" class="brand-filter" value="JBL"> JBL</div>
-            <div><input type="checkbox" class="brand-filter" value="Sony"> Sony</div>
-            <div><input type="checkbox" class="brand-filter" value="Anker"> Anker</div>
-          </div>
-
-          <div class="filter-group">
-            <h6>Max Price</h6>
-            <input type="range" id="priceRangeDesk" min="0" max="5000" value="5000">
-            <div>₹0 – ₹<span id="priceValueDesk">5000</span></div>
-          </div>
-
-          <div class="filter-group">
-            <h6>Features</h6>
-            <div><input type="checkbox" class="feature-filter" value="Wireless"> Wireless</div>
-            <div><input type="checkbox" class="feature-filter" value="Noise Cancellation"> Noise Cancellation</div>
-            <div><input type="checkbox" class="feature-filter" value="Water Resistant"> Water Resistant</div>
-          </div>
-
-          <div class="filter-group">
-            <h6>Rating</h6>
-            <div><input type="radio" name="rating" class="rating-filter" value="4"> 4★ & up</div>
-            <div><input type="radio" name="rating" class="rating-filter" value="3"> 3★ & up</div>
-            <div><input type="radio" name="rating" class="rating-filter" value="0" checked> All</div>
-          </div>
-        </aside>
-
-        <div id="productGrid" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
-
-          <% result[1].forEach(p=> { %>
-            <div class="col product-item" data-brand="<%= p.brand %>" data-price="<%= p.net_amount %>"
-              data-rating="<%= p.rating || 4 %>" data-features="<%= p.features || '' %>">
-
-              <div style="
-      border:2px dashed #dcdcdc;
-      border-radius:18px;
-      padding:12px;
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      background:#fff;
-    ">
-
-                <div>
-
-                  <div style="text-align:center;margin-bottom:8px;">
-                    <a href="/product?id=<%= p.id %>">
-                      <img src="/images/<%= p.image %>" style="max-height:130px;width:100%;object-fit:contain;">
-                    </a>
-                  </div>
-
-                  <div style="
-          background:#ffc107;
-          color:#000;
-          font-size:12px;
-          font-weight:600;
-          text-align:center;
-          padding:5px 6px;
-          border-radius:10px;
-          margin-bottom:6px;
-          white-space:nowrap;
-          overflow:hidden;
-          text-overflow:ellipsis;
-        ">
-                    <%= p.features ? p.features.split(',')[0] : 'High Playback' %>
-                  </div>
-
-                  <div style="
-          font-size:13px;
-          font-weight:600;
-          line-height:1.3;
-          margin-bottom:6px;
-          white-space:normal;
-          overflow:hidden;
-          display:-webkit-box;
-          -webkit-line-clamp:2;
-          -webkit-box-orient:vertical;
-        ">
-                    <a class="text-dark" style="text-decoration:none;" href="/product?id=<%= p.id %>"><%= (p.name || '' ).replace(/"/g,'') %></a>
-                  </div>
-
-                  <div style="
-          display:inline-flex;
-          align-items:center;
-          gap:4px;
-          font-size:12px;
-          background:#f8f9fa;
-          border-radius:20px;
-          padding:2px 8px;
-        ">
-                    ⭐ <%= p.rating || 4.8 %>
-                  </div>
-
-                </div>
-
-                <div style="
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        margin-top:8px;
-      ">
-
-                  <div style="
-          font-size:18px;
-          font-weight:700;
-          color:#495057;
-        ">
-                    ₹<%= p.net_amount %>
-                  </div>
-
-                  <button onclick="addToCart('<%= p.id %>')" style="
-          width:38px;
-          height:38px;
-          border-radius:50%;
-          border:2px solid #0d6efd;
-          background:#fff;
-          color:#0d6efd;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-        ">
-                    <i class="ci-shopping-cart"></i>
-                  </button>
-
-                </div>
-
-              </div>
-            </div>
-            <% }) %>
-
-        </div>
-
-
-      </div>
-    </section>
-    <div class="modal fade" id="mobileFilterModal" tabindex="-1">
-      <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
-        <div class="modal-content">
-
-          <div class="modal-header">
-            <h5 class="modal-title">Filters</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-
-          <div class="modal-body">
-
-            <div class="filter-group mb-3">
-              <h6>Brand</h6>
-              <div><input type="checkbox" class="brand-filter" value="boAt"> boAt</div>
-              <div><input type="checkbox" class="brand-filter" value="JBL"> JBL</div>
-              <div><input type="checkbox" class="brand-filter" value="Sony"> Sony</div>
-              <div><input type="checkbox" class="brand-filter" value="Anker"> Anker</div>
-            </div>
-
-            <div class="filter-group mb-3">
-              <h6>Max Price</h6>
-              <input type="range" id="priceRangeMobile" min="0" max="5000" value="5000">
-              <div>₹0 – ₹<span id="priceValueMobile">5000</span></div>
-            </div>
-
-            <div class="filter-group mb-3">
-              <h6>Features</h6>
-              <div><input type="checkbox" class="feature-filter" value="Wireless"> Wireless</div>
-              <div><input type="checkbox" class="feature-filter" value="Noise Cancellation"> Noise Cancellation</div>
-              <div><input type="checkbox" class="feature-filter" value="Water Resistant"> Water Resistant</div>
-            </div>
-
-            <div class="filter-group">
-              <h6>Rating</h6>
-              <div><input type="radio" name="rating" class="rating-filter" value="4"> 4★ & up</div>
-              <div><input type="radio" name="rating" class="rating-filter" value="3"> 3★ & up</div>
-              <div><input type="radio" name="rating" class="rating-filter" value="0" checked> All</div>
-            </div>
-
-          </div>
-
-          <div class="modal-footer">
-            <button class="btn btn-primary w-100" onclick="applyMobileFilters()">
-              Apply Filters
-            </button>
-          </div>
-          <script>
-            const priceRangeMobile = document.getElementById('priceRangeMobile')
-            const priceValueMobile = document.getElementById('priceValueMobile')
-
-            if (priceRangeMobile) {
-              priceRangeMobile.addEventListener('input', () => {
-                priceValueMobile.textContent = priceRangeMobile.value
-              })
-            }
-
-            function applyMobileFilters() {
-              filterProducts()
-              sortProducts()
-              const modal = bootstrap.Modal.getInstance(
-                document.getElementById('mobileFilterModal')
-              )
-              modal.hide()
-            }
-          </script>
-        </div>
-      </div>
     </div>
 
-    <script>
-      const products = [...document.querySelectorAll('.product-item')]
-      const sortSelect = document.getElementById('sortSelect')
-      let mobileModal = null
+    <div id="productGrid" class="product-grid">
 
-      function filterProducts() {
-        const brands = [...document.querySelectorAll('.brand-filter:checked')].map(b => b.value)
-        const features = [...document.querySelectorAll('.feature-filter:checked')].map(f => f.value)
-        const rating = document.querySelector('.rating-filter:checked')?.value || 0
+      <% result[1].forEach(p=>{ %>
+        <div class="product-item" data-brand="<%=p.brand%>" data-price="<%=p.net_amount%>"
+          data-rating="<%=p.rating||4%>" data-features="<%=p.features||''%>">
 
-        const priceDesk = document.getElementById('priceRangeDesk')
-        const priceMobile = document.getElementById('priceRangeMobile')
-        const maxPrice = priceMobile ? priceMobile.value : priceDesk.value
+          <div class="product-card">
+            <a href="/product?id=<%=p.id%>">
+              <img src="/images/<%=p.image%>">
+            </a>
 
-        products.forEach(p => {
-          const brand = p.dataset.brand
-          const price = +p.dataset.price
-          const rate = +p.dataset.rating
-          const feats = p.dataset.features || ''
+            <div class="badge">
+              <%=p.features?p.features.split(',')[0]:'High Playback'%>
+            </div>
 
-          const show =
-            (!brands.length || brands.includes(brand)) &&
-            price <= maxPrice &&
-            rate >= rating &&
-            (!features.length || features.every(f => feats.includes(f)))
+            <a href="/product?id=<%=p.id%>" style="text-decoration: none; color: black;">
+              <div style="font-weight:600;font-size:14px;line-height:1.3;margin-top: 12px;margin-bottom: 12px;">
+                <%= p.name.replace(/"/g,'').length> 60
+                  ? p.name.replace(/"/g,'').substring(0,60) + '...'
+                  : p.name.replace(/"/g,'') %>
+              </div>
+            </a>
 
-          p.style.display = show ? '' : 'none'
-        })
-      }
+            <!-- <div class="rating">⭐ <%=p.rating||4.8%></div> -->
 
-      function sortProducts() {
-        const grid = document.getElementById('productGrid')
-        const items = products.filter(p => p.style.display !== 'none')
+            <div class="price mb-2">₹<%=p.net_amount%>
+            </div>
 
-        items.sort((a, b) =>
-          sortSelect.value === 'low'
-            ? a.dataset.price - b.dataset.price
-            : sortSelect.value === 'high'
-              ? b.dataset.price - a.dataset.price
-              : 0
-        )
+            <button class="cart-btn" onclick="addToCart('<%=p.id%>')">
+              Add To Cart
+            </button>
+          </div>
+        </div>
+        <% }) %>
 
-        items.forEach(i => grid.appendChild(i))
-      }
-
-      function openMobileFilter() {
-        const el = document.getElementById('mobileFilterModal')
-
-        document.querySelectorAll('.modal-backdrop').forEach(b => b.remove())
-        document.body.classList.remove('modal-open')
-        document.body.style.overflow = ''
-
-        mobileModal = new bootstrap.Modal(el)
-        mobileModal.show()
-      }
-
-      function applyMobileFilters() {
-        filterProducts()
-        sortProducts()
-
-        if (mobileModal) {
-          mobileModal.hide()
-        }
-
-        setTimeout(() => {
-          document.body.classList.remove('modal-open')
-          document.body.style.overflow = ''
-          document.querySelectorAll('.modal-backdrop').forEach(b => b.remove())
-          mobileModal = null
-        }, 200)
-      }
-
-      document.querySelectorAll('input').forEach(i =>
-        i.addEventListener('change', () => {
-          filterProducts()
-          sortProducts()
-        })
-      )
-
-      sortSelect.addEventListener('change', sortProducts)
-    </script>
-
-
+    </div>
   </main>
 
+  <div id="overlay" class="overlay" onclick="closeFilter()"></div>
+
+  <div id="filterDrawer" class="filter-drawer">
+    <div class="filter-header">
+      Filters
+      <button class="btn-close" onclick="closeFilter()"></button>
+    </div>
+
+    <div class="filter-body">
+
+      <h6>Brand</h6>
+      <div><input type="checkbox" class="brand-filter" value="boAt"> boAt</div>
+      <div><input type="checkbox" class="brand-filter" value="JBL"> JBL</div>
+      <div><input type="checkbox" class="brand-filter" value="Sony"> Sony</div>
+
+      <hr>
+
+      <h6>Max Price</h6>
+      <input type="range" id="priceRange" min="0" max="5000" value="5000">
+      ₹0 – ₹<span id="priceValue">5000</span>
+
+      <hr>
+
+      <h6>Features</h6>
+      <div><input type="checkbox" class="feature-filter" value="Wireless"> Wireless</div>
+      <div><input type="checkbox" class="feature-filter" value="Noise"> Noise Cancellation</div>
+
+      <hr>
+
+      <h6>Rating</h6>
+      <div><input type="radio" name="rating" class="rating-filter" value="4"> 4★ & up</div>
+      <div><input type="radio" name="rating" class="rating-filter" value="3"> 3★ & up</div>
+      <div><input type="radio" name="rating" class="rating-filter" value="0" checked> All</div>
+
+    </div>
+
+    <div class="filter-footer">
+      <button class="btn btn-dark w-100" onclick="applyFilters()">Apply Filters</button>
+    </div>
+  </div>
+
   <script>
+    const drawer = document.getElementById('filterDrawer')
+    const overlay = document.getElementById('overlay')
     const products = [...document.querySelectorAll('.product-item')]
-    const priceRange = document.getElementById('priceRange')
-    const priceValue = document.getElementById('priceValue')
     const sortSelect = document.getElementById('sortSelect')
+
+    function openFilter() { drawer.classList.add('active'); overlay.classList.add('show') }
+    function closeFilter() { drawer.classList.remove('active'); overlay.classList.remove('show') }
+
+    function applyFilters() {
+      filterProducts(); sortProducts(); closeFilter()
+    }
 
     function filterProducts() {
       const brands = [...document.querySelectorAll('.brand-filter:checked')].map(b => b.value)
       const features = [...document.querySelectorAll('.feature-filter:checked')].map(f => f.value)
       const rating = document.querySelector('.rating-filter:checked').value
-      const maxPrice = priceRange.value
+      const maxPrice = document.getElementById('priceRange').value
 
       products.forEach(p => {
-        const brand = p.dataset.brand
-        const price = +p.dataset.price
-        const rate = +p.dataset.rating
-        const feats = p.dataset.features
-        const show = (!brands.length || brands.includes(brand)) && price <= maxPrice && rate >= rating && (!features.length || features.every(f => feats.includes(f)))
+        const show =
+          (!brands.length || brands.includes(p.dataset.brand)) &&
+          (+p.dataset.price <= maxPrice) &&
+          (+p.dataset.rating >= rating) &&
+          (!features.length || features.every(f => p.dataset.features.includes(f)))
         p.style.display = show ? '' : 'none'
       })
     }
 
     function sortProducts() {
       const grid = document.getElementById('productGrid')
-      const items = [...products].filter(p => p.style.display !== 'none')
-      items.sort((a, b) => sortSelect.value === 'low' ? a.dataset.price - b.dataset.price : sortSelect.value === 'high' ? b.dataset.price - a.dataset.price : 0)
+      const items = products.filter(p => p.style.display !== 'none')
+      items.sort((a, b) =>
+        sortSelect.value === 'low' ? a.dataset.price - b.dataset.price :
+          sortSelect.value === 'high' ? b.dataset.price - a.dataset.price : 0
+      )
       items.forEach(i => grid.appendChild(i))
     }
 
-    document.querySelectorAll('input').forEach(i => i.addEventListener('change', () => { filterProducts(); sortProducts() }))
+    document.getElementById('priceRange').addEventListener('input', e => {
+      document.getElementById('priceValue').textContent = e.target.value
+      filterProducts()
+    })
     sortSelect.addEventListener('change', sortProducts)
-    priceRange.addEventListener('input', () => { priceValue.textContent = priceRange.value; filterProducts() })
   </script>
+
+  <%- include('./footer.ejs') %>
+    <%- include('./footer1.ejs') %>

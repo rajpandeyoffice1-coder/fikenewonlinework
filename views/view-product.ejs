@@ -1,326 +1,328 @@
 <%- include ('./navbar.ejs') %>
 
-  <title>
-    <%= (result[1][0].name || '' ).replace(/"/g, '' ) %> | Fika
-  </title>
-  <meta name="description" content="<%=result[1][0].name%> | Fika">
+<title>
+  <%= (result[1][0].name || '' ).replace(/"/g, '' ) %> | Fika
+</title>
+<meta name="description" content="<%=result[1][0].name%> | Fika">
 
-  <style>
-    .product-main-preview {
-      width: 100%;
-      height: 420px;
-      border: 2px dashed #dcdcdc;
-      border-radius: 18px;
-      background: #fafafa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
+<style>
+  .product-main-preview {
+    width: 100%;
+    height: 420px;
+    border: 2px dashed #dcdcdc;
+    border-radius: 18px;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
 
-    .product-main-preview img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      cursor: zoom-in;
-    }
+  .product-main-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    cursor: zoom-in;
+  }
 
-    details {
-      overflow: hidden;
-    }
+  .mobile-view {
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
+  .mobile-slider {
+    display: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+  }
+
+  .mobile-slider-track {
+    display: flex;
+    transition: transform 0.35s ease;
+  }
+
+  .mobile-slide {
+    min-width: 100%;
+    height: 300px;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .slider-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+  }
+
+  .slider-dots span.active {
+    background: #1a73e8;
+  }
+
+  .mob-pad-top-30 {
+    padding-top: 0px
+  }
+
+  @media (max-width: 768px) {
+    .product-main-preview,
     .mobile-view {
-      width: 70px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      display: none !important;
+    }
+
+    .mobile-slider {
+      display: block;
     }
 
     .mob-pad-top-30 {
-      padding-top: 0px
+      padding-top: 30px
     }
+  }
+</style>
 
-    @media (max-width: 768px) {
-      .product-main-preview {
-        height: 300px;
-        border-radius: 14px;
-      }
+<main class="content-wrapper" style="background:#fff">
 
-      .mobile-thumbs {
-        display: flex;
-        gap: 10px;
-        overflow-x: auto;
-        padding: 10px 0;
-        padding-left: 12px;
-        padding-right: 12px;
-      }
+  <section class="container px-4 px-md-5" style="padding:20px 0">
+    <div class="row">
 
-      .mobile-thumbs img {
-        width: 64px;
-        height: 64px;
-        border-radius: 8px;
-        border: 1px solid #ddd;
-        object-fit: cover;
-        flex-shrink: 0;
-      }
+      <div class="col-md-6" style="display:flex;gap:14px">
 
-      .mobile-buy-bar {
-        position: sticky;
-        bottom: 0;
-        background: #fff;
-        padding: 12px;
-        border-top: 1px solid #eee;
-        display: flex;
-        gap: 10px;
-        z-index: 99;
-      }
+        <div class="mobile-view">
+          <img src="https://fikaonline.in/images/<%=result[1][0].image%>"
+            style="width:100%;border:1px solid #ddd;border-radius:8px;cursor:pointer"
+            onclick="replaceMainImage(this.src)">
 
-      .mobile-buy-bar button {
-        flex: 1;
-        padding: 12px;
-        border-radius: 10px;
-        font-weight: 600;
-        border: none;
-      }
-
-      .mobile-view {
-        display: none;
-      }
-
-      .mob-pad-top-30 {
-        padding-top: 30px
-      }
-    }
-  </style>
-
-  <main class="content-wrapper" style="background:#fff">
-
-    <section class="container" style="padding:20px 0">
-      <div class="row">
-
-        <div class="col-md-6" style="display:flex;gap:14px">
-
-          <div class="mobile-view">
-            <img src="https://fikaonline.in/images/<%=result[1][0].image%>"
+          <% for (let i=0; i < result[8].length; i++) { %>
+            <img src="https://fikaonline.in/images/<%=result[8][i].image%>"
               style="width:100%;border:1px solid #ddd;border-radius:8px;cursor:pointer"
               onclick="replaceMainImage(this.src)">
-
-            <% for (let i=0; i < result[8].length; i++) { %>
-              <img src="https://fikaonline.in/images/<%=result[8][i].image%>"
-                style="width:100%;border:1px solid #ddd;border-radius:8px;cursor:pointer"
-                onclick="replaceMainImage(this.src)">
-              <% } %>
-          </div>
-
-          <div class="product-main-preview">
-            <img id="mainProductImage" src="https://fikaonline.in/images/<%=result[1][0].image%>"
-              onclick="openZoomModal(this.src)">
-          </div>
-
-        </div>
-
-        <div class="mobile-thumbs d-md-none mx-auto align-items-center">
-          <img src="https://fikaonline.in/images/<%=result[1][0].image%>" onclick="replaceMainImage(this.src)">
-          <% for (let i=0; i < result[8].length; i++) { %>
-            <img src="https://fikaonline.in/images/<%=result[8][i].image%>" onclick="replaceMainImage(this.src)">
-            <% } %>
-        </div>
-
-        <div class="col-md-6 mob-pad-top-30">
-
-          <h1 style="font-size:22px;font-weight:600;margin-bottom:6px">
-            <%= (result[1][0].name || '' ).replace(/"/g, '' ) %>
-          </h1>
-
-          <div style="font-size:13px;color:#666;margin-bottom:12px">
-            ⭐⭐⭐⭐☆ (<%=result[9].length%> reviews)
-          </div>
-
-          <div style="font-size:26px;font-weight:700;color:#1a73e8" id="priceDisplay">
-            ₹<%=result[1][0].net_amount%>
-              <del style="font-size:14px;color:#999">₹<%=result[1][0].price%></del>
-          </div>
-
-          <input type="hidden" id="unitPrice" value="<%=result[1][0].net_amount%>">
-
-          <% if(result[1][0].discount){ %>
-            <div style="margin:6px 0">
-              <span style="background:#ff5252;color:#fff;padding:4px 8px;border-radius:6px;font-size:12px">
-                <%=result[1][0].discount%>% OFF
-              </span>
-            </div>
-            <% } %>
-
-              <div style="margin:10px 0;font-size:13px;color:<%=result[1][0].quantity>0?'#2e7d32':'#c62828'%>">
-                <%=result[1][0].quantity>0?'In Stock':'Out of Stock'%>
-              </div>
-
-              <div
-                style="display:inline-flex;align-items:center;border:1px solid #ccc;border-radius:999px;overflow:hidden;margin:14px 0">
-                <button onclick="decreaseQty()"
-                  style="width:40px;height:40px;border:none;background:#f5f5f5;font-size:20px;cursor:pointer">−</button>
-                <span id="qtyValue" style="min-width:40px;text-align:center;font-size:15px;font-weight:600">1</span>
-                <button onclick="increaseQty()"
-                  style="width:40px;height:40px;border:none;background:#f5f5f5;font-size:20px;cursor:pointer">+</button>
-              </div>
-
-              <div style="display:flex;gap:10px;margin-bottom:18px">
-                <button onclick="addToCartWithQty('<%=result[1][0].id%>')"
-                  style="flex:1;background:#1a73e8;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:600">
-                  Add to Cart
-                </button>
-
-                <button onclick="addToWishlist('<%=result[1][0].id%>')"
-                  style="width:46px;border:1px solid #ccc;border-radius:10px;background:#fff">
-                  ❤
-                </button>
-              </div>
-
-              <div style="display:flex;gap:18px;font-size:13px;color:#555;margin-bottom:24px">
-                <span>✔ 1 Year Warranty</span>
-                <span>✔ 7 Days Replacement</span>
-                <span>✔ Free Shipping</span>
-              </div>
-
-              <details style="border-top:1px solid #eee;padding:10px 0">
-                <summary style="font-weight:600;cursor:pointer">Description</summary>
-                <div style="font-size:14px;color:#444;margin-top:6px">
-                  <%- decodedDescription %>
-                </div>
-              </details>
-
-              <details style="border-top:1px solid #eee;padding:10px 0">
-                <summary style="font-weight:600;cursor:pointer">Warranty & Returns</summary>
-                <div style="font-size:14px;color:#444;margin-top:6px">
-                  12 months official warranty. 7 days replacement.
-                </div>
-              </details>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="container-fluid px-4 px-md-5" style="padding-bottom:40px;margin-top: 120px;">
-      <h2 style="font-size:18px;font-weight:600;margin-bottom:16px">Related Products</h2>
-
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px">
-
-        <% for(i=0;i<result[2].length;i++){ %>
-
-          <div style="border:2px dashed #ddd;border-radius:18px;padding:14px;position:relative">
-
-            <img src="https://fikaonline.in/images/<%=result[2][i].image%>"
-              style="width:100%;height:160px;object-fit:contain">
-
-            <div
-              style="background:#ffc107;padding:6px;border-radius:8px;font-size:13px;font-weight:600;text-align:center;margin:10px 0">
-              High Playback
-            </div>
-
-            <div style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
-              <a style="text-decoration: none;" class="text-dark" href="/product?id=<%=result[2][i].id%>">
-                <%= (result[2][i].name || '' ).replace(/"/g, '' ) %>
-              </a>
-            </div>
-
-            <div style="font-size:13px;margin:6px 0">⭐ 4.8</div>
-
-            <div style="font-size:20px;font-weight:700">
-              ₹<%=result[2][i].net_amount%>
-            </div>
-
-            <button onclick="addToCart('<%=result[2][i].id%>')" style="
-            position:absolute;
-            bottom:14px;
-            right:14px;
-            width:44px;
-            height:44px;
-            border-radius:50%;
-            align-items: center;
-            border:2px solid #1a73e8;
-            background:#fff;
-            color:#1a73e8;
-            font-size:18px
-          ">
-              <i class="ci-shopping-cart"></i>
-            </button>
-
-          </div>
-
           <% } %>
+        </div>
+
+        <div class="product-main-preview d-none d-md-flex">
+          <img id="mainProductImage" src="https://fikaonline.in/images/<%=result[1][0].image%>"
+            onclick="openZoomModal(this.src)">
+        </div>
+
+        <div class="mobile-slider">
+          <div class="mobile-slider-track" id="sliderTrack">
+            <div class="mobile-slide">
+              <img src="https://fikaonline.in/images/<%=result[1][0].image%>">
+            </div>
+            <% for (let i=0; i < result[8].length; i++) { %>
+              <div class="mobile-slide">
+                <img src="https://fikaonline.in/images/<%=result[8][i].image%>">
+              </div>
+            <% } %>
+          </div>
+          <div class="slider-dots" id="sliderDots"></div>
+        </div>
+
       </div>
-    </section>
 
-    <div id="zoomModal" style="
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.75);
-  z-index:9999;
-  align-items:center;
-  justify-content:center
-" onmouseleave="closeZoomModal()">
+      <div class="col-md-6 mob-pad-top-30">
 
-      <button onclick="closeZoomModal()" style="
-    position:absolute;
-    top:20px;
-    right:20px;
-    width:40px;
-    height:40px;
-    border:none;
-    border-radius:50%;
-    background:#fff;
-    font-size:22px;
-    cursor:pointer;
-    line-height:1;
-  ">✕</button>
+        <h1 style="font-size:22px;font-weight:600;margin-bottom:6px">
+          <%= (result[1][0].name || '' ).replace(/"/g, '' ) %>
+        </h1>
 
-      <img id="zoomImage" style="
-    max-width:90%;
-    max-height:90%;
-    background:#fff;
-    padding:20px;
-    border-radius:16px
-  ">
+        <!-- <div style="font-size:13px;color:#666;margin-bottom:12px">
+          ⭐⭐⭐⭐☆ (<%=result[9].length%> reviews)
+        </div> -->
+
+        <div style="font-size:26px;font-weight:700;color:#1a73e8; margin-top: 12px;" id="priceDisplay">
+          ₹<%=result[1][0].net_amount%>
+          <!-- <del style="font-size:14px;color:#999">₹<%=result[1][0].price%></del> -->
+        </div>
+
+        <input type="hidden" id="unitPrice" value="<%=result[1][0].net_amount%>">
+
+        <% if(result[1][0].discount){ %>
+          <div style="margin:6px 0">
+            <span style="background:#ff5252;color:#fff;padding:4px 8px;border-radius:6px;font-size:12px">
+              <%=result[1][0].discount%>% OFF
+            </span>
+          </div>
+        <% } %>
+
+        <div style="margin:10px 0;font-size:13px;color:<%=result[1][0].quantity>0?'#2e7d32':'#c62828'%>">
+          <%=result[1][0].quantity>0?'In Stock':'Out of Stock'%>
+        </div>
+
+        <div style="display:inline-flex;align-items:center;border:1px solid #ccc;border-radius:999px;overflow:hidden;margin:14px 0">
+          <button onclick="decreaseQtyProduct()" style="width:40px;height:40px;border:none;background:#f5f5f5;font-size:20px">−</button>
+          <span id="qtyValue" style="min-width:40px;text-align:center;font-size:15px;font-weight:600">1</span>
+          <button onclick="increaseQtyProduct()" style="width:40px;height:40px;border:none;background:#f5f5f5;font-size:20px">+</button>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-bottom:18px">
+          <button onclick="addToCartWithQty('<%=result[1][0].id%>')" style="flex:1;background:#1a73e8;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:600">
+            Add to Cart
+          </button>
+          <button onclick="addToWishlist('<%=result[1][0].id%>')" style="width:46px;border:1px solid #ccc;border-radius:10px;background:#fff">
+            ❤
+          </button>
+        </div>
+
+        <details style="border-top:1px solid #eee;padding:10px 0">
+          <summary style="font-weight:600">Description</summary>
+          <div style="font-size:14px;color:#444;margin-top:6px">
+            <%- decodedDescription %>
+          </div>
+        </details>
+
+        <details style="border-top:1px solid #eee;padding:10px 0">
+          <summary style="font-weight:600">Warranty & Returns</summary>
+          <div style="font-size:14px;color:#444;margin-top:6px">
+            12 months official warranty. 7 days replacement.
+          </div>
+        </details>
+
+      </div>
     </div>
+  </section>
 
-    <script>
-      function replaceMainImage(src) {
-        document.getElementById("mainProductImage").src = src;
-      }
-      function openZoomModal(src) {
-        document.getElementById("zoomImage").src = src;
-        document.getElementById("zoomModal").style.display = "flex";
-      }
-      function closeZoomModal() {
-        document.getElementById("zoomModal").style.display = "none";
-      }
-      let qty = 1;
-      const unitPrice = Number(document.getElementById("unitPrice").value);
-      function updatePrice() {
-        document.getElementById("priceDisplay").innerHTML = `₹${unitPrice * qty}`;
-      }
-      function increaseQty() {
-        qty++;
+  <section class="container-fluid px-4 px-md-5" style="padding-bottom:40px;margin-top:80px">
+    <h2 style="font-size:18px;font-weight:600;margin-bottom:16px">Related Products</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px">
+
+      <% for(i=0;i<result[2].length;i++){ %>
+        <div style="border:2px dashed #ddd;border-radius:18px;padding:14px;position:relative">
+          <img src="https://fikaonline.in/images/<%=result[2][i].image%>" style="width:100%;height:160px;object-fit:contain">
+
+          <div style="background:#ffc107;padding:6px;border-radius:8px;font-size:13px;font-weight:600;text-align:center;margin:10px 0">
+            High Playback
+          </div>
+
+          <div style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+            <a class="text-dark" style="text-decoration:none" href="/product?id=<%=result[2][i].id%>">
+              <%= (result[2][i].name || '' ).replace(/"/g, '' ) %>
+            </a>
+          </div>
+
+          <div style="font-size:13px;margin:6px 0"> </div>
+
+          <div style="font-size:20px;font-weight:700">
+            ₹<%=result[2][i].net_amount%>
+          </div>
+
+          <button onclick="addToCart('<%=result[2][i].id%>')" style="position:absolute;bottom:14px;right:14px;width:44px;height:44px;border-radius:50%;border:2px solid #1a73e8;background:#fff;color:#1a73e8;font-size:18px">
+            <i class="ci-shopping-cart"></i>
+          </button>
+        </div>
+      <% } %>
+
+    </div>
+  </section>
+
+  <div id="zoomModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;align-items:center;justify-content:center">
+    <button onclick="closeZoomModal()" style="position:absolute;top:20px;right:20px;width:40px;height:40px;border:none;border-radius:50%;background:#fff;font-size:22px">✕</button>
+    <img id="zoomImage" style="max-width:90%;max-height:90%;background:#fff;padding:20px;border-radius:16px">
+  </div>
+
+  <script>
+    function replaceMainImage(src) {
+      document.getElementById("mainProductImage").src = src;
+    }
+
+    function openZoomModal(src) {
+      document.getElementById("zoomImage").src = src;
+      document.getElementById("zoomModal").style.display = "flex";
+    }
+
+    function closeZoomModal() {
+      document.getElementById("zoomModal").style.display = "none";
+    }
+
+    let qty = 1;
+    const unitPrice = Number(document.getElementById("unitPrice").value);
+
+    function updatePrice() {
+      document.getElementById("priceDisplay").innerHTML = `₹${unitPrice * qty}`;
+    }
+
+    function increaseQty() {
+      qty++;
+      document.getElementById("qtyValue").innerText = qty;
+      updatePrice();
+    }
+
+    function decreaseQty() {
+      if (qty > 1) {
+        qty--;
         document.getElementById("qtyValue").innerText = qty;
         updatePrice();
       }
-      function decreaseQty() {
-        if (qty > 1) {
-          qty--;
-          document.getElementById("qtyValue").innerText = qty;
-          updatePrice();
-        }
-      }
-      function addToCartWithQty(productId) {
-        if (typeof addToCart === "function") {
-          addToCart(productId, qty);
-        }
-      }
-    </script>
+    }
 
-  </main>
+    function increaseQtyProduct() {
+      qty++;
+      document.getElementById("qtyValue").innerText = qty;
+    }
 
-  <%- include ('./footer.ejs') %>
-    <%- include ('./footer1.ejs') %>
+    function decreaseQtyProduct() {
+      if (qty > 1) {
+        qty--;
+        document.getElementById("qtyValue").innerText = qty;
+      }
+    }
+
+    function addToCartWithQty(productId) {
+      if (typeof addToCart === "function") {
+        addToCart(productId, qty);
+      }
+    }
+
+    const track = document.getElementById("sliderTrack");
+    const dotsContainer = document.getElementById("sliderDots");
+    const slides = document.querySelectorAll(".mobile-slide");
+    let currentIndex = 0;
+    let startX = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement("span");
+      if (i === 0) dot.classList.add("active");
+      dotsContainer.appendChild(dot);
+    });
+
+    function updateSlider() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dotsContainer.querySelectorAll("span").forEach((d, i) => {
+        d.classList.toggle("active", i === currentIndex);
+      });
+    }
+
+    track.addEventListener("touchstart", e => {
+      startX = e.touches[0].clientX;
+    });
+
+    track.addEventListener("touchend", e => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50 && currentIndex < slides.length - 1) currentIndex++;
+      if (endX - startX > 50 && currentIndex > 0) currentIndex--;
+      updateSlider();
+    });
+  </script>
+
+</main>
+
+<%- include ('./footer.ejs') %>
+<%- include ('./footer1.ejs') %>
