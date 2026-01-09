@@ -35,7 +35,7 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: 'info@fikaonline.in', // Your GoDaddy email address
-    pass: 'Fika@1234', // Your GoDaddy email password
+    pass: 'Fika@12345689', // Your GoDaddy email password
   },
 });
 
