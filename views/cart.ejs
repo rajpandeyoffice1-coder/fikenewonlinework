@@ -17,8 +17,7 @@
             orderTotal=subtotal + shipping + tax; for(let i=0;i<cartData.cartItems.length;i++){ let
             item=cartData.cartItems[i]; let itemTotal=Number(item.oneprice) * Number(item.quantity); %>
 
-            <div
-              style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;display:flex;gap:14px;align-items:center;margin-bottom:14px;flex-wrap:wrap">
+            <div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;display:flex;gap:14px;align-items:center;margin-bottom:14px;flex-wrap:wrap">
 
               <img src="/images/<%=item.bookingimage%>"
                 style="width:64px;height:64px;border-radius:8px;object-fit:cover">
@@ -130,15 +129,15 @@
 
   </main>
   <script>
-function toggleCouponBtn() {
-  const input = document.getElementById('couponInput');
-  const btn = document.getElementById('applyCouponBtn');
+    function toggleCouponBtn() {
+      const input = document.getElementById('couponInput');
+      const btn = document.getElementById('applyCouponBtn');
 
-  if (!input || !btn) return;
+      if (!input || !btn) return;
 
-  btn.style.display = input.value.trim().length > 0 ? 'block' : 'none';
-}
-</script>
+      btn.style.display = input.value.trim().length > 0 ? 'block' : 'none';
+    }
+  </script>
   <script>
     let baseSubtotal = '<%= subtotal %>';
     let appliedDiscount = 0;

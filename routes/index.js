@@ -6,8 +6,7 @@ var pool = require('./pool')
 queryAsync = util.promisify(pool.query).bind(pool);
 const emailTemplates = require('./emailTemplates'); // Email templates
 const verify = require('./verify');
-
-
+const COMPANY_EMAIL = process.env.COMPANY_EMAIL;
 
 var table = 'category';
 const fs = require("fs");
@@ -15,8 +14,7 @@ const fetch = require("node-fetch");
 const fetchCartData = require('./fetchCartData');
 const deliveryApi = require('./delivery');
 
-
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 
 
 var bcrypt = require('bcryptjs');
@@ -2289,8 +2287,188 @@ router.get('/payment-failed', (req, res) => {
 })
 
 
+const orderMailTransporter = nodemailer.createTransport({
+  host: 'smtpout.secureserver.net',
+  port: 465,
+  secure: true,
+  auth: {
+    user: 'info@fikaonline.in',
+    pass: 'Fika@12345689'
+  }
+});
+
+async function sendOrderEmail({ to, subject, html, cc }) {
+  return orderMailTransporter.sendMail({
+    from: '"Fika Online" <info@fikaonline.in>',
+    to,
+    cc,
+    subject,
+    html
+  });
+}
 
 router.post('/order-now', async (req, res) => {
+  try {
+    let body = req.body;
+    console.log('Cart Data:', body);
+
+    if (req.body.payment_mode == 'online') {
+
+      const orderid = Math.random().toString(36).substr(2, 12);
+      req.session.orderid = orderid;
+
+      req.session.userfirstname = req.body.first_name;
+      req.session.address = req.body.address;
+      req.session.city = req.body.city;
+      req.session.state = req.body.state;
+      req.session.pincode = req.body.pincode;
+      req.session.payment_mode = req.body.payment_mode;
+      req.session.totalprice = req.body.total_amount;
+      req.session.last_name = req.body.last_name;
+
+      const amount = (+req.session.totalprice > 500)
+        ? req.session.totalprice
+        : (+req.session.totalprice);
+
+      const url = `https://rzp_live_73LM5AK2fWqoob:igp3tmmiP1WGwFYLU7aZNoCo@api.razorpay.com/v1/orders/`;
+
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          amount: amount * 100,
+          currency: "INR",
+          payment_capture: true
+        }),
+        headers: { "Content-Type": "application/json" }
+      })
+        .then(r => r.json())
+        .then(r => res.render('open', { resu: r.id }));
+
+    } else {
+
+      const user = req.session.usernumber || req.session.ipaddress;
+      const orderId = 'FIKA' + Date.now();
+      const date = new Date().toISOString().slice(0, 10);
+
+      const {
+        name,
+        first_name,
+        last_name,
+        email,
+        number,
+        address
+      } = req.body;
+
+      pool.query(
+        `SELECT c.*, p.name AS product_name 
+         FROM cart c 
+         JOIN product p ON p.id = c.booking_id 
+         WHERE c.usernumber = ?`,
+        [user],
+        async (err, cart) => {
+          if (err || !cart.length) return res.redirect('/checkout');
+
+          const totalAmount = cart.reduce((s, i) => s + i.price, 0);
+          const username = `${first_name} ${last_name}`;
+
+          const values = cart.map(i => ([
+            name,
+            number,
+            address,
+            i.price,
+            'Pending',
+            user,
+            'COD',
+            orderId,
+            date,
+            i.quantity,
+            i.booking_id,
+            i.categoryid,
+            i.oneprice,
+            i.size,
+            i.price,
+            i.product_name
+          ]));
+
+          pool.query(
+            `INSERT INTO booking
+            (name, number, address, price, status, usernumber, payment_mode,
+             orderid, order_date, quantity, booking_id, categoryid,
+             oneprice, size, net_amount, product_name)
+             VALUES ?`,
+            [values]
+          );
+
+          pool.query(
+            `INSERT INTO transaction (type, amount, orderid, date)
+             VALUES ('COD', ?, ?, ?)`,
+            [totalAmount, orderId, date]
+          );
+
+          pool.query(`DELETE FROM cart WHERE usernumber = ?`, [user]);
+
+          /* ================= CUSTOMER EMAIL ================= */
+          try {
+            await sendOrderEmail({
+              to: email,
+              subject: 'Order Confirmed! 🎉 Thank You for Shopping with FIKA',
+              html: `
+               <p>Hi ${username},</p>
+            <p>We’re excited to let you know that your order <strong>#${orderId}</strong> has been successfully placed! 🎊</p>
+            <p><strong>Order Summary:</strong></p>
+            <ul>
+                <li>🛍️ <strong>Order ID:</strong> ${orderId}</li>
+                <li>💰 <strong>Total Amount:</strong> Rs.${totalAmount}</li>
+            </ul>
+            <p>We will notify you once your order is shipped. You can track your order in your account.</p>
+            <p>For any queries, contact us at <a href="mailto:info@fikaonline.in">info@fikaonline.in</a> or call <strong>+91-819-895-8764</strong>.</p>
+            <p>Thank you for choosing FIKA! ❤️</p>
+            <p>Best Regards,</p>
+            <p><strong>The FIKA Team</strong></p>
+            <p><a href="https://fikaonline.in">https://fikaonline.in</a></p>
+              `
+            });
+          } catch (e) {
+            console.error('Customer email failed:', e);
+          }
+
+          /* ================= ADMIN EMAIL ================= */
+          try {
+            await sendOrderEmail({
+              to: 'info@fikaonline.in',
+              subject: 'New Order Received – FIKA',
+              html: `
+                <p>Hi Team,</p>
+                <p>A new order has been placed on FIKA. Here are the details:</p>
+                <ul>
+                    <li>👤 <strong>Customer Name:</strong> ${username}</li>
+                    <li>📦 <strong>Order ID:</strong> ${orderId}</li>
+                    <li>💰 <strong>Total Amount:</strong> Rs.${totalAmount}</li>
+                    <li>📞 <strong>Contact:</strong> ${number}</li>
+                </ul>
+                <p>Please process this order at the earliest.</p>
+                <p>Best Regards,</p>
+                <p><strong>The FIKA Team</strong></p>
+                <p><a href="https://fikaonline.in">https://fikaonline.in</a></p>
+              `
+            });
+          } catch (e) {
+            console.error('Admin email failed:', e);
+          }
+
+          res.redirect('/confirmation');
+        }
+      );
+    }
+
+  } catch (error) {
+    console.error('Order error:', error);
+    res.status(500).json({ success: false });
+  }
+});
+
+
+router.post('/order-now-old', async (req, res) => {
   try {
     let body = req.body;
     console.log('Cart Data:', body);
@@ -2343,11 +2521,12 @@ router.post('/order-now', async (req, res) => {
 
     }
     else {
+
       const user = req.session.usernumber || req.session.ipaddress;
       const orderId = 'FIKA' + Date.now();
       const date = new Date().toISOString().slice(0, 10);
-
-      const { name, number, address } = req.body;
+      const { name, first_name, last_name, email, number, address, city, state, pincode } = req.body;
+      const customerEmail = email;
 
       pool.query(
         `SELECT c.*, p.name AS product_name 
@@ -2355,7 +2534,7 @@ router.post('/order-now', async (req, res) => {
      JOIN product p ON p.id = c.booking_id 
      WHERE c.usernumber = ?`,
         [user],
-        (err, cart) => {
+        async (err, cart) => {
           if (err || !cart.length) {
             return res.json({ success: false });
           }
@@ -2365,7 +2544,7 @@ router.post('/order-now', async (req, res) => {
             number,
             address,
             i.price,
-            'CONFIRMED',
+            'Pending',
             user,
             'COD',
             orderId,
@@ -2395,6 +2574,36 @@ router.post('/order-now', async (req, res) => {
           );
 
           pool.query(`DELETE FROM cart WHERE usernumber = ?`, [user]);
+
+          try {
+            const totalAmount = cart.reduce((s, i) => s + i.price, 0); // Calculate totalAmount
+            const username = `${first_name} ${last_name}`; // Full name of the customer
+
+            await sendMail({
+              to: customerEmail,
+              subject: emailTemplates.orderConfirmation.userSubject,
+              html: emailTemplates.orderConfirmation.userMessage(
+                username,
+                orderId,
+                totalAmount
+              ),
+              cc: process.env.COMPANY_EMAIL,
+            });
+
+            await sendMail({
+              to: process.env.COMPANY_EMAIL,
+              subject: emailTemplates.adminOrderConfirmation.adminSubject,
+              html: emailTemplates.adminOrderConfirmation.adminMessage(
+                username,
+                orderId,
+                totalAmount,
+                number
+              ),
+            });
+
+          } catch (mailError) {
+            console.error('Email sending failed:', mailError);
+          }
 
           res.redirect('/confirmation');
         }
