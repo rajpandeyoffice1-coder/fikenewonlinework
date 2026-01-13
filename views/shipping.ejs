@@ -161,7 +161,7 @@
 
         <form id="paymentForm" action="/order-now" method="POST" style="display: none;">
           <input type="hidden" name="first_name" value="<%=result[8][0].firstname%>">
-          <input type="hidden" name="address" value="<%=result[8][0].address%>">
+          <input type="hidden" name="address" value="<%=result[8][0].address%> <%=result[8][0].city%> <%=result[8][0].state%> <%=result[8][0].pincode%>">
           <input type="hidden" name="city" value=" <%=result[8][0].city%>">
           <input type="hidden" name="name" value="<%=result[8][0].firstname%> <%=result[8][0].lastname%>">
           <input type="hidden" name="pincode" value="<%=result[8][0].pincode%>">
@@ -172,9 +172,6 @@
           <input type="hidden" name="payment_mode" id="payment_mode">
           <input type="hidden" name="total_amount" value="<%=cartData.totalPrice%>">
           <!-- <input type="hidden" name="total_amount" value="1"> -->
-
-
-
         </form>
 
         <script>

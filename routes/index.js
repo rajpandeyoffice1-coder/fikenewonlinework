@@ -2376,7 +2376,7 @@ router.post('/order-now', async (req, res) => {
             number,
             address,
             i.price,
-            'Pending',
+            'pending',
             user,
             'COD',
             orderId,
